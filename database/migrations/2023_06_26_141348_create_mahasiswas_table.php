@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nim')->unique;
             $table->string('password');
             $table->string('nama');
-            $table->date('ta');
-            $table->integer('status');
+            $table->string('ta');
+            $table->boolean('status')->default(false);
             $table->string('nomor_pribadi');
             $table->string('nomor_ortu_wali');
             $table->timestamps();
