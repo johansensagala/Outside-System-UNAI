@@ -9,17 +9,7 @@ class PengajuanLuarAsrama extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'surat',
-        'alamat',
-        'gps',
-        'foto_tempat_tinggal',
-        'persetujuan',
-        'comment',
-        'id_penjamin',
-        'id_pr3',
-        'id_mahasiswa'
-    ];
+    protected $guarded = ['id'];
 
     public function penjamin ()
     {
