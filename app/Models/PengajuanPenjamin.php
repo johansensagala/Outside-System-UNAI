@@ -9,12 +9,7 @@ class PengajuanPenjamin extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'persetujuan',
-        'comment',
-        'id_penjamin',
-        'id_mahasiswa',
-    ];
+    protected $guarded = ['id'];
 
     public function mahasiswa ()
     {
