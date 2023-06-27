@@ -9,15 +9,7 @@ class PengajuanDataTempatTinggal extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'alamat',
-        'gps',
-        'foto_tempat_tinggal',
-        'kapasitas',
-        'persetujuan',
-        'id_penjamin',
-        'id_pr3'
-    ];
+    protected $guarded = ['id'];
 
     public function penjamin ()
     {
