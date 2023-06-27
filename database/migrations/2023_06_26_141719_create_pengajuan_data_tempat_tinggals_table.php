@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pengajuan_data_tempat_tinggals', function (Blueprint $table) {
             $table->id();
-            $table->string('alamat');
+            $table->text('alamat');
             $table->string('gps');
             $table->string('foto_tempat_tinggal');
             $table->integer('kapasitas');
