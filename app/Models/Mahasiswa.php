@@ -9,15 +9,7 @@ class Mahasiswa extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nim',
-        'password',
-        'nama',
-        'date',
-        'status',
-        'nomor_pribadi',
-        'nomor_ortu_wali'
-    ];
+    protected $guarded = ['id'];
 
     public function absensi ()
     {
