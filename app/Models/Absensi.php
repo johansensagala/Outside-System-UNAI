@@ -9,12 +9,7 @@ class Absensi extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'tanggal',
-        'hadir',
-        'id_mahasiswa',
-        'id_pegawai',
-    ];
+    protected $guarded = ['id'];
 
     public function mahasiswa ()
     {
