@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('biro_kemahasiswaans', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('password');
             $table->string('nama');
-            $table->string('role');
+            $table->boolean('role')->default(false);
             $table->timestamps();
         });
     }
