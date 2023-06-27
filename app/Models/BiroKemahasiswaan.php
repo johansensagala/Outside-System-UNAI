@@ -9,12 +9,7 @@ class BiroKemahasiswaan extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'username',
-        'password',
-        'nama',
-        'role'
-    ];
+    protected $guarded = ['id'];
 
     public function absensi ()
     {
