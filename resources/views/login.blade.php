@@ -1,40 +1,46 @@
 @extends('layouts.main')
 @section('content')
 
-<div class="page-content d-flex align-items-center justify-content-center" style="background-color: #32323a;">
-  <div class="row w-100 mx-0 auth-page">
-    <div class="col-md-8 col-xl-6 mx-auto">
-      <div class="card" style="background-color: #38BBEB;">
+<div class="page-content d-flex justify-content-center" style="background-color: #32323a; min-height: 100vh;">
+  <div class="row mx-0 auth-page">
+    <div class="mx-auto" style="margin-top: 75px">
+      <div class="card mx-auto" style="border: none; width: 350px;">
         <div class="row">
-          <div class="col-md-8 ps-md-0">
-            <div class="auth-form-wrapper px-4 py-5">
-              <a class="d-block mb-2">Outside System UNAI</a>
-              <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
-              <form class="forms-sample">
-                <div class="mb-3">
-                  <label for="userEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="userEmail" placeholder="Email">
-                </div>
-                <div class="mb-3">
-                  <label for="userPassword" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="Password">
-                </div>
-                <div class="form-check mb-3">
-                  <input type="checkbox" class="form-check-input" id="authCheck">
-                  <label class="form-check-label" for="authCheck">
-                    Remember me
-                  </label>
-                </div>
-                <div>
-                  <a href="{{ url('/') }}" class="btn btn-primary me-2 mb-2 mb-md-0">Login</a>
-                </div>
-              </form>
+          <div>
+            <div style="border-radius: 10px" class="auth-form-wrapper justify-content-center">
+              <div class="text-center py-4" style="background-color: #38BBEB; border-bottom: 10px solid #2D9DC6">
+                <h4 class="d-block text-white">Universitas Advent Indonesia</h4>
+                <h5 class="fw-normal text-white">Outside System for Students.</h5>
+              </div>
+              <div>
+                <form class="forms-sample">
+                  <div class="p-4" style="background-color: #EAEAEC">
+                    <div class="mb-3">
+                      <input type="email" class="form-control" id="userEmail" placeholder="NIM">
+                    </div>
+                    <div class="mb-3">
+                      <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="Password">
+                    </div>
+                  </div>
+                  <div class="bg-white pt-3 pb-4">
+                    <div class="form-check mb-3">
+                      <a href="#" style="color: #1cb4ac; text-decoration: none;" class="link-underline-opacity-100-hover">
+                          <small>
+                            Forgot Password?
+                          </small>
+                      </a>
+                    </div>
+                    <div class="px-4">
+                      <a href="{{ url('/') }}" class="btn d-flex text-white justify-content-center fw-bold" style="background-color: #E5BC37">LOGIN</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
 @endsection
