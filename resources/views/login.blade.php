@@ -10,8 +10,7 @@
             <div style="border-radius: 10px" class="auth-form-wrapper justify-content-center">
               <div class="text-center py-4" style="background-color: #38BBEB; border-bottom: 10px solid #2D9DC6">
                 <h4 class="d-block text-white">Universitas Advent Indonesia</h4>
-                <h5 class="fw-normal text-white">Outside System for Students.</h5>
-                <h5 class="fw-normal text-white">TESTTTTT.</h5>
+                <h5 class="fw-normal text-white">OUTSIDE SYSTEM FOR STUDENTS</h5>
               </div>
               <div>
                 <form class="forms-sample">
