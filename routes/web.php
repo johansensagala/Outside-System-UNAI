@@ -15,12 +15,12 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/mahasiswa/absensi', [MahasiswaController::class, 'showAbsensi'])->name('mahasiswa.absensi');
 Route::get('/mahasiswa/pengajuan-penjamin', [MahasiswaController::class, 'showPengajuanPenjamin'])->name('mahasiswa.pengajuan_penjamin');
