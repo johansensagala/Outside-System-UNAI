@@ -1,15 +1,14 @@
 <nav class="sidebar">
-  <div class="sidebar-header">
+  <div class="sidebar-header" style="background-color: #38bbeb!important;">
     <a href="#" class="sidebar-brand">
-      Noble<span>UI</span>
+      <!-- Outside<span>System</span> -->
+      <img src="assets/images/LogoUNAI.webp " alt="">
     </a>
-    <div class="sidebar-toggler not-active">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="sidebar-toggler not-active" style="margin-left: 9px;">
+      <span></span><span></span><span></span>
     </div>
   </div>
-  <div class="sidebar-body">
+  <div class="sidebar-body" style="background-color: #38343c;">
     <ul class="nav">
       <li class="nav-item nav-category">Main</li>
       <li class="nav-item">
