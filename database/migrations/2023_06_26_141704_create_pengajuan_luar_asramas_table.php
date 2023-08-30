@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('surat_outside');
             $table->string('alamat');
-            $table->string('gps');
+            $table->decimal('latitude', 9, 6);
+            $table->decimal('longitude', 9, 6);
             $table->string('foto_tempat_tinggal');
             $table->string('persetujuan');
             $table->string('comment');

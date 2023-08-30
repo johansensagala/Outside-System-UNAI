@@ -8,16 +8,17 @@ use Illuminate\Support\Facades\Validator;
 
 class PenjaminController extends Controller
 {
-    public function showPermohonanTempatTinggal () {
+    public function index () {
         return view('penjamin.permohonan_tempat_tinggal');
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'author' => 'required',
-            'year' => 'required|integer',
+            'alamat' => 'required|string|max:255',
+            'foto_tempat_tinggal' => 'required',
+            'longitude' => 'required|integer',
+            'latitude' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
@@ -29,7 +30,7 @@ class PenjaminController extends Controller
         return response()->json(['data' => $book], 201);
     }
 
-    public function showPersetujuanPermohonanMahasiswa () {
-        return view('penjamin.persetujuan_permohonan_mahasiswa');
-    }
+    // public function showPersetujuanPermohonanMahasiswa () {
+    //     return view('penjamin.persetujuan_permohonan_mahasiswa');
+    // }
 }
