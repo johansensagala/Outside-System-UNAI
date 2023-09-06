@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="sidebar-body" style="background-color: #38343c;">
-    <ul class="nav">
+    <ul class="nav" style="font-size: 14px">
 
       <li class="nav-item py-3">
         <a href="{{ url('/') }}" class="nav-link">
@@ -25,7 +25,7 @@
       <li class="nav-item py-3">
         <a href="{{ url('/') }}" class="nav-link">
         <i class="link-icon" data-feather="user"></i>
-          <span class="link-title">Permohonan Tempat Tinggal</span>
+          <span class="link-title"><small>Permohonan Tempat Tinggal</small></span>
         </a>
       </li>
 
@@ -71,7 +71,7 @@
       <li class="nav-item py-3">
         <a href="{{ url('/') }}" class="nav-link">
         <i class="link-icon" data-feather="user"></i>
-          <span class="link-title">Persetujuan Tempat Tinggal</span>
+          <span class="link-title"><small>Tempat Tinggal</small></span>
         </a>
       </li>
 
