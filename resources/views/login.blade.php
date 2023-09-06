@@ -1,5 +1,12 @@
-@extends('layouts.main')
-@section('content')
+{{-- @extends('layouts.master')
+@section('content') --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @include('layouts.links')
+</head>
+<body>
 
 <div class="page-content d-flex justify-content-center" style="background-color: #32323a; min-height: 100vh;">
   <div class="row mx-0 auth-page">
@@ -43,4 +50,6 @@
     </div>
   </div>
 </div>
-@endsection
+
+</body>
+</html>
