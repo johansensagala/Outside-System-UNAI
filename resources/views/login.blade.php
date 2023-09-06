@@ -1,5 +1,9 @@
-@extends('layout.master2')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @include('layouts.links')
+</head>
+<body>
 
 <div class="page-content d-flex justify-content-center" style="background-color: #32323a; min-height: 100vh;">
   <div class="row mx-0 auth-page">
@@ -30,7 +34,7 @@
                   @csrf
                   <div class="p-4" style="background-color: #EAEAEC">
                     <div class="mb-3">
-                      <input type="username" class="form-control @error('username') is-invalid @enderror" id="username" name="username" placeholder="USERNAME">
+                      <input type="username" class="form-control @error('username') is-invalid @enderror" id="username" name="nim" placeholder="USERNAME">
                       @error('username')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -67,4 +71,4 @@
     </div>
   </div>
 </div>
-@endsection
+
