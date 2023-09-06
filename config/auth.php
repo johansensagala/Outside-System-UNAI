@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\User;
+use App\Models\Penjamin;
+
 return [
 
     /*
@@ -40,6 +43,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'penjamin' => [
+            'driver' => 'session',
+            'provider' => 'penjamins',
+        ],
+        'biro_kemahasiswaan' => [
+            'driver' => 'session',
+            'provider' => 'biro_kemahasiswaans',
+        ],
+        'mahasiswa' => [
+            'driver' => 'session',
+            'provider' => 'mahasiswas',
+        ],
     ],
 
     /*
@@ -62,13 +77,21 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'penjamins' => [
+            'driver' => 'database',
+            'table' => "penjamins",
+        ],
+        'biro_kemahasiswaans' => [
+            'driver' => 'database',
+            'table' => "biro_kemahasiswaans",
+        ],
+        'mahasiswas' => [
+            'driver' => 'database',
+            'table' => "mahasiswas",
+        ],
     ],
 
     /*

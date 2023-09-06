@@ -1,12 +1,5 @@
-{{-- @extends('layouts.master')
-@section('content') --}}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    @include('layouts.links')
-</head>
-<body>
+@extends('layout.master2')
+@section('content')
 
 <div class="page-content d-flex justify-content-center" style="background-color: #32323a; min-height: 100vh;">
   <div class="row mx-0 auth-page">
@@ -20,13 +13,37 @@
                 <h5 class="fw-normal text-white">OUTSIDE SYSTEM FOR STUDENTS</h5>
               </div>
               <div>
-                <form class="forms-sample">
+                @if (session()->has('success'))  
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                
+                @if (session()->has('loginError'))  
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('loginError') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                <form class="forms-sample" action="/login" method="POST">
+                  @csrf
                   <div class="p-4" style="background-color: #EAEAEC">
                     <div class="mb-3">
-                      <input type="email" class="form-control" id="userEmail" placeholder="NIM">
+                      <input type="username" class="form-control @error('username') is-invalid @enderror" id="username" name="username" placeholder="USERNAME">
+                      @error('username')
+                          <div class="invalid-feedback">
+                              {{ $message }}
+                          </div>
+                      @enderror
                     </div>
                     <div class="mb-3">
-                      <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="Password">
+                      <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password">
+                      @error('username')
+                          <div class="invalid-feedback">
+                              {{ $message }}
+                          </div>
+                      @enderror
                     </div>
                   </div>
                   <div class="bg-white pt-3 pb-4">
@@ -38,7 +55,7 @@
                       </a>
                     </div>
                     <div class="px-4">
-                      <a href="{{ url('/') }}" class="btn d-flex text-white justify-content-center fw-bold" style="background-color: #E5BC37">LOGIN</a>
+                      <button class="w-100 btn btn-lg d-flex text-white justify-content-center fw-bold" style="background-color: #E5BC37" type="submit">Login</button>
                     </div>
                   </div>
                 </form>
@@ -50,6 +67,4 @@
     </div>
   </div>
 </div>
-
-</body>
-</html>
+@endsection
