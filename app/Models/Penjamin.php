@@ -9,25 +9,20 @@ class Penjamin extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'username',
-        'password',
-        'nama',
-        'nomor_telp'
-    ];
+    protected $guarded = ['id'];
 
-    public function pengajuan_penjamin ()
-    {
-        return $this->hasMany(PengajuanPenjamin::class);
-    }
+    // public function pengajuan_penjamin ()
+    // {
+    //     return $this->hasMany(PengajuanPenjamin::class);
+    // }
 
-    public function pengajuan_luar_asrama ()
-    {
-        return $this->hasMany(PengajuanLuarAsrama::class);
-    }
+    // public function pengajuan_luar_asrama ()
+    // {
+    //     return $this->hasMany(PengajuanLuarAsrama::class);
+    // }
 
-    public function pengajuan_data_tempat_tinggal ()
-    {
-        return $this->hasMany(PengajuanDataTempatTinggal::class);
-    }
+    // public function pengajuan_data_tempat_tinggal ()
+    // {
+    //     return $this->hasMany(PengajuanDataTempatTinggal::class);
+    // }
 }
