@@ -34,7 +34,7 @@
                   @csrf
                   <div class="p-4" style="background-color: #EAEAEC">
                     <div class="mb-3">
-                      <input type="username" class="form-control @error('username') is-invalid @enderror" id="username" name="nim" placeholder="USERNAME">
+                      <input type="username" class="form-control @error('username') is-invalid @enderror" id="username" name="username" placeholder="USERNAME">
                       @error('username')
                           <div class="invalid-feedback">
                               {{ $message }}
