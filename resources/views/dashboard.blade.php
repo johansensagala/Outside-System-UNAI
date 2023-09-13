@@ -418,7 +418,7 @@
       </div> 
     </div>
   </div>
-</div> <!-- row -->
+</div>
 @endsection
 
 @push('plugin-scripts')
