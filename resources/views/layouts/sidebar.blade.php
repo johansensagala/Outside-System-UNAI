@@ -2,12 +2,14 @@
   <div class="sidebar-header" style="background-color: #38bbeb!important;">
     <a href="#" class="sidebar-brand">
       <!-- Outside<span>System</span> -->
-      <img src="assets/images/LogoUNAI.webp " alt="">
+      <img src="{{ asset('assets/images/LogoUNAI.webp') }}" alt="">
     </a>
+    
     <div class="sidebar-toggler not-active" style="margin-left: 9px;">
       <span></span><span></span><span></span>
     </div>
   </div>
+  
   <div class="sidebar-body" style="background-color: #38343c;">
     <ul class="nav" style="font-size: 14px">
 

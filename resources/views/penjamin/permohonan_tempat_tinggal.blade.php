@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @push('plugin-styles')
-    <link href="{{ asset('assets/plugins/flatpickr/flatpickr.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/flatpickr/flatpickr.min.css') }}" rel="stylesheet"/>
 @endpush
 
 @section('content')
