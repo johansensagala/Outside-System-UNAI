@@ -69,20 +69,31 @@
                                 <label for="">Lokasi</label>
                             </div>
                             <div class="col-md-8">
+                                <div class="loading text-center">
+                                    <p>Melacak lokasi</p>
+                                    <div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <div class="spinner-border" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    
+                                </div>
                                 <div class="container">
                                     <h1 class="status"></h1>
                                     <!-- <button class="find-state">Find States</button> -->
                                 </div>
                             
-                                <div class="latitude"></div>
-                                <div class="longitude"></div>
+                                <div class="latitude d-none"></div>
+                                <div class="longitude d-none"></div>
                             
                                 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script> -->
                             
-                                <script src="location.js"></script>
+                                <script src="{{ asset('js/location.js') }}"></script>
                             
-                                <div id="googleMap" style="width:100%;height:400px;"></div>
-                            </div>
+                                <div id="googleMap" class="" style="width:100%;height:400px;"></div>
+                            </div>                            
                         </div>
                     </div>
                     <div class="card-body">
