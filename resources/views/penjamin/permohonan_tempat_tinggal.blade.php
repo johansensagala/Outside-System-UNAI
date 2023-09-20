@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.main')
 
 @push('plugin-styles')
     <link href="{{ asset('assets/plugins/flatpickr/flatpickr.min.css') }}" rel="stylesheet" />
@@ -71,12 +71,8 @@
                             <div class="col-md-8">
                                 <div class="loading text-center">
                                     <p>Melacak lokasi</p>
-                                    <div class="spinner-border" role="status">
+                                    <div class="spinner-border mt-3" role="status">
                                         <span class="visually-hidden">Loading...</span>
-                                    </div>
-                                    <i class="fas fa-spinner fa-spin"></i>
-                                    <div class="spinner-border" role="status">
-                                        <span class="sr-only">Loading...</span>
                                     </div>
                                     
                                 </div>

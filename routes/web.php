@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PermohonanTempatTinggalController;
+use App\Http\Controllers\FormulirPenjaminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +35,13 @@ Route::get('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalContro
 // Route::get('/penjamin/permohonan-tempat-tinggal', [PenjaminController::class, 'showPermohonanTempatTinggal'])->name('penjamin.permohonan_tempat_tinggal');
 // Route::get('/penjamin/persetujuan-permohonan-mahasiswa', [PenjaminController::class, 'showPersetujuanPermohonanMahasiswa'])->name('penjamin.persetujuan_permohonan_mahasiswa.blade');
 
-// Route::get('/biro-kemahasiswaan/absensi-mahasiswa', [BiroKemahasiswaanController::class, 'showAbsensiPermahasiswa'])->name('biro_kemahasiswaan.absensi_permahasiswa');
-// Route::get('/biro-kemahasiswaan/absensi', [BiroKemahasiswaanController::class, 'showAbsensiPertanggal'])->name('biro_kemahasiswaan.absensi_pertanggal');
-// Route::get('/biro-kemahasiswaan/daftar-pengajuan-outside', [BiroKemahasiswaanController::class, 'showDaftarPengajuanOutside'])->name('biro_kemahasiswaan.daftar_pengajuan_outside');
-// Route::get('/biro-kemahasiswaan/daftar-penjamin', [BiroKemahasiswaanController::class, 'showDaftarPenjamin'])->name('biro_kemahasiswaan.daftar_penjamin');
-// Route::get('/biro-kemahasiswaan/daftar-tempat-tinggal', [BiroKemahasiswaanController::class, 'showDaftarTempatTinggal'])->name('biro_kemahasiswaan.daftar_tempat_tinggal');
-// Route::get('/biro-kemahasiswaan/absensi-mahasiswa/edit', [BiroKemahasiswaanController::class, 'showEditAbsensi'])->name('biro_kemahasiswaan.edit_absensi');
-// Route::get('/biro-kemahasiswaan/formulir-penjamin', [BiroKemahasiswaanController::class, 'showFormulirPenjamin'])->name('biro_kemahasiswaan.formulir_penjamin');
-// Route::get('/biro-kemahasiswaan/info-pengajuan-outside', [BiroKemahasiswaanController::class, 'showInfoPengajuanOutside'])->name('biro_kemahasiswaan.info_pengajuan_outside');
-// Route::get('/biro-kemahasiswaan/info_tempat_tinggal', [BiroKemahasiswaanController::class, 'showInfoTempatTinggal'])->name('biro_kemahasiswaan.info_tempat_tinggal');
-// Route::get('/biro-kemahasiswaan/absensi/input', [BiroKemahasiswaanController::class, 'showInputAbsensi'])->name('biro_kemahasiswaan.input_absensi');
+// Route::get('/admin/absensi-mahasiswa', [AdminController::class, 'showAbsensiPermahasiswa'])->name('admin.absensi_permahasiswa');
+// Route::get('/admin/absensi', [AdminController::class, 'showAbsensiPertanggal'])->name('admin.absensi_pertanggal');
+// Route::get('/admin/daftar-pengajuan-outside', [AdminController::class, 'showDaftarPengajuanOutside'])->name('admin.daftar_pengajuan_outside');
+// Route::get('/admin/daftar-penjamin', [AdminController::class, 'showDaftarPenjamin'])->name('admin.daftar_penjamin');
+// Route::get('/admin/daftar-tempat-tinggal', [AdminController::class, 'showDaftarTempatTinggal'])->name('admin.daftar_tempat_tinggal');
+// Route::get('/admin/absensi-mahasiswa/edit', [AdminController::class, 'showEditAbsensi'])->name('admin.edit_absensi');
+Route::get('/admin/formulir-penjamin', [FormulirPenjaminController::class, 'index'])->name('admin.formulir_penjamin');
+// Route::get('/admin/info-pengajuan-outside', [AdminController::class, 'showInfoPengajuanOutside'])->name('admin.info_pengajuan_outside');
+// Route::get('/admin/info_tempat_tinggal', [AdminController::class, 'showInfoTempatTinggal'])->name('admin.info_tempat_tinggal');
+// Route::get('/admin/absensi/input', [AdminController::class, 'showInputAbsensi'])->name('admin.input_absensi');
