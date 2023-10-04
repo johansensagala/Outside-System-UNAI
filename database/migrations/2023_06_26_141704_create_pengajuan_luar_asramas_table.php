@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('pengajuan_luar_asramas', function (Blueprint $table) {
             $table->id();
             $table->string('surat_outside');
-            $table->string('alamat');
+            $table->string('ta');
             $table->decimal('latitude', 9, 6);
             $table->decimal('longitude', 9, 6);
+            $table->string('alamat');
             $table->string('foto_tempat_tinggal');
+            $table->string('jenis_penjamin');
+            $table->string('kode_penjamin');
             $table->string('persetujuan');
-            $table->string('comment');
+            $table->string('comment')->nullable();
             $table->unsignedBigInteger('id_penjamin');
             $table->unsignedBigInteger('id_pr3');
             $table->unsignedBigInteger('id_mahasiswa');

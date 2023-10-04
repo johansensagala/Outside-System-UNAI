@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
+            $table->string('nim')->unique();
             $table->string('password');
             $table->string('nama');
-            $table->string('ta');
+            $table->string('semester');
             $table->boolean('status')->default(false);
             $table->string('nomor_pribadi');
             $table->string('nomor_ortu_wali');

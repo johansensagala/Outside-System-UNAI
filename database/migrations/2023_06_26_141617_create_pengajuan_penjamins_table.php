@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pengajuan_penjamins', function (Blueprint $table) {
             $table->id();
             $table->string('persetujuan');
-            $table->string('comment');
+            $table->string('comment')->nullable();
             $table->unsignedBigInteger('id_penjamin');
             $table->unsignedBigInteger('id_mahasiswa');
             $table->timestamps();
