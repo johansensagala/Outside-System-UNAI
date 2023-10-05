@@ -30,7 +30,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
-                <form class="forms-sample" action="/login" method="POST">
+                <form class="forms-sample" action="/penjamin/login" method="POST">
                   @csrf
                   <div class="p-4" style="background-color: #EAEAEC">
                     <div class="mb-3">

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PengajuanDataTempatTinggal;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Models\PengajuanDataPenjamin;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PermohonanTempatTinggalController extends Controller
 {
@@ -24,7 +24,7 @@ class PermohonanTempatTinggalController extends Controller
             'kapasitas' => 'required|integer',
         ]);
 
-        $data_tempat_tinggal = new PengajuanDataTempatTinggal();
+        $data_tempat_tinggal = new PengajuanDataPenjamin();
 
         $data_tempat_tinggal->alamat = $request->input('alamat');
         $data_tempat_tinggal->latitude = $request->input('latitude');

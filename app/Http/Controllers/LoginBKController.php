@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class LoginBKController extends Controller
 {
     public function index()
     {
@@ -19,17 +19,7 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::guard('mahasiswa')->attempt($credentials)) 
-        {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
-        }
-        else if (Auth::guard('penjamin')->attempt($credentials)) 
-        {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
-        } 
-        else if (Auth::guard('biro_kemahasiswaan')->attempt($credentials)) 
+        if (Auth::guard('biro_kemahasiswaan')->attempt($credentials)) 
         {
             $request->session()->regenerate();
             return redirect()->intended('/');
