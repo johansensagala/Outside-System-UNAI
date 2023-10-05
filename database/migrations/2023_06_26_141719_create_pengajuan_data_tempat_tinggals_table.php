@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengajuan_data_tempat_tinggals', function (Blueprint $table) {
+        Schema::create('pengajuan_data_penjamins', function (Blueprint $table) {
             $table->id();
             $table->text('alamat');
             $table->decimal('latitude', 9, 6);
