@@ -11,6 +11,17 @@ class PengajuanDataTempatTinggal extends Model
 
     protected $guarded = ['id'];
 
+    // protected $fillable = [
+    //     'alamat',
+    //     'longitude',
+    //     'latitude',
+    //     'foto_tempat_tinggal',
+    //     'kapasitas',
+    //     'persetujuan',
+    //     'id_penjamin',
+    //     'id_pr3'
+    // ];
+
     public function penjamin ()
     {
         return $this->belongsTo(Penjamin::class);

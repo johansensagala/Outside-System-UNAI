@@ -4,8 +4,8 @@ let longitude = null;
 const success = (position) => {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
-    document.querySelector(".latitude").innerHTML = latitude;
-    document.querySelector(".longitude").innerHTML = longitude;
+    document.querySelector("#latitude").value = latitude;
+    document.querySelector("#longitude").value = longitude;
 
     initMap();
 }

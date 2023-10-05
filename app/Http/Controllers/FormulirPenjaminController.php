@@ -5,14 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Penjamin;
 use App\Models\BiroKemahasiswaan;
+use App\Models\PengajuanDataTempatTinggal;
+use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class FormulirPenjaminController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        return view('admin.formulir_penjamin');
+        $data_tempat_tinggal = PengajuanDataTempatTinggal::where('id', $id)->first();
+
+        return view('admin.formulir_penjamin', compact('data_tempat_tinggal'));
     }
 
     public function store(Request $request)
@@ -22,7 +26,7 @@ class FormulirPenjaminController extends Controller
             'foto_tempat_tinggal' => 'required',
             'longitude' => 'required|integer',
             'latitude' => 'required|integer',
-            'kapasitas' => 'required|integer'
+            'kapasitas' => 'required|integer',
         ]);
 
         if ($validator->fails()) {

@@ -14,7 +14,7 @@ class MahasiswaSeeder extends Seeder
     public function run(): void
     {
         Mahasiswa::create([
-            'username' => '2081031',
+            'nim' => '2081031',
             'password' => bcrypt('johansen123'),
             'nama' => 'Johansen Sagala',
             'ta' => '2023',
@@ -24,7 +24,7 @@ class MahasiswaSeeder extends Seeder
         ]);
 
         Mahasiswa::create([
-            'username' => '2081032',
+            'nim' => '2081032',
             'password' => bcrypt('jonatan123'),
             'nama' => 'Jonatan Situmorang',
             'ta' => '2023',
@@ -34,7 +34,7 @@ class MahasiswaSeeder extends Seeder
         ]);
 
         Mahasiswa::create([
-            'username' => '2081033',
+            'nim' => '2081033',
             'password' => bcrypt('irpan123'),
             'nama' => 'Irpan Buri Siburian',
             'ta' => '2023',
@@ -44,7 +44,7 @@ class MahasiswaSeeder extends Seeder
         ]);
 
         Mahasiswa::create([
-            'username' => '2081034',
+            'nim' => '2081034',
             'password' => bcrypt('eli123'),
             'nama' => 'Eli Feri Josua Simatupang',
             'ta' => '2023',
@@ -54,7 +54,7 @@ class MahasiswaSeeder extends Seeder
         ]);
 
         Mahasiswa::create([
-            'username' => '2081035',
+            'nim' => '2081035',
             'password' => bcrypt('iman123'),
             'nama' => 'Iman Saputra Zendato',
             'ta' => '2023',
@@ -64,7 +64,7 @@ class MahasiswaSeeder extends Seeder
         ]);
 
         Mahasiswa::create([
-            'username' => '2081036',
+            'nim' => '2081036',
             'password' => bcrypt('krismes123'),
             'nama' => 'Krismes Situmeang',
             'ta' => '2023',
@@ -74,7 +74,7 @@ class MahasiswaSeeder extends Seeder
         ]);
 
         Mahasiswa::create([
-            'username' => '2081037',
+            'nim' => '2081037',
             'password' => bcrypt('perianto123'),
             'nama' => 'Perianto Sinaga',
             'ta' => '2023',
