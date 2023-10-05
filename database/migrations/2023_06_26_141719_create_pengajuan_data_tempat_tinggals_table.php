@@ -16,11 +16,11 @@ return new class extends Migration
             $table->text('alamat');
             $table->decimal('latitude', 9, 6);
             $table->decimal('longitude', 9, 6);
-            $table->string('foto_tempat_tinggal');
+            $table->string('foto_tempat_tinggal')->default('8');
             $table->integer('kapasitas');
-            $table->string('persetujuan');
-            $table->unsignedBigInteger('id_penjamin');
-            $table->unsignedBigInteger('id_pr3');
+            $table->string('persetujuan')->default('pending');
+            $table->unsignedBigInteger('id_penjamin')->nullable();
+            $table->unsignedBigInteger('id_pr3')->nullable();
             $table->timestamps();
 
             $table->foreign('id_penjamin')->references('id')->on('penjamins');

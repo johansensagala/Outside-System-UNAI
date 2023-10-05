@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4 text-end">
+                            <div class="col-md-4">
                                 Nama Penjamin
                             </div>
                             <div class="col-md-8 fw-bold">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4 text-end">
+                            <div class="col-md-4">
                                 Status Penjamin Penjamin
                             </div>
                             <div class="col-md-8 fw-bold">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4 text-end">
+                            <div class="col-md-4">
                                 Nomor Telepon Penjamin
                             </div>
                             <div class="col-md-8 fw-bold">
@@ -61,31 +61,58 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 text-end">
+                            <div class="col-md-4">
                                 Alamat Domisili
                             </div>
-                            <div class="col-md-6 fw-bold">
-                                Jay Idoan Sihotang
+                            <div class="col-md-8 fw-bold">
+                                {{ $data_tempat_tinggal->alamat }}
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 text-end">
-                                Status Penjamin Penjamin
+                            <div class="col-md-4">
+                                Foto Tempat Tinggal
                             </div>
-                            <div class="col-md-6 fw-bold">
-                                Staff/Dosen
+                            <div class="col-md-8 fw-bold">
+                                <button type="button" class="btn btn-warning fw-bold text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="link-icon" data-feather="eye"></i>
+                                     &nbsp;&nbsp;Lihat Foto
+                                </button>
+                                 
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Foto Tempat Tinggal Penjamin</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img id="myImg" src="{{ asset('storage/' . $data_tempat_tinggal->foto_tempat_tinggal) }}" alt="Snow" style="width: 100%; height: auto;">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 text-end">
-                                Nomor Telepon Penjamin
+                            <div class="col-md-4">
+                                Lokasi
                             </div>
-                            <div class="col-md-6 fw-bold">
-                                081234567890
+                            <div class="col-md-8 fw-bold">
+                                <div class="container">
+                                    <h1 class="status"></h1>
+                                </div>
+                            
+                                <div class="latitude d-none"></div>
+                                <div class="longitude d-none"></div>
+                            
+                                <div id="googleMap" class="" style="width:100%;height:400px;"></div>
                             </div>
                         </div>
                     </div><hr>
@@ -100,9 +127,25 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
+                            @if ($data_tempat_tinggal->persetujuan === 'disetujui')
+                            
+                            <div class="bg-success p-2 rounded-3 text-white text-center">
+                                Disetujui
+                            </div>
+
+                            @elseif ($data_tempat_tinggal->persetujuan === 'ditolak')
+                            
+                            <div class="bg-danger p-2 rounded-3 text-white text-center">
+                                Ditolak
+                            </div>
+
+                            @else
+
                             <div class="bg-warning p-2 rounded-3 text-white text-center">
                                 Belum Disetujui
                             </div>
+                            
+                            @endif
                         </li>
                     </ul>
                 </div>
@@ -114,8 +157,32 @@
     </div>
 </div> <!-- row -->
 
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTs7j_Y6pVttaqzlWJ9T-U98X40tWXnoc"></script> --}}
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTs7j_Y6pVttaqzlWJ9T-U98X40tWXnoc"></script>
-<script src="{{ asset('js/location.js') }}"></script>
+{{-- <script src="{{ asset('js/locationDisplayer.js') }}"></script> --}}
+<script>
+    let latitude = {{ $data_tempat_tinggal->latitude }};
+    let longitude = {{ $data_tempat_tinggal->longitude }};
+
+    // Panggil fungsi initMap() setelah variabel latitude dan longitude ditetapkan
+    initMap();
+
+    function initMap() {
+        let myLatLng = { lat: latitude, lng: longitude };
+
+        let map = new google.maps.Map(document.getElementById('googleMap'), {
+            zoom: 14,
+            center: myLatLng
+        });
+
+        let marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Lokasi saya'
+        });
+    }
+</script>
+{{-- <script src="{{ asset('js/modal_image.js') }}"></script> --}}
 
 @endsection
 
