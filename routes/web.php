@@ -26,13 +26,13 @@ Route::get('mhs/login', [LoginMController::class, 'index'])->name('login')->midd
 Route::post('mhs//login', [LoginController::class, 'authenticate']);
 Route::post('mhs/logout', [LoginController::class, 'logout']);
 
-Route::get('mhs/login', [LoginBKController::class, 'index'])->name('login')->middleware('guest');
-Route::post('mhs//login', [LoginBKController::class, 'authenticate']);
-Route::post('mhs/logout', [LoginBKController::class, 'logout']);
+Route::get('bk/login', [LoginBKController::class, 'index'])->name('login')->middleware('guest');
+Route::post('bk//login', [LoginBKController::class, 'authenticate']);
+Route::post('bk/logout', [LoginBKController::class, 'logout']);
 
-Route::get('mhs/login', [LoginPController::class, 'index'])->name('login')->middleware('guest');
-Route::post('mhs//login', [LoginPController::class, 'authenticate']);
-Route::post('mhs/logout', [LoginPController::class, 'logout']);
+Route::get('penjamin/login', [LoginPController::class, 'index'])->name('login')->middleware('guest');
+Route::post('penjamin//login', [LoginPController::class, 'authenticate']);
+Route::post('penjamin/logout', [LoginPController::class, 'logout']);
 
 Route::get('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'index'])->name('permohonan-tempat-tinggal');
 
