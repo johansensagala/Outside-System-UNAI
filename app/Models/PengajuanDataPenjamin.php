@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PengajuanDataTempatTinggal extends Model
+class PengajuanDataPenjamin extends Model
 {
     use HasFactory;
 

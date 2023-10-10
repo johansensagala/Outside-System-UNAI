@@ -9,6 +9,12 @@
   <div>
     <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
   </div>
+  
+  <form action="/mhs/logout" method="POST">
+    @csrf
+    <button type="submit" class="nav-link px-3 bg-dark border-0">Logout</button>
+  </form>
+
   <div class="d-flex align-items-center flex-wrap text-nowrap">
     <div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
       <span class="input-group-text input-group-addon bg-transparent border-primary" data-toggle><i data-feather="calendar" class="text-primary"></i></span>

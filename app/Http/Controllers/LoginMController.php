@@ -5,35 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class LoginMController extends Controller
 {
     public function index()
     {
-        return view('login');
+        return view('mahasiswa.login');
     }
     
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required',
+            'nim' => 'required',
             'password' => 'required'
         ]);
 
-        if (Auth::guard('penjamin')->attempt($credentials)) 
+        if (Auth::guard('mahasiswa')->attempt($credentials)) 
         {
             $request->session()->regenerate();
             return redirect()->intended('/');
-        } 
+        }
 
-        return back()->with('loginError', 'Login failed!');
+        return back()->with('loginError', 'Kombinasi NIM dan Password Tidak Cocok!!');
     }
     
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('mahasiswa')->logout();
 
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect('/');
+        return redirect('mhs/login');
     }
 }
