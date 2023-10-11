@@ -13,7 +13,7 @@
   <form action="/mhs/logout" method="POST">
     @csrf
     <button type="submit" class="nav-link px-3 bg-dark border-0">Logout</button>
-  </form>
+  </form>
 
   <div class="d-flex align-items-center flex-wrap text-nowrap">
     <div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">

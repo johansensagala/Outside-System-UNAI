@@ -22,27 +22,38 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('mhs/login', [LoginMController::class, 'index'])->name('login-mhs')->middleware('guest');
+Route::get('mhs/login', [LoginMController::class, 'index'])->name('login-mhs')->middleware('guest:mahasiswa');
 Route::post('mhs/login', [LoginMController::class, 'authenticate']);
 Route::post('mhs/logout', [LoginMController::class, 'logout'])->name('logout_mahasiswa');
 
-Route::get('penjamin/login', [LoginPController::class, 'index'])->name('login-penjamin')->middleware('guest');
+Route::get('penjamin/login', [LoginPController::class, 'index'])->name('login-penjamin')->middleware('guest:penjamin');
 Route::post('penjamin/login', [LoginPController::class, 'authenticate']);
 Route::post('penjamin/logout', [LoginPController::class, 'logout'])->name('logout_penjamin');
 
-Route::get('bk/login', [LoginBKController::class, 'index'])->name('login-bk')->middleware('guest');
+Route::get('bk/login', [LoginBKController::class, 'index'])->name('login-bk')->middleware('guest:biro_kemahasiswaan');
 Route::post('bk/login', [LoginBKController::class, 'authenticate']);
 Route::post('bk/logout', [LoginBKController::class, 'logout'])->name('logout_admin');
 
+// Rute-rute untuk Mahasiswa
+Route::middleware(['mahasiswa_middleware'])->group(function () {
+    Route::get('/mahasiswa/dashboard', 'MahasiswaController@dashboard');
+});
+
+// Rute-rute untuk Penjamin
+Route::middleware(['penjamin_middleware'])->group(function () {
+    Route::get('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'index'])->name('permohonan-tempat-tinggal.index');
+    Route::post('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'store'])->name('permohonan-tempat-tinggal.store');
+});
+
+// Rute-rute untuk Admin
+Route::middleware(['admin_middleware'])->group(function () {
+    Route::get('/admin/formulir-penjamin/{id}', [FormulirPenjaminController::class, 'index'])->name('admin.formulir_penjamin');
+    Route::post('/admin/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);
+    Route::post('/admin/formulir-penjamin/{id}/tolak', [FormulirPenjaminController::class, 'reject']);
+});
 
 
 
-Route::get('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'index'])->name('permohonan-tempat-tinggal.index');
-Route::post('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'store'])->name('permohonan-tempat-tinggal.store');
-
-Route::get('/admin/formulir-penjamin/{id}', [FormulirPenjaminController::class, 'index'])->name('admin.formulir_penjamin');
-Route::post('/admin/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);
-Route::post('/admin/formulir-penjamin/{id}/tolak', [FormulirPenjaminController::class, 'reject']);
 
 
 

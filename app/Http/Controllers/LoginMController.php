@@ -21,7 +21,16 @@ class LoginMController extends Controller
 
         if (Auth::guard('mahasiswa')->attempt($credentials)) 
         {
+            if (Auth::guard('biro_kemahasiswaan')->check()) {
+                Auth::guard('biro_kemahasiswaan')->logout();
+            }
+            
+            if (Auth::guard('penjamin')->check()) {
+                Auth::guard('penjamin')->logout();
+            }
+
             $request->session()->regenerate();
+                
             return redirect()->intended('/');
         }
 
@@ -30,7 +39,17 @@ class LoginMController extends Controller
     
     public function logout()
     {
-        Auth::guard('mahasiswa')->logout();
+        if (Auth::guard('biro_kemahasiswaan')->check()) {
+            Auth::guard('biro_kemahasiswaan')->logout();
+        }
+
+        if (Auth::guard('penjamin')->check()) {
+            Auth::guard('penjamin')->logout();
+        }
+
+        if (Auth::guard('mahasiswa')->check()) {
+            Auth::guard('mahasiswa')->logout();
+        }
 
         request()->session()->invalidate();
         request()->session()->regenerateToken();
