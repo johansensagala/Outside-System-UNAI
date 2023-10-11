@@ -9,7 +9,7 @@ class LoginPController extends Controller
 {
     public function index()
     {
-        return view('login');
+        return view('penjamin.login');
     }
     
     public function authenticate(Request $request)
@@ -25,15 +25,15 @@ class LoginPController extends Controller
             return redirect()->intended('/');
         } 
 
-        return back()->with('loginError', 'Login failed!');
+        return back()->with('loginError', 'Kombinasi Username dan Password Tidak Cocok!');
     }
     
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('penjamin')->logout();
 
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect('/');
+        return redirect('penjamin/login');
     }
 }

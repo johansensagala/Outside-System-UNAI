@@ -9,7 +9,7 @@ class LoginBKController extends Controller
 {
     public function index()
     {
-        return view('login');
+        return view('admin.login');
     }
     
     public function authenticate(Request $request)
@@ -25,15 +25,15 @@ class LoginBKController extends Controller
             return redirect()->intended('/');
         } 
 
-        return back()->with('loginError', 'Login failed!');
+        return back()->with('loginError', 'Kombinasi Username dan Password Tidak Cocok!');
     }
     
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('biro_kemahasiswaan')->logout();
 
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect('/');
+        return redirect('bk/login');
     }
 }
