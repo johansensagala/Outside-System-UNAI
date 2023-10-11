@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Model;
+use Illuminate\Notifications\Notifiable;
 
 class BiroKemahasiswaan extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $guarded = ['id'];
+
+    protected $table = 'biro_kemahasiswaans';
 
     public function absensi ()
     {

@@ -93,12 +93,37 @@
 
       {{-- LOGOUT --}}
 
-      <li class="nav-item py-3">
-        <a href="{{ url('/') }}" class="nav-link">
-          <i class="link-icon" data-feather="log-out"></i>
-          <span class="link-title">Logout</span>
-        </a>
-      </li>
+      @if(Auth::guard('mahasiswa')->check())
+      <form id="logout-form" action="{{ route('logout_mahasiswa') }}" method="post">
+        @csrf
+        <li class="nav-item py-3">
+          <a href="{{ route('logout_mahasiswa') }}"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Logout
+          </a>
+        </li>
+      </form>
+      @elseif(Auth::guard('penjamin')->check())
+      <form id="logout-form" action="{{ route('logout_penjamin') }}" method="post">
+        @csrf
+        <li class="nav-item py-3">
+          <a href="{{ route('logout_penjamin') }}"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Logout
+          </a>
+        </li>
+      </form>
+      @elseif(Auth::guard('biro_kemahasiswaan')->check())
+      <form id="logout-form" action="{{ route('logout_admin') }}" method="post">
+        @csrf
+        <li class="nav-item py-3">
+          <a href="{{ route('logout_admin') }}"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Logout
+          </a>
+        </li>
+      </form>
+      @endif
     </ul>
   </div>
 </nav>

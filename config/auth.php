@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\User;
+use App\Models\Mahasiswa;
 use App\Models\Penjamin;
+use App\Models\BiroKemahasiswaan;
 
 return [
 
@@ -43,17 +45,20 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'mahasiswa' => [
+            'driver' => 'session',
+            'provider' => 'mahasiswas',
+        ],
+
         'penjamin' => [
             'driver' => 'session',
             'provider' => 'penjamins',
         ],
+
         'biro_kemahasiswaan' => [
             'driver' => 'session',
             'provider' => 'biro_kemahasiswaans',
-        ],
-        'mahasiswa' => [
-            'driver' => 'session',
-            'provider' => 'mahasiswas',
         ],
     ],
 
@@ -80,17 +85,19 @@ return [
             'model' => User::class,
         ],
 
-        'penjamins' => [
-            'driver' => 'database',
-            'table' => "penjamins",
-        ],
-        'biro_kemahasiswaans' => [
-            'driver' => 'database',
-            'table' => "biro_kemahasiswaans",
-        ],
         'mahasiswas' => [
-            'driver' => 'database',
-            'table' => "mahasiswas",
+            'driver' => 'eloquent',
+            'model' => Mahasiswa::class,
+        ],
+        
+        'penjamins' => [
+            'driver' => 'eloquent',
+            'model' => Penjamin::class,
+        ],
+
+        'biro_kemahasiswaans' => [
+            'driver' => 'eloquent',
+            'model' => BiroKemahasiswaan::class,
         ],
     ],
 
