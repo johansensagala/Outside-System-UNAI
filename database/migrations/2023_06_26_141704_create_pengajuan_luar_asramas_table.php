@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('foto_tempat_tinggal');
             $table->string('jenis_penjamin');
             $table->string('kode_penjamin');
-            $table->string('persetujuan');
+            $table->string('status');
             $table->string('comment')->nullable();
             $table->unsignedBigInteger('id_penjamin');
             $table->unsignedBigInteger('id_pr3');

@@ -11,13 +11,13 @@ class PengajuanDataPenjamin extends Model
 
     protected $guarded = ['id'];
 
-    public function mahasiswa ()
-    {
-        return $this->belongsTo(Mahasiswa::class);
-    }
-
     public function penjamin ()
     {
         return $this->belongsTo(Penjamin::class);
+    }
+
+    public function pegawai ()
+    {
+        return $this->belongsTo(BiroKemahasiswaan::class);
     }
 }

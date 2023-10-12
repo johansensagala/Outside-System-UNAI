@@ -25,17 +25,7 @@
                                 Nama Penjamin
                             </div>
                             <div class="col-md-8 fw-bold">
-                                Jay Idoan Sihotang
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                Status Penjamin Penjamin
-                            </div>
-                            <div class="col-md-8 fw-bold">
-                                Staff/Dosen
+                                {{ $penjamin->nama }}
                             </div>
                         </div>
                     </div>
@@ -45,7 +35,7 @@
                                 Nomor Telepon Penjamin
                             </div>
                             <div class="col-md-8 fw-bold">
-                                081234567890
+                                {{ $penjamin->nomor_telp }}
                             </div>
                         </div>
                     </div><hr>
@@ -77,7 +67,7 @@
                             <div class="col-md-8 fw-bold">
                                 <button type="button" class="btn btn-warning fw-bold text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <i class="link-icon" data-feather="eye"></i>
-                                     &nbsp;&nbsp;Lihat Foto
+                                    &nbsp;Lihat Foto
                                 </button>
                                  
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -113,9 +103,42 @@
                                 <div class="longitude d-none"></div>
                             
                                 <div id="googleMap" class="" style="width:100%;height:400px;"></div>
+                                <div>
+                                    <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_tempat_tinggal->latitude }},{{ $data_tempat_tinggal->longitude }}" target="_blank">Tunjukkan Rute</a>
+                                </div>
                             </div>
                         </div>
                     </div><hr>
+                    @if (!($data_tempat_tinggal->status === 'disetujui'))
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8 fw-bold">
+                                @if ($data_tempat_tinggal->status === 'pending' || $data_tempat_tinggal->status === 'ditolak')
+                                    <form method="post" action="/admin/formulir-penjamin/{{ $data_tempat_tinggal->id }}/setujui" style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">Setujui</button>
+                                    </form>
+                                @endif
+                                @if ($data_tempat_tinggal->status === 'pending')
+                                    <button class="btn btn-danger" id="btnTolak">Tolak</button>
+                                @endif
+                            </div>
+                        </div><hr>
+                    </div>
+                    @endif
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8 fw-bold mb-4">
+                            <div class="col-9" id="tolakForm" style="display: none;">
+                                <form method="post" action="/admin/formulir-penjamin/{{ $data_tempat_tinggal->id }}/tolak" style="display: inline;">
+                                    @csrf
+                                    <textarea class="form-control" name="comment" rows="3"></textarea>
+                                    <button type="submit" class="btn btn-danger mt-3">Tolak</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -127,13 +150,13 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            @if ($data_tempat_tinggal->persetujuan === 'disetujui')
+                            @if ($data_tempat_tinggal->status === 'disetujui')
                             
                             <div class="bg-success p-2 rounded-3 text-white text-center">
                                 Disetujui
                             </div>
 
-                            @elseif ($data_tempat_tinggal->persetujuan === 'ditolak')
+                            @elseif ($data_tempat_tinggal->status === 'ditolak')
                             
                             <div class="bg-danger p-2 rounded-3 text-white text-center">
                                 Ditolak
@@ -151,20 +174,15 @@
                 </div>
             </div>
             
-        </div>
-
-        
+        </div>   
     </div>
 </div> <!-- row -->
 
-{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTs7j_Y6pVttaqzlWJ9T-U98X40tWXnoc"></script> --}}
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTs7j_Y6pVttaqzlWJ9T-U98X40tWXnoc"></script>
-{{-- <script src="{{ asset('js/locationDisplayer.js') }}"></script> --}}
 <script>
     let latitude = {{ $data_tempat_tinggal->latitude }};
     let longitude = {{ $data_tempat_tinggal->longitude }};
 
-    // Panggil fungsi initMap() setelah variabel latitude dan longitude ditetapkan
     initMap();
 
     function initMap() {
@@ -181,8 +199,19 @@
             title: 'Lokasi saya'
         });
     }
+
+    // Tampilkan form Tolak
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const btnTolak = document.getElementById("btnTolak");
+        const tolakForm = document.getElementById("tolakForm");
+
+        btnTolak.addEventListener("click", function () {
+            tolakForm.style.display = "block";
+        });
+    });
+
 </script>
-{{-- <script src="{{ asset('js/modal_image.js') }}"></script> --}}
 
 @endsection
 

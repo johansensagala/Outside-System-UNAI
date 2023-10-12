@@ -18,7 +18,8 @@ return new class extends Migration
             $table->decimal('longitude', 9, 6);
             $table->string('foto_tempat_tinggal')->default('8');
             $table->integer('kapasitas');
-            $table->string('persetujuan')->default('pending');
+            $table->string('status')->default('pending');
+            $table->string('comment')->nullable();
             $table->unsignedBigInteger('id_penjamin')->nullable();
             $table->unsignedBigInteger('id_pr3')->nullable();
             $table->timestamps();
