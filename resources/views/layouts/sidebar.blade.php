@@ -66,7 +66,7 @@
       </li>
       
       <li class="nav-item py-3">
-        <a href="{{ route('penjamin.permohonan-tempat-tinggal') }}" class="nav-link">
+        <a href="/penjamin/permohonan-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Permohonan Tempat Tinggal</span>
         </a>
@@ -101,7 +101,7 @@
       </li>
       
       <li class="nav-item py-3">
-        <a href="{{ route('biro_kemahasiswaan.daftar_penjamin') }}" class="nav-link">
+        <a href="/biro/formulir-penjamin" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Persetujuan Penjamin</span>
         </a>
