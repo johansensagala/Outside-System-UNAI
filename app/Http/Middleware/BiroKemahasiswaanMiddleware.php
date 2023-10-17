@@ -16,6 +16,7 @@ class BiroKemahasiswaanMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Cek apakah biro kemahasiswaan sudah login
         if (Auth::guard('biro_kemahasiswaan')->check()) {
             return $next($request);
         }
