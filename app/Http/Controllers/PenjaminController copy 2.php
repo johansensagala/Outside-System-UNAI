@@ -13,13 +13,9 @@ class PenjaminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //menggunakan gate
-        //fungsi login kondisi admin ada di folder IsAdmin (menggunakan Middleware)
-        // $this->authorize('admin');
-        
-        return view('admin.penjamin.index', [
-            'categories' =>BiroKemahasiswaan::all()
+    {        
+        return view('biro_kemahasiswaan.penjamin.index', [
+            'categories' => BiroKemahasiswaan::all()
         ]);
     }
 

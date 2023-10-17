@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class BiroKemahasiswaanMiddleware
 {
     /**
      * Handle an incoming request.
@@ -20,6 +20,6 @@ class AdminMiddleware
             return $next($request);
         }
     
-        return redirect('/bk/login');
+        return redirect('/biro/login');
     }
 }

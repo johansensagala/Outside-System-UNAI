@@ -21,11 +21,11 @@ return new class extends Migration
             $table->string('status')->default('pending');
             $table->string('comment')->nullable();
             $table->unsignedBigInteger('id_penjamin')->nullable();
-            $table->unsignedBigInteger('id_pr3')->nullable();
+            $table->unsignedBigInteger('id_biro_kemahasiswaan')->nullable();
             $table->timestamps();
 
             $table->foreign('id_penjamin')->references('id')->on('penjamins');
-            $table->foreign('id_pr3')->references('id')->on('biro_kemahasiswaans');
+            $table->foreign('id_biro_kemahasiswaan')->references('id')->on('biro_kemahasiswaans');
         });
     }
 

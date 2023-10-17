@@ -14,7 +14,7 @@
             <div style="border-radius: 10px" class="auth-form-wrapper justify-content-center">
               <div class="text-center py-4" style="background-color: #38BBEB; border-bottom: 10px solid #2D9DC6">
                 <h4 class="d-block text-white">Universitas Advent Indonesia</h4>
-                <h5 class="fw-normal text-white">OUTSIDE SYSTEM FOR ADMIN</h5>
+                <h5 class="fw-normal text-white">OUTSIDE SYSTEM FOR BIRO KEMAHASISWAAN</h5>
               </div>
               <div>
                 @if (session()->has('success'))  
@@ -30,7 +30,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
-                <form class="forms-sample" action="/bk/login" method="POST">
+                <form class="forms-sample" action="/biro/login" method="POST">
                   @csrf
                   <div class="p-4" style="background-color: #EAEAEC">
                     <div class="mb-3">

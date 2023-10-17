@@ -12,12 +12,19 @@ use Illuminate\Support\Facades\Auth;
 
 class FormulirPenjaminController extends Controller
 {
-    public function index($id)
+    public function index()
+    {
+        $daftar_data_penjamin = PengajuanDataPenjamin::get();
+            
+        return view('biro_kemahasiswaan.daftar_penjamin', compact('daftar_data_penjamin'));
+    }
+
+    public function show($id)
     {
         $data_tempat_tinggal = PengajuanDataPenjamin::where('id', $id)->first();
         $penjamin = Penjamin::where('id', $data_tempat_tinggal->id_penjamin)->first();
 
-        return view('admin.formulir_penjamin', compact('data_tempat_tinggal', 'penjamin'));
+        return view('biro_kemahasiswaan.formulir_penjamin', compact('data_tempat_tinggal', 'penjamin'));
     }
 
     public function store(Request $request)

@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LoginBKController extends Controller
+class LoginBiroKemahasiswaanController extends Controller
 {
     public function index()
     {
-        return view('admin.login');
+        return view('biro_kemahasiswaan.login');
     }
     
     public function authenticate(Request $request)
@@ -53,6 +53,6 @@ class LoginBKController extends Controller
 
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect('bk/login');
+        return redirect('biro/login');
     }
 }

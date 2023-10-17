@@ -115,7 +115,7 @@
                             <div class="col-md-4"></div>
                             <div class="col-md-8 fw-bold">
                                 @if ($data_tempat_tinggal->status === 'pending' || $data_tempat_tinggal->status === 'ditolak')
-                                    <form method="post" action="/admin/formulir-penjamin/{{ $data_tempat_tinggal->id }}/setujui" style="display: inline;">
+                                    <form method="post" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/setujui" style="display: inline;">
                                         @csrf
                                         <button type="submit" class="btn btn-success">Setujui</button>
                                     </form>
@@ -131,7 +131,7 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-8 fw-bold mb-4">
                             <div class="col-9" id="tolakForm" style="display: none;">
-                                <form method="post" action="/admin/formulir-penjamin/{{ $data_tempat_tinggal->id }}/tolak" style="display: inline;">
+                                <form method="post" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/tolak" style="display: inline;">
                                     @csrf
                                     <textarea class="form-control" name="comment" rows="3"></textarea>
                                     <button type="submit" class="btn btn-danger mt-3">Tolak</button>

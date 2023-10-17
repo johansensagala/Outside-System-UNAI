@@ -25,12 +25,12 @@ return new class extends Migration
             $table->string('status');
             $table->string('comment')->nullable();
             $table->unsignedBigInteger('id_penjamin');
-            $table->unsignedBigInteger('id_pr3');
+            $table->unsignedBigInteger('id_biro_kemahasiswaan');
             $table->unsignedBigInteger('id_mahasiswa');
             $table->timestamps();
 
             $table->foreign('id_penjamin')->references('id')->on('penjamins');
-            $table->foreign('id_pr3')->references('id')->on('biro_kemahasiswaans');
+            $table->foreign('id_biro_kemahasiswaan')->references('id')->on('biro_kemahasiswaans');
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas');
         });
 

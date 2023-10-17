@@ -16,17 +16,6 @@
                         <div class="d-flex justify-content-between align-items-baseline">
                             DATA PERMOHONAN TEMPAT TINGGAL
                         </div>
-                        @auth
-                        <div class="d-flex justify-content-between align-items-baseline">
-                            SUDAH LOGIN
-                        </div>
-                        @endauth
-
-                        @guest
-                        <div class="d-flex justify-content-between align-items-baseline">
-                            BELUM LOGIN
-                        </div>
-                        @endguest
                     </div>
                 </div>
                 <div class="card">

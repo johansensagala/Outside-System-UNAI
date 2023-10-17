@@ -13,7 +13,7 @@ class PengajuanDataPenjamin extends Model
 
     public function penjamin ()
     {
-        return $this->belongsTo(Penjamin::class);
+        return $this->belongsTo(Penjamin::class, 'id_penjamin');
     }
 
     public function pegawai ()

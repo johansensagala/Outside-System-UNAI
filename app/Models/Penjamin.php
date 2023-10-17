@@ -25,8 +25,8 @@ class Penjamin extends Model
         return $this->hasMany(PengajuanLuarAsrama::class);
     }
 
-    public function pengajuan_data_tempat_tinggal()
+    public function pengajuan_data_penjamin()
     {
-        return $this->hasMany(PengajuanDataTempatTinggal::class);
+        return $this->hasMany(PengajuanDataPenjamin::class);
     }
 }
