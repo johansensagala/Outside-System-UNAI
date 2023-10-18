@@ -53,13 +53,3 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     Route::post('/biro/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);
     Route::post('/biro/formulir-penjamin/{id}/tolak', [FormulirPenjaminController::class, 'reject']);
 });
-
-
-
-
-Route::get('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'index'])->name('permohonan-tempat-tinggal.index');
-Route::post('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'store'])->name('permohonan-tempat-tinggal.store');
-
-Route::get('/admin/formulir-penjamin/{id}', [FormulirPenjaminController::class, 'index'])->name('admin.formulir_penjamin');
-Route::post('/admin/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);
-Route::post('/admin/formulir-penjamin/{id}/tolak', [FormulirPenjaminController::class, 'reject']);
