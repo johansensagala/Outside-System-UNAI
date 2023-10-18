@@ -8,7 +8,7 @@
 <div class="row common-font-color">
     <div class="col-12 col-xl-12 stretch-card">
         <div class="row flex-grow-1">
-    
+
             <div class="grid-margin">
 
                 <div class="card bs-gray-200 fw-bold">
@@ -35,30 +35,28 @@
                                     @php
                                         $index = 1;
                                     @endphp
-                                    @foreach ($daftar_data_penjamin as $data_penjamin)                                        
+                                    @foreach ($daftar_data_penjamin as $data_penjamin)
                                         <tr>
                                             <td>{{ $index }}</td>
-                                            <td>{{ $data_penjamin->penjamin->nama }}</td>
-                                            <td>{{ $data_penjamin->created_at->format('d/m/Y') }}</td>
-                                            <td>
-                                                <button>
-
-                                                </button>
+                                            <td class="align-middle">{{ $data_penjamin->penjamin->nama }}</td>
+                                            <td class="align-middle">{{ $data_penjamin->created_at->format('d/m/Y') }}</td>
+                                            <td class="align-middle">
+                                                <a href="/biro/formulir-penjamin/{{ $data_penjamin->id }}" class="btn btn-primary">Detail</a>
                                             </td>
                                             @if ($data_penjamin->status == 'disetujui')
-                                                <td>
+                                                <td class="align-middle">
                                                     <span class="bg-success p-2 rounded-3 text-white text-center">
                                                         Disetujui
                                                     </span>
                                                 </td>
                                             @elseif ($data_penjamin->status == 'ditolak')
-                                                <td>
+                                                <td class="align-middle">
                                                     <span class="bg-danger p-2 rounded-3 text-white text-center">
                                                         Ditolak
                                                     </span>
                                                 </td>
                                             @else
-                                                <td>
+                                                <td class="align-middle">
                                                     <span class="bg-warning p-2 rounded-3 text-white text-center">
                                                         Pending
                                                     </span>
