@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator;
 
 class PenjaminController extends Controller
 {
+    public function index () {
+        return view('penjamin.dashboard');
+    }
     public function showPermohonanTempatTinggal () {
         return view('penjamin.permohonan_tempat_tinggal');
     }
