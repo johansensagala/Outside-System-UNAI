@@ -23,7 +23,7 @@ use App\Http\Controllers\BiroKemahasiswaanController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return redirect('/mhs/login');
 });
 
 Route::get('mhs/login', [LoginMahasiswaController::class, 'index'])->name('login-mahasiswa')->middleware('guest:mahasiswa');
@@ -40,7 +40,7 @@ Route::post('biro/logout', [LoginBiroKemahasiswaanController::class, 'logout'])-
 
 // Rute-rute untuk Mahasiswa
 Route::middleware(['mahasiswa_middleware'])->group(function () {
-    Route::get('/mahasiswa/dashboard', [MahasiswaController::class, 'index']);
+    Route::get('/mhs/dashboard', [MahasiswaController::class, 'index']);
 });
 
 // Rute-rute untuk Penjamin

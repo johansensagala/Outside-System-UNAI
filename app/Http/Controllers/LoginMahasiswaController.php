@@ -31,7 +31,7 @@ class LoginMahasiswaController extends Controller
 
             $request->session()->regenerate();
                 
-            return redirect()->intended('/');
+            return redirect()->intended('/mhs/dashboard');
         }
 
         return back()->with('loginError', 'Kombinasi NIM dan Password Tidak Cocok!!');

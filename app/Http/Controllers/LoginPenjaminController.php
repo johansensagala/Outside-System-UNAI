@@ -31,7 +31,7 @@ class LoginPenjaminController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->intended('/penjamin/dashboard');
         } 
 
         return back()->with('loginError', 'Kombinasi Username dan Password Tidak Cocok!');

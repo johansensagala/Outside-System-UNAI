@@ -31,7 +31,7 @@ class LoginBiroKemahasiswaanController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->intended('/biro/dashboard');
         } 
 
         return back()->with('loginError', 'Kombinasi Username dan Password Tidak Cocok!');
