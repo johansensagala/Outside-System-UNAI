@@ -37,7 +37,7 @@
                                     @endphp
                                     @foreach ($daftar_data_penjamin as $data_penjamin)
                                         <tr>
-                                            <td class="align-middle">{{ $index }}</td>
+                                            <td>{{ $index }}</td>
                                             <td class="align-middle">{{ $data_penjamin->penjamin->nama }}</td>
                                             <td class="align-middle">{{ $data_penjamin->created_at->format('d/m/Y') }}</td>
                                             <td class="align-middle">

@@ -98,7 +98,10 @@
                                 <div class="container">
                                     <h1 class="status"></h1>
                                 </div>
-
+                            
+                                <div class="latitude d-none"></div>
+                                <div class="longitude d-none"></div>
+                            
                                 <div id="googleMap" class="" style="width:100%;height:400px;"></div>
                                 <div>
                                     <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_tempat_tinggal->latitude }},{{ $data_tempat_tinggal->longitude }}" target="_blank">Tunjukkan Rute</a>

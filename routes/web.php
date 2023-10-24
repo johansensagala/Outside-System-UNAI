@@ -10,7 +10,6 @@ use App\Http\Controllers\FormulirPenjaminController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PenjaminController;
 use App\Http\Controllers\BiroKemahasiswaanController;
-use App\Http\Controllers\DaftarPenjaminanMahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,8 +48,6 @@ Route::middleware(['penjamin_middleware'])->group(function () {
     Route::get('/penjamin/dashboard', [PenjaminController::class, 'index']);
     Route::get('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'index'])->name('penjamin.permohonan-tempat-tinggal');
     Route::post('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'store']);
-
-    Route::get('/penjamin/daftar-penjaminan-mahasiswa', [DaftarPenjaminanMahasiswaController::class, 'index']);
 });
 
 // Rute-rute untuk Biro Kemahasiswaan
