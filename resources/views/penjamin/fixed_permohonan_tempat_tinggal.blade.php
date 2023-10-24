@@ -111,7 +111,6 @@
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTs7j_Y6pVttaqzlWJ9T-U98X40tWXnoc"></script>
-<script src="{{ asset('js/locationDetector.js') }}"></script>
 <script src="{{ asset('js/imgPreview.js') }}"></script>
 <script>
     document.getElementById('autoclose').addEventListener('change', function() {
