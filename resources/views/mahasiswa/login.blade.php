@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @include('layouts.links')
+    <title>Login | Students UNAI Outside System</title>
 </head>
 <body>
 
@@ -11,8 +12,8 @@
       <div class="card mx-auto" style="border: none; width: 350px; border-top-left-radius: 20px;border-top-right-radius: 20px">
         <div class="row">
             <div class="auth-form-wrapper justify-content-center">
-              <div class="text-center py-4" style="background-color: #38BBEB; border-bottom: 10px solid #2D9DC6; border-top-left-radius: 10px; border-top-right-radius: 10px; border-top-left-radius: 10px;border-top-right-radius: 10px">
-                <h4 class="d-block text-white">Universitas Advent Indonesia</h4>
+              <div class="text-center py-5" style="background-color: #38BBEB; border-bottom: 10px solid #2D9DC6; border-top-left-radius: 10px; border-top-right-radius: 10px; border-top-left-radius: 10px;border-top-right-radius: 10px">
+                <h4 class="fw-bolder d-block text-white">Universitas Advent Indonesia</h4>
                 <h5 class="fw-normal text-white" style="font-family: 'Open Sans',sans-serif;">Outside System for Students </h5>
               </div>
               <div>
