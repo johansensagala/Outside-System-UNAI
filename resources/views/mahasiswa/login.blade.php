@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @include('layouts.links')
+    <title>Login | Students UNAI Outside System</title>
 </head>
 <body>
 
