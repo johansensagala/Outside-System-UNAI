@@ -77,13 +77,7 @@
                                     <h1 class="status"></h1>
                                 </div>
                             
-                                <div class="latitude d-none"></div>
-                                <div class="longitude d-none"></div>
-                            
                                 <div id="googleMap" class="" style="width:100%;height:400px;"></div>
-                                <div>
-                                    <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_tempat_tinggal->latitude }},{{ $data_tempat_tinggal->longitude }}" target="_blank">Tunjukkan Rute</a>
-                                </div>
                             </div>
                         </div>
                     </div><hr>
@@ -98,9 +92,25 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
+                            @if ($data_tempat_tinggal->status === 'disetujui')
+                            
+                            <div class="bg-success p-2 rounded-3 text-white text-center">
+                                Disetujui
+                            </div>
+
+                            @elseif ($data_tempat_tinggal->status === 'ditolak')
+                            
+                            <div class="bg-danger p-2 rounded-3 text-white text-center">
+                                Ditolak
+                            </div>
+
+                            @else
+
                             <div class="bg-warning p-2 rounded-3 text-white text-center">
                                 Belum Disetujui
                             </div>
+                            
+                            @endif
                         </li>
                     </ul>
                 </div>
@@ -111,7 +121,7 @@
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTs7j_Y6pVttaqzlWJ9T-U98X40tWXnoc"></script>
-<script src="{{ asset('js/locationDetector.js') }}"></script>
+{{-- <script src="{{ asset('js/locationDetector.js') }}"></script> --}}
 <script src="{{ asset('js/imgPreview.js') }}"></script>
 <script>
     document.getElementById('autoclose').addEventListener('change', function() {
@@ -140,17 +150,6 @@
             title: 'Lokasi saya'
         });
     }
-
-    // Tampilkan form Tolak
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const btnTolak = document.getElementById("btnTolak");
-        const tolakForm = document.getElementById("tolakForm");
-
-        btnTolak.addEventListener("click", function () {
-            tolakForm.style.display = "block";
-        });
-    });
 
 </script>
 

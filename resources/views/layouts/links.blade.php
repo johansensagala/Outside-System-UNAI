@@ -5,7 +5,8 @@
 <meta name="author" content="NobleUI">
 <meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, laravel, theme, front-end, ui kit, web">
 
-<title>Outside System</title>
+<!-- <title>Outside System</title> -->
+
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +24,7 @@
 <!-- CSRF Token -->
 <meta name="_token" content="{{ csrf_token() }}">
 
-<link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
+<link rel="shortcut icon" href="{{ asset('assets/images/UNAI_Logo.webp') }}">
 
 <!-- plugin css -->
 <link href="{{ asset('assets/fonts/feather-font/css/iconfont.css') }}" rel="stylesheet" />
