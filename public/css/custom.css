@@ -5,3 +5,7 @@
 .common-font-color {
     color: #876C46;
 }
+
+body {
+    font-family:'Open Sans',sans-serif;
+}
