@@ -5,7 +5,6 @@
 @endpush
 
 @section('content')
-
 <div class="row common-font-color">
     <div class="col-12 col-xl-12 stretch-card">
         <div class="row flex-grow-1">
@@ -22,40 +21,20 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                Nama Penjamin
-                            </div>
-                            <div class="col-md-8 fw-bold">
-                                {{ $penjamin->nama }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                Nomor Telepon Penjamin
-                            </div>
-                            <div class="col-md-8 fw-bold">
-                                {{ $penjamin->nomor_telp }}
-                            </div>
-                        </div>
-                    </div><hr>
-                </div>
-
-                <div class="card bs-gray-200 fw-bold mt-5">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-baseline">
-                            DATA PERMOHONAN TEMPAT TINGGAL PENJAMIN
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                Alamat Domisili
+                                Alamat
                             </div>
                             <div class="col-md-8 fw-bold">
                                 {{ $data_tempat_tinggal->alamat }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Kapasitas
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                {{ $data_tempat_tinggal->kapasitas }}
                             </div>
                         </div>
                     </div>
@@ -69,7 +48,6 @@
                                     <i class="link-icon" data-feather="eye"></i>
                                     &nbsp;Lihat Foto
                                 </button>
-                                 
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
@@ -98,47 +76,14 @@
                                 <div class="container">
                                     <h1 class="status"></h1>
                                 </div>
-
+                            
                                 <div id="googleMap" class="" style="width:100%;height:400px;"></div>
-                                <div>
-                                    <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_tempat_tinggal->latitude }},{{ $data_tempat_tinggal->longitude }}" target="_blank">Tunjukkan Rute</a>
-                                </div>
                             </div>
                         </div>
                     </div><hr>
-                    @if (!($data_tempat_tinggal->status === 'disetujui'))
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-8 fw-bold">
-                                @if ($data_tempat_tinggal->status === 'pending' || $data_tempat_tinggal->status === 'ditolak')
-                                    <form method="post" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/setujui" style="display: inline;">
-                                        @csrf
-                                        <button type="submit" class="btn btn-success">Setujui</button>
-                                    </form>
-                                @endif
-                                @if ($data_tempat_tinggal->status === 'pending')
-                                    <button class="btn btn-danger" id="btnTolak">Tolak</button>
-                                @endif
-                            </div>
-                        </div><hr>
-                    </div>
-                    @endif
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-8 fw-bold mb-4">
-                            <div class="col-9" id="tolakForm" style="display: none;">
-                                <form method="post" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/tolak" style="display: inline;">
-                                    @csrf
-                                    <textarea class="form-control" name="comment" rows="3"></textarea>
-                                    <button type="submit" class="btn btn-danger mt-3">Tolak</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-
             </div>
+
 
             <div class="col-md-4 grid-margin">
                 <div class="card">
@@ -171,11 +116,20 @@
                 </div>
             </div>
             
-        </div>   
+        </div>
     </div>
-</div> <!-- row -->
+</div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTs7j_Y6pVttaqzlWJ9T-U98X40tWXnoc"></script>
+{{-- <script src="{{ asset('js/locationDetector.js') }}"></script> --}}
+<script src="{{ asset('js/imgPreview.js') }}"></script>
+<script>
+    document.getElementById('autoclose').addEventListener('change', function() {
+        var simpanButton = document.getElementById('simpanButton');
+        simpanButton.disabled = !this.checked;
+    });
+</script>
+
 <script>
     let latitude = {{ $data_tempat_tinggal->latitude }};
     let longitude = {{ $data_tempat_tinggal->longitude }};
@@ -196,17 +150,6 @@
             title: 'Lokasi saya'
         });
     }
-
-    // Tampilkan form Tolak
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const btnTolak = document.getElementById("btnTolak");
-        const tolakForm = document.getElementById("tolakForm");
-
-        btnTolak.addEventListener("click", function () {
-            tolakForm.style.display = "block";
-        });
-    });
 
 </script>
 

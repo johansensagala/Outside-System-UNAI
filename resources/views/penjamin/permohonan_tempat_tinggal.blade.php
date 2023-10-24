@@ -28,9 +28,12 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-floating">
-                                        <textarea id="alamat" name="alamat" class="form-control" placeholder=""></textarea>
+                                        <textarea id="alamat" name="alamat" class="form-control @error('alamat') is-invalid @enderror" placeholder=""></textarea>
                                         <label for="alamat">Alamat Domisili</label>
                                     </div>
+                                    @error('alamat')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -41,17 +44,20 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="kapasitas" id="kapasitas" value="1">
-                                        <label class="form-check-label" for="satu">
+                                        <input class="form-check-input @error('kapasitas') is-invalid @enderror" type="radio" name="kapasitas" id="kapasitas1" value="1">
+                                        <label class="form-check-label" for="kapasitas1">
                                             Satu
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="kapasitas" id="kapasitas" value="2">
-                                        <label class="form-check-label" for="dua">
+                                        <input class="form-check-input @error('kapasitas') is-invalid @enderror" type="radio" name="kapasitas" id="kapasitas2" value="2">
+                                        <label class="form-check-label" for="kapasitas2">
                                             Dua
                                         </label>
                                     </div>
+                                    @error('kapasitas')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -62,7 +68,10 @@
                                 </div>
                                 <div class="col-md-8">
                                     <img id="preview" class="img-fluid my-3" src="#" alt="Preview" style="display: none; max-width: 200px; max-height: 200px;">
-                                    <input type="file" class="form-control" id="fotoTempatTinggal" name="fotoTempatTinggal" onchange="previewImage(event)">                
+                                    <input type="file" class="form-control @error('foto_tempat_tinggal') is-invalid @enderror" id="foto_tempat_tinggal" name="foto_tempat_tinggal" onchange="previewImage(event)">
+                                    @error('foto_tempat_tinggal')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -80,12 +89,18 @@
                                     </div>
                                     <div class="container">
                                         <h1 class="status"></h1>
-                                    </div>
-                                
+                                    </div>                                                                                        
+                                    <div id="googleMap" class="" style="width:100%;height:400px;"></div>
+
                                     <input type="hidden" id="latitude" name="latitude" value="">
                                     <input type="hidden" id="longitude" name="longitude" value="">
-                                                                                        
-                                    <div id="googleMap" class="" style="width:100%;height:400px;"></div>
+
+                                    @error('latitude')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    @error('longitude')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

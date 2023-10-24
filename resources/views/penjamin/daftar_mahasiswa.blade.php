@@ -14,7 +14,7 @@
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            DATA PERMOHONAN TEMPAT TINGGAL
+                            DATA PERMOHONAN PENJAMINAN
                         </div>
                     </div>
                 </div>

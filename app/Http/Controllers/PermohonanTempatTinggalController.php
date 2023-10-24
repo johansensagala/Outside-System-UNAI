@@ -11,14 +11,21 @@ class PermohonanTempatTinggalController extends Controller
 {
     public function index()
     {
-        return view('penjamin.permohonan_tempat_tinggal');
-    }
+        $idPenjamin = Auth::guard('penjamin')->user()->id;
+        $data_tempat_tinggal = PengajuanDataPenjamin::where('id_penjamin', $idPenjamin)->first();
+    
+        if ($data_tempat_tinggal) {
+            return view('penjamin.fixed_permohonan_tempat_tinggal', compact('data_tempat_tinggal'));
+        } else {
+            return view('penjamin.permohonan_tempat_tinggal');
+        }
+    }    
 
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
+        $request->validate([
             'alamat' => 'required|string|max:255',
-            'foto_tempat_tinggal' => 'required'|'file'|'max:2048',
+            'foto_tempat_tinggal' => 'required|file|max:2048|image|mimes:jpeg,png,jpg,gif',
             'longitude' => 'required',
             'latitude' => 'required',
             'kapasitas' => 'required|integer',
@@ -29,12 +36,12 @@ class PermohonanTempatTinggalController extends Controller
         $data_tempat_tinggal->alamat = $request->input('alamat');
         $data_tempat_tinggal->latitude = $request->input('latitude');
         $data_tempat_tinggal->longitude = $request->input('longitude');
-        $data_tempat_tinggal->foto_tempat_tinggal = $request->fotoTempatTinggal->store('pengajuan_data_tempat_tinggal');
+        $data_tempat_tinggal->foto_tempat_tinggal = $request->foto_tempat_tinggal->store('pengajuan_data_tempat_tinggal');
         $data_tempat_tinggal->kapasitas = $request->input('kapasitas');
         $data_tempat_tinggal->id_penjamin = Auth::guard('penjamin')->user()->id;
 
         $data_tempat_tinggal->save();
 
-        dd('berhasil');
+        return view('penjamin.fixed_permohonan_tempat_tinggal', compact('data_tempat_tinggal'));
     }
 }

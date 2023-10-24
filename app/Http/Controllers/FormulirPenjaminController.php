@@ -57,8 +57,7 @@ class FormulirPenjaminController extends Controller
 
         $data_tempat_tinggal->save();
 
-        dd("berhasil setujui");
-
+        return redirect()->back();
     }
     
     public function reject(Request $request, $id) {
@@ -73,6 +72,6 @@ class FormulirPenjaminController extends Controller
 
         $data_tempat_tinggal->save();
 
-        dd("berhasil tolak");
+        return redirect()->back();
     }
 }

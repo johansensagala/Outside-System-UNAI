@@ -10,6 +10,7 @@ use App\Http\Controllers\FormulirPenjaminController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PenjaminController;
 use App\Http\Controllers\BiroKemahasiswaanController;
+use App\Http\Controllers\DaftarPenjaminanMahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,8 @@ Route::middleware(['penjamin_middleware'])->group(function () {
     Route::get('/penjamin/dashboard', [PenjaminController::class, 'index']);
     Route::get('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'index'])->name('penjamin.permohonan-tempat-tinggal');
     Route::post('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'store']);
+
+    Route::get('/penjamin/daftar-penjaminan-mahasiswa', [DaftarPenjaminanMahasiswaController::class, 'index']);
 });
 
 // Rute-rute untuk Biro Kemahasiswaan
@@ -59,13 +62,3 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     Route::post('/biro/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);
     Route::post('/biro/formulir-penjamin/{id}/tolak', [FormulirPenjaminController::class, 'reject']);
 });
-
-
-
-
-Route::get('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'index'])->name('permohonan-tempat-tinggal.index');
-Route::post('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'store'])->name('permohonan-tempat-tinggal.store');
-
-Route::get('/admin/formulir-penjamin/{id}', [FormulirPenjaminController::class, 'index'])->name('admin.formulir_penjamin');
-Route::post('/admin/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);
-Route::post('/admin/formulir-penjamin/{id}/tolak', [FormulirPenjaminController::class, 'reject']);
