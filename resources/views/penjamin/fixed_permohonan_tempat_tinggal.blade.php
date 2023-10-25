@@ -98,9 +98,25 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
+                            @if ($data_tempat_tinggal->status === 'disetujui')
+                            
+                            <div class="bg-success p-2 rounded-3 text-white text-center">
+                                Disetujui
+                            </div>
+
+                            @elseif ($data_tempat_tinggal->status === 'ditolak')
+                            
+                            <div class="bg-danger p-2 rounded-3 text-white text-center">
+                                Ditolak
+                            </div>
+
+                            @else
+
                             <div class="bg-warning p-2 rounded-3 text-white text-center">
                                 Belum Disetujui
                             </div>
+                            
+                            @endif
                         </li>
                     </ul>
                 </div>
