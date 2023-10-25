@@ -10,6 +10,8 @@ use App\Http\Controllers\FormulirPenjaminController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PenjaminController;
 use App\Http\Controllers\BiroKemahasiswaanController;
+use App\Http\Controllers\PengajuanPenjaminController;
+use App\Models\PengajuanPenjamin;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +24,9 @@ use App\Http\Controllers\BiroKemahasiswaanController;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/mhs/login');
-});
+// Route::get('/', function () {
+//     return redirect('/mhs/login');
+// });
 
 Route::get('mhs/login', [LoginMahasiswaController::class, 'index'])->name('login-mahasiswa')->middleware('guest:mahasiswa');
 Route::post('mhs/login', [LoginMahasiswaController::class, 'authenticate']);
@@ -41,6 +43,8 @@ Route::post('biro/logout', [LoginBiroKemahasiswaanController::class, 'logout'])-
 // Rute-rute untuk Mahasiswa
 Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::get('/mhs/dashboard', [MahasiswaController::class, 'index']);
+
+    Route::get('/mhs/pengajuan-penjamin', [PengajuanPenjaminController::class, 'index']);
 });
 
 // Rute-rute untuk Penjamin
