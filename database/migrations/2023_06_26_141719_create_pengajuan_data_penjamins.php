@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('kapasitas');
             $table->string('status')->default('pending');
             $table->string('comment')->nullable();
+            $table->string('kode_penjamin')->nullable();
             $table->unsignedBigInteger('id_penjamin')->nullable();
             $table->unsignedBigInteger('id_biro_kemahasiswaan')->nullable();
             $table->timestamps();

@@ -121,6 +121,35 @@
                         </li>
                     </ul>
                 </div>
+                <div class="card mt-2">
+                    @if($data_tempat_tinggal->status != 'pending')
+                    <div class="card-header text-center">
+                        Komentar
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            @if ($data_tempat_tinggal->status === 'disetujui')
+                            
+                            <div class="row">
+                                <small>
+                                    Data anda telah disetujui, anda sekarang dapat menjamin mahasiswa, berikan kode ini ke mahasiswa yang ingin anda jamin.
+                                </small>
+                                <small>
+                                    Kode penjamin: <strong>{{ $data_tempat_tinggal->kode_penjamin }}</strong>
+                                </small>
+                            </div>
+
+                            @elseif ($data_tempat_tinggal->status === 'ditolak')
+                            
+                            <small>
+                                {{ $data_tempat_tinggal->comment }}
+                            </small>
+
+                            @endif
+                        </li>
+                    </ul>
+                    @endif
+                </div>
             </div>
             
         </div>

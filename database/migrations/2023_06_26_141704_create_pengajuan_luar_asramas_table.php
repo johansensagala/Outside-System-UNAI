@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('foto_tempat_tinggal');
             $table->string('jenis_penjamin');
-            $table->string('kode_penjamin');
             $table->string('status');
             $table->string('comment')->nullable();
             $table->unsignedBigInteger('id_penjamin');

@@ -9,6 +9,7 @@ use App\Models\PengajuanDataPenjamin;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class FormulirPenjaminController extends Controller
 {
@@ -50,15 +51,41 @@ class FormulirPenjaminController extends Controller
         return response()->json(['data' => $penjamin], 201);
     }
 
+    public function generateRandomCode() {
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Karakter yang tersedia
+        $code = '';
+    
+        // Dapatkan tahun saat ini dalam format dua digit
+        $currentYear = date('y');
+    
+        // Dapatkan bulan saat ini (1-12)
+        $currentMonth = date('n');
+    
+        // Tentukan digit keempat sesuai dengan bulan saat ini
+        if ($currentMonth >= 6 && $currentMonth <= 11) {
+            $code .= '1'; // Bulan Juni sampai November
+        } else {
+            $code .= '2'; // Bulan Desember sampai Mei
+        }
+    
+        // Dapatkan 4 karakter acak untuk karakter 5-8
+        for ($i = 0; $i < 4; $i++) {
+            $code .= $characters[rand(0, strlen($characters) - 1)];
+        }
+    
+        return "P{$currentYear}{$code}";
+    }
+
     public function approve($id) {
         $data_tempat_tinggal = PengajuanDataPenjamin::where('id', $id)->first();
 
         $data_tempat_tinggal->status = 'disetujui';
 
+        $data_tempat_tinggal->kode_penjamin = $this->generateRandomCode();
+
         $data_tempat_tinggal->save();
 
         dd("berhasil setujui");
-
     }
     
     public function reject(Request $request, $id) {
@@ -69,6 +96,7 @@ class FormulirPenjaminController extends Controller
         ]);
 
         $data_tempat_tinggal->comment = $request->input('comment');
+        
         $data_tempat_tinggal->status = 'ditolak';
 
         $data_tempat_tinggal->save();
