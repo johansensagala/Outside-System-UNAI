@@ -17,7 +17,7 @@
       @if(Auth::guard('mahasiswa')->check())
 
       <li class="nav-item py-3">
-        <a href="{{ url('/') }}" class="nav-link">
+        <a href="{{ url('/mhs/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
         </a>
@@ -59,7 +59,7 @@
       @elseif(Auth::guard('penjamin')->check())
 
       <li class="nav-item py-3">
-        <a href="{{ url('/') }}" class="nav-link">
+        <a href="{{ url('/penjamin/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
         </a>
@@ -94,7 +94,7 @@
       @elseif(Auth::guard('biro_kemahasiswaan')->check())
 
       <li class="nav-item py-3">
-        <a href="{{ url('/') }}" class="nav-link">
+        <a href="{{ url('/biro/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
         </a>
