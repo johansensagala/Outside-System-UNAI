@@ -18,7 +18,6 @@ class MahasiswaSeeder extends Seeder
             'password' => bcrypt('johansen123'),
             'nama' => 'Johansen Sagala',
             'angkatan' => '2020',
-            'status' => 0,
             'nomor_pribadi' => '081323456789',
             'nomor_ortu_wali' => '081234567886',
         ]);
@@ -28,7 +27,6 @@ class MahasiswaSeeder extends Seeder
             'password' => bcrypt('jonatan123'),
             'nama' => 'Jonatan Situmorang',
             'angkatan' => '2020',
-            'status' => 0,
             'nomor_pribadi' => '081334656789',
             'nomor_ortu_wali' => '081234346686',
         ]);
@@ -38,7 +36,6 @@ class MahasiswaSeeder extends Seeder
             'password' => bcrypt('irpan123'),
             'nama' => 'Irpan Buri Siburian',
             'angkatan' => '2020',
-            'status' => 0,
             'nomor_pribadi' => '085267345679',
             'nomor_ortu_wali' => '081234569886',
         ]);
@@ -48,7 +45,6 @@ class MahasiswaSeeder extends Seeder
             'password' => bcrypt('eli123'),
             'nama' => 'Eli Feri Josua Simatupang',
             'angkatan' => '2020',
-            'status' => 0,
             'nomor_pribadi' => '081323235789',
             'nomor_ortu_wali' => '081231234886',
         ]);
@@ -58,7 +54,6 @@ class MahasiswaSeeder extends Seeder
             'password' => bcrypt('iman123'),
             'nama' => 'Iman Saputra Zendato',
             'angkatan' => '2020',
-            'status' => 0,
             'nomor_pribadi' => '081322343789',
             'nomor_ortu_wali' => '081673545678',
         ]);
@@ -68,7 +63,6 @@ class MahasiswaSeeder extends Seeder
             'password' => bcrypt('krismes123'),
             'nama' => 'Krismes Situmeang',
             'angkatan' => '2020',
-            'status' => 0,
             'nomor_pribadi' => '081323456088',
             'nomor_ortu_wali' => '08117567886',
         ]);
@@ -78,7 +72,6 @@ class MahasiswaSeeder extends Seeder
             'password' => bcrypt('perianto123'),
             'nama' => 'Perianto Sinaga',
             'angkatan' => '2020',
-            'status' => 0,
             'nomor_pribadi' => '081323456689',
             'nomor_ortu_wali' => '081237457886',
         ]);

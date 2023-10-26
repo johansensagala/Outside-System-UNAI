@@ -15,14 +15,10 @@ return new class extends Migration
         Schema::create('pengajuan_luar_asramas', function (Blueprint $table) {
             $table->id();
             $table->string('surat_outside');
-            $table->string('ta');
-            $table->decimal('latitude', 9, 6);
-            $table->decimal('longitude', 9, 6);
-            $table->string('alamat');
-            $table->string('foto_tempat_tinggal');
-            $table->string('jenis_penjamin');
-            $table->string('status');
+            $table->string('status_penjamin');
+            $table->string('status_tinggal');
             $table->string('comment')->nullable();
+            $table->string('tahun_ajaran');
             $table->unsignedBigInteger('id_penjamin');
             $table->unsignedBigInteger('id_biro_kemahasiswaan');
             $table->unsignedBigInteger('id_mahasiswa');
@@ -42,7 +38,7 @@ return new class extends Migration
             $tahunAjaran = $tahunSaatIni . '/' . ($tahunSaatIni + 1);
         }
 
-        DB::table('pengajuan_luar_asramas')->update(['ta' => $tahunAjaran]);
+        DB::table('pengajuan_luar_asramas')->update(['tahun_ajaran' => $tahunAjaran]);
     }
 
     /**

@@ -53,40 +53,21 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="">Foto Tempat Tinggal</label>
+                                    <label for="status_tinggal">Status Tinggal</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="file" class="form-control @error('nomor_telp') is-invalid @enderror" id="nomor_telp" name="nomor_telp" onchange="previewImage(event)">
-                                    @error('nomor_telp')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body" id="gpsPenjamin">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="">Lokasi</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="loading text-center">
-                                        <p>Melacak lokasi</p>
-                                        <div class="spinner-border mt-3" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div>
+                                    <div>
+                                        <select id="status_tinggal" name="status_tinggal" class="form-control @error('status_tinggal') is-invalid @enderror">
+                                            <option value="" disabled selected>Pilih Status Tinggal Anda</option>
+                                            <option value="Orang Tua">Bersama Orang Tua/Wali</option>
+                                            <option value="Saudara">Bersama Saudara Kandung</option>
+                                            <option value="Dosen">Bersama Staff/Dosen/Pensiunan</option>
+                                            <option value="Married">Married Student</option>
+                                            <option value="Profesi Ners">Profesi/Ners</option>
+                                            <option value="Skripsi">Skripsi</option>
+                                        </select>
                                     </div>
-                                    <div class="container">
-                                        <h1 class="status"></h1>
-                                    </div>                                                                                        
-                                    <div id="googleMap" class="" style="width:100%;height:400px;"></div>
-
-                                    <input type="hidden" id="latitude" name="latitude" value="">
-                                    <input type="hidden" id="longitude" name="longitude" value="">
-
-                                    @error('latitude')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                    @error('longitude')
+                                    @error('status_tinggal')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -94,25 +75,28 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
+                                <div class="col-md-4">
+                                    <label for="surat_outside">Surat Pernyataan Ketersediaan</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control @error('surat_outside') is-invalid @enderror" id="surat_outside" name="surat_outside" onchange="previewImage(event)">
+                                </div>
+                                <small>
+                                    Silakan unduh template surat disini
+                                </small>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-8">
-                                    <div class="form-check">
-                                        <input type="hidden" name="autoclose" value="0">
-                                        <input type="checkbox" class="form-check-input" id="autoclose" name="autoclose" value="1" {{ old('autoclose') ? 'checked' : '' }}>
-                                        <label class="form-check-label form-label" for="autoclose">
-                                            Posisi yang tertera di peta sudah sesuai dengan alamat saya
-                                        </label>
-                                    </div>
-                                    <button type="submit" class="btn btn-success" id="simpanButton" disabled>
+                                    <button type="submit" class="btn btn-success" id="simpanButton">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
                                             <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"></path>
                                             <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"></path>
                                         </svg>
                                         Simpan
                                     </button>
-                                    <div>
-                                        <small id="notAllowed" class="text-danger d-none">Anda harus menyalakan GPS untuk mengakses formulir ini!</small>
-                                    </div>
                                 </div>
                             </div>
                         </div>    
