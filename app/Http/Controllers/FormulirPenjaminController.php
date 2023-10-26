@@ -13,11 +13,24 @@ use Carbon\Carbon;
 
 class FormulirPenjaminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $daftar_data_penjamin = PengajuanDataPenjamin::get();
-            
-        return view('biro_kemahasiswaan.daftar_penjamin', compact('daftar_data_penjamin'));
+        $search = $request->input('search');
+        $query = PengajuanDataPenjamin::query();
+
+        if (!empty($search)) {
+            $query->whereHas('penjamin', function ($query) use ($search) {
+                $query->where('nama', 'like', '%' . $search . '%');
+            });
+        }
+
+        $daftar_data_penjamin = $query->get();
+
+        if (empty($search)) {
+            $daftar_data_penjamin = PengajuanDataPenjamin::get();
+        }
+
+        return view('biro_kemahasiswaan.daftar_penjamin', compact('daftar_data_penjamin'))->render();
     }
 
     public function show($id)
