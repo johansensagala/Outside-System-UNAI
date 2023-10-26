@@ -39,4 +39,7 @@
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
 <!-- end common css -->
 
+<!-- grafik apexcharts -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 @stack('style')
