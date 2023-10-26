@@ -114,7 +114,7 @@ class DatabaseSeeder extends Seeder
 
         BiroKemahasiswaan::create([
             'username' => 'yunus-elon',
-            'password' => bcrypt('yunusdiperutikan'),
+            'password' => bcrypt('yunus123'),
             'nama' => 'Yunus Elon',
             'role' => 1,
         ]);
