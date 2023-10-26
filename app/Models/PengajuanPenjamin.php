@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PengajuanPenjamin extends Model
+class PengajuanLuarAsrama extends Model
 {
     use HasFactory;
 
@@ -14,6 +14,11 @@ class PengajuanPenjamin extends Model
     public function penjamin ()
     {
         return $this->belongsTo(Penjamin::class, 'id_penjamin');
+    }
+
+    public function biro_kemahasiswaan ()
+    {
+        return $this->belongsTo(BiroKemahasiswaan::class, 'id_biro_kemahasiswaan');
     }
 
     public function mahasiswa ()

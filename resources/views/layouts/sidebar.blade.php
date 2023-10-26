@@ -12,7 +12,7 @@
   <div class="sidebar-body" style="background-color: #38343c;">
     <ul class="nav" style="font-size: 14px">
       
-      {{-- MENU UNTUK MAHASISWA --}}      
+      {{-- MENU UNTUK MAHASISWA --}}
       
       @if(Auth::guard('mahasiswa')->check())
 

@@ -16,10 +16,10 @@ class MahasiswaController extends Controller
     }
 
     public function showPengajuanPenjamin () {
-        return view('mahasiswa.pengajuan_penjamin');
+        return view('mahasiswa.pengajuan_luar_asrama');
     }
 
     public function showPermohonanTinggal () {
-        return view('mahasiswa.permohonan_tinggal');
+        return view('mahasiswa.pengajuan_luar_asrama');
     }
 }

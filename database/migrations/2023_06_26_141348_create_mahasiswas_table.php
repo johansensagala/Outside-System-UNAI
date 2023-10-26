@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nim')->unique();
             $table->string('password');
             $table->string('nama');
-            $table->string('semester');
+            $table->string('angkatan');
             $table->boolean('status')->default(false);
             $table->string('nomor_pribadi');
             $table->string('nomor_ortu_wali');

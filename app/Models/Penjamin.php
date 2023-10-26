@@ -15,11 +15,6 @@ class Penjamin extends Model
 
     // protected $table = 'penjamins';
 
-    public function pengajuan_penjamin()
-    {
-        return $this->hasMany(PengajuanPenjamin::class);
-    }
-
     public function pengajuan_luar_asrama()
     {
         return $this->hasMany(PengajuanLuarAsrama::class);

@@ -23,9 +23,4 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(PengajuanLuarAsrama::class);
     }
-
-    public function pengajuan_penjamin ()
-    {
-        return $this->hasMany(PengajuanPenjamin::class);
-    }
 }

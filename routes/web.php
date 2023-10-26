@@ -10,8 +10,8 @@ use App\Http\Controllers\FormulirPenjaminController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PenjaminController;
 use App\Http\Controllers\BiroKemahasiswaanController;
-use App\Http\Controllers\PengajuanPenjaminController;
-use App\Models\PengajuanPenjamin;
+use App\Http\Controllers\PengajuanLuarAsramaController;
+use App\Models\PengajuanLuarAsrama;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ Route::post('biro/logout', [LoginBiroKemahasiswaanController::class, 'logout'])-
 Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::get('/mhs/dashboard', [MahasiswaController::class, 'index']);
 
-    Route::get('/mhs/pengajuan-penjamin', [PengajuanPenjaminController::class, 'index']);
+    Route::get('/mhs/pengajuan-penjamin', [PengajuanLuarAsramaController::class, 'index']);
 });
 
 // Rute-rute untuk Penjamin
