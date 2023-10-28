@@ -3,6 +3,6 @@
 
 @section('content')
     
-
+DATA MAHASISWA SUDAH ADA
 
 @endsection

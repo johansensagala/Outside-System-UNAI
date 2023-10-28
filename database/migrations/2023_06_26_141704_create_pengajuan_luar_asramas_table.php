@@ -14,13 +14,19 @@ return new class extends Migration
     {
         Schema::create('pengajuan_luar_asramas', function (Blueprint $table) {
             $table->id();
-            $table->string('surat_outside');
-            $table->string('status_penjamin');
+            $table->string('jurusan');
             $table->string('status_tinggal');
-            $table->string('comment')->nullable();
+            $table->string('surat_outside');
             $table->string('tahun_ajaran');
-            $table->unsignedBigInteger('id_penjamin');
-            $table->unsignedBigInteger('id_biro_kemahasiswaan');
+            $table->string('comment')->nullable();
+            $table->string('status_penjamin')->default('pending');
+            $table->text('alamat')->nullable();
+            $table->decimal('latitude', 9, 6)->nullable();
+            $table->decimal('longitude', 9, 6)->nullable();
+            $table->string('foto_tempat_tinggal')->nullable();
+            $table->string('status')->default('pending');
+            $table->unsignedBigInteger('id_penjamin')->nullable();
+            $table->unsignedBigInteger('id_biro_kemahasiswaan')->nullable();
             $table->unsignedBigInteger('id_mahasiswa');
             $table->timestamps();
 
@@ -28,17 +34,6 @@ return new class extends Migration
             $table->foreign('id_biro_kemahasiswaan')->references('id')->on('biro_kemahasiswaans');
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas');
         });
-
-        $bulanSaatIni = date('n');
-        $tahunSaatIni = date('Y');
-
-        if ($bulanSaatIni >= 1 && $bulanSaatIni <= 6) {
-            $tahunAjaran = ($tahunSaatIni - 1) . '/' . $tahunSaatIni;
-        } else {
-            $tahunAjaran = $tahunSaatIni . '/' . ($tahunSaatIni + 1);
-        }
-
-        DB::table('pengajuan_luar_asramas')->update(['tahun_ajaran' => $tahunAjaran]);
     }
 
     /**

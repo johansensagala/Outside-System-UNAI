@@ -24,9 +24,9 @@
       </li>
       
       <li class="nav-item py-3">
-        <a href="{{ url('/mhs/pengajuan-penjamin') }}" class="nav-link">
+        <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
-          <span class="link-title">Pengajuan Penjamin</span>
+          <span class="link-title">Pengajuan Luar Asrama</span>
         </a>
       </li>
       

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('alamat');
             $table->decimal('latitude', 9, 6);
             $table->decimal('longitude', 9, 6);
-            $table->string('foto_tempat_tinggal')->default('8');
+            $table->string('foto_tempat_tinggal');
             $table->integer('kapasitas');
             $table->string('status')->default('pending');
             $table->string('comment')->nullable();

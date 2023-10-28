@@ -16,12 +16,12 @@
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            DATA PENGAJUAN LUAR ASRAMA
+                            DATA PENGISIAN ALAMAT
                         </div>
                     </div>
                 </div>
                 <div class="card">
-                    <form action="/mhs/pengajuan-luar-asrama" method="post" enctype="multipart/form-data">
+                    <form action="/penjamin/permohonan-tempat-tinggal" method="post" enctype="multipart/form-data">
                     @csrf
                         <div class="card-body">
                             <div class="row">

@@ -16,7 +16,7 @@ class Mahasiswa extends Model
 
     public function absensi ()
     {
-        return $this->hasMany(Mahasiswa::class);
+        return $this->hasMany(Absensi::class);
     }
 
     public function pengajuan_luar_asrama ()

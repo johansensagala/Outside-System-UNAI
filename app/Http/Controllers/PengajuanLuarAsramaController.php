@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\PengajuanLuarAsrama;
+use App\Models\Mahasiswa;
+use App\Models\PengajuanDataPenjamin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -18,5 +20,80 @@ class PengajuanLuarAsramaController extends Controller
         } else {
             return view('mahasiswa.pengajuan_luar_asrama');
         }
+    }   
+
+    public function process(Request $request)
+    {
+        $request->validate([
+            'jurusan' => 'required',
+            'status_tinggal' => 'required',
+            'surat_outside' => 'required|file|mimes:pdf',
+        ]);
+
+        $request->session()->put('jurusan', $request->input('jurusan'));
+        $request->session()->put('status_tinggal', $request->input('status_tinggal'));
+        // $request->session()->put('surat_outside', $request->surat_outside);
+        $request->session()->put('surat_outside', $request->surat_outside->store('surat_outside'));
+
+        $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
+        $mahasiswa = Mahasiswa::where('id', $id_mahasiswa)->first();
+
+        $status_dengan_penjamin = ['Orang Tua', 'Saudara', 'Dosen'];
+        $status_tanpa_penjamin = ['Married', 'Profesi Ners', 'Skripsi'];
+
+        if (in_array($request->input('status_tinggal'), $status_dengan_penjamin)) {
+            return view('mahasiswa.pengajuan_penjamin', compact('mahasiswa'));
+        } else if (in_array($request->input('status_tinggal'), $status_tanpa_penjamin)) {
+            return view('mahasiswa.pengisian_alamat', compact('mahasiswa'));
+        }
+    }   
+
+    public function store_dengan_penjamin(Request $request)
+    {
+        $request->validate([
+            'kode_penjamin' => 'required',
+        ]);
+
+        $penjamin = PengajuanDataPenjamin::where('kode_penjamin', $request->input('kode_penjamin'))->first();
+        $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
+        $mahasiswa = Mahasiswa::where('id', $id_mahasiswa)->first();
+        
+        if (!($penjamin)) {
+            $mahasiswa->percobaan -= 1;
+            $mahasiswa->save();
+
+            return view('mahasiswa.pengajuan_penjamin', compact('mahasiswa'))->with('pesan', 'Kode penjamin tidak sesuai dengan penjamin manapun!');
+        } 
+        
+        else {
+            $pengajuan_luar_asrama = new PengajuanLuarAsrama();
+            
+            $pengajuan_luar_asrama->id_mahasiswa = $id_mahasiswa;
+            $pengajuan_luar_asrama->id_penjamin = $penjamin->id;
+
+            $pengajuan_luar_asrama->jurusan = $request->session()->get('jurusan');
+            $pengajuan_luar_asrama->status_tinggal = $request->session()->get('status_tinggal');
+            $pengajuan_luar_asrama->surat_outside = $request->session()->get('surat_outside');
+            
+            $bulan = date('n');
+            $tahun = date('Y');
+            
+            if ($bulan >= 1 && $bulan <= 6) {
+                $tahun_ajaran = ($tahun - 1) . '/' . $tahun;
+            } else {
+                $tahun_ajaran = $tahun . '/' . ($tahun + 1);
+            }
+                        
+            $pengajuan_luar_asrama->tahun_ajaran = $tahun_ajaran;
+            
+            $pengajuan_luar_asrama->save();
+
+            dd('data berhasil disimpan');
+        }
+    }
+
+    public function store_tanpa_penjamin(Request $request)
+    {
+
     }   
 }
