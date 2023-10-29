@@ -15,6 +15,13 @@ class FormulirPenjaminController extends Controller
 {
     public function index(Request $request)
     {
+        $daftar_data_penjamin = PengajuanDataPenjamin::get();
+            
+        return view('biro_kemahasiswaan.daftar_penjamin', compact('daftar_data_penjamin'));
+    }
+
+    public function search(Request $request)
+    {
         $search = $request->input('search');
         $query = PengajuanDataPenjamin::query();
 
@@ -30,7 +37,7 @@ class FormulirPenjaminController extends Controller
             $daftar_data_penjamin = PengajuanDataPenjamin::get();
         }
 
-        return view('biro_kemahasiswaan.daftar_penjamin', compact('daftar_data_penjamin'))->render();
+        return view('biro_kemahasiswaan._daftar_penjamin', compact('daftar_data_penjamin'))->render();
     }
 
     public function show($id)

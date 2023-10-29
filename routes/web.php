@@ -54,7 +54,7 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
 // Rute-rute untuk Penjamin
 Route::middleware(['penjamin_middleware'])->group(function () {
     Route::get('/penjamin/dashboard', [PenjaminController::class, 'index']);
-    
+
     Route::get('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'index'])->name('penjamin.permohonan-tempat-tinggal');
     Route::post('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'store']);
 });
@@ -62,7 +62,9 @@ Route::middleware(['penjamin_middleware'])->group(function () {
 // Rute-rute untuk Biro Kemahasiswaan
 Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     Route::get('/biro/dashboard', [BiroKemahasiswaanController::class, 'index']);
+
     Route::get('/biro/formulir-penjamin', [FormulirPenjaminController::class, 'index'])->name('biro_kemahasiswaan.daftar_penjamin');
+    Route::get('/biro/search-penjamin', [FormulirPenjaminController::class, 'search'])->name('biro_kemahasiswaan.search_penjamin');
     
     Route::get('/biro/formulir-penjamin/{id}', [FormulirPenjaminController::class, 'show'])->name('biro_kemahasiswaan.formulir_penjamin');
     Route::post('/biro/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);
