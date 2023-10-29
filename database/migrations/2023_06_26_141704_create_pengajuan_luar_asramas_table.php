@@ -24,6 +24,7 @@ return new class extends Migration
             $table->decimal('latitude', 9, 6)->nullable();
             $table->decimal('longitude', 9, 6)->nullable();
             $table->string('foto_tempat_tinggal')->nullable();
+            $table->string('surat_kebenaran')->nullable();
             $table->string('status')->default('pending');
             $table->unsignedBigInteger('id_penjamin')->nullable();
             $table->unsignedBigInteger('id_biro_kemahasiswaan')->nullable();
