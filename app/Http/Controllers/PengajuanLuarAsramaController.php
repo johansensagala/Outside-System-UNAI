@@ -56,11 +56,11 @@ class PengajuanLuarAsramaController extends Controller
 
         $kode_penjamin = strtoupper($request->input('kode_penjamin'));
 
-        $penjamin = PengajuanDataPenjamin::where('kode_penjamin', $kode_penjamin)->first();
+        $data_pengajuan_penjamin = PengajuanDataPenjamin::where('kode_penjamin', $kode_penjamin)->first();
         $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
         $mahasiswa = Mahasiswa::where('id', $id_mahasiswa)->first();
         
-        if (!($penjamin)) {
+        if (!($data_pengajuan_penjamin)) {
             $mahasiswa->percobaan -= 1;
             $mahasiswa->save();
 
@@ -71,7 +71,7 @@ class PengajuanLuarAsramaController extends Controller
             $pengajuan_luar_asrama = new PengajuanLuarAsrama();
             
             $pengajuan_luar_asrama->id_mahasiswa = $id_mahasiswa;
-            $pengajuan_luar_asrama->id_penjamin = $penjamin->id;
+            $pengajuan_luar_asrama->id_penjamin = $data_pengajuan_penjamin->id_penjamin;
 
             $pengajuan_luar_asrama->jurusan = $request->session()->get('jurusan');
             $pengajuan_luar_asrama->status_tinggal = $request->session()->get('status_tinggal');

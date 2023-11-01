@@ -23,19 +23,28 @@
           </div>
         </div>    
       </div>
-      <div class="col-12 col-xl-6 stretch-card">
-      <div class="card">
-  <div class="card-body">
-  <div class="item text-center">
-                                    <h3>Visi</h3>
-                                    <p>Menjadi universitas yang unggul di bidang pengajaran, penelitian, dan pengabdian
-                                        kepada masyarakat, berdasarkan falsafah pendidikan Kristen Advent se
-                                        Asia-Tenggara pada tahun 2025.</p>
-                                </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-  </div>
-</div>
-</div>
+      <div class="stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="item text-center col-md-6">
+                <h3>Visi</h3>
+                <p>Menjadi universitas yang unggul di bidang pengajaran, penelitian, dan pengabdian
+                    kepada masyarakat, berdasarkan falsafah pendidikan Kristen Advent se
+                    Asia-Tenggara pada tahun 2025.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              </div>
+              <div class="item text-center col-md-6">
+                <h3>Misi</h3>
+                <p>Menjadi universitas yang unggul di bidang pengajaran, penelitian, dan pengabdian
+                    kepada masyarakat, berdasarkan falsafah pendidikan Kristen Advent se
+                    Asia-Tenggara pada tahun 2025.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div> <!-- row -->

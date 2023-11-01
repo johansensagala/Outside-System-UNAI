@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('angkatan');
             $table->string('nomor_pribadi');
             $table->string('nomor_ortu_wali');
+            $table->boolean('role')->default(false);
             $table->unsignedSmallInteger('percobaan')->default(5);
             $table->timestamps();
         });

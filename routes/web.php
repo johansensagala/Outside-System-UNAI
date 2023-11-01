@@ -24,9 +24,9 @@ use App\Models\PengajuanLuarAsrama;
 |
 */
 
-// Route::get('/', function () {
-//     return redirect('/mhs/login');
-// });
+Route::get('/', function () {
+    return redirect('/mhs/login');
+});
 
 Route::get('mhs/login', [LoginMahasiswaController::class, 'index'])->name('login-mahasiswa')->middleware('guest:mahasiswa');
 Route::post('mhs/login', [LoginMahasiswaController::class, 'authenticate']);
