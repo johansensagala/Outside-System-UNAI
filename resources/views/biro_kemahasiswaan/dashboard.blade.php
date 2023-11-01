@@ -70,7 +70,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-6 col-md-12 col-xl-7 text-center">
-                <h5 class="mb-0">Angkatan 2023</h6>
+                <h5 class="mb-0">Senior</h6>
                 <h3>250</h3>
               </div>
               <div class="col-6 col-md-12 col-xl-5 text-center">
