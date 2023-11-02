@@ -4,13 +4,13 @@
       <img src="{{ asset('assets/images/LogoUNAI.webp') }}" alt="">
     </a>
     
-    <div class="sidebar-toggler not-active" style="margin-left: 9px;">
+    <div class="sidebar-toggler not-active" style="margin-left: 4px; padding: 2px;">
       <span></span><span></span><span></span>
     </div>
   </div>
   
   <div class="sidebar-body" style="background-color: #38343c;">
-    <ul class="nav" style="font-size: 14px">
+    <ul class="nav">
       
       {{-- MENU UNTUK MAHASISWA --}}
       
@@ -58,7 +58,7 @@
       
       @elseif(Auth::guard('penjamin')->check())
 
-      <li class="nav-item py-3">
+      <li class="nav-item py-3" style="font-size: 10px;">
         <a href="{{ url('/penjamin/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
@@ -68,7 +68,7 @@
       <li class="nav-item py-3">
         <a href="/penjamin/permohonan-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
-          <span class="link-title">Permohonan Tempat Tinggal</span>
+          <span class="link-title">Data Permohonan</span>
         </a>
       </li>
       

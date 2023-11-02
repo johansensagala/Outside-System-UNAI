@@ -25,21 +25,21 @@
       </div>
       <div class="stretch-card">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body" style="color: #767676;">
             <div class="row">
               <div class="item text-center col-md-6">
                 <h3>Visi</h3>
                 <p>Menjadi universitas yang unggul di bidang pengajaran, penelitian, dan pengabdian
-                    kepada masyarakat, berdasarkan falsafah pendidikan Kristen Advent se
-                    Asia-Tenggara pada tahun 2025.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    kepada masyarakat, berdasarkan falsafah pendidikan Kristen Advent seAsia-Tenggara pada tahun 2025.</p>
               </div>
               <div class="item text-center col-md-6">
                 <h3>Misi</h3>
-                <p>Menjadi universitas yang unggul di bidang pengajaran, penelitian, dan pengabdian
-                    kepada masyarakat, berdasarkan falsafah pendidikan Kristen Advent se
-                    Asia-Tenggara pada tahun 2025.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <ol>
+                  <li style="text-align: justify;">Membangun masyarakat yang berkarakter mulia dan bertakwa kepada Tuhan Yang Maha Esa.</li>
+                  <li style="text-align: justify;">Menyelenggarakan Pendidikan Tinggi yang bermutu berlandaskan pada nilai-nilai Kristen Advent</li>
+                  <li style="text-align: justify;">Mengembangkan ilmu pengetahuan, teknologi, dan seni (IPTekS) dalam rangka meningkatkan kesejahteraan dan harkat martabat manusia.</li>
+                  <li style="text-align: justify;">Mempersiapkan sumberdaya manusia yang mampu memenuhi kebutuhan gereja Kristen Advent dan masyarakat luas.</li>
+                </ol>
               </div>
             </div>
           </div>
@@ -49,11 +49,6 @@
   </div>
 </div> <!-- row -->
 @endsection
-
-@push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/flatpickr/flatpickr.min.js') }}"></script>
-  <script src="{{ asset('assets/plugins/apexcharts/apexcharts.min.js') }}"></script>
-@endpush
 
 @push('custom-scripts')
   <script src="{{ asset('assets/js/dashboard.js') }}"></script>
