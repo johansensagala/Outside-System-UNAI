@@ -100,8 +100,8 @@
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-baseline mb-2 row">
-          <h6 class="card-title mb-0 text-center fw-bold mb-3">Cloud storage</h6>
-          <div id="grafik_kehadiran" class="my-5"></div>
+        <h6 class="card-title mb-0 text-center fw-bold mb-3">Cloud storage</h6>
+          <div id="grafik_kehadiran" class="my-5"></div>        
         </div>
         <div id="storageChart"></div>
         <div class="d-grid">
@@ -116,12 +116,12 @@
         var options = {
           series: [{
           // Female
-          name: 'Laki-laki',
-          data: [33, 34, 48, 56]
+          name: 'Perempuan',
+          data: [56, 48, 34, 33]
         }, {
           // Male
-          name: 'Perempuan',
-          data: [69, 29, 53, 61]
+          name: 'Laki-laki',
+          data: [61, 53, 29, 69]
         }],
           chart: {
           type: 'bar',
@@ -153,7 +153,7 @@
           intersect: false
         },
         xaxis: {
-          categories: [2020, 2021, 2022, 2023],
+          categories: [2023, 2022, 2021, "Senior"],
         },
         labels: ['Laki-laki', 'Perempuan'],
         };
