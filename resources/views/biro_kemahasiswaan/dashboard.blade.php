@@ -99,9 +99,10 @@
   <div class="col-lg-5 col-xl-4 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <div class="d-flex justify-content-between align-items-baseline mb-2 row">
-        <h6 class="card-title mb-0 text-center fw-bold mb-3">Cloud storage</h6>
-          <div id="grafik_kehadiran" class="my-5"></div>        
+        <div class="d-flex justify-content-between align-items-center mb-2 row">
+          <h6 class="card-title mb-0 text-center fw-bold mb-3">Cloud storage</h6>
+          <div id="grafik_kehadiran" class="my-5 d-flex justify-content-center align-items-center">
+          </div>
         </div>
         <div id="storageChart"></div>
         <div class="d-grid">
@@ -109,8 +110,8 @@
         </div>
       </div>
     </div>
-  </div>
-</div> <!-- row -->
+  </div>  
+</div>
 
 <script>
         var options = {
