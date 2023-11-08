@@ -6,12 +6,6 @@
 @endpush
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-  <div>
-    <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
-  </div>
-</div>
-
 <!-- Card 1 -->
 <div class="row">
   <div class="col-12 col-xl-12 stretch-card">
@@ -23,7 +17,7 @@
             <div class="row">
               <div class="col-6 col-md-12 col-xl-7 text-center">
                 <h5 class="mb-0">Angkatan 2023</h6>
-                <h3>250</h3>
+                <h3>117</h3>
               </div>
               <div class="col-6 col-md-12 col-xl-5 text-center">
                 <span class="material-symbols-outlined" style="font-size: 50px; color: #31810E">groups</span>
@@ -39,7 +33,7 @@
             <div class="row">
               <div class="col-6 col-md-12 col-xl-7 text-center">
                 <h5 class="mb-0">Angkatan 2022</h6>
-                <h3>250</h3>
+                <h3>101</h3>
               </div>
               <div class="col-6 col-md-12 col-xl-5 text-center">
                 <span class="material-symbols-outlined" style="font-size: 50px; color: #B71F1A">groups</span>
@@ -55,7 +49,7 @@
             <div class="row">
               <div class="col-6 col-md-12 col-xl-7 text-center">
                 <h5 class="mb-0">Angkatan 2021</h6>
-                <h3>250</h3>
+                <h3>63</h3>
               </div>
               <div class="col-6 col-md-12 col-xl-5 text-center">
                 <span class="material-symbols-outlined" style="font-size: 50px; color: #f9c003">groups</span>
@@ -70,8 +64,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col-6 col-md-12 col-xl-7 text-center">
-                <h5 class="mb-0">Senior</h6>
-                <h3>250</h3>
+                <h5 class="mb-0">2017-2020</h6>
+                <h3>102</h3>
               </div>
               <div class="col-6 col-md-12 col-xl-5 text-center">
                 <span class="material-symbols-outlined" style="font-size: 50px; color: #1C4DBF">groups</span>
@@ -89,9 +83,8 @@
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-baseline mb-2">
-          <h6 class="card-title mb-0">Monthly sales</h6>
+          <h6 class="card-title mb-0">Mahasiswa Outside</h6>
         </div>
-        <p class="text-muted">Sales are activities related to selling or the number of goods or services sold in a given time period.</p>
         <div id="grafik_jumlah_mahasiswa"></div>
       </div> 
     </div>
@@ -99,15 +92,26 @@
   <div class="col-lg-5 col-xl-4 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center mb-2 row">
-          <h6 class="card-title mb-0 text-center fw-bold mb-3">Cloud storage</h6>
-          <div id="grafik_kehadiran" class="my-5 d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center mb-2 row">
+          <h6 class="card-title mb-0 text-center fw-bold mb-3">Presentase Absensi</h6>
+          <div id="grafik_kehadiran" class="row my-5 me-5 d-flex justify-content-center align-items-center">
           </div>
         </div>
         <div id="storageChart"></div>
         <div class="d-grid">
-          <button class="btn btn-primary">Upgrade storage</button>
-        </div>
+          <div>
+              <select id="angkatan" name="angkatan" class="form-control @error('angkatan') is-invalid @enderror">
+                  <option value="" disabled selected>Pilih Angkatan</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                  <option value="2017-2020">2017-2020</option>
+              </select>
+          </div>
+          @error('angkatan')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
+      </div>
       </div>
     </div>
   </div>  
@@ -154,7 +158,7 @@
           intersect: false
         },
         xaxis: {
-          categories: [2023, 2022, 2021, "Senior"],
+          categories: [2023, 2022, 2021, "2017-2020"],
         },
         labels: ['Laki-laki', 'Perempuan'],
         };
@@ -174,7 +178,7 @@
           breakpoint: 480,
           options: {
             chart: {
-              width: 200
+              width: 360
             },
             legend: {
               position: 'bottom'
