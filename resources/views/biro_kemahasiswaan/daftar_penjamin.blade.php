@@ -11,7 +11,6 @@
         <div class="row flex-grow-1">
 
             <div class="grid-margin">
-
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
@@ -34,7 +33,6 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#search').on('keyup', function () {

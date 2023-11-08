@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PengajuanLuarAsrama;
 use App\Models\Mahasiswa;
+use App\Models\Penjamin;
 use App\Models\PengajuanDataPenjamin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -12,14 +13,23 @@ class PengajuanLuarAsramaController extends Controller
 {
     public function index()
     {
-        $idPenjamin = Auth::guard('mahasiswa')->user()->id;
-        $data_penjaminan = PengajuanLuarAsrama::where('id_mahasiswa', $idPenjamin)->first();
+        $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
+        $data_pengajuan_outside = PengajuanLuarAsrama::where('id_mahasiswa', $id_mahasiswa)->first();
 
-        if ($data_penjaminan) {
-            return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_penjaminan'));
-        } else {
-            return view('mahasiswa.pengajuan_luar_asrama');
+        if ($data_pengajuan_outside) {
+
+            if ($data_pengajuan_outside->id_penjamin) {
+                $penjamin = Penjamin::where('id', $data_pengajuan_outside->id_penjamin)->first();
+
+                $data_pengajuan_penjamin = PengajuanDataPenjamin::where('id_penjamin', $penjamin->id)->first();
+
+                return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_outside', 'data_pengajuan_penjamin'));
+            }
+
+            return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_outside'));
         }
+        
+        return view('mahasiswa.pengajuan_luar_asrama');
     }   
 
     public function process(Request $request)
@@ -138,6 +148,6 @@ class PengajuanLuarAsramaController extends Controller
 
         $request->session()->forget(['jurusan', 'status_tinggal', 'surat_outside']);
 
-        return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('pengajuan_luar_asrama'));
+        return redirect()->route('pengajuan-luar-asrama');
     }
 }

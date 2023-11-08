@@ -141,7 +141,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="bg-warning p-2 rounded-3 text-white text-center">
-                                Belum Disetujui
+                                Menunggu Persetujuan
                             </div>
                         </li>
                     </ul>
@@ -152,7 +152,7 @@
     </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTs7j_Y6pVttaqzlWJ9T-U98X40tWXnoc"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script>
 <script src="{{ asset('js/locationDetector.js') }}"></script>
 <script src="{{ asset('js/imgPreview.js') }}"></script>
 <script>

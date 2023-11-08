@@ -166,7 +166,7 @@
                             @else
 
                             <div class="bg-warning p-2 rounded-3 text-white text-center">
-                                Belum Disetujui
+                                Menunggu Persetujuan
                             </div>
                             
                             @endif
@@ -179,7 +179,7 @@
     </div>
 </div> <!-- row -->
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTs7j_Y6pVttaqzlWJ9T-U98X40tWXnoc"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script>
 <script>
     let latitude = {{ $data_tempat_tinggal->latitude }};
     let longitude = {{ $data_tempat_tinggal->longitude }};

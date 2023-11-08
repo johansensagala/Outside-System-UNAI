@@ -5,7 +5,6 @@
 <meta name="author" content="NobleUI">
 <meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, laravel, theme, front-end, ui kit, web">
 
-
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,3 +42,5 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 @stack('style')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
