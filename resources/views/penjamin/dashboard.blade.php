@@ -27,19 +27,19 @@
         <div class="card">
           <div class="card-body" style="color: #767676;">
             <div class="row">
-              <div class="item text-center col-md-6">
-                <h3>Visi</h3>
-                <p>Menjadi universitas yang unggul di bidang pengajaran, penelitian, dan pengabdian
-                    kepada masyarakat, berdasarkan falsafah pendidikan Kristen Advent seAsia-Tenggara pada tahun 2025.</p>
+              <div class="item text-center mb-4">
+                <h5 class="fw-bolder">INFORMASI PERIZINAN TINGGAL DI LUAR ASRAMA</h5>
               </div>
-              <div class="item text-center col-md-6">
-                <h3>Misi</h3>
+              <div class="content">
+                <p>Mahasiswa yang diperbolehkan untuk tinggal diluar asrama hanya bagi mereka yang tinggal bersama dengan :</p>
                 <ol>
-                  <li style="text-align: justify;">Membangun masyarakat yang berkarakter mulia dan bertakwa kepada Tuhan Yang Maha Esa.</li>
-                  <li style="text-align: justify;">Menyelenggarakan Pendidikan Tinggi yang bermutu berlandaskan pada nilai-nilai Kristen Advent</li>
-                  <li style="text-align: justify;">Mengembangkan ilmu pengetahuan, teknologi, dan seni (IPTekS) dalam rangka meningkatkan kesejahteraan dan harkat martabat manusia.</li>
-                  <li style="text-align: justify;">Mempersiapkan sumberdaya manusia yang mampu memenuhi kebutuhan gereja Kristen Advent dan masyarakat luas.</li>
-                </ol>
+                <li>Orang tua kandung.</li>
+                <li>Saudara kandung.</li>
+                <li>Staff atau dosen.</li>
+                <li>Pensiunan staff atau dosen.</li>
+                <li>Mahasiswa yang statusnya sudah menikah.</li>
+                <li>Mahasiswa jurusan perawat yang sedang mengikuti profesi ners.</li>
+                <li>Mahasiswa tingkat akhir yang tidak mempunyai mata kuliah selain skripsi.</li></ol>
               </div>
             </div>
           </div>
