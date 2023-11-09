@@ -52,11 +52,11 @@
                   </div>
                   <div class="bg-white pt-3 pb-4" style="border-bottom-left-radius: 20px;border-bottom-right-radius: 20px">
                     <div class="form-check mb-3">
-                      <a href="#" style="color: #1cb4ac; text-decoration: none;" class="link-underline-opacity-100-hover">
-                          <small>
-                            Forgot Password?
-                          </small>
-                      </a>
+                      <div style="font-size: 12px;">Belum memiliki akun? Daftar
+                        <a href="/penjamin/register" style="color: #1cb4ac; text-decoration: underline;" class="link-underline-opacity-100-hover">
+                            disini!
+                        </a>
+                      </div>
                     </div>
                     <div class="px-4">
                       <button class="w-100 btn btn-lg d-flex text-white justify-content-center fw-bold" style="background-color: #E5BC37" type="submit">Login</button>

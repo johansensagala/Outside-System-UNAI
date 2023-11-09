@@ -438,12 +438,12 @@
       visibility: visible;
     }
     .sidebar-header {
-      // transform: translateX($sidebar-folded-width);
-      // visibility: visible;
-      // transition: none;
-      // .sidebar-open & {
-      //    transform: translateX(0);
-      // }
+      transform: translateX($sidebar-folded-width);
+      visibility: visible;
+      transition: none;
+      .sidebar-open & {
+         transform: translateX(0);
+      }
     }
     .sidebar-body {
       .nav {

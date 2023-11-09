@@ -4,7 +4,7 @@
       <img src="{{ asset('assets/images/LogoUNAI.webp') }}" alt="">
     </a>
     
-    <div class="sidebar-toggler not-active" style="margin-left: 4px; padding: 2px;">
+    <div class="sidebar-toggler not-active" style="margin-left: 2px; padding: 1px;">
       <span></span><span></span><span></span>
     </div>
   </div>

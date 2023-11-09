@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div>
-                                        <select id="jurusan" name="jurusan" class="form-control @error('jurusan') is-invalid @enderror">
+                                        <select id="jurusan" name="jurusan" class="form-select @error('jurusan') is-invalid @enderror">
                                             <option value="" disabled selected>Pilih Jurusan Anda</option>
                                             <option value="Akuntansi">Akuntansi</option>
                                             <option value="Bisnis Digital">Bisnis Digital</option>
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div>
-                                        <select id="status_tinggal" name="status_tinggal" class="form-control @error('status_tinggal') is-invalid @enderror">
+                                        <select id="status_tinggal" name="status_tinggal" class="form-select @error('status_tinggal') is-invalid @enderror">
                                             <option value="" disabled selected>Pilih Status Tinggal Anda</option>
                                             <option value="Orang Tua">Bersama Orang Tua/Wali</option>
                                             <option value="Saudara">Bersama Saudara Kandung</option>
