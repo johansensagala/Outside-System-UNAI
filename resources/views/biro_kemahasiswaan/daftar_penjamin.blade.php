@@ -21,12 +21,12 @@
                 </div>
                 <div class="card">
                     <div class="m-5">
-                        {{-- <form action="/biro/formulir-penjamin">
+                        <form action="/biro/formulir-penjamin">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search" value="{{ request('search') }}">
                             </div>
                         </form>
-                        @include('biro_kemahasiswaan._daftar_penjamin') --}}
+                        @include('biro_kemahasiswaan._daftar_penjamin')
                     </div>
                 </div>
             </div>

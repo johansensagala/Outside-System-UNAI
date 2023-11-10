@@ -48,5 +48,10 @@
                 @endforeach
             </tbody>
         </table>
+        @if ($daftar_data_penjamin->count() === 0)
+            <h4 class="my-4 text-center fw-bold">
+                Belum ada mahasiswa
+            </h4>
+        @endif                                
     </div>
 </div>

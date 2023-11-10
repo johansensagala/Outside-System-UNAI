@@ -12,6 +12,8 @@ use App\Http\Controllers\BiroKemahasiswaanController;
 use App\Http\Controllers\PengajuanLuarAsramaController;
 use App\Http\Controllers\PersetujuanLuarAsramaController;
 use App\Http\Controllers\PersetujuanMahasiswaController;
+use App\Http\Controllers\RegisterController;
+
 
 /*
 |--------------------------------------------------------------------------
