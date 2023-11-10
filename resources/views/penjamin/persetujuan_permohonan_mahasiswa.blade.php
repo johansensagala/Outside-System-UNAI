@@ -99,7 +99,28 @@
                                 {{ $data_mahasiswa->tahun_ajaran }}
                             </div>
                         </div>
+                    </div><hr>
+                    @if (!($data_mahasiswa->status_penjamin === 'disetujui'))
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8 fw-bold">
+                                @if ($data_mahasiswa->status_penjamin === 'pending' || $data_mahasiswa->status_penjamin === 'ditolak')
+                                    <form method="post" action="/penjamin/persetujuan-mahasiswa/{{ $data_mahasiswa->id }}/setujui" style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">Setujui</button>
+                                    </form>
+                                @endif
+                                @if ($data_mahasiswa->status_penjamin === 'pending')
+                                    <form method="post" action="/penjamin/persetujuan-mahasiswa/{{ $data_mahasiswa->id }}/tolak" style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Tolak</button>
+                                    </form>
+                                @endif
+                            </div>
+                        </div><hr>
                     </div>
+                    @endif
                 </div>
             </div>
 

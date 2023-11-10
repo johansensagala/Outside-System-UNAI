@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Penjamin;
 use App\Models\BiroKemahasiswaan;
 use App\Models\PengajuanDataPenjamin;
 use App\Models\Mahasiswa;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 class FormulirPenjaminController extends Controller
 {
@@ -72,23 +72,19 @@ class FormulirPenjaminController extends Controller
     }
 
     public function generateRandomCode() {
-        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Karakter yang tersedia
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $code = '';
     
-        // Dapatkan tahun saat ini dalam format dua digit
         $currentYear = date('y');
     
-        // Dapatkan bulan saat ini (1-12)
         $currentMonth = date('n');
     
-        // Tentukan digit keempat sesuai dengan bulan saat ini
         if ($currentMonth >= 6 && $currentMonth <= 11) {
-            $code .= '1'; // Bulan Juni sampai November
+            $code .= '1';
         } else {
-            $code .= '2'; // Bulan Desember sampai Mei
+            $code .= '2';
         }
     
-        // Dapatkan 4 karakter acak untuk karakter 5-8
         for ($i = 0; $i < 4; $i++) {
             $code .= $characters[rand(0, strlen($characters) - 1)];
         }
