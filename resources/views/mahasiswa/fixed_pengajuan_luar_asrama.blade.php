@@ -177,17 +177,7 @@
                                 </div>
                             </div>
                         </div><hr>    
-                        @endif
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8">
-                                    <button type="submit" class="btn btn-success" id="simpanButton">
-                                        Berikutnya
-                                    </button>
-                                </div>
-                            </div>
-                        </div>    
+                        @endif   
                     </form>
                 </div>
             </div>

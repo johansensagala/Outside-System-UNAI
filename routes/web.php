@@ -67,6 +67,8 @@ Route::middleware(['penjamin_middleware'])->group(function () {
 
     Route::get('/penjamin/persetujuan-mahasiswa', [PersetujuanMahasiswaController::class, 'index']);
     Route::get('/penjamin/persetujuan-mahasiswa/{id}', [PersetujuanMahasiswaController::class, 'show']);
+    Route::post('/penjamin/persetujuan-mahasiswa/{id}/setujui', [PersetujuanMahasiswaController::class, 'approve']);
+    Route::post('/penjamin/persetujuan-mahasiswa/{id}/tolak', [PersetujuanMahasiswaController::class, 'reject']);
 });
 
 // Rute-rute untuk Biro Kemahasiswaan
