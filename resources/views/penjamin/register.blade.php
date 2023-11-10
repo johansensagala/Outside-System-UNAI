@@ -45,7 +45,7 @@
                       @enderror
                     </div>
                     <div class="mb-3">
-                      <input type="text" class="form-control @error('nomor_telp') is-invalid @enderror" id="nomor_telp" name="nomor_telp" placeholder="Nomor Telepon">
+                      <input type="integer" class="form-control @error('nomor_telp') is-invalid @enderror" id="nomor_telp" name="nomor_telp" placeholder="Nomor Telepon">
                       @error('nomor_telp')
                           <div class="invalid-feedback">
                               {{ $message }}
