@@ -130,7 +130,7 @@
                                     
                                     <div id="googleMap" class="" style="width:100%;height:400px;"></div>
                                     <div>
-                                        <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_pengajuan_outside->latitude }},{{ $data_pengajuan_outside->longitude }}" target="_blank">Tunjukkan Rute</a>
+                                        <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_pengajuan_outside->latitude }},{{ $data_pengajuan_outside->longitude }}" target="_blank">Buka di Google Maps</a>
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
                                     
                                     <div id="googleMapPenjamin" class="" style="width:100%;height:400px;"></div>
                                     <div>
-                                        <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_pengajuan_outside->penjamin->latitude }},{{ $data_pengajuan_outside->penjamin->longitude }}" target="_blank">Tunjukkan Rute</a>
+                                        <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_pengajuan_penjamin->latitude }},{{ $data_pengajuan_penjamin->longitude }}" target="_blank">Buka di Google Maps</a>
                                     </div>
                                 </div>
                             </div>

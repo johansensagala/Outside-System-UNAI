@@ -4,7 +4,7 @@
       <img src="{{ asset('assets/images/LogoUNAI.webp') }}" alt="">
     </a>
     
-    <div class="sidebar-toggler not-active" style="margin-left: 4px; padding: 2px;">
+    <div class="sidebar-toggler" style="margin-left: 4px; padding: 2px;">
       <span></span><span></span><span></span>
     </div>
   </div>
@@ -73,7 +73,7 @@
       </li>
       
       <li class="nav-item py-3">
-        <a href="{{ url('/') }}" class="nav-link">
+        <a href="/penjamin/persetujuan-mahasiswa" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Persetujuan Mahasiswa</span>
         </a>
@@ -108,7 +108,7 @@
       </li>
 
       <li class="nav-item py-3">
-        <a href="{{ url('/') }}" class="nav-link">
+        <a href="/biro_kemahasiswaan/persetujuan-mahasiswa" class="nav-link">
           <i class="link-icon" data-feather="home"></i>
           <span class="link-title">Persetujuan Outside</span>
         </a>

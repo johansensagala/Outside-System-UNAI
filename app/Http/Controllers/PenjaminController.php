@@ -33,6 +33,6 @@ class PenjaminController extends Controller
     }
 
     public function showPersetujuanPermohonanMahasiswa () {
-        return view('penjamin.persetujuan_permohonan_mahasiswa');
+        return view('penjamin.daftar_');
     }
 }

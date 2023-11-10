@@ -105,7 +105,7 @@
                             
                                 <div id="googleMap" class="" style="width:100%;height:400px;"></div>
                                 <div>
-                                    <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_tempat_tinggal->latitude }},{{ $data_tempat_tinggal->longitude }}" target="_blank">Tunjukkan Rute</a>
+                                    <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_tempat_tinggal->latitude }},{{ $data_tempat_tinggal->longitude }}" target="_blank">Buka di Google Maps</a>
                                 </div>
                             </div>
                         </div>

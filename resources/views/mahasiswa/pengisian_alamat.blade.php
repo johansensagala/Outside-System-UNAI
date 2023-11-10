@@ -30,12 +30,12 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-floating">
-                                        <textarea id="alamat" name="alamat" class="form-control @error('alamat') is-invalid @enderror" placeholder=""></textarea>
+                                        <textarea id="alamat" name="alamat" class="form-control" placeholder=""></textarea>
                                         <label for="alamat">Alamat Domisili</label>
                                     </div>
-                                    @error('alamat')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                    @if ($errors->has('alamat'))
+                                        <small class="text-danger">{{ $errors->first('alamat') }}</small>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -46,10 +46,10 @@
                                 </div>
                                 <div class="col-md-8">
                                     <img id="preview" class="img-fluid my-3" src="#" alt="Preview" style="display: none; max-width: 200px; max-height: 200px;">
-                                    <input type="file" class="form-control @error('foto_tempat_tinggal') is-invalid @enderror" id="foto_tempat_tinggal" name="foto_tempat_tinggal" onchange="previewImage(event)">
-                                    @error('foto_tempat_tinggal')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                    <input type="file" class="form-control" id="foto_tempat_tinggal" name="foto_tempat_tinggal" onchange="previewImage(event)">
+                                    @if ($errors->has('foto_tempat_tinggal'))
+                                        <small class="text-danger">{{ $errors->first('foto_tempat_tinggal') }}</small>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -72,13 +72,6 @@
 
                                     <input type="hidden" id="latitude" name="latitude" value="">
                                     <input type="hidden" id="longitude" name="longitude" value="">
-
-                                    @error('latitude')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                    @error('longitude')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -88,7 +81,10 @@
                                     <label for="surat_kebenaran">Surat Kebenaran Profesi Ners/Married Students/Hanya Skripsi</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="file" class="form-control @error('surat_kebenaran') is-invalid @enderror" id="surat_kebenaran" name="surat_kebenaran" onchange="previewImage(event)">
+                                    <input type="file" class="form-control" id="surat_kebenaran" name="surat_kebenaran" onchange="previewImage(event)">
+                                    @if ($errors->has('surat_kebenaran'))
+                                        <small class="text-danger">{{ $errors->first('surat_kebenaran') }}</small>
+                                    @endif
                                 </div>
                             </div>
                         </div>

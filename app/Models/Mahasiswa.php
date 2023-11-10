@@ -21,6 +21,6 @@ class Mahasiswa extends Model
 
     public function pengajuan_luar_asrama ()
     {
-        return $this->hasMany(PengajuanLuarAsrama::class);
+        return $this->hasMany(PengajuanLuarAsrama::class, 'id_mahasiswa');
     }
 }

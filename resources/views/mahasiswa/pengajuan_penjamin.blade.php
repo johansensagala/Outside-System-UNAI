@@ -37,11 +37,11 @@
                                         @if(isset($pesan))
                                             <small class="text-danger">{{ $pesan }}</small>
                                         @endif
+                                        @if (isset($error))
+                                            <small class="text-danger">{{ $error }}</small>
+                                        @endif
                                         <small class="fw-bolder">Tersisa {{ $mahasiswa->percobaan }} kali percobaan</small>
                                     </div>
-                                    @error('kode_penjamin')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
                             </div>
                         </div>

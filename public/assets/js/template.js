@@ -65,7 +65,7 @@
     // Sidebar toggle to sidebar-folded
     $('.sidebar-toggler').on('click', function(e) {
       e.preventDefault();
-      $('.sidebar-header .sidebar-toggler').toggleClass('active not-active');
+      $('.sidebar-header ').toggleClass('active not-active');
       if (window.matchMedia('(min-width: 992px)').matches) {
         e.preventDefault();
         body.toggleClass('sidebar-folded');

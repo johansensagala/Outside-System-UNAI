@@ -6,8 +6,10 @@ use App\Models\PengajuanLuarAsrama;
 use App\Models\Mahasiswa;
 use App\Models\Penjamin;
 use App\Models\PengajuanDataPenjamin;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PengajuanLuarAsramaController extends Controller
 {
@@ -60,15 +62,30 @@ class PengajuanLuarAsramaController extends Controller
 
     public function store_dengan_penjamin(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'kode_penjamin' => 'required',
         ]);
+
+        $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
+        $mahasiswa = Mahasiswa::where('id', $id_mahasiswa)->first();
+
+        if ($validator->fails()) {
+            $error = "Kode penjamin wajib diisi!";
+            
+            // dd($errors);
+            if ($error) {
+                return view('mahasiswa.pengajuan_penjamin', compact('mahasiswa', 'error'));
+            } else {
+                return view('mahasiswa.pengajuan_penjamin', compact('mahasiswa'));
+            }
+        }
 
         $kode_penjamin = strtoupper($request->input('kode_penjamin'));
 
         $data_pengajuan_penjamin = PengajuanDataPenjamin::where('kode_penjamin', $kode_penjamin)->first();
         $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
         $mahasiswa = Mahasiswa::where('id', $id_mahasiswa)->first();
+
         
         if (!($data_pengajuan_penjamin)) {
             $mahasiswa->percobaan -= 1;
@@ -108,13 +125,22 @@ class PengajuanLuarAsramaController extends Controller
 
     public function store_tanpa_penjamin(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'alamat' => 'required|string|max:255',
             'foto_tempat_tinggal' => 'required|file|max:2048|image|mimes:jpeg,png,jpg,gif',
             'longitude' => 'required',
             'latitude' => 'required',
             'surat_kebenaran' => 'required|file|mimes:pdf'
         ]);
+
+        $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
+        $mahasiswa = Mahasiswa::where('id', $id_mahasiswa)->first();
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            
+            return view('mahasiswa.pengisian_alamat', compact('mahasiswa', 'errors'));
+        }
 
         $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
         $mahasiswa = Mahasiswa::where('id', $id_mahasiswa)->first();

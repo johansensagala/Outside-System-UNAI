@@ -45,7 +45,7 @@
                                         </select>
                                     </div>
                                     @error('jurusan')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                         </select>
                                     </div>
                                     @error('status_tinggal')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
@@ -80,6 +80,9 @@
                                 </div>
                                 <div class="col-md-8">
                                     <input type="file" class="form-control @error('surat_outside') is-invalid @enderror" id="surat_outside" name="surat_outside" onchange="previewImage(event)">
+                                    @error('surat_outside')
+                                        <small class="text-danger">{{ $message }}</small><br>
+                                    @enderror
                                     <small>
                                         Silakan unduh template surat <a href="{{ asset('storage/form-kegiatan-kampus-outside_Template.docx') }}" download>disini</a>
                                     </small>
@@ -104,15 +107,15 @@
     </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script>
-<script src="{{ asset('js/locationDetector.js') }}"></script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script> --}}
+{{-- <script src="{{ asset('js/locationDetector.js') }}"></script> --}}
 <script src="{{ asset('js/imgPreview.js') }}"></script>
-<script>
+{{-- <script>
     document.getElementById('autoclose').addEventListener('change', function() {
         var simpanButton = document.getElementById('simpanButton');
         simpanButton.disabled = !this.checked;
     });
-</script>
+</script> --}}
 
 @push('plugin-scripts')
   <script src="{{ asset('assets/plugins/flatpickr/flatpickr.min.js') }}"></script>
