@@ -53,9 +53,10 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     
     Route::get('/mhs/pengajuan-luar-asrama', [PengajuanLuarAsramaController::class, 'index'])->name('pengajuan-luar-asrama');
     Route::post('/mhs/pengajuan-luar-asrama', [PengajuanLuarAsramaController::class, 'process']);
-    
     Route::post('/mhs/pengajuan-penjamin', [PengajuanLuarAsramaController::class, 'store_dengan_penjamin']);
     Route::post('/mhs/pengisian-alamat', [PengajuanLuarAsramaController::class, 'store_tanpa_penjamin'])->name('pengisian-alamat');
+
+    Route::get('/mhs/data_pengajuan', [PengajuanLuarAsramaController::class, 'data']);
 });
 
 // Rute-rute untuk Penjamin
@@ -77,6 +78,7 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
 
     Route::get('/biro/formulir-penjamin', [FormulirPenjaminController::class, 'index'])->name('biro_kemahasiswaan.daftar_penjamin');
     Route::get('/biro/search-penjamin', [FormulirPenjaminController::class, 'search'])->name('biro_kemahasiswaan.search_penjamin');
+    Route::get('/biro/status-penjamin', [FormulirPenjaminController::class, 'status'])->name('biro_kemahasiswaan.status_penjamin');
     
     Route::get('/biro/formulir-penjamin/{id}', [FormulirPenjaminController::class, 'show'])->name('biro_kemahasiswaan.formulir_penjamin');
     Route::post('/biro/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);

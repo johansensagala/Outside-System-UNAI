@@ -32,11 +32,11 @@
                             <div class="col-2">
                             <form action="/biro/formulir-penjamin" method="GET">
                             <div class="form-group">
-                                <select name="status" id="status" class="form-control" onchange="this.form.submit()">
-                                    <option value="" {{ request('status') == '' ? 'selected' : '' }}>All</option>
-                                    <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                                    <option value="ditolak" {{ request('status') == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
-                                    <option value="diterima" {{ request('status') == 'diterima' ? 'selected' : '' }}>Diterima</option>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="">Semua</option>
+                                    <option value="pending">Menunggu Persetujuan</option>
+                                    <option value="ditolak">Ditolak</option>
+                                    <option value="disetujui">Diterima</option>
                                 </select>
                             </form>
                             </div>
@@ -52,24 +52,27 @@
 <script>
     $(document).ready(function () {
         $('#search').on('keyup', function () {
-            var search = $(this).val();
+            let search = $(this).val();
 
-            if (search.length >= 3) { 
+            if (search.length >= 3 || search.length === 0) { 
                 $.get("{{ route('biro_kemahasiswaan.search_penjamin') }}", { search: search }, function (data) {
                     $('#search-results').html(data);
                 });
             }
-            if (search.length == 0) { 
-                $.get("{{ route('biro_kemahasiswaan.search_penjamin') }}", function (data) {
-                    $('#search-results').html(data);
-                });
-            } else {
-                $('#search-results').html(data);
-            }
         });
         
         $('#status').on('change', function () {
-            this.form.submit();
+            let status = $(this).val();
+
+            if (status !== "") {
+                $.get("{{ route('biro_kemahasiswaan.status_penjamin') }}", { status: status }, function (data) {
+                    $('#search-results').html(data);
+                });
+            } else {
+                $.get("{{ route('biro_kemahasiswaan.search_penjamin') }}", function (data) {
+                    $('#search-results').html(data);
+                });
+            }
         });
     });
 </script>

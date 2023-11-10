@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Penjamin;
 use App\Models\BiroKemahasiswaan;
 use App\Models\PengajuanDataPenjamin;
 use App\Models\Mahasiswa;
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class FormulirPenjaminController extends Controller
 {
@@ -37,11 +37,19 @@ class FormulirPenjaminController extends Controller
             $daftar_data_penjamin = PengajuanDataPenjamin::get();
         }
 
-        $status = $request->input('status'); // Ambil nilai dari filter status
+        return view('biro_kemahasiswaan._daftar_penjamin', compact('daftar_data_penjamin'))->render();
+    }
 
-        $items = PengajuanDataPenjamin::when($status, function ($query) use ($status) {
-            return $query->where('status', $status);
-        })->get();
+    public function status(Request $request)
+    {
+        $status = $request->input('status');
+        $query = PengajuanDataPenjamin::query();
+
+        $query->whereHas('penjamin', function ($query) use ($status) {
+            $query->where('status', $status);
+        });
+
+        $daftar_data_penjamin = $query->get();
 
         return view('biro_kemahasiswaan._daftar_penjamin', compact('daftar_data_penjamin'))->render();
     }
@@ -77,7 +85,7 @@ class FormulirPenjaminController extends Controller
         return response()->json(['data' => $penjamin], 201);
     }
 
-    public function generateRandomCode() {
+    public function generate_random_code() {
         $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $code = '';
     
@@ -103,7 +111,7 @@ class FormulirPenjaminController extends Controller
 
         $data_tempat_tinggal->status = 'disetujui';
 
-        $data_tempat_tinggal->kode_penjamin = $this->generateRandomCode();
+        $data_tempat_tinggal->kode_penjamin = $this->generate_random_code();
 
         $data_tempat_tinggal->save();
 

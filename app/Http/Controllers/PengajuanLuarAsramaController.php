@@ -20,15 +20,6 @@ class PengajuanLuarAsramaController extends Controller
 
         if ($data_pengajuan_outside) {
 
-            if ($data_pengajuan_outside->id_penjamin) {
-                $penjamin = Penjamin::where('id', $data_pengajuan_outside->id_penjamin)->first();
-
-                $data_pengajuan_penjamin = PengajuanDataPenjamin::where('id_penjamin', $penjamin->id)->first();
-
-                return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_outside', 'data_pengajuan_penjamin'));
-            }
-
-            return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_outside'));
         }
         
         return view('mahasiswa.pengajuan_luar_asrama');
@@ -72,7 +63,6 @@ class PengajuanLuarAsramaController extends Controller
         if ($validator->fails()) {
             $error = "Kode penjamin wajib diisi!";
             
-            // dd($errors);
             if ($error) {
                 return view('mahasiswa.pengajuan_penjamin', compact('mahasiswa', 'error'));
             } else {
@@ -175,5 +165,19 @@ class PengajuanLuarAsramaController extends Controller
         $request->session()->forget(['jurusan', 'status_tinggal', 'surat_outside']);
 
         return redirect()->route('pengajuan-luar-asrama');
+    }
+
+    public function data() {
+        $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
+
+        if ($data_pengajuan_outside->id_penjamin) {
+            $penjamin = Penjamin::where('id', $data_pengajuan_outside->id_penjamin)->first();
+
+            $data_pengajuan_penjamin = PengajuanDataPenjamin::where('id_penjamin', $penjamin->id)->first();
+
+            return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_outside', 'data_pengajuan_penjamin'));
+        }
+
+        return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_outside'));
     }
 }
