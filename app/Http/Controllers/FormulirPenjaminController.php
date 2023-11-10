@@ -37,6 +37,12 @@ class FormulirPenjaminController extends Controller
             $daftar_data_penjamin = PengajuanDataPenjamin::get();
         }
 
+        $status = $request->input('status'); // Ambil nilai dari filter status
+
+        $items = PengajuanDataPenjamin::when($status, function ($query) use ($status) {
+            return $query->where('status', $status);
+        })->get();
+
         return view('biro_kemahasiswaan._daftar_penjamin', compact('daftar_data_penjamin'))->render();
     }
 

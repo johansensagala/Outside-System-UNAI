@@ -21,11 +21,26 @@
                 </div>
                 <div class="card">
                     <div class="m-5">
-                        <form action="/biro/formulir-penjamin">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search" value="{{ request('search') }}">
+                        <div class="row">
+                            <div class="col-10">
+                                <form action="/biro/formulir-penjamin">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search" value="{{ request('search') }}">
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                            <div class="col-2">
+                            <form action="/biro/formulir-penjamin" method="GET">
+                            <div class="form-group">
+                                <select name="status" id="status" class="form-control" onchange="this.form.submit()">
+                                    <option value="" {{ request('status') == '' ? 'selected' : '' }}>All</option>
+                                    <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="ditolak" {{ request('status') == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
+                                    <option value="diterima" {{ request('status') == 'diterima' ? 'selected' : '' }}>Diterima</option>
+                                </select>
+                            </form>
+                            </div>
+                        </div>
                         @include('biro_kemahasiswaan._daftar_penjamin')
                     </div>
                 </div>
@@ -51,6 +66,10 @@
             } else {
                 $('#search-results').html(data);
             }
+        });
+        
+        $('#status').on('change', function () {
+            this.form.submit();
         });
     });
 </script>
