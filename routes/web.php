@@ -32,6 +32,11 @@ Route::get('mhs/login', [LoginMahasiswaController::class, 'index'])->name('login
 Route::post('mhs/login', [LoginMahasiswaController::class, 'authenticate']);
 Route::post('mhs/logout', [LoginMahasiswaController::class, 'logout'])->name('logout_mahasiswa');
 
+Route::get('/penjamin/register', [RegisterController::class, 'index'])->name('register_penjamin');
+Route::post('/penjamin/register', [RegisterController::class, 'store']);
+Route::get('/penjamin/verify-otp', [RegisterController::class, 'showVerifyOtpForm'])->name('verify_otp');
+Route::post('/penjamin/verify-otp', [RegisterController::class, 'verifyOtp']);
+
 Route::get('penjamin/login', [LoginPenjaminController::class, 'index'])->name('login-penjamin')->middleware('guest:penjamin');
 Route::post('penjamin/login', [LoginPenjaminController::class, 'authenticate']);
 Route::post('penjamin/logout', [LoginPenjaminController::class, 'logout'])->name('logout_penjamin');

@@ -5,6 +5,7 @@
     </a>
     
     <div class="sidebar-toggler" style="margin-left: 4px; padding: 2px;">
+    <div class="sidebar-toggler not-active" style="margin-left: 2px; padding: 1px;">
       <span></span><span></span><span></span>
     </div>
   </div>
