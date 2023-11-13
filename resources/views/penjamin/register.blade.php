@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @include('layouts.links')
+    <title>Registrasi akun</title>
 </head>
 <body>
 
@@ -13,8 +14,8 @@
           <div>
             <div style="border-radius: 10px" class="auth-form-wrapper justify-content-center">
               <div class="text-center py-4" style="background-color: #38BBEB; border-bottom: 10px solid #2D9DC6">
-                <h4 class="d-block text-white">Universitas Advent Indonesia</h4>
-                <h5 class="fw-normal text-white">OUTSIDE SYSTEM FOR STUDENTS</h5>
+                <h4 class="d-block text-white">Registrasi</h4>
+                <h5 class="fw-normal text-white">Akun penjamin</h5>
               </div>
               <div>
                 <form class="forms-sample" action="/penjamin/register" method="POST">
@@ -59,6 +60,37 @@
                     </div>
                   </div>
                 </form>
+                <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5 mx-auto" id="exampleModalToggleLabel">Masukkan Kode OTP</h1>
+                    </div>
+                    <div class="modal-body row">
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input2'));">
+                      </div>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input3'));">
+                      </div>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input2'));">
+                      </div>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input3'));">
+                      </div>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input2'));">
+                      </div>
+                      <div class="col-md-2">
+                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input3'));">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Open first modal</button>
+
               </div>
             </div>
           </div>
@@ -67,3 +99,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  function handleInput(inputField, nextInputField) {
+    var maxLength = inputField.maxLength;
+    var currentValue = inputField.value;
+
+    if (currentValue.length === maxLength) {
+      nextInputField.focus();
+    }
+  }
+</script>
