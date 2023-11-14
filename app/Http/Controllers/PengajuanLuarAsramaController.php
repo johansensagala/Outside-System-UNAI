@@ -16,14 +16,16 @@ class PengajuanLuarAsramaController extends Controller
     public function index()
     {
         $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
-        $data_pengajuan_outside = PengajuanLuarAsrama::where('id_mahasiswa', $id_mahasiswa)->first();
+        $data_pengajuan_outside = PengajuanLuarAsrama::where('id_mahasiswa', $id_mahasiswa)
+            ->where('status_penjamin', 'pending')
+            ->first();
 
         if ($data_pengajuan_outside) {
-
+            return redirect('/mhs/data_pengajuan');
         }
-        
+
         return view('mahasiswa.pengajuan_luar_asrama');
-    }   
+    }
 
     public function process(Request $request)
     {
@@ -168,16 +170,17 @@ class PengajuanLuarAsramaController extends Controller
     }
 
     public function data() {
-        $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
+        // $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
 
-        if ($data_pengajuan_outside->id_penjamin) {
-            $penjamin = Penjamin::where('id', $data_pengajuan_outside->id_penjamin)->first();
+        // if ($data_pengajuan_outside->id_penjamin) {
+        //     $penjamin = Penjamin::where('id', $data_pengajuan_outside->id_penjamin)->first();
 
-            $data_pengajuan_penjamin = PengajuanDataPenjamin::where('id_penjamin', $penjamin->id)->first();
+        //     $data_pengajuan_penjamin = PengajuanDataPenjamin::where('id_penjamin', $penjamin->id)->first();
 
-            return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_outside', 'data_pengajuan_penjamin'));
-        }
+        //     return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_outside', 'data_pengajuan_penjamin'));
+        // }
 
-        return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_outside'));
+        // return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_outside'));
+        dd('dctfgvbhjnk');
     }
 }

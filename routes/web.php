@@ -79,7 +79,7 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     Route::get('/biro/formulir-penjamin', [FormulirPenjaminController::class, 'index'])->name('biro_kemahasiswaan.daftar_penjamin');
     Route::get('/biro/search-penjamin', [FormulirPenjaminController::class, 'search'])->name('biro_kemahasiswaan.search_penjamin');
     Route::get('/biro/status-penjamin', [FormulirPenjaminController::class, 'status'])->name('biro_kemahasiswaan.status_penjamin');
-    
+
     Route::get('/biro/formulir-penjamin/{id}', [FormulirPenjaminController::class, 'show'])->name('biro_kemahasiswaan.formulir_penjamin');
     Route::post('/biro/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);
     Route::post('/biro/formulir-penjamin/{id}/tolak', [FormulirPenjaminController::class, 'reject']);

@@ -68,22 +68,22 @@
                     </div>
                     <div class="modal-body row">
                       <div class="col-md-2">
-                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input2'));">
+                        <input type="text" class="form-control" maxlength="1">
                       </div>
                       <div class="col-md-2">
-                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input3'));">
+                        <input type="text" class="form-control" maxlength="1">
                       </div>
                       <div class="col-md-2">
-                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input2'));">
+                        <input type="text" class="form-control" maxlength="1">
                       </div>
                       <div class="col-md-2">
-                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input3'));">
+                        <input type="text" class="form-control" maxlength="1">
                       </div>
                       <div class="col-md-2">
-                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input2'));">
+                        <input type="text" class="form-control" maxlength="1">
                       </div>
                       <div class="col-md-2">
-                        <input type="text" class="form-control" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); handleInput(this, document.getElementById('input3'));">
+                        <input type="text" class="form-control" maxlength="1">
                       </div>
                     </div>
                   </div>
@@ -100,13 +100,3 @@
   </div>
 </div>
 
-<script>
-  function handleInput(inputField, nextInputField) {
-    var maxLength = inputField.maxLength;
-    var currentValue = inputField.value;
-
-    if (currentValue.length === maxLength) {
-      nextInputField.focus();
-    }
-  }
-</script>

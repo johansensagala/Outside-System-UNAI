@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('comment')->nullable();
             $table->string('status_penjamin')->default('pending');
             $table->text('alamat')->nullable();
-            $table->decimal('latitude', 9, 6)->nullable();
+            $table->decimal('latitude', 9, 67)->nullable();
             $table->decimal('longitude', 9, 6)->nullable();
             $table->string('foto_tempat_tinggal')->nullable();
             $table->string('surat_kebenaran')->nullable();

@@ -30,15 +30,12 @@
                                 </form>
                             </div>
                             <div class="col-2">
-                            <form action="/biro/formulir-penjamin" method="GET">
-                            <div class="form-group">
-                                <select name="status" id="status" class="form-control">
+                                    <select name="status" id="status" class="form-control">
                                     <option value="">Semua</option>
                                     <option value="pending">Menunggu Persetujuan</option>
                                     <option value="ditolak">Ditolak</option>
                                     <option value="disetujui">Diterima</option>
                                 </select>
-                            </form>
                             </div>
                         </div>
                         @include('biro_kemahasiswaan._daftar_penjamin')
