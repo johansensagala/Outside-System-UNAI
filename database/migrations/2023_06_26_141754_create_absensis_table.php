@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('longitude', 9, 6);
             $table->string('kehadiran');
             $table->unsignedBigInteger('id_mahasiswa');
-            // $table->unsignedBigInteger('id_pegawai');
+            $table->unsignedBigInteger('id_pegawai');
             $table->timestamps();
 
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas');
