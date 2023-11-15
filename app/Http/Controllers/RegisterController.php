@@ -19,16 +19,23 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'username' => ['required', 'min:3', 'max:255', 'unique:penjamins'],
             'password' => 'required|min:5|max:255',
             'nama' => 'required|max:255',
             'nomor_telp' => 'required|max:120'
         ]);
-
-        // $validatedData['password'] = bcrypt($validatedData['password']);
+        
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        
+        // Get validated data from the validator instance
+        $validatedData = $validator->validated();
+        
+        // Hash the password
         $validatedData['password'] = Hash::make($validatedData['password']);
-
+        
         $validatedData['otp'] = mt_rand(100000, 999999);
         
         $otpKey = 'otp_' . $validatedData['username'];
@@ -45,7 +52,10 @@ class RegisterController extends Controller
         $this->sendOtpWhatsApp($request->nomor_telp, $validatedData['otp']);        
         // $request->session()->flash('success', 'Registration successfull! Please login');
         
-        return redirect('penjamin/verify-otp');
+        // return redirect('penjamin/verify-otp');
+        // return redirect('penjamin/register')->withErrors($validatedData);
+
+        // return response()->json(["success" => "success"]);
     }
 
     private function sendOtpWhatsApp($nomor_telp, $otp) {
