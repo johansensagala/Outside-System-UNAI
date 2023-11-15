@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use GuzzleHttp\Client;
 use App\Models\Penjamin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
