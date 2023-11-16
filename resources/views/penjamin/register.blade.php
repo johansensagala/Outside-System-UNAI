@@ -141,9 +141,12 @@
           }        
         } 
         else {
+          document.getElementById('username-error').textContent = '';
+          document.getElementById('password-error').textContent = '';
+          document.getElementById('nama-error').textContent = '';
+          document.getElementById('nomor-telp-error').textContent = '';
           const myModal = new bootstrap.Modal(document.getElementById('OTPModal'));
           myModal.show();
-          // console.log("test");
         }
       })
       .catch(error => console.error(error));

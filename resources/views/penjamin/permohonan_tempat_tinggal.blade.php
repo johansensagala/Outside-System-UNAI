@@ -10,7 +10,7 @@
     <div class="col-12 col-xl-12 stretch-card">
         <div class="row flex-grow-1">
 
-            <div class="col-md-8 grid-margin">
+            <div class="grid-margin">
 
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
@@ -130,21 +130,6 @@
                             </div>
                         </div>    
                     </form>
-                </div>
-            </div>
-
-            <div class="col-md-4 grid-margin">
-                <div class="card">
-                    <div class="card-header text-center">
-                        Status Permohonan Tempat Tinggal
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="bg-warning p-2 rounded-3 text-white text-center">
-                                Menunggu Persetujuan
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
             
