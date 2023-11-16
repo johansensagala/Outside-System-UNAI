@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="row common-font-color">
-    <div class="col-12 col-xl-12 stretch-card">
+    <div class="col-md-12 stretch-card">
         <div class="row flex-grow-1">
 
             <div class="col-md-8 grid-margin">

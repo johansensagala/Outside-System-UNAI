@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginPenjaminController;
 use App\Http\Controllers\LoginBiroKemahasiswaanController;
@@ -85,4 +86,6 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     Route::post('/biro/formulir-penjamin/{id}/tolak', [FormulirPenjaminController::class, 'reject']);
 
     Route::get('/biro/persetujuan-luar-asrama', [PersetujuanLuarAsramaController::class, 'show']);
+    
+    Route::get('/biro/absensi-tempat-tinggal', [AbsensiController::class, 'index']);
 });

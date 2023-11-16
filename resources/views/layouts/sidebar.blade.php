@@ -115,7 +115,7 @@
       </li>
       
       <li class="nav-item py-3">
-        <a href="{{ url('/') }}" class="nav-link">
+        <a href="/biro/absensi-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="edit"></i>
           <span class="link-title">Absensi Tempat Tinggal</span>
         </a>
