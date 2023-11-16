@@ -28,10 +28,7 @@
                                     <label for="">Alamat Domisili</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <div class="form-floating">
-                                        <textarea id="alamat" name="alamat" class="form-control @error('alamat') is-invalid @enderror" placeholder=""></textarea>
-                                        <label for="alamat">Alamat Domisili</label>
-                                    </div>
+                                        <textarea id="alamat" name="alamat" class="form-control @error('alamat') is-invalid @enderror"></textarea>
                                     @error('alamat')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
