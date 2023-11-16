@@ -38,7 +38,7 @@
       </li>
       
       <li class="nav-item py-3">
-        <a href="{{ url('/') }}" class="nav-link">
+        <a href="{{ url('/mhs/absensi') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Absensi</span>
         </a>

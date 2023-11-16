@@ -58,17 +58,25 @@
                                         <td>1</td>
                                         <td>2081011</td>
                                         <td>Jacqueline Josephine Shita Sulistiono</td>
-                                        <td><button type="button" class="btn btn-success">Hadir</button></td>
+                                        <td><button type="button" class="btn btn-primary">Detail</button></td>
                                         <td>16/11/2023</td>
-                                        <td>Absen</td>
+                                        <td>
+                                            <span class="bg-success p-2 rounded-3 text-white text-center">
+                                                Hadir
+                                            </span>        
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
                                         <td>2081081</td>
                                         <td>Josephine Shita Sulistiono</td>
-                                        <td><button type="button" class="btn btn-danger">Tolak</button></td>
+                                        <td><button type="button" class="btn btn-primary">Detail</button></td>
                                         <td>10/11/2023</td>
-                                        <td>Hadir</td>
+                                        <td>
+                                            <span class="bg-danger p-2 rounded-3 text-white text-center">
+                                                Absen
+                                            </span>        
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -80,12 +88,10 @@
         </div>
     </div>
 
-<<<<<<< HEAD
     <!-- <div class="col-md-4 grid-margin">
         <div class="card">
             <div class="card-header text-center">
                 Tanggal         
-=======
     <div class="col-md-4 grid-margin">
                 <div class="card">
                     <div class="card-header text-center">
@@ -111,7 +117,6 @@
                     </ul>
                     <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
                 </div>
->>>>>>> f796aa8e4bdf182f5659361dce7bb1c5ee5c0b19
             </div>
             <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
         </div>
