@@ -80,10 +80,38 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <!-- <div class="col-md-4 grid-margin">
         <div class="card">
             <div class="card-header text-center">
                 Tanggal         
+=======
+    <div class="col-md-4 grid-margin">
+                <div class="card">
+                    <div class="card-header text-center">
+                        Status Permohonan Tempat Tinggal
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">                            
+                            <div class="bg-success p-2 rounded-3 text-white text-center">
+                                Disetujui
+                            </div>
+
+                            
+                            <div class="bg-danger p-2 rounded-3 text-white text-center">
+                                Ditolak
+                            </div>
+
+
+                            <div class="bg-warning p-2 rounded-3 text-white text-center">
+                                Menunggu Persetujuan
+                            </div>
+                            
+                        </li>
+                    </ul>
+                    <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
+                </div>
+>>>>>>> f796aa8e4bdf182f5659361dce7bb1c5ee5c0b19
             </div>
             <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
         </div>
