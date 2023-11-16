@@ -38,7 +38,7 @@
                                 </select>
                             </div>
                         </div>
-                        @include('biro_kemahasiswaan._daftar_penjamin')
+                        {{-- @include('biro_kemahasiswaan._daftar_penjamin') --}}
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     $(document).ready(function () {
         $('#search').on('keyup', function () {
             let search = $(this).val();
@@ -72,5 +72,5 @@
             }
         });
     });
-</script>
+</script> --}}
 @endsection

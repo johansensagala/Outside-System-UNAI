@@ -66,7 +66,7 @@
                             
                         </li>
                     </ul>
-                    <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi" value="{{ old('tanggal_absensi') ?: $campaign->tanggal_absensi }}">
+                    <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
                 </div>
             </div>
 </div>

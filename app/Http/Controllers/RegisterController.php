@@ -95,12 +95,23 @@ class RegisterController extends Controller
         $password = $request->session()->get('password');
         $nama = $request->session()->get('nama');
         $nomor_telp = $request->session()->get('nomor_telp');
-        $otp = $request->session()->get('otp');
+        // $otp = $request->session()->get('otp');
 
         $otpKey = 'otp_' . $username;
         $cachedOtp = Cache::get($otpKey);
 
-        if($request->otp == $cachedOtp) {
+        $otpDigit1 = $request->input1;
+        $otpDigit2 = $request->input2;
+        $otpDigit3 = $request->input3;
+        $otpDigit4 = $request->input4;
+        $otpDigit5 = $request->input5;
+        $otpDigit6 = $request->input6;
+
+        $otp = $otpDigit1 . $otpDigit2 . $otpDigit3 . $otpDigit4 . $otpDigit5 . $otpDigit6;
+
+        // dd($otp);
+
+        if($otp == $cachedOtp) {
             // OTP verification successful, proceed with user registration
             Penjamin::create([
                 'username' => $username,
@@ -109,10 +120,12 @@ class RegisterController extends Controller
                 'nomor_telp' => $nomor_telp,
             ]);
             Cache::forget($otpKey);
-            
-            return redirect('/penjamin/login')->with('success', 'Registration successfull! Please login');
+
+            return response()->json(['success' => 'Registration successful! Please login']);
+            // return redirect('/penjamin/login')->with('success', 'Registration successfull! Please login');
         } else {
-            return redirect('/penjamin/register')->with('error', 'OTP tidak valid');
+            return response()->json(['error' => 'OTP tidak valid']);
+            // return redirect('/penjamin/register')->with('error', 'OTP tidak valid');
         }
     }
 }
