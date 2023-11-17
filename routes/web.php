@@ -71,7 +71,7 @@ Route::middleware(['penjamin_middleware'])->group(function () {
     Route::get('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'index'])->name('penjamin.permohonan-tempat-tinggal');
     Route::post('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'store']);
 
-    Route::get('/penjamin/data-permohonan', [DataPermohonanPenjaminController::class, 'index']);
+    Route::get('/penjamin/data-permohonan', [DataPermohonanPenjaminController::class, 'index'])->name('penjamin.data-permohonan');
 
     Route::get('/penjamin/persetujuan-mahasiswa', [PersetujuanMahasiswaController::class, 'index']);
     Route::get('/penjamin/persetujuan-mahasiswa/{id}', [PersetujuanMahasiswaController::class, 'show']);

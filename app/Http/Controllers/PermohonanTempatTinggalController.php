@@ -36,6 +36,7 @@ class PermohonanTempatTinggalController extends Controller
 
         $data_tempat_tinggal->save();
 
-        return view('penjamin.fixed_permohonan_tempat_tinggal', compact('data_tempat_tinggal'));
+        // return view('penjamin.fixed_permohonan_tempat_tinggal', compact('data_tempat_tinggal'));
+        return redirect()->route('penjamin.data-permohonan');
     }
 }
