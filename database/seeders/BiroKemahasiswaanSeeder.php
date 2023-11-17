@@ -17,7 +17,6 @@ class BiroKemahasiswaanSeeder extends Seeder
             'username' => 'yunus-elon',
             'password' => bcrypt('yunus123'),
             'nama' => 'Yunus Elon',
-            'role' => 1,
         ]);
     }
 }

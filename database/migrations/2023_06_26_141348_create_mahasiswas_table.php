@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('nomor_ortu_wali');
             $table->boolean('role')->default(false);
             $table->unsignedSmallInteger('percobaan')->default(5);
+            $table->time('waktu_gagal')->default('1970-01-01 00:00:00');
             $table->timestamps();
         });
     }
