@@ -220,7 +220,9 @@
                                                 </span>
                                             </td>
                                         @endif
-                                        <td class="align-middle"><button type="button" class="btn btn-primary">Detail</button></td>
+                                        <td class="align-middle">
+                                            <a href="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}" class="btn btn-primary">Detail</a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                     @php
