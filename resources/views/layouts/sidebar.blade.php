@@ -50,19 +50,19 @@
       </li>
       @endif
 
-      <li class="nav-item py-3 {{ request()->is('pengajuan-luar-asrama') ? 'active' : '' }}">
+      {{-- <li class="nav-item py-3 {{ request()->is('pengajuan-luar-asrama') ? 'active' : '' }}">
         <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Pengajuan Luar Asrama</span>
         </a>
-      </li>
+      </li> --}}
             
-      <li class="nav-item py-3 {{ request()->is('/') ? 'active' : '' }}">
+      {{-- <li class="nav-item py-3 {{ request()->is('/') ? 'active' : '' }}">
         <a href="{{ url('/') }}" class="nav-link">
           <i class="link-icon" data-feather="home"></i>
           <span class="link-title">Permohonan Tinggal</span>
         </a>
-      </li>
+      </li> --}}
       
       <li class="nav-item py-3 {{ request()->is('/mhs/absensi') ? 'active' : '' }}">
         <a href="{{ url('/mhs/absensi') }}" class="nav-link">

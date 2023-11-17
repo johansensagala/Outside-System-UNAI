@@ -13,6 +13,7 @@ class PersetujuanLuarAsramaController extends Controller
     {
         $daftar_pengajuan_luar_asrama = PengajuanLuarAsrama::get();
 
+        // dd($daftar_pengajuan_luar_asrama->first()->mahasiswa->nama);
         return view('biro_kemahasiswaan.daftar_pengajuan_luar_asrama', compact('daftar_pengajuan_luar_asrama'));
     }
 

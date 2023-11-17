@@ -23,7 +23,7 @@ class PengajuanLuarAsramaController extends Controller
             ->first();
 
         if ($data_pengajuan_outside) {
-            return redirect('/mhs/data_pengajuan');
+            return redirect('/mhs/data-pengajuan');
         }
 
         return view('mahasiswa.pengajuan_luar_asrama');

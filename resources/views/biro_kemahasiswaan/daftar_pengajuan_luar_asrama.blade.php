@@ -171,59 +171,61 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $i = 1;
+                                    @endphp
+                                    @foreach ($daftar_pengajuan_luar_asrama as $pengajuan_luar_asrama)
                                     <tr>
-                                        <td class="align-middle">1</td>
-                                        <td class="align-middle">2081011</td>
-                                        <td class="align-middle">Jacqueline Josephine Shita Sulistiono</td>
-                                        <td class="align-middle">Teknik Informatika</td>
-                                        <td class="align-middle">16/11/2023</td>
-                                        <td class="align-middle">Bersama orang tua/wali</td>
-                                        <td class="align-middle">
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Disetujui
-                                            </span>        
-                                        </td>
-                                        <td class="align-middle">
-                                            <span class="bg-warning p-2 rounded-3 text-white text-center">
-                                                Menunggu Persetujuan
-                                            </span>        
-                                        </td>
+                                        <td class="align-middle">{{ $i }}</td>
+                                        <td class="align-middle">{{ $pengajuan_luar_asrama->mahasiswa->nim }}</td>
+                                        <td class="align-middle">{{ $pengajuan_luar_asrama->mahasiswa->nama }}</td>
+                                        <td class="align-middle">{{ $pengajuan_luar_asrama->jurusan }}</td>
+                                        <td class="align-middle">{{ $pengajuan_luar_asrama->created_at }}</td>
+                                        <td class="align-middle">{{ $pengajuan_luar_asrama->status_tinggal }}</td>
+                                        @if ($pengajuan_luar_asrama->status_penjamin == 'disetujui')
+                                            <td class="align-middle">
+                                                <span class="bg-success p-2 rounded-3 text-white text-center">
+                                                    Disetujui
+                                                </span>
+                                            </td>
+                                        @elseif ($pengajuan_luar_asrama->status_penjamin == 'ditolak')
+                                            <td class="align-middle">
+                                                <span class="bg-danger p-2 rounded-3 text-white text-center">
+                                                    Ditolak
+                                                </span>
+                                            </td>
+                                        @else
+                                            <td class="align-middle">
+                                                <span class="bg-warning p-2 rounded-3 text-white text-center">
+                                                    Pending
+                                                </span>
+                                            </td>
+                                        @endif
+                                        @if ($pengajuan_luar_asrama->status == 'disetujui')
+                                            <td class="align-middle">
+                                                <span class="bg-success p-2 rounded-3 text-white text-center">
+                                                    Disetujui
+                                                </span>
+                                            </td>
+                                        @elseif ($pengajuan_luar_asrama->status == 'ditolak')
+                                            <td class="align-middle">
+                                                <span class="bg-danger p-2 rounded-3 text-white text-center">
+                                                    Ditolak
+                                                </span>
+                                            </td>
+                                        @else
+                                            <td class="align-middle">
+                                                <span class="bg-warning p-2 rounded-3 text-white text-center">
+                                                    Pending
+                                                </span>
+                                            </td>
+                                        @endif
                                         <td class="align-middle"><button type="button" class="btn btn-primary">Detail</button></td>
                                     </tr>
-                                    <tr>
-                                        <td class="align-middle">2</td>
-                                        <td class="align-middle">2081012</td>
-                                        <td class="align-middle">Tika Panggabean</td>
-                                        <td class="align-middle">Sistem Informasi</td>
-                                        <td class="align-middle">15/11/2023</td>
-                                        <td class="align-middle">Bersama saudara kandung</td>
-                                        <td class="align-middle">
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Disetujui
-                                            </span>        
-                                        </td>
-                                        <td class="align-middle">
-                                            <span class="bg-warning p-2 rounded-3 text-white text-center">
-                                                Menunggu Persetujuan
-                                            </span>        
-                                        </td>
-                                        <td class="align-middle"><button type="button" class="btn btn-primary">Detail</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">3</td>
-                                        <td class="align-middle">2081061</td>
-                                        <td class="align-middle">Choky Sitohang</td>
-                                        <td class="align-middle">Filsafat</td>
-                                        <td class="align-middle">12/11/2023</td>
-                                        <td class="align-middle">Skripsi</td>
-                                        <td class="align-middle"></td>
-                                        <td class="align-middle">
-                                            <span class="bg-warning p-2 rounded-3 text-white text-center">
-                                                Menunggu Persetujuan
-                                            </span>        
-                                        </td>
-                                        <td class="align-middle"><button type="button" class="btn btn-primary">Detail</button></td>
-                                    </tr>
+                                    @endforeach
+                                    @php
+                                        $i++;
+                                    @endphp
                                 </tbody>
                             </table>
                         </div>
