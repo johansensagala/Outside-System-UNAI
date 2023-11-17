@@ -32,14 +32,14 @@
       
       <li class="nav-item py-3">
         <a href="{{ url('/') }}" class="nav-link">
-          <i class="link-icon" data-feather="user"></i>
+          <i class="link-icon" data-feather="home"></i>
           <span class="link-title">Permohonan Tinggal</span>
         </a>
       </li>
       
       <li class="nav-item py-3">
         <a href="{{ url('/mhs/absensi') }}" class="nav-link">
-          <i class="link-icon" data-feather="user"></i>
+          <i class="link-icon" data-feather="clock"></i>
           <span class="link-title">Absensi</span>
         </a>
       </li>
@@ -67,14 +67,14 @@
       
       <li class="nav-item py-3">
         <a href="/penjamin/permohonan-tempat-tinggal" class="nav-link">
-          <i class="link-icon" data-feather="user"></i>
+          <i class="link-icon" data-feather="file"></i>
           <span class="link-title">Data Permohonan</span>
         </a>
       </li>
       
       <li class="nav-item py-3">
         <a href="/penjamin/persetujuan-mahasiswa" class="nav-link">
-          <i class="link-icon" data-feather="user"></i>
+          <i class="link-icon" data-feather="users"></i>
           <span class="link-title">Persetujuan Mahasiswa</span>
         </a>
       </li>
@@ -102,7 +102,7 @@
       
       <li class="nav-item py-3">
         <a href="{{ route('biro_kemahasiswaan.daftar_penjamin') }}" class="nav-link">
-          <i class="link-icon" data-feather="user"></i>
+          <i class="link-icon" data-feather="user-check"></i>
           <span class="link-title">Persetujuan Penjamin</span>
         </a>
       </li>

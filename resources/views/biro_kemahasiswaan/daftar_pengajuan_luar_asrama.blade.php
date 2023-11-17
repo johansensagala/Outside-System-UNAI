@@ -117,8 +117,7 @@
 
 <div class="row common-font-color">
     <div class="stretch-card">
-        <div class="row flex-grow-1">
-
+        <div class="row flex-grow-1">   
             <div style="max-width: 100%;">
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
