@@ -26,7 +26,7 @@
                                 Nama
                             </div>
                             <div class="col-md-8 fw-bold">
-                                Doharni Hutauruk
+                                {{ $pengajuan_luar_asrama->mahasiswa->nama }}
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                                 NIM
                             </div>
                             <div class="col-md-8 fw-bold">
-                                2281010
+                                {{ $pengajuan_luar_asrama->mahasiswa->nim }}
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                                 Jurusan
                             </div>
                             <div class="col-md-8 fw-bold">
-                                Teknik Informatika
+                                {{ $pengajuan_luar_asrama->jurusan }}
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                                 Angkatan
                             </div>
                             <div class="col-md-8 fw-bold">
-                                2022
+                                {{ $pengajuan_luar_asrama->mahasiswa->angkatan }}
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                                 Nomor Pribadi
                             </div>
                             <div class="col-md-8 fw-bold">
-                                081362775398
+                                {{ $pengajuan_luar_asrama->mahasiswa->nomor_pribadi }}
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                                 Nomor Orang Tua/Wali
                             </div>
                             <div class="col-md-8 fw-bold">
-                                085261442551
+                                {{ $pengajuan_luar_asrama->mahasiswa->nomor_ortu_wali }}
                             </div>
                         </div>
                     </div>
@@ -86,36 +86,82 @@
                                 Status Tinggal
                             </div>
                             <div class="col-md-8 fw-bold">
-                                Bersama Staff/Dosen
+                                {{ $pengajuan_luar_asrama->status_tinggal }}
                             </div>
                         </div>
                     </div>
+                    @if ($pengajuan_luar_asrama->id_penjamin)
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
                                 Nama Penjamin
                             </div>
                             <div class="col-md-8 fw-bold">
-                                Susi Susanti
+                                {{ $data_pengajuan_penjamin->penjamin->nama }}
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
+                                Alamat
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                {{ $data_pengajuan_penjamin->alamat }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Lokasi
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                <div class="container">
+                                    <h1 class="status"></h1>
+                                </div>
+                                
+                                <div class="latitude d-none"></div>
+                                <div class="longitude d-none"></div>
+                                
+                                <div id="googleMapPenjamin" class="" style="width:100%;height:400px;"></div>
+                                <div>
+                                    <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_pengajuan_penjamin->latitude }},{{ $data_pengajuan_penjamin->longitude }}" target="_blank">Buka di Google Maps</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    @if ($pengajuan_luar_asrama->surat_outside)
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
                                 Surat Pernyataan Kesediaan
                             </div>
                             <div class="col-md-8 fw-bold">
-                                <a href="#" style="text-decoration: none">Klik untuk download</a>
+                                <a href="{{ asset('storage/' . $pengajuan_luar_asrama->surat_outside) }}" download>Klik untuk unduh</a>
                             </div>
                         </div>
-                    </div><hr>
+                    </div>
+                    @endif
+                    @if ($pengajuan_luar_asrama->surat_kebenaran)
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Surat Kebenaran Skripsi/Profesi Ners/Married Student
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                <a href="{{ asset('storage/' . $pengajuan_luar_asrama->surat_kebenaran) }}" download>Klik untuk unduh</a>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-8 fw-bold">
-                                        <button type="submit" class="btn btn-success">Setujui</button>
-                                        <button type="submit" class="btn btn-danger">Tolak</button>
+                                <button type="submit" class="btn btn-success">Setujui</button>
+                                <button type="submit" class="btn btn-danger">Tolak</button>
                             </div>
                         </div><hr>
                     </div>
@@ -123,30 +169,29 @@
             </div>
 
             <div class="col-md-4 grid-margin">
+                @if ($pengajuan_luar_asrama->id_penjamin)
                 <div class="card">
                     <div class="card-header text-center">
                         Status Penjaminan
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            
                             <div class="bg-success p-2 rounded-3 text-white text-center">
                                 Disetujui
                             </div>
                         </li>
                     </ul>
                 </div>
+                @endif
                 <div class="card">
                     <div class="card-header text-center">
                         Status Persetujuan Luar Asrama
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-
                             <div class="bg-warning p-2 rounded-3 text-white text-center">
                                 Menunggu Persetujuan
                             </div>
-                            
                         </li>
                     </ul>
                 </div>
@@ -155,5 +200,30 @@
         </div>   
     </div>
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script>
+@if ($pengajuan_luar_asrama->id_penjamin)
+<script>
+    let latitude = {{ $data_pengajuan_penjamin->latitude }};
+    let longitude = {{ $data_pengajuan_penjamin->longitude }};
+
+    initMap();
+
+    function initMap() {
+        let myLatLng = { lat: latitude, lng: longitude };
+
+        let map = new google.maps.Map(document.getElementById('googleMapPenjamin'), {
+            zoom: 14,
+            center: myLatLng
+        });
+
+        let marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Lokasi saya'
+        });
+    }
+</script>
+@endif
 
 @endsection
