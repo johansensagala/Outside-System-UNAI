@@ -68,8 +68,9 @@
       
       @php
         $data_permohonan = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())->get();
-        // $data_permohonan_ditolak = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->where('status', 'ditolak')->id())->get();
-        $data_permohonan_ditolak = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())->where('status', 'ditolak')->get();
+        $data_permohonan_ditolak = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())
+          ->latest('created_at')
+          ->first();
       @endphp
       @if (!$data_permohonan->isEmpty())
       <li class="nav-item py-3 {{ request()->is('/penjamin/data-permohonan') ? 'active' : '' }}">
@@ -80,7 +81,7 @@
       </li>
       @endif
 
-      @if ($data_permohonan->isEmpty() || !$data_permohonan_ditolak->isEmpty())
+      @if ($data_permohonan->isEmpty() || $data_permohonan_ditolak->status == 'ditolak')
       <li class="nav-item py-3 {{ request()->is('/penjamin/permohonan-tempat-tinggal') ? 'active' : '' }}">
         <a href="/penjamin/permohonan-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="file"></i>
