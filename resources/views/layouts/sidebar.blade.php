@@ -108,7 +108,7 @@
       </li>
 
       <li class="nav-item py-3">
-        <a href="/biro_kemahasiswaan/persetujuan-mahasiswa" class="nav-link">
+        <a href="/biro/persetujuan-luar-asrama" class="nav-link">
           <i class="link-icon" data-feather="home"></i>
           <span class="link-title">Persetujuan Outside</span>
         </a>
