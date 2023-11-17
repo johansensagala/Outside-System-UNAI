@@ -15,7 +15,7 @@
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            DATA PERMOHONAN PENJAMINAN
+                            Permohonan mahasiswa luar asrama
                         </div>
                     </div>
                 </div>
@@ -117,9 +117,8 @@
 
 <div class="row common-font-color">
     <div class="stretch-card">
-        <div class="row flex-grow-1">
-
-            <div class="grid-margin">
+        <div class="row flex-grow-1">   
+            <div style="max-width: 100%;">
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
@@ -156,7 +155,7 @@
                                 <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
                             </div>
                         </div>
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch">
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
