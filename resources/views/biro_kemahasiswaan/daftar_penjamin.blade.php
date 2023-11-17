@@ -15,7 +15,7 @@
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            DATA PERMOHONAN TEMPAT TINGGAL
+                            DAFTAR PENGAJUAN PENJAMIN
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                                 </form>
                             </div>
                             <div class="col-2">
-                                    <select name="status" id="status" class="form-control">
+                                <select name="status" id="status" class="form-control form-select">
                                     <option value="">Semua</option>
                                     <option value="pending">Menunggu Persetujuan</option>
                                     <option value="ditolak">Ditolak</option>

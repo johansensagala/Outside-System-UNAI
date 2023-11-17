@@ -44,7 +44,7 @@
                                         <td>1</td>
                                         <td>16/11/2023</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">Detail</button>
+                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
                                         </td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
@@ -56,7 +56,7 @@
                                         <td>2</td>
                                         <td>15/11/2023</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">Detail</button>
+                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
                                         </td>
                                         <td>
                                             <span class="bg-danger p-2 rounded-3 text-white text-center">
@@ -68,7 +68,7 @@
                                         <td>3</td>
                                         <td>14/11/2023</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">Detail</button>
+                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
                                         </td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
@@ -80,7 +80,7 @@
                                         <td>4</td>
                                         <td>13/11/2023</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">Detail</button>
+                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
                                         </td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
@@ -92,7 +92,7 @@
                                         <td>5</td>
                                         <td>12/11/2023</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">Detail</button>
+                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
                                         </td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
@@ -104,7 +104,7 @@
                                         <td>6</td>
                                         <td>11/11/2023</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">Detail</button>
+                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
                                         </td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
@@ -116,7 +116,7 @@
                                         <td>7</td>
                                         <td>10/11/2023</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">Detail</button>
+                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
                                         </td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">

@@ -175,9 +175,9 @@
                                 {{-- {{ $data_tempat_tinggal->alamat }} --}}
                                 <div class="form-check form-switch">
                                     <span class="bg-success p-2 rounded-3 text-white text-center">
-                                        Absen
+                                        Hadir
                                     </span>
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
                                 </div>
                             </div>
                         </div>

@@ -58,7 +58,7 @@
                                         <td>1</td>
                                         <td>2081011</td>
                                         <td>Jacqueline Josephine Shita Sulistiono</td>
-                                        <td><button type="button" class="btn btn-primary">Detail</button></td>
+                                        <td><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/absensi-tempat-tinggal/1'">Detail</button></td>
                                         <td>16/11/2023</td>
                                         <td>
                                             <span class="bg-danger p-2 rounded-3 text-white text-center">
@@ -70,7 +70,7 @@
                                         <td>2</td>
                                         <td>2021001</td>
                                         <td>Wesley Suwanda Panjaitan</td>
-                                        <td><button type="button" class="btn btn-primary">Detail</button></td>
+                                        <td><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/absensi-tempat-tinggal/1'">Detail</button></td>
                                         <td>10/11/2023</td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">

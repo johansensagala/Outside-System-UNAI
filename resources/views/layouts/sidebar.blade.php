@@ -16,28 +16,29 @@
       
       @if(Auth::guard('mahasiswa')->check())
 
-      <li class="nav-item py-3">
+      <li class="nav-item py-3 {{ request()->is('mhs/dashboard') ? 'active' : '' }}">
         <a href="{{ url('/mhs/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
         </a>
       </li>
       
-      <li class="nav-item py-3">
+      <li class="nav-item py-3 {{ request()->is('pengajuan-luar-asrama') ? 'active' : '' }}">
+      {{-- <li class="nav-item py-3 {{ Route::currentRouteName() == 'pengajuan-luar-asrama' ? 'active' : '' }}"> --}}
         <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Pengajuan Luar Asrama</span>
         </a>
       </li>
-      
-      <li class="nav-item py-3">
+            
+      <li class="nav-item py-3 {{ request()->is('/') ? 'active' : '' }}">
         <a href="{{ url('/') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Permohonan Tinggal</span>
         </a>
       </li>
       
-      <li class="nav-item py-3">
+      <li class="nav-item py-3 {{ request()->is('/mhs/absensi') ? 'active' : '' }}">
         <a href="{{ url('/mhs/absensi') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Absensi</span>
@@ -58,21 +59,21 @@
       
       @elseif(Auth::guard('penjamin')->check())
 
-      <li class="nav-item py-3" style="font-size: 10px;">
+      <li class="nav-item py-3 {{ request()->is('/penjamin/dashboard') ? 'active' : '' }}" style="font-size: 10px;">
         <a href="{{ url('/penjamin/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
         </a>
       </li>
       
-      <li class="nav-item py-3">
+      <li class="nav-item py-3 {{ request()->is('/penjamin/permohonan-tempat-tinggal') ? 'active' : '' }}">
         <a href="/penjamin/permohonan-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Data Permohonan</span>
         </a>
       </li>
       
-      <li class="nav-item py-3">
+      <li class="nav-item py-3 {{ request()->is('/penjamin/persetujuan-mahasiswa') ? 'active' : '' }}">
         <a href="/penjamin/persetujuan-mahasiswa" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Persetujuan Mahasiswa</span>
@@ -93,28 +94,28 @@
       
       @elseif(Auth::guard('biro_kemahasiswaan')->check())
 
-      <li class="nav-item py-3">
+      <li class="nav-item py-3 {{ request()->is('/biro/dashboard') ? 'active' : '' }}">
         <a href="{{ url('/biro/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
         </a>
       </li>
       
-      <li class="nav-item py-3">
+      <li class="nav-item py-3 {{ request()->is('biro_kemahasiswaan.daftar_penjamin') ? 'active' : '' }}">
         <a href="{{ route('biro_kemahasiswaan.daftar_penjamin') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Persetujuan Penjamin</span>
         </a>
       </li>
 
-      <li class="nav-item py-3">
+      <li class="nav-item py-3 {{ request()->is('/biro/persetujuan-luar-asrama') ? 'active' : '' }}">
         <a href="/biro/persetujuan-luar-asrama" class="nav-link">
           <i class="link-icon" data-feather="home"></i>
           <span class="link-title">Persetujuan Outside</span>
         </a>
       </li>
       
-      <li class="nav-item py-3">
+      <li class="nav-item py-3 {{ request()->is('/biro/absensi-tempat-tinggal') ? 'active' : '' }}">
         <a href="/biro/absensi-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="edit"></i>
           <span class="link-title">Absensi Tempat Tinggal</span>

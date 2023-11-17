@@ -123,27 +123,20 @@
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            DATA PERMOHONAN PENJAMINAN
+                            DATA PENGAJUAN LUAR ASRAMA
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="m-5">
                     <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <form action="/biro/formulir-penjamin">
                                     <div class="input-group mb-3">
                                         <!-- <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search" value="{{ request('search') }}"> -->
                                         <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search">
                                     </div>
                                 </form>
-                            </div>
-                            <div class="col-2">
-                                <select name="status" id="status" class="form-control">
-                                    <option value="">Fakultas</option>
-                                    <option value="Hadir">Hadir</option>
-                                    <option value="Absen">Absen</option>
-                                </select>
                             </div>
                             <div class="col-2">
                                 <select name="status" id="status" class="form-control">
