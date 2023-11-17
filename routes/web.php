@@ -15,6 +15,7 @@ use App\Http\Controllers\PersetujuanLuarAsramaController;
 use App\Http\Controllers\PersetujuanMahasiswaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AbsensiByMahasiswaController;
+use App\Http\Controllers\DataPengajuanMahasiswaController;
 use App\Http\Controllers\DataPermohonanPenjaminController;
 
 /*
@@ -58,7 +59,7 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::post('/mhs/pengajuan-penjamin', [PengajuanLuarAsramaController::class, 'store_dengan_penjamin']);
     Route::post('/mhs/pengisian-alamat', [PengajuanLuarAsramaController::class, 'store_tanpa_penjamin'])->name('pengisian-alamat');
 
-    Route::get('/mhs/data_pengajuan', [PengajuanLuarAsramaController::class, 'data']);
+    Route::get('/mhs/data-pengajuan', [DataPengajuanMahasiswaController::class, 'index']);
 
     Route::get('/mhs/absensi', [AbsensiByMahasiswaController::class, 'index']);
     Route::get('/mhs/absensi/{year}/{month}/{date}', [AbsensiByMahasiswaController::class, 'show']);

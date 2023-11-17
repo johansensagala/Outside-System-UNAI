@@ -25,7 +25,7 @@
                                     Jurusan
                                 </div>
                                 <div class="col-md-8 fw-bold">
-                                    {{ $data_pengajuan_outside->jurusan }}
+                                    {{ $data_pengajuan_luar_asrama->jurusan }}
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                                     Status Tinggal
                                 </div>
                                 <div class="col-md-8 fw-bold">
-                                    {{ $data_pengajuan_outside->status_tinggal }}
+                                    {{ $data_pengajuan_luar_asrama->status_tinggal }}
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                     Surat Pernyataan Ketersediaan
                                 </div>
                                 <div class="col-md-8 fw-bold">
-                                    <a href="{{ asset('storage/' . $data_pengajuan_outside->surat_outside) }}" download>Klik untuk unduh</a>
+                                    <a href="{{ asset('storage/' . $data_pengajuan_luar_asrama->surat_outside) }}" download>Klik untuk unduh</a>
                                 </div>
                             </div>
                         </div>
@@ -55,11 +55,11 @@
                                     Tahun Ajaran
                                 </div>
                                 <div class="col-md-8 fw-bold">
-                                    {{ $data_pengajuan_outside->tahun_ajaran }}
+                                    {{ $data_pengajuan_luar_asrama->tahun_ajaran }}
                                 </div>
                             </div>
                         </div>
-                        @if ($data_pengajuan_outside->foto_tempat_tinggal)
+                        @if ($data_pengajuan_luar_asrama->foto_tempat_tinggal)
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
@@ -78,7 +78,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <img id="myImg" src="{{ asset('storage/' . $data_pengajuan_outside->foto_tempat_tinggal) }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                                    <img id="myImg" src="{{ asset('storage/' . $data_pengajuan_luar_asrama->foto_tempat_tinggal) }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -90,31 +90,31 @@
                             </div>
                         </div>
                         @endif
-                        @if ($data_pengajuan_outside->alamat)
+                        @if ($data_pengajuan_luar_asrama->alamat)
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
                                     Alamat
                                 </div>
                                 <div class="col-md-8 fw-bold">
-                                    {{ $data_pengajuan_outside->alamat }}
+                                    {{ $data_pengajuan_luar_asrama->alamat }}
                                 </div>
                             </div>
                         </div>
                         @endif
-                        @if ($data_pengajuan_outside->surat_kebenaran)
+                        @if ($data_pengajuan_luar_asrama->surat_kebenaran)
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
                                     Surat Kebenaran Skripsi/Married Students/Profesi Ners
                                 </div>
                                 <div class="col-md-8 fw-bold">
-                                    <a href="{{ asset('storage/' . $data_pengajuan_outside->surat_outside) }}" download>Klik untuk unduh</a>
+                                    <a href="{{ asset('storage/' . $data_pengajuan_luar_asrama->surat_outside) }}" download>Klik untuk unduh</a>
                                 </div>
                             </div>
                         </div>
                         @endif
-                        @if ($data_pengajuan_outside->latitude && $data_pengajuan_outside->longitude)
+                        @if ($data_pengajuan_luar_asrama->latitude && $data_pengajuan_luar_asrama->longitude)
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
@@ -130,13 +130,13 @@
                                     
                                     <div id="googleMap" class="" style="width:100%;height:400px;"></div>
                                     <div>
-                                        <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_pengajuan_outside->latitude }},{{ $data_pengajuan_outside->longitude }}" target="_blank">Buka di Google Maps</a>
+                                        <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_pengajuan_luar_asrama->latitude }},{{ $data_pengajuan_luar_asrama->longitude }}" target="_blank">Buka di Google Maps</a>
                                     </div>
                                 </div>
                             </div>
                         </div><hr>    
                         @endif
-                        @if ($data_pengajuan_outside->id_penjamin)
+                        @if ($data_pengajuan_luar_asrama->id_penjamin)
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
@@ -189,13 +189,13 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            @if ($data_pengajuan_outside->status_penjamin === 'disetujui')
+                            @if ($data_pengajuan_luar_asrama->status_penjamin === 'disetujui')
                             
                             <div class="bg-success p-2 rounded-3 text-white text-center">
                                 Disetujui
                             </div>
 
-                            @elseif ($data_pengajuan_outside->status_penjamin === 'ditolak')
+                            @elseif ($data_pengajuan_luar_asrama->status_penjamin === 'ditolak')
                             
                             <div class="bg-danger p-2 rounded-3 text-white text-center">
                                 Ditolak
@@ -218,13 +218,13 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            @if ($data_pengajuan_outside->status === 'disetujui')
+                            @if ($data_pengajuan_luar_asrama->status === 'disetujui')
                             
                             <div class="bg-success p-2 rounded-3 text-white text-center">
                                 Disetujui
                             </div>
 
-                            @elseif ($data_pengajuan_outside->status === 'ditolak')
+                            @elseif ($data_pengajuan_luar_asrama->status === 'ditolak')
                             
                             <div class="bg-danger p-2 rounded-3 text-white text-center">
                                 Ditolak
@@ -247,7 +247,7 @@
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script>
-@if ($data_pengajuan_outside->id_penjamin)
+@if ($data_pengajuan_luar_asrama->id_penjamin)
 <script>
     let latitude = {{ $data_pengajuan_penjamin->latitude }};
     let longitude = {{ $data_pengajuan_penjamin->longitude }};
@@ -271,8 +271,8 @@
 </script>
 @else
 <script>
-    let latitude = {{ $data_pengajuan_outside->latitude }};
-    let longitude = {{ $data_pengajuan_outside->longitude }};
+    let latitude = {{ $data_pengajuan_luar_asrama->latitude }};
+    let longitude = {{ $data_pengajuan_luar_asrama->longitude }};
 
     initMap();
 
