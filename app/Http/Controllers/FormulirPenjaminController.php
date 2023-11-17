@@ -59,7 +59,15 @@ class FormulirPenjaminController extends Controller
         $data_tempat_tinggal = PengajuanDataPenjamin::where('id', $id)->first();
         $penjamin = Penjamin::where('id', $data_tempat_tinggal->id_penjamin)->first();
 
-        return view('biro_kemahasiswaan.formulir_penjamin', compact('data_tempat_tinggal', 'penjamin'));
+        $daftar_permohonan = PengajuanDataPenjamin::where('id_penjamin', $penjamin->id)->where('status', 'disetujui')->get();
+
+        if ($daftar_permohonan->isEmpty()) {
+            $disetujui = "salah";
+        } else {
+            $disetujui = "benar";
+        }
+
+        return view('biro_kemahasiswaan.formulir_penjamin', compact('data_tempat_tinggal', 'penjamin', 'disetujui'));
     }
 
     public function store(Request $request)
