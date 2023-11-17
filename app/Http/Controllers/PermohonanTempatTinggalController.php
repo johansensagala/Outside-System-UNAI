@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PengajuanDataPenjamin;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -11,14 +12,7 @@ class PermohonanTempatTinggalController extends Controller
 {
     public function index()
     {
-        $idPenjamin = Auth::guard('penjamin')->user()->id;
-        $data_tempat_tinggal = PengajuanDataPenjamin::where('id_penjamin', $idPenjamin)->first();
-    
-        if ($data_tempat_tinggal) {
-            return view('penjamin.fixed_permohonan_tempat_tinggal', compact('data_tempat_tinggal'));
-        } else {
-            return view('penjamin.permohonan_tempat_tinggal');
-        }
+        return view('penjamin.permohonan_tempat_tinggal');
     }    
 
     public function store(Request $request)

@@ -59,17 +59,29 @@
       
       @elseif(Auth::guard('penjamin')->check())
 
-      <li class="nav-item py-3 {{ request()->is('/penjamin/dashboard') ? 'active' : '' }}" style="font-size: 10px;">
+      <li class="nav-item py-3 {{ request()->is('/penjamin/dashboard') ? 'active' : '' }}">
         <a href="{{ url('/penjamin/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
         </a>
       </li>
       
+      @php
+        $data_permohonan = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())->get();
+      @endphp
+      @if (!$data_permohonan->isEmpty())
+      <li class="nav-item py-3 {{ request()->is('/penjamin/data-permohonan') ? 'active' : '' }}">
+        <a href="/penjamin/data-permohonan" class="nav-link">
+          <i class="link-icon" data-feather="file"></i>
+          <span class="link-title">Data Permohonan</span>
+        </a>
+      </li>
+      @endif
+
       <li class="nav-item py-3 {{ request()->is('/penjamin/permohonan-tempat-tinggal') ? 'active' : '' }}">
         <a href="/penjamin/permohonan-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="file"></i>
-          <span class="link-title">Data Permohonan</span>
+          <span class="link-title">Permohonan Penjamin</span>
         </a>
       </li>
       
