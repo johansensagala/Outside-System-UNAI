@@ -25,12 +25,12 @@
       
       @php
         $data_pengajuan = \App\Models\PengajuanLuarAsrama::where('id_mahasiswa', Auth::guard('mahasiswa')->id())->get();
-        $data_pengajuan_ditolak = \App\Models\PengajuanLuarAsrama::where('id_mahasiswa', Auth::guard('mahasiswa')->id())
+        $data_pengajuan_terakhir = \App\Models\PengajuanLuarAsrama::where('id_mahasiswa', Auth::guard('mahasiswa')->id())
           ->latest('created_at')
           ->first();
       @endphp
 
-      @if (!$data_permohonan->isEmpty())
+      @if (!$data_pengajuan->isEmpty())
       <li class="nav-item py-3 {{ request()->is('data-pengajuan') ? 'active' : '' }}">
         <a href="{{ url('/mhs/data-pengajuan') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
@@ -39,12 +39,16 @@
       </li> 
       @endif
 
+      @if ($data_pengajuan->isEmpty() || 
+          ($data_pengajuan_terakhir->status_penjamin == 'ditolak' && $data_pengajuan_terakhir->status != 'disetujui') ||
+          $data_pengajuan_terakhir->status == 'ditolak')
       <li class="nav-item py-3 {{ request()->is('pengajuan-luar-asrama') ? 'active' : '' }}">
         <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Pengajuan Luar Asrama</span>
         </a>
       </li>
+      @endif
 
       <li class="nav-item py-3 {{ request()->is('pengajuan-luar-asrama') ? 'active' : '' }}">
         <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
