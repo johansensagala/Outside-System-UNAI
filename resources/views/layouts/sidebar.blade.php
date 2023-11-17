@@ -23,8 +23,30 @@
         </a>
       </li>
       
+      @php
+        $data_pengajuan = \App\Models\PengajuanLuarAsrama::where('id_mahasiswa', Auth::guard('mahasiswa')->id())->get();
+        $data_pengajuan_ditolak = \App\Models\PengajuanLuarAsrama::where('id_mahasiswa', Auth::guard('mahasiswa')->id())
+          ->latest('created_at')
+          ->first();
+      @endphp
+
+      @if (!$data_permohonan->isEmpty())
+      <li class="nav-item py-3 {{ request()->is('data-pengajuan') ? 'active' : '' }}">
+        <a href="{{ url('/mhs/data-pengajuan') }}" class="nav-link">
+          <i class="link-icon" data-feather="user"></i>
+          <span class="link-title">Data Pengajuan</span>
+        </a>
+      </li> 
+      @endif
+
       <li class="nav-item py-3 {{ request()->is('pengajuan-luar-asrama') ? 'active' : '' }}">
-      {{-- <li class="nav-item py-3 {{ Route::currentRouteName() == 'pengajuan-luar-asrama' ? 'active' : '' }}"> --}}
+        <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
+          <i class="link-icon" data-feather="user"></i>
+          <span class="link-title">Pengajuan Luar Asrama</span>
+        </a>
+      </li>
+
+      <li class="nav-item py-3 {{ request()->is('pengajuan-luar-asrama') ? 'active' : '' }}">
         <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Pengajuan Luar Asrama</span>
@@ -68,7 +90,7 @@
       
       @php
         $data_permohonan = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())->get();
-        $data_permohonan_ditolak = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())
+        $data_permohonan_terakhir = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())
           ->latest('created_at')
           ->first();
       @endphp
@@ -81,7 +103,7 @@
       </li>
       @endif
 
-      @if ($data_permohonan->isEmpty() || $data_permohonan_ditolak->status == 'ditolak')
+      @if ($data_permohonan->isEmpty() || $data_permohonan_terakhir->status == 'ditolak')
       <li class="nav-item py-3 {{ request()->is('/penjamin/permohonan-tempat-tinggal') ? 'active' : '' }}">
         <a href="/penjamin/permohonan-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="file"></i>
