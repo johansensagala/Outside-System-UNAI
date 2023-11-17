@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use Carbon\Carbon;
+
 class PengajuanLuarAsramaController extends Controller
 {
     public function index()
@@ -77,11 +79,18 @@ class PengajuanLuarAsramaController extends Controller
         $data_pengajuan_penjamin = PengajuanDataPenjamin::where('kode_penjamin', $kode_penjamin)->first();
         $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
         $mahasiswa = Mahasiswa::where('id', $id_mahasiswa)->first();
-
         
         if (!($data_pengajuan_penjamin)) {
             $mahasiswa->percobaan -= 1;
             $mahasiswa->save();
+
+            if ($mahasiswa->percobaan == 0) {
+                $mahasiswa->update(['waktu_setuju' => Carbon::now()]);
+                $mahasiswa->percobaan = 5;
+                $mahasiswa->save();
+
+                return view('mahasiswa.pengajuan_penjamin', compact('mahasiswa'));
+            }
 
             return view('mahasiswa.pengajuan_penjamin', compact('mahasiswa'))->with('pesan', 'Kode penjamin tidak sesuai dengan penjamin manapun!');
         }
@@ -184,6 +193,6 @@ class PengajuanLuarAsramaController extends Controller
         }
 
         return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_outside'));
-        // dd('dctfgvbhjnk');
+        // dd('test');
     }
 }
