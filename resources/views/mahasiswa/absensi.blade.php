@@ -1,5 +1,5 @@
 @extends('layouts.main')
-<title>UNAI Outside System</title>
+<title>UNAI Outside System | Absensi</title>
 
 @push('plugin-styles')
     <link href="{{ asset('assets/plugins/flatpickr/flatpickr.min.css') }}" rel="stylesheet"/>
@@ -15,7 +15,7 @@
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            DATA PERMOHONAN PENJAMINAN
+                            Absensi Mahasiswa Outside
                         </div>
                     </div>
                 </div>
@@ -35,8 +35,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal</th>
-                                        <th>Keterangan</th>
                                         <th>Detail</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,8 +59,8 @@
                                             <button type="button" class="btn btn-primary">Detail</button>
                                         </td>
                                         <td>
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Hadir
+                                            <span class="bg-danger p-2 rounded-3 text-white text-center">
+                                                Absen
                                             </span>
                                         </td>
                                     </tr>

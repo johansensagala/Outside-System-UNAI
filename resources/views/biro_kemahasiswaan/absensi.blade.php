@@ -15,7 +15,7 @@
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            DATA PERMOHONAN PENJAMINAN
+                            Absensi Mahasiswa Outside
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                                 <form action="/biro/formulir-penjamin">
                                     <div class="input-group mb-3">
                                         <!-- <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search" value="{{ request('search') }}"> -->
-                                        <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search">
+                                        <input type="text" class="form-control" placeholder="NIM atau Nama Mahasiswa..." name="search" id="search">
                                     </div>
                                 </form>
                             </div>
@@ -61,20 +61,20 @@
                                         <td><button type="button" class="btn btn-primary">Detail</button></td>
                                         <td>16/11/2023</td>
                                         <td>
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Hadir
+                                            <span class="bg-danger p-2 rounded-3 text-white text-center">
+                                                Absen
                                             </span>        
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td>2081081</td>
-                                        <td>Josephine Shita Sulistiono</td>
+                                        <td>2021001</td>
+                                        <td>Wesley Suwanda Panjaitan</td>
                                         <td><button type="button" class="btn btn-primary">Detail</button></td>
                                         <td>10/11/2023</td>
                                         <td>
-                                            <span class="bg-danger p-2 rounded-3 text-white text-center">
-                                                Absen
+                                            <span class="bg-success p-2 rounded-3 text-white text-center">
+                                                Hadir
                                             </span>        
                                         </td>
                                     </tr>
