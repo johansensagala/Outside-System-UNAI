@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('role')->default(false);
             $table->unsignedSmallInteger('percobaan')->default(5);
             $table->timestamp('waktu_setuju')->nullable();
+            $table->string('izin_pengajuan')->default('ya');
             $table->timestamps();
         });
     }
