@@ -120,7 +120,7 @@ class PengajuanLuarAsramaController extends Controller
 
             $request->session()->forget(['jurusan', 'status_tinggal', 'surat_outside']);
 
-            return redirect()->route('pengajuan-luar-asrama');
+            return redirect()->route('mhs.data-pengajuan');
         }
     }
 
@@ -175,7 +175,7 @@ class PengajuanLuarAsramaController extends Controller
 
         $request->session()->forget(['jurusan', 'status_tinggal', 'surat_outside']);
 
-        return redirect()->route('pengajuan-luar-asrama');
+        return redirect()->route('mhs.data-pengajuan');
     }
 
     // public function data() {

@@ -59,7 +59,7 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::post('/mhs/pengajuan-penjamin', [PengajuanLuarAsramaController::class, 'store_dengan_penjamin']);
     Route::post('/mhs/pengisian-alamat', [PengajuanLuarAsramaController::class, 'store_tanpa_penjamin'])->name('pengisian-alamat');
 
-    Route::get('/mhs/data-pengajuan', [DataPengajuanMahasiswaController::class, 'index']);
+    Route::get('/mhs/data-pengajuan', [DataPengajuanMahasiswaController::class, 'index'])->name('mhs.data-pengajuan');
 
     Route::get('/mhs/absensi', [AbsensiByMahasiswaController::class, 'index']);
     Route::get('/mhs/absensi/{year}/{month}/{date}', [AbsensiByMahasiswaController::class, 'show']);
