@@ -3,7 +3,6 @@
 use App\Http\Controllers\AbsensiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenjaminController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\LoginPenjaminController;
 use App\Http\Controllers\RoleMahasiswaController;
