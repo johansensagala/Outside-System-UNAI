@@ -25,12 +25,12 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Nama Mahasiswa</th>
-                                        <th>Tanggal Pengajuan</th>
-                                        <th>Detail</th>
-                                        <th>Status Penjaminan</th>
-                                        <th>Status Luar Asrama</th>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Nama Mahasiswa</th>
+                                        <th class="text-center">Tanggal Pengajuan</th>
+                                        <th class="text-center">Detail</th>
+                                        <th class="text-center">Status Penjaminan</th>
+                                        <th class="text-center">Status Luar Asrama</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -138,14 +138,14 @@
                                 </form>
                             </div>
                             <div class="col-2">
-                                <select name="status" id="status" class="form-control">
+                                <select name="status" id="status" class="form-control form-select">
                                     <option value="">Status Tinggal</option>
                                     <option value="Hadir">Hadir</option>
                                     <option value="Absen">Absen</option>
                                 </select>
                             </div>
                             <div class="col-2">
-                                <select name="status" id="status" class="form-control">
+                                <select name="status" id="status" class="form-control form-select">
                                     <option value="">Status Persetujuan</option>
                                     <option value="Hadir">Hadir</option>
                                     <option value="Absen">Absen</option>
@@ -159,15 +159,15 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>NIM</th>
-                                        <th>Nama</th>
-                                        <th>Jurusan</th>
-                                        <th>Tanggal Pengajuan</th>
-                                        <th>Status Tinggal</th>
-                                        <th>Status Penjaminan</th>
-                                        <th>Status Luar Asrama</th>
-                                        <th>Detail</th>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">NIM</th>
+                                        <th class="text-center">Nama</th>
+                                        <th class="text-center">Jurusan</th>
+                                        <th class="text-center">Tanggal Pengajuan</th>
+                                        <th class="text-center">Status Tinggal</th>
+                                        <th class="text-center">Status Penjaminan</th>
+                                        <th class="text-center">Status Luar Asrama</th>
+                                        <th class="text-center">Detail</th>
                                     </tr>
                                 </thead>
                                 <tbody>
