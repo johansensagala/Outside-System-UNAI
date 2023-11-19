@@ -21,7 +21,7 @@
                 </div>
                 <div class="card">
                     <div class="m-5">
-                    <div class="row">
+                        <div class="row">
                             <div class="col-8">
                                 <form action="/biro/formulir-penjamin">
                                     <div class="input-group mb-3">
@@ -31,7 +31,7 @@
                                 </form>
                             </div>
                             <div class="col-2">
-                                <select name="status" id="status" class="form-control">
+                                <select name="status" id="status" class="form-control form-select">
                                     <option value="">Status Absensi</option>
                                     <option value="Hadir">Hadir</option>
                                     <option value="Absen">Absen</option>

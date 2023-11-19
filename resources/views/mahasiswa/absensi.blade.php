@@ -21,14 +21,14 @@
                 </div>
                 <div class="card">
                     <div class="m-5">
-                    <div class="row">
-                            <div class="col-9 row">
-                                <button type="button" class="btn btn-primary">Absen Sekarang</button>
-                            </div>
-                            <div class="col-3">
-                                <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
-                            </div>
-                        </div>
+                    <div class="row mx-auto">
+    <div class="col-9 row d-flex justify-content-center align-items-center">
+        <button type="button" class="btn btn-primary">Absen Sekarang</button>
+    </div>
+    <div class="col-3">
+        <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
+    </div>
+</div>
                         <div class="table-responsive mt-3">
                             <table class="table table-bordered table-striped">
                                 <thead>
