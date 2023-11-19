@@ -144,7 +144,7 @@
 
             </div>
 
-            <div class="col-md-4 grid-margin">
+            <div class="col-md-4 grid-margin">x
                 <div class="card">
                     <div class="card-header text-center">
                         Status Permohonan Tempat Tinggal

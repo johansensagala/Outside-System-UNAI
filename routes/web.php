@@ -94,7 +94,9 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
 
     Route::get('/biro/persetujuan-luar-asrama', [PersetujuanLuarAsramaController::class, 'index']);
     Route::get('/biro/persetujuan-luar-asrama/{id}', [PersetujuanLuarAsramaController::class, 'show']);
-    
+    Route::post('/biro/persetujuan-luar-asrama/{id}/setujui', [PersetujuanLuarAsramaController::class, 'approve']);
+    Route::post('/biro/persetujuan-luar-asrama/{id}/tolak', [PersetujuanLuarAsramaController::class, 'reject']);
+
     Route::get('/biro/absensi-tempat-tinggal', [AbsensiController::class, 'index']);
     Route::get('/biro/absensi-tempat-tinggal/{id}', [AbsensiController::class, 'show']);
 });
