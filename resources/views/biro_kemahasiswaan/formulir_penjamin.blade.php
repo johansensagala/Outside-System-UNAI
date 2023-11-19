@@ -110,7 +110,7 @@
                             </div>
                         </div>
                     </div><hr>
-                    @if (!($data_tempat_tinggal->status === 'disetujui') || $disetujui == 'salah')
+                    @if (!($data_tempat_tinggal->status === 'disetujui') || $disetujui == 'benar')
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4"></div>
