@@ -151,8 +151,22 @@
         </a>
       </li>
 
-      <li class="nav-item py-3 {{ request()->is('/biro/persetujuan-luar-asrama') ? 'active' : '' }}">
-        <a href="/biro/persetujuan-luar-asrama" class="nav-link">
+      <li class="nav-item py-3">
+        <a href="{{ url('/biro/daftar-mahasiswa') }}" class="nav-link">
+          <i class="link-icon" data-feather="user"></i>
+          <span class="link-title">Mahasiswa</span>
+        </a>
+      </li>
+      
+      <li class="nav-item py-3">
+        <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
+          <i class="link-icon" data-feather="user"></i>
+          <span class="link-title">Biro Kemasiswa</span>
+        </a>
+      </li>
+
+      <li class="nav-item py-3">
+        <a href="/biro_kemahasiswaan/persetujuan-mahasiswa" class="nav-link">
           <i class="link-icon" data-feather="home"></i>
           <span class="link-title">Persetujuan Outside</span>
         </a>
