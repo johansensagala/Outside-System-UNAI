@@ -25,17 +25,24 @@ class PersetujuanMahasiswaController extends Controller
     }
 
     public function approve($id) {
+        $penjamin = Auth::guard('penjamin')->user();
+
         $data_tempat_tinggal = PengajuanLuarAsrama::where('id', $id)->first();
 
         $data_tempat_tinggal->status_penjamin = 'disetujui';
-        $data_tempat_tinggal->status = 'pending';
+
+        if ($penjamin->role == 'dosen') {
+            $data_tempat_tinggal->status = 'disetujui';
+        } else {
+            $data_tempat_tinggal->status = 'pending';
+        }
 
         $data_tempat_tinggal->save();
 
         return redirect()->back();
     }
     
-    public function reject(Request $request, $id) {
+    public function reject( $id) {
         $data_tempat_tinggal = PengajuanLuarAsrama::where('id', $id)->first();
         
         $data_tempat_tinggal->status_penjamin = 'ditolak';

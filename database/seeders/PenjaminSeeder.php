@@ -31,6 +31,7 @@ class PenjaminSeeder extends Seeder
             'username' => 'fernando-sinaga',
             'password' => bcrypt('fernando123'),
             'nama' => 'Fernando Sinaga',
+            'role' => 'dosen',
             'nomor_telp' => '085371659776',
         ]);
     }

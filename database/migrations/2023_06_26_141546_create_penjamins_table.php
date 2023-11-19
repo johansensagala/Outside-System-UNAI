@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('nama');
             $table->string('nomor_telp');
+            $table->string('role')->default('nondosen');
             $table->string('otp')->nullable();
             $table->timestamps();
         });
