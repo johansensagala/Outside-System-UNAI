@@ -33,4 +33,24 @@ class PersetujuanLuarAsramaController extends Controller
 
         return view('biro_kemahasiswaan.pengajuan_luar_asrama', compact('pengajuan_luar_asrama'));
     }
+
+    public function approve($id) {
+        $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id', $id)->first();
+
+        $pengajuan_luar_asrama->status = 'disetujui';
+
+        $pengajuan_luar_asrama->save();
+
+        return redirect()->back();
+    }
+    
+    public function reject($id) {
+        $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id', $id)->first();
+        
+        $pengajuan_luar_asrama->status = 'ditolak';
+
+        $pengajuan_luar_asrama->save();
+
+        return redirect()->back();
+    }
 }
