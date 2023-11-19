@@ -140,15 +140,23 @@
                             <div class="col-2">
                                 <select name="status" id="status" class="form-control form-select">
                                     <option value="">Status Tinggal</option>
-                                    <option value="Hadir">Hadir</option>
-                                    <option value="Absen">Absen</option>
+                                    <option value="Semua">Semua</option>
+                                    <option value="Orang Tua">Orang Tua</option>
+                                    <option value="Saudara">Saudara</option>
+                                    <option value="Dosen">Dosen</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Profesi Ners">Profesi Ners</option>
+                                    <option value="Skripsi">Skripsi</option>
                                 </select>
                             </div>
                             <div class="col-2">
                                 <select name="status" id="status" class="form-control form-select">
-                                    <option value="">Status Persetujuan</option>
-                                    <option value="Hadir">Hadir</option>
-                                    <option value="Absen">Absen</option>
+                                    <option value="">Status Penjaminan</option>
+                                    <option value="">Semua</option>
+                                    <option value="Disetujui">Disetujui</option>
+                                    <option value="Pending">Mengunggu persetujuan</option>
+                                    <option value="Ditolak">Ditolak</option>
+                                    <option value="Tanpa Penjamin">Ditolak</option>
                                 </select>
                             </div>
                             <div class="col-2">

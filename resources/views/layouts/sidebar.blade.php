@@ -42,7 +42,7 @@
       @if ($data_pengajuan->isEmpty() || 
           ($data_pengajuan_terakhir->status_penjamin == 'ditolak' && $data_pengajuan_terakhir->status != 'disetujui') ||
           $data_pengajuan_terakhir->status == 'ditolak')
-      <li class="nav-item py-3 {{ request()->is('pengajuan-luar-asrama') ? 'active' : '' }}">
+      <li class="nav-item py-3 {{ request()->is('/mhs/pengajuan-luar-asrama') ? 'active' : '' }}">
         <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Pengajuan Luar Asrama</span>
@@ -50,7 +50,7 @@
       </li>
       @endif
 
-      {{-- <li class="nav-item py-3 {{ request()->is('pengajuan-luar-asrama') ? 'active' : '' }}">
+      {{-- <li class="nav-item py-3 {{ request()->is('/mhs/pengajuan-luar-asrama') ? 'active' : '' }}">
         <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Pengajuan Luar Asrama</span>
