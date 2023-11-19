@@ -157,13 +157,6 @@
           <span class="link-title">Mahasiswa</span>
         </a>
       </li>
-      
-      <li class="nav-item py-3">
-        <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
-          <i class="link-icon" data-feather="user"></i>
-          <span class="link-title">Biro Kemasiswa</span>
-        </a>
-      </li>
 
       <li class="nav-item py-3">
         <a href="/biro_kemahasiswaan/persetujuan-mahasiswa" class="nav-link">
