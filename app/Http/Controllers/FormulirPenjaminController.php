@@ -67,6 +67,10 @@ class FormulirPenjaminController extends Controller
             $disetujui = "benar";
         }
 
+        // @if ($data_tempat_tinggal->status != 'disetujui' || $disetujui == 'benar')
+
+        // dd($data_tempat_tinggal->status != 'disetujui');
+        // dd($disetujui == 'salah');
         return view('biro_kemahasiswaan.formulir_penjamin', compact('data_tempat_tinggal', 'penjamin', 'disetujui'));
     }
 
