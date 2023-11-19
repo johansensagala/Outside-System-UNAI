@@ -28,16 +28,18 @@ class PersetujuanMahasiswaController extends Controller
         $data_tempat_tinggal = PengajuanLuarAsrama::where('id', $id)->first();
 
         $data_tempat_tinggal->status_penjamin = 'disetujui';
+        $data_tempat_tinggal->status = 'pending';
 
         $data_tempat_tinggal->save();
 
         return redirect()->back();
     }
     
-    public function reject($id) {
+    public function reject(Request $request, $id) {
         $data_tempat_tinggal = PengajuanLuarAsrama::where('id', $id)->first();
         
         $data_tempat_tinggal->status_penjamin = 'ditolak';
+        $data_tempat_tinggal->status = 'ditolak';
 
         $data_tempat_tinggal->save();
 

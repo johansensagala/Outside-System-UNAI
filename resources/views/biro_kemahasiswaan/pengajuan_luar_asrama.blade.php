@@ -148,7 +148,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                Surat Kebenaran Skripsi/Profesi Ners/Married Student
+                                Surat Kebenaran Skripsi/Profesi Ners/Married Student 
                             </div>
                             <div class="col-md-8 fw-bold">
                                 <a href="{{ asset('storage/' . $pengajuan_luar_asrama->surat_kebenaran) }}" download>Klik untuk unduh</a>
@@ -160,10 +160,29 @@
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-8 fw-bold">
-                                <button type="submit" class="btn btn-success">Setujui</button>
-                                <button type="submit" class="btn btn-danger">Tolak</button>
+                                @if ($pengajuan_luar_asrama->status === 'pending' || $pengajuan_luar_asrama->status === 'ditolak')
+                                    <form method="post" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/setujui" style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">Setujui</button>
+                                    </form>
+                                @endif
+                                @if ($pengajuan_luar_asrama->status === 'pending')
+                                    <button class="btn btn-danger" id="btnTolak">Tolak</button>
+                                @endif
                             </div>
                         </div><hr>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8 fw-bold mb-4">
+                            <div class="col-9" id="tolakForm" style="display: none;">
+                                <form method="post" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/tolak" style="display: inline;">
+                                    @csrf
+                                    <textarea class="form-control" name="comment" rows="3"></textarea>
+                                    <button type="submit" class="btn btn-danger mt-3">Tolak</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -176,11 +195,22 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
+                            @if ($pengajuan_luar_asrama->status_penjamin == 'disetujui')
                             <div class="bg-success p-2 rounded-3 text-white text-center">
                                 Disetujui
                             </div>
+                            @elseif ($pengajuan_luar_asrama->status_penjamin == 'ditolak')
+                            <div class="bg-danger p-2 rounded-3 text-white text-center">
+                                Ditolak
+                            </div>
+                            @else
+                            <div class="bg-warning p-2 rounded-3 text-white text-center">
+                                Pending
+                            </div>
+                            @endif
                         </li>
                     </ul>
+
                 </div>
                 @endif
                 <div class="card">
@@ -189,11 +219,37 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <div class="bg-warning p-2 rounded-3 text-white text-center">
-                                Menunggu Persetujuan
+                            @if ($pengajuan_luar_asrama->status == 'disetujui')
+                            <div class="bg-success p-2 rounded-3 text-white text-center">
+                                Disetujui
                             </div>
+                            @elseif ($pengajuan_luar_asrama->status == 'ditolak')
+                            <div class="bg-danger p-2 rounded-3 text-white text-center">
+                                Ditolak
+                            </div>
+                            @else
+                            <div class="bg-warning p-2 rounded-3 text-white text-center">
+                                Pending
+                            </div>
+                            @endif
                         </li>
                     </ul>
+                </div>
+                <div class="card">
+                    @if($pengajuan_luar_asrama->status == 'ditolak')
+                    <div class="card-header text-center">
+                        Komentar
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            
+                            <small>
+                                {{ $pengajuan_luar_asrama->comment }}
+                            </small>
+
+                        </li>
+                    </ul>
+                    @endif
                 </div>
             </div>
             
@@ -225,5 +281,16 @@
     }
 </script>
 @endif
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const btnTolak = document.getElementById("btnTolak");
+        const tolakForm = document.getElementById("tolakForm");
+
+        btnTolak.addEventListener("click", function () {
+            tolakForm.style.display = "block";
+        });
+    });
+</script>
 
 @endsection

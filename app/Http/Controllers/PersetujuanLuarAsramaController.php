@@ -13,7 +13,7 @@ class PersetujuanLuarAsramaController extends Controller
 {
     public function index()
     {
-        $daftar_pengajuan_luar_asrama = PengajuanLuarAsrama::get();
+        $daftar_pengajuan_luar_asrama = PengajuanLuarAsrama::whereNotIn('status_penjamin', ['pending', 'ditolak'])->get();
 
         // dd($daftar_pengajuan_luar_asrama->first()->mahasiswa->nama);
         return view('biro_kemahasiswaan.daftar_pengajuan_luar_asrama', compact('daftar_pengajuan_luar_asrama'));
@@ -32,5 +32,27 @@ class PersetujuanLuarAsramaController extends Controller
         }
 
         return view('biro_kemahasiswaan.pengajuan_luar_asrama', compact('pengajuan_luar_asrama'));
+    }
+
+    public function approve($id) {
+        $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id', $id)->first();
+
+        $pengajuan_luar_asrama->status = 'disetujui';
+
+        $pengajuan_luar_asrama->save();
+
+        return redirect()->back();
+    }
+    
+    public function reject(Request $request, $id) {
+        $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id', $id)->first();
+        
+        $pengajuan_luar_asrama->status = 'ditolak';
+
+        $pengajuan_luar_asrama->comment = $request->input('comment');
+
+        $pengajuan_luar_asrama->save();
+
+        return redirect()->back();
     }
 }

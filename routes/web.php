@@ -2,21 +2,21 @@
 
 use App\Http\Controllers\AbsensiController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginPenjaminController;
-use App\Http\Controllers\LoginBiroKemahasiswaanController;
-use App\Http\Controllers\LoginMahasiswaController;
-use App\Http\Controllers\PermohonanTempatTinggalController;
-use App\Http\Controllers\FormulirPenjaminController;
-use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PenjaminController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\LoginPenjaminController;
+use App\Http\Controllers\RoleMahasiswaController;
+use App\Http\Controllers\LoginMahasiswaController;
+use App\Http\Controllers\FormulirPenjaminController;
 use App\Http\Controllers\BiroKemahasiswaanController;
 use App\Http\Controllers\PengajuanLuarAsramaController;
 use App\Http\Controllers\PersetujuanLuarAsramaController;
 use App\Http\Controllers\PersetujuanMahasiswaController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AbsensiByMahasiswaController;
 use App\Http\Controllers\DataPengajuanMahasiswaController;
 use App\Http\Controllers\DataPermohonanPenjaminController;
+use App\Http\Controllers\LoginBiroKemahasiswaanController;
+use App\Http\Controllers\PermohonanTempatTinggalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::post('/mhs/pengajuan-penjamin', [PengajuanLuarAsramaController::class, 'store_dengan_penjamin']);
     Route::post('/mhs/pengisian-alamat', [PengajuanLuarAsramaController::class, 'store_tanpa_penjamin'])->name('pengisian-alamat');
 
-    Route::get('/mhs/data-pengajuan', [DataPengajuanMahasiswaController::class, 'index']);
+    Route::get('/mhs/data-pengajuan', [DataPengajuanMahasiswaController::class, 'index'])->name('mhs.data-pengajuan');
 
     Route::get('/mhs/absensi', [AbsensiByMahasiswaController::class, 'index']);
     Route::get('/mhs/absensi/{year}/{month}/{date}', [AbsensiByMahasiswaController::class, 'show']);
@@ -87,6 +87,9 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     Route::get('/biro/formulir-penjamin', [FormulirPenjaminController::class, 'index'])->name('biro_kemahasiswaan.daftar_penjamin');
     Route::get('/biro/search-penjamin', [FormulirPenjaminController::class, 'search'])->name('biro_kemahasiswaan.search_penjamin');
     Route::get('/biro/status-penjamin', [FormulirPenjaminController::class, 'status'])->name('biro_kemahasiswaan.status_penjamin');
+    
+    Route::get('/biro/daftar-mahasiswa', [RoleMahasiswaController::class, 'index'])->name('biro_kemahasiswaan.daftar_mahasiswa');
+    Route::post('/biro/daftar-mahasiswa/{id}/toggle-role', [RoleMahasiswaController::class, 'index'])->name('biro_kemahasiswaan.toggle_role_mahasiswa');
 
     Route::get('/biro/formulir-penjamin/{id}', [FormulirPenjaminController::class, 'show'])->name('biro_kemahasiswaan.formulir_penjamin');
     Route::post('/biro/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);
@@ -94,7 +97,9 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
 
     Route::get('/biro/persetujuan-luar-asrama', [PersetujuanLuarAsramaController::class, 'index']);
     Route::get('/biro/persetujuan-luar-asrama/{id}', [PersetujuanLuarAsramaController::class, 'show']);
-    
+    Route::post('/biro/persetujuan-luar-asrama/{id}/setujui', [PersetujuanLuarAsramaController::class, 'approve']);
+    Route::post('/biro/persetujuan-luar-asrama/{id}/tolak', [PersetujuanLuarAsramaController::class, 'reject']);
+
     Route::get('/biro/absensi-tempat-tinggal', [AbsensiController::class, 'index']);
     Route::get('/biro/absensi-tempat-tinggal/{id}', [AbsensiController::class, 'show']);
 });
