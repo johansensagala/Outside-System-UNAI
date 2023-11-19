@@ -34,10 +34,12 @@ class PersetujuanMahasiswaController extends Controller
         return redirect()->back();
     }
     
-    public function reject($id) {
+    public function reject(Request $request, $id) {
         $data_tempat_tinggal = PengajuanLuarAsrama::where('id', $id)->first();
         
         $data_tempat_tinggal->status_penjamin = 'ditolak';
+
+        // $data_tempat_tinggal->comment = $request->input('comment');
 
         $data_tempat_tinggal->save();
 

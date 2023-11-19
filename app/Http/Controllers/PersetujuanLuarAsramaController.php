@@ -44,10 +44,12 @@ class PersetujuanLuarAsramaController extends Controller
         return redirect()->back();
     }
     
-    public function reject($id) {
+    public function reject(Request $request, $id) {
         $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id', $id)->first();
         
         $pengajuan_luar_asrama->status = 'ditolak';
+
+        $pengajuan_luar_asrama->comment = $request->input('comment');
 
         $pengajuan_luar_asrama->save();
 

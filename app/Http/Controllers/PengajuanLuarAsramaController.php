@@ -17,14 +17,14 @@ class PengajuanLuarAsramaController extends Controller
 {
     public function index()
     {
-        $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
-        $data_pengajuan_outside = PengajuanLuarAsrama::where('id_mahasiswa', $id_mahasiswa)
-            ->where('status_penjamin', 'pending')
-            ->first();
+        // $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
+        // $data_pengajuan_outside = PengajuanLuarAsrama::where('id_mahasiswa', $id_mahasiswa)
+        //     ->where('status_penjamin', 'pending')
+        //     ->first();
 
-        if ($data_pengajuan_outside) {
-            return redirect('/mhs/data-pengajuan');
-        }
+        // if ($data_pengajuan_outside) {
+        //     return redirect('/mhs/data-pengajuan');
+        // }
 
         return view('mahasiswa.pengajuan_luar_asrama');
     }

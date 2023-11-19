@@ -240,6 +240,22 @@
                         </li>
                     </ul>
                 </div>
+                <div class="card">
+                    @if($data_pengajuan_luar_asrama->status == 'ditolak')
+                    <div class="card-header text-center">
+                        Komentar
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            
+                            <small>
+                                {{ $data_pengajuan_luar_asrama->comment }}
+                            </small>
+    
+                        </li>
+                    </ul>
+                    @endif
+                </div>
             </div>
             
         </div>
