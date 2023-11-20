@@ -77,8 +77,18 @@ class PengajuanLuarAsramaController extends Controller
         $kode_penjamin = strtoupper($request->input('kode_penjamin'));
 
         $data_pengajuan_penjamin = PengajuanDataPenjamin::where('kode_penjamin', $kode_penjamin)->first();
+        $id_penjamin = $data_pengajuan_penjamin->penjamin->id;
         $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
         $mahasiswa = Mahasiswa::where('id', $id_mahasiswa)->first();
+
+        $jumlah_pengajuan_penjamin_disetujui = PengajuanLuarAsrama::where('id_penjamin', $id_penjamin)
+            ->where('status_penjamin', 'disetujui')
+            ->where('status', 'disetujui')
+            ->count();
+
+        $batas_jaminan = $data_pengajuan_penjamin->kapasitas;
+
+        // dd($jumlah_pengajuan_penjamin_disetujui);
         
         if (!($data_pengajuan_penjamin)) {
             $mahasiswa->percobaan -= 1;
@@ -93,6 +103,10 @@ class PengajuanLuarAsramaController extends Controller
             }
 
             return view('mahasiswa.pengajuan_penjamin', compact('mahasiswa'))->with('pesan', 'Kode penjamin tidak sesuai dengan penjamin manapun!');
+        }
+
+        else if ($jumlah_pengajuan_penjamin_disetujui >= $batas_jaminan) {
+            return view('mahasiswa.pengajuan_penjamin', compact('mahasiswa'))->with('pesan', 'Penjamin ini sudah menjamin lebih dari batas mahasiswa yang ditampung!');
         }
         
         else {

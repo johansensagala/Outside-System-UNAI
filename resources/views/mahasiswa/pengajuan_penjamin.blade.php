@@ -47,6 +47,8 @@
                                         {{-- @if(isset($pesan)) --}}
                                         @if(isset($pesan) && $mahasiswa->percobaan != 5)
                                             <small class="text-danger">{{ $pesan }}</small>
+                                        @elseif(isset($pesan))
+                                            <small class="text-danger">{{ $pesan }}</small>
                                         @endif
                                         @if (isset($error))
                                             <small class="text-danger">{{ $error }}</small>
