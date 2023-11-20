@@ -42,12 +42,12 @@
       @if ($data_pengajuan->isEmpty() || 
           ($data_pengajuan_terakhir->status_penjamin == 'ditolak' && $data_pengajuan_terakhir->status != 'disetujui') ||
           $data_pengajuan_terakhir->status == 'ditolak')
-      <li class="nav-item py-3 {{ request()->is('/mhs/pengajuan-luar-asrama') ? 'active' : '' }}">
-        <a href="{{ url('/mhs/pengajuan-luar-asrama') }}" class="nav-link">
-          <i class="link-icon" data-feather="user"></i>
-          <span class="link-title">Pengajuan Luar Asrama</span>
-        </a>
-      </li>
+          <li class="nav-item py-3 {{ request()->routeIs('pengajuan-luar-asrama') ? 'active' : '' }}">
+              <a href="{{ route('pengajuan-luar-asrama') }}" class="nav-link">
+                  <i class="link-icon" data-feather="user"></i>
+                  <span class="link-title">Pengajuan Luar Asrama</span>
+              </a>
+          </li>
       @endif
 
       {{-- <li class="nav-item py-3 {{ request()->is('/mhs/pengajuan-luar-asrama') ? 'active' : '' }}">
@@ -64,11 +64,11 @@
         </a>
       </li> --}}
       
-      <li class="nav-item py-3 {{ request()->is('/mhs/absensi') ? 'active' : '' }}">
-        <a href="{{ url('/mhs/absensi') }}" class="nav-link">
-          <i class="link-icon" data-feather="clock"></i>
-          <span class="link-title">Absensi</span>
-        </a>
+      <li class="nav-item py-3 {{ request()->is('mhs/absensi*') ? 'active' : '' }}">
+          <a href="{{ url('/mhs/absensi') }}" class="nav-link">
+              <i class="link-icon" data-feather="clock"></i>
+              <span class="link-title">Absensi</span>
+          </a>
       </li>
       
       <form id="logout-form" action="{{ route('logout_mahasiswa') }}" method="post">
@@ -84,14 +84,14 @@
       {{-- MENU UNTUK PENJAMIN --}}
       
       @elseif(Auth::guard('penjamin')->check())
-
+      
       <li class="nav-item py-3 {{ request()->is('/penjamin/dashboard') ? 'active' : '' }}">
         <a href="{{ url('/penjamin/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
         </a>
       </li>
-      
+
       @php
         $data_permohonan = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())->get();
         $data_permohonan_terakhir = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())
