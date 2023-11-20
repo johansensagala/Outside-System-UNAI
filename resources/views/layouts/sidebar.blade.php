@@ -31,7 +31,7 @@
       @endphp
 
       @if (!$data_pengajuan->isEmpty())
-      <li class="nav-item py-3 {{ request()->is('data-pengajuan') ? 'active' : '' }}">
+      <li class="nav-item py-3 {{ request()->is('data-pengajuan*') ? 'active' : '' }}">
         <a href="{{ url('/mhs/data-pengajuan') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Data Pengajuan</span>
@@ -42,7 +42,7 @@
       @if ($data_pengajuan->isEmpty() || 
           ($data_pengajuan_terakhir->status_penjamin == 'ditolak' && $data_pengajuan_terakhir->status != 'disetujui') ||
           $data_pengajuan_terakhir->status == 'ditolak')
-          <li class="nav-item py-3 {{ request()->routeIs('pengajuan-luar-asrama') ? 'active' : '' }}">
+          <li class="nav-item py-3 {{ request()->routeIs('pengajuan-luar-asrama*') ? 'active' : '' }}">
               <a href="{{ route('pengajuan-luar-asrama') }}" class="nav-link">
                   <i class="link-icon" data-feather="user"></i>
                   <span class="link-title">Pengajuan Luar Asrama</span>
@@ -71,7 +71,7 @@
       
       @elseif(Auth::guard('penjamin')->check())
       
-      <li class="nav-item py-3 {{ request()->is('/penjamin/dashboard') ? 'active' : '' }}">
+      <li class="nav-item py-3 {{ request()->is('penjamin/dashboard') ? 'active' : '' }}">
         <a href="{{ url('/penjamin/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
@@ -85,7 +85,7 @@
           ->first();
       @endphp
       @if (!$data_permohonan->isEmpty())
-      <li class="nav-item py-3 {{ request()->is('/penjamin/data-permohonan') ? 'active' : '' }}">
+      <li class="nav-item py-3 {{ request()->is('penjamin/data-permohonan*') ? 'active' : '' }}">
         <a href="/penjamin/data-permohonan" class="nav-link">
           <i class="link-icon" data-feather="file"></i>
           <span class="link-title">Data Permohonan</span>
@@ -94,7 +94,7 @@
       @endif
 
       @if ($data_permohonan->isEmpty() || $data_permohonan_terakhir->status == 'ditolak')
-      <li class="nav-item py-3 {{ request()->is('/penjamin/permohonan-tempat-tinggal') ? 'active' : '' }}">
+      <li class="nav-item py-3 {{ request()->is('penjamin/permohonan-tempat-tinggal*') ? 'active' : '' }}">
         <a href="/penjamin/permohonan-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="file"></i>
           <span class="link-title">Permohonan Penjamin</span>
@@ -102,7 +102,7 @@
       </li>
       @endif
       
-      <li class="nav-item py-3 {{ request()->is('/penjamin/persetujuan-mahasiswa') ? 'active' : '' }}">
+      <li class="nav-item py-3 {{ request()->is('penjamin/persetujuan-mahasiswa*') ? 'active' : '' }}">
         <a href="/penjamin/persetujuan-mahasiswa" class="nav-link">
           <i class="link-icon" data-feather="users"></i>
           <span class="link-title">Persetujuan Mahasiswa</span>
@@ -123,14 +123,14 @@
       
       @elseif(Auth::guard('biro_kemahasiswaan')->check())
 
-      <li class="nav-item py-3 {{ request()->is('/biro/dashboard') ? 'active' : '' }}">
+      <li class="nav-item py-3 {{ request()->is('biro/dashboard') ? 'active' : '' }}">
         <a href="{{ url('/biro/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
         </a>
       </li>
       
-      <li class="nav-item py-3 {{ request()->is('biro_kemahasiswaan.daftar_penjamin') ? 'active' : '' }}">
+      <li class="nav-item py-3 {{ request()->is('biro/formulir-penjamin*') ? 'active' : '' }}">
         <a href="{{ route('biro_kemahasiswaan.daftar_penjamin') }}" class="nav-link">
           <i class="link-icon" data-feather="user-check"></i>
           <span class="link-title">Persetujuan Penjamin</span>
@@ -138,21 +138,21 @@
       </li>
 
       <li class="nav-item py-3">
-        <a href="{{ url('/biro/daftar-mahasiswa') }}" class="nav-link">
+        <a href="{{ url('biro/daftar-mahasiswa') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Mahasiswa</span>
         </a>
       </li>
 
-      <li class="nav-item py-3">
-        <a href="/biro/persetujuan-luar-asrama" class="nav-link">
+      <li class="nav-item py-3 {{ request()->is('biro/persetujuan-luar-asrama*') ? 'active' : '' }}"">
+        <a href="biro/persetujuan-luar-asrama" class="nav-link">
           <i class="link-icon" data-feather="home"></i>
           <span class="link-title">Persetujuan Outside</span>
         </a>
       </li>
       
-      <li class="nav-item py-3 {{ request()->is('/biro/absensi-tempat-tinggal') ? 'active' : '' }}">
-        <a href="/biro/absensi-tempat-tinggal" class="nav-link">
+      <li class="nav-item py-3 {{ request()->is('biro/absensi-tempat-tinggal*') ? 'active' : '' }}">
+        <a href="biro/absensi-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="edit"></i>
           <span class="link-title">Absensi Tempat Tinggal</span>
         </a>
