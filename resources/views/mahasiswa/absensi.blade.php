@@ -22,11 +22,8 @@
                 <div class="card">
                     <div class="m-5">
                     <div class="row">
-                            <div class="col-9 row">
+                            <div class="row">
                                 <button type="button" class="btn btn-primary">Absen Sekarang</button>
-                            </div>
-                            <div class="col-3">
-                                <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
                             </div>
                         </div>
                         <div class="table-responsive mt-3">
@@ -35,7 +32,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal</th>
-                                        <th>Detail</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -43,9 +39,6 @@
                                     <tr>
                                         <td>1</td>
                                         <td>16/11/2023</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
-                                        </td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
                                                 Hadir
@@ -56,9 +49,6 @@
                                         <td>2</td>
                                         <td>15/11/2023</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
-                                        </td>
-                                        <td>
                                             <span class="bg-danger p-2 rounded-3 text-white text-center">
                                                 Absen
                                             </span>
@@ -67,9 +57,6 @@
                                     <tr>
                                         <td>3</td>
                                         <td>14/11/2023</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
-                                        </td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
                                                 Hadir
@@ -80,9 +67,6 @@
                                         <td>4</td>
                                         <td>13/11/2023</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
-                                        </td>
-                                        <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
                                                 Hadir
                                             </span>
@@ -91,9 +75,6 @@
                                     <tr>
                                         <td>5</td>
                                         <td>12/11/2023</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
-                                        </td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
                                                 Hadir
@@ -104,9 +85,6 @@
                                         <td>6</td>
                                         <td>11/11/2023</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
-                                        </td>
-                                        <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
                                                 Hadir
                                             </span>
@@ -115,9 +93,6 @@
                                     <tr>
                                         <td>7</td>
                                         <td>10/11/2023</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/absensi/1/1/1'">Detail</button>
-                                        </td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
                                                 Hadir
