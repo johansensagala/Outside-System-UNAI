@@ -32,10 +32,20 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                Kapasitas
+                                Batas mahasiswa yang dijamin
                             </div>
                             <div class="col-md-8 fw-bold">
                                 {{ $data_tempat_tinggal->kapasitas }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Jumlah mahasiswa yang sudah dijamin
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                {{ $jumlah_pengajuan_penjamin_disetujui }}
                             </div>
                         </div>
                     </div>
