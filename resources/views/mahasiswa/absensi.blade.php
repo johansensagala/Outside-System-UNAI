@@ -49,10 +49,10 @@
                                             </span>
                                         </td>
                                     </tr>
-                                    @endforeach
                                     @php
-                                        $i += 1;
+                                        $i++;
                                     @endphp
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
