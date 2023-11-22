@@ -88,7 +88,7 @@
                                     <div class="container">
                                         <h1 class="status"></h1>
                                     </div>                                                                                        
-                                    <div id="googleMap" class="" style="width:100%;height:400px;"></div>
+                                    <div id="googleMap" class="" style="width: 100%; height: 400px;"></div>
 
                                     <input type="hidden" id="latitude" name="latitude" value="">
                                     <input type="hidden" id="longitude" name="longitude" value="">

@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create('absensis', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal');
             $table->decimal('latitude', 9, 6);
             $table->decimal('longitude', 9, 6);
+            $table->string('foto')->nullable();
+            $table->string('alasan')->nullable();
             $table->string('kehadiran');
             $table->unsignedBigInteger('id_mahasiswa');
-            $table->unsignedBigInteger('id_pegawai');
+            $table->unsignedBigInteger('id_monitor');
             $table->timestamps();
 
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas');
-            $table->foreign('id_pegawai')->references('id')->on('biro_kemahasiswaans');
+            $table->foreign('id_monitor')->references('id')->on('mahasiswas');
         });
     }
 

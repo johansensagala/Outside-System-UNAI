@@ -1,22 +1,25 @@
 <?php
 
-use App\Http\Controllers\AbsensiController;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\PenjaminController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\LoginPenjaminController;
 use App\Http\Controllers\RoleMahasiswaController;
 use App\Http\Controllers\LoginMahasiswaController;
 use App\Http\Controllers\FormulirPenjaminController;
 use App\Http\Controllers\BiroKemahasiswaanController;
-use App\Http\Controllers\PengajuanLuarAsramaController;
-use App\Http\Controllers\PersetujuanLuarAsramaController;
-use App\Http\Controllers\PersetujuanMahasiswaController;
 use App\Http\Controllers\AbsensiByMahasiswaController;
+use App\Http\Controllers\PengajuanLuarAsramaController;
+use App\Http\Controllers\PersetujuanMahasiswaController;
+use App\Http\Controllers\PersetujuanLuarAsramaController;
 use App\Http\Controllers\DataPengajuanMahasiswaController;
 use App\Http\Controllers\DataPermohonanPenjaminController;
 use App\Http\Controllers\LoginBiroKemahasiswaanController;
 use App\Http\Controllers\PermohonanTempatTinggalController;
+use App\Http\Controllers\DaftarAbsensiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +65,10 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::get('/mhs/data-pengajuan', [DataPengajuanMahasiswaController::class, 'index'])->name('mhs.data-pengajuan');
 
     Route::get('/mhs/absensi', [AbsensiByMahasiswaController::class, 'index']);
+    Route::post('/mhs/absensi', [AbsensiByMahasiswaController::class, 'store']);
     Route::get('/mhs/absensi/{year}/{month}/{date}', [AbsensiByMahasiswaController::class, 'show']);
+
+    Route::get('/mhs/daftar-absensi', [DaftarAbsensiController::class, 'index']);
 });
 
 // Rute-rute untuk Penjamin

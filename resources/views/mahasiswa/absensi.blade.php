@@ -23,7 +23,7 @@
                     <div class="m-5">
                     <div class="row">
                             <div class="row">
-                                <button type="button" class="btn btn-primary">Absen Sekarang</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Absen Sekarang</button>
                             </div>
                         </div>
                         <div class="table-responsive mt-3">
@@ -36,69 +36,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $i = 1;
+                                    @endphp
+                                    @foreach ($data_absen as $absen)
                                     <tr>
-                                        <td>1</td>
-                                        <td>16/11/2023</td>
+                                        <td>{{ $i }}</td>
+                                        <td>{{ $absen->created_at }}</td>
                                         <td>
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Hadir
+                                                {{ $absen->kehadiran }}
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>15/11/2023</td>
-                                        <td>
-                                            <span class="bg-danger p-2 rounded-3 text-white text-center">
-                                                Absen
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>14/11/2023</td>
-                                        <td>
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Hadir
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>13/11/2023</td>
-                                        <td>
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Hadir
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>12/11/2023</td>
-                                        <td>
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Hadir
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>11/11/2023</td>
-                                        <td>
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Hadir
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>10/11/2023</td>
-                                        <td>
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Hadir
-                                            </span>
-                                        </td>
-                                    </tr>
+                                    @endforeach
+                                    @php
+                                        $i += 1;
+                                    @endphp
                                 </tbody>
                             </table>
                         </div>
@@ -109,39 +63,175 @@
         </div>
     </div>
 
-    <!-- <div class="col-md-4 grid-margin">
-        <div class="card">
-            <div class="card-header text-center">
-                Tanggal         
-    <div class="col-md-4 grid-margin">
-                <div class="card">
-                    <div class="card-header text-center">
-                        Status Permohonan Tempat Tinggal
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">                            
-                            <div class="bg-success p-2 rounded-3 text-white text-center">
-                                Disetujui
-                            </div>
-
-                            
-                            <div class="bg-danger p-2 rounded-3 text-white text-center">
-                                Ditolak
-                            </div>
-
-
-                            <div class="bg-warning p-2 rounded-3 text-white text-center">
-                                Menunggu Persetujuan
-                            </div>
-                            
-                        </li>
-                    </ul>
-                    <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
-                </div>
-            </div>
-            <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
-        </div>
-    </div> -->
 </div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/mhs/absensi" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="modal-body">
+          
+
+
+
+
+                    <div>Lokasi</div>
+                    <div class="loading text-center">
+                        <p>Melacak lokasi</p>
+                        <div class="spinner-border mt-3" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <h1 class="status"></h1>
+                    </div>
+                    <div id="googleMap" class="" style="width: 100%; height: 300px;"></div>
+
+                    <input type="hidden" id="latitude" name="latitude" value="">
+                    <input type="hidden" id="longitude" name="longitude" value="">
+
+                    @error('latitude')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    @error('longitude')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="mt-3">Keterangan</div>
+                    <div class="bg-success p-2 rounded-3 text-white text-center">
+                        Hadir
+                    </div>
+
+                    <input type="hidden" value="hadir">
+                    
+                    <label for="alasan" class="mt-3">Keterangan (Jika tidak hadir)</label>
+                    <textarea class="form-control" id="alasan" rows="3"></textarea>
+
+                    <label for="foto" class="mt-3">Foto Bukti (Jika tidak hadir)</label>
+                    <input class="form-control" type="file" id="formFile">
+
+
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" style="width: 50%">Absen</button>
+        </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script>
+<script>
+    let latitude = null;
+let longitude = null;
+
+const success = (position) => {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    document.querySelector("#latitude").value = latitude;
+    document.querySelector("#longitude").value = longitude;
+
+    initMap();
+}
+
+const error = () => {
+    const alamatDomisili = document.getElementById('alamatDomisili');
+    const fotoTempatTinggal = document.getElementById('fotoTempatTinggal');
+    const simpanPermohonan = document.getElementById('simpanPermohonan');
+    const gpsPenjamin = document.getElementById('gpsPenjamin');
+    const notAllowed = document.getElementById('notAllowed');
+
+    alamatDomisili.disabled = true;
+    fotoTempatTinggal.disabled = true;
+    simpanPermohonan.disabled = true;
+    gpsPenjamin.hidden = true;
+    notAllowed.classList.remove('d-none');
+}
+
+const showLoading = () => {
+  document.querySelector('.loading').style.display = 'block';
+}
+
+const hideLoading = () => {
+  document.querySelector('.loading').style.display = 'none';
+}
+
+showLoading();
+
+navigator.geolocation.getCurrentPosition((position) => {
+  // const googleMap = document.getElementById('notAllowed');
+  // googleMap.classList.remove('d-none');
+
+  success(position);
+  hideLoading();
+}, error);
+
+async function initMap() {
+  if (latitude === null || longitude === null) {
+      return;
+  }
+  
+  let myLatLng = { lat: latitude, lng: longitude };
+
+  let map = new google.maps.Map(document.getElementById('googleMap'), {
+    zoom: 14,
+    center: myLatLng
+  });
+
+  let marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Lokasi saya'
+  });
+}
+
+
+// test
+
+function toRadians(degrees) {
+    return degrees * Math.PI / 180;
+}
+  
+function haversineDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Jari-jari bumi dalam kilometer
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+
+    return distance;
+}
+
+const lat1 = -6.807786;
+const lon1 = 107.577864;
+const lat2 = -6.805558;
+const lon2 = 107.579268;
+
+const distanceInKilometers = haversineDistance(lat1, lon1, lat2, lon2);
+const distanceInMeters = distanceInKilometers * 1000;
+
+console.log(`Jarak antara kedua titik adalah ${distanceInMeters.toFixed(2)} meter.`);
+
+
+</script>
 
 @endsection

@@ -47,14 +47,14 @@ async function initMap() {
       return;
   }
   
-  var myLatLng = { lat: latitude, lng: longitude };
+  let myLatLng = { lat: latitude, lng: longitude };
 
-  var map = new google.maps.Map(document.getElementById('googleMap'), {
+  let map = new google.maps.Map(document.getElementById('googleMap'), {
     zoom: 14,
     center: myLatLng
   });
 
-  var marker = new google.maps.Marker({
+  let marker = new google.maps.Marker({
     position: myLatLng,
     map: map,
     title: 'Lokasi saya'

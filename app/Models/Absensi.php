@@ -13,7 +13,7 @@ class Absensi extends Model
 
     public function mahasiswa ()
     {
-        return $this->belongsTo(Mahasiswa::class);
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa');
     }
 
     public function pegawai ()

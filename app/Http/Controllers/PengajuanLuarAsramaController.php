@@ -77,16 +77,23 @@ class PengajuanLuarAsramaController extends Controller
         $kode_penjamin = strtoupper($request->input('kode_penjamin'));
 
         $data_pengajuan_penjamin = PengajuanDataPenjamin::where('kode_penjamin', $kode_penjamin)->first();
-        $id_penjamin = $data_pengajuan_penjamin->penjamin->id;
+        if ($data_pengajuan_penjamin) {
+            $id_penjamin = $data_pengajuan_penjamin->penjamin->id;
+        }
         $id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
         $mahasiswa = Mahasiswa::where('id', $id_mahasiswa)->first();
 
-        $jumlah_pengajuan_penjamin_disetujui = PengajuanLuarAsrama::where('id_penjamin', $id_penjamin)
+        if ($data_pengajuan_penjamin) {
+            $jumlah_pengajuan_penjamin_disetujui = PengajuanLuarAsrama::where('id_penjamin', $id_penjamin)
             ->where('status_penjamin', 'disetujui')
             ->where('status', 'disetujui')
             ->count();
+        }
 
-        $batas_jaminan = $data_pengajuan_penjamin->kapasitas;
+        if ($data_pengajuan_penjamin) {
+            $batas_jaminan = $data_pengajuan_penjamin->kapasitas;
+        }
+
 
         // dd($jumlah_pengajuan_penjamin_disetujui);
         
