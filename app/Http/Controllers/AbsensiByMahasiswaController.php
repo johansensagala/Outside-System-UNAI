@@ -19,11 +19,15 @@ class AbsensiByMahasiswaController extends Controller
                                 ->whereDate('created_at', Carbon::today())
                                 ->get();
 
-        $is_absent_time = 
+        $now = Carbon::now();
+        $batas_bawah = Carbon::createFromTime(21, 0);
+        $batas_atas = Carbon::createFromTime(21, 30);
+    
+        $absen_time = $now->between($batas_bawah, $batas_atas);
+                            
+        $belum_absen = $data_absen_today->isEmpty();
 
-        $akses_absen = $data_absen_today->isEmpty();
-
-        return view('mahasiswa.absensi', compact('data_absen', 'mahasiswa', 'akses_absen'));
+        return view('mahasiswa.absensi', compact('data_absen', 'mahasiswa', 'belum_absen', 'absen_time'));
     }
 
     public function show () {

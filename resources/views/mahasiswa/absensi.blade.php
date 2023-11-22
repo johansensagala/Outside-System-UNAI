@@ -23,9 +23,9 @@
                     <div class="m-5">
                     <div class="row">
                             <div class="row">
-                                @if ($akses_absen == True)
+                                @if ($belum_absen == True && $belum_absen = True)
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Absen Sekarang</button>
-                                @else
+                                @elseif ()
                                     <div class="text-danger">Absen dibuka pada pukul 21.00 - 21.30</div>
                                 @endif
                             </div>
