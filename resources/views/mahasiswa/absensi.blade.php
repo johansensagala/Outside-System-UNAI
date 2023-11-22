@@ -23,10 +23,12 @@
                     <div class="m-5">
                     <div class="row">
                             <div class="row">
-                                @if ($belum_absen == True && $belum_absen = True)
+                                @if ($belum_absen == True && $absen_time == True)
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Absen Sekarang</button>
-                                @elseif ()
-                                    <div class="text-danger">Absen dibuka pada pukul 21.00 - 21.30</div>
+                                @elseif ($belum_absen == False)
+                                    <div class="text-success">Anda sudah melakukan absen hari ini. Absen dibuka besok pada pukul 21.00 - 21.30 WIB.</div>
+                                @else
+                                    <div class="text-danger">Absen dibuka pada pukul 21.00 - 21.30 WIB</div>
                                 @endif
                             </div>
                         </div>
@@ -199,7 +201,6 @@ async function initMap() {
 }
 
 
-// test
 
 function toRadians(degrees) {
     return degrees * Math.PI / 180;
@@ -221,16 +222,21 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
     return distance;
 }
 
-const lat1 = -6.807786;
-const lon1 = 107.577864;
-const lat2 = -6.805558;
-const lon2 = 107.579268;
-
-const distanceInKilometers = haversineDistance(lat1, lon1, lat2, lon2);
-const distanceInMeters = distanceInKilometers * 1000;
-
-console.log(`Jarak antara kedua titik adalah ${distanceInMeters.toFixed(2)} meter.`);
-
+function isPresent() {
+    const lat1 = latitude;
+    const lon1 = longitude;
+    const lat2 = {{ $latitude }};
+    const lon2 = {{ $longitude }};
+    
+    const distanceInKilometers = haversineDistance(lat1, lon1, lat2, lon2);
+    const distanceInMeters = distanceInKilometers * 1000;
+    
+    console.log(lat1);
+    console.log(lon1);
+    console.log(lat2);
+    console.log(lon2);
+    console.log(`Jarak antara kedua titik adalah ${distanceInMeters.toFixed(2)} meter.`);
+}
 
 </script>
 

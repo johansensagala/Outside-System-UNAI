@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absensi;
+use App\Models\PengajuanDataPenjamin;
+use App\Models\PengajuanLuarAsrama;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -24,10 +26,23 @@ class AbsensiByMahasiswaController extends Controller
         $batas_atas = Carbon::createFromTime(21, 30);
     
         $absen_time = $now->between($batas_bawah, $batas_atas);
-                            
+        
         $belum_absen = $data_absen_today->isEmpty();
 
-        return view('mahasiswa.absensi', compact('data_absen', 'mahasiswa', 'belum_absen', 'absen_time'));
+        $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id_mahasiswa', $id_mahasiswa)->where('status', 'disetujui')->first();
+        $status_tinggal = $pengajuan_luar_asrama->status_tinggal;
+
+        if ($status_tinggal == 'Married' || $status_tinggal == 'Profesi Ners' || $status_tinggal == 'Skripsi') {
+            $latitude = $pengajuan_luar_asrama->latitude;
+            $longitude = $pengajuan_luar_asrama->longitude;
+        } else {
+            $data_penjamin = PengajuanDataPenjamin::where('id_penjamin', $pengajuan_luar_asrama->id_penjamin)->where('status', 'disetujui')->first();
+
+            $latitude = $data_penjamin->latitude;
+            $longitude = $data_penjamin->longitude;
+        }
+        
+        return view('mahasiswa.absensi', compact('data_absen', 'mahasiswa', 'belum_absen', 'absen_time', 'latitude', 'longitude'));
     }
 
     public function show () {
