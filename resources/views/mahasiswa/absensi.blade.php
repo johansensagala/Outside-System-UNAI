@@ -66,7 +66,6 @@
 </div>
 
   
-  <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -172,9 +171,6 @@ const hideLoading = () => {
 showLoading();
 
 navigator.geolocation.getCurrentPosition((position) => {
-  // const googleMap = document.getElementById('notAllowed');
-  // googleMap.classList.remove('d-none');
-
   success(position);
   hideLoading();
 }, error);
@@ -206,7 +202,7 @@ function toRadians(degrees) {
 }
   
 function haversineDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Jari-jari bumi dalam kilometer
+    const R = 6371;
     const dLat = toRadians(lat2 - lat1);
     const dLon = toRadians(lon2 - lon1);
 

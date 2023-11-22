@@ -26,10 +26,9 @@ class MahasiswaFactory extends Factory
 
         return [
             'nama' => $nama,
-            'email' => Str::lower($namaDepan) . '@gmail.com',
             'password' => bcrypt(Str::lower($namaDepan) . '123'),
-            'nim' => $this->generateNIM(),
-            'angkatan' => substr($this->generateNIM(), 0, 4),
+            'nim' => substr($this->generateNIM(), 0, 7),
+            'angkatan' => $this->faker->randomElement(['2020', '2021', '2022', '2023']),
             'nomor_pribadi' => $this->generateNomorTelepon(),
             'nomor_ortu_wali' => $this->generateNomorTelepon(),
         ];

@@ -21,7 +21,7 @@ class PenjaminFactory extends Factory
 
     public function definition()
     {
-        $nama = $this->faker->unique()->city;
+        $nama = $this->faker->unique()->name;
         $namaDepan = explode(' ', $nama)[0];
         $namaIndonesia = $this->faker->name;
 

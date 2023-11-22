@@ -17,7 +17,7 @@
             <div class="row">
               <div class="col-6 col-md-12 col-xl-7 text-center">
                 <h5 class="mb-0">Angkatan 2023</h6>
-                <h3>117</h3>
+                <h3>{{ $mahasiswa_2020 }}</h3>
               </div>
               <div class="col-6 col-md-12 col-xl-5 text-center">
                 <span class="material-symbols-outlined" style="font-size: 50px; color: #31810E">groups</span>
@@ -33,7 +33,7 @@
             <div class="row">
               <div class="col-6 col-md-12 col-xl-7 text-center">
                 <h5 class="mb-0">Angkatan 2022</h6>
-                <h3>101</h3>
+                <h3>{{ $mahasiswa_2021 }}</h3>
               </div>
               <div class="col-6 col-md-12 col-xl-5 text-center">
                 <span class="material-symbols-outlined" style="font-size: 50px; color: #B71F1A">groups</span>
@@ -49,7 +49,7 @@
             <div class="row">
               <div class="col-6 col-md-12 col-xl-7 text-center">
                 <h5 class="mb-0">Angkatan 2021</h6>
-                <h3>63</h3>
+                <h3>{{ $mahasiswa_2022 }}</h3>
               </div>
               <div class="col-6 col-md-12 col-xl-5 text-center">
                 <span class="material-symbols-outlined" style="font-size: 50px; color: #f9c003">groups</span>
@@ -65,7 +65,7 @@
             <div class="row">
               <div class="col-6 col-md-12 col-xl-7 text-center">
                 <h5 class="mb-0">2017-2020</h6>
-                <h3>102</h3>
+                <h3>{{ $mahasiswa_2023 }}</h3>
               </div>
               <div class="col-6 col-md-12 col-xl-5 text-center">
                 <span class="material-symbols-outlined" style="font-size: 50px; color: #1C4DBF">groups</span>
