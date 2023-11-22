@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="m-5">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-10">
                                 <form action="/biro/formulir-penjamin">
                                     <div class="input-group mb-3">
                                         <!-- <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search" value="{{ request('search') }}"> -->
@@ -37,9 +37,9 @@
                                     <option value="Absen">Absen</option>
                                 </select>
                             </div>
-                            <div class="col-2">
+                            <!-- <div class="col-2">
                                 <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
-                            </div>
+                            </div> -->
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped">

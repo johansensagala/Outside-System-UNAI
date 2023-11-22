@@ -129,11 +129,11 @@
                 <div class="card">
                     <div class="m-5">
                     <div class="row">
-                            <div class="col-6">
+                            <div class="col-10">
                                 <form action="/biro/formulir-penjamin">
                                     <div class="input-group mb-3">
                                         <!-- <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search" value="{{ request('search') }}"> -->
-                                        <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search">
+                                        <input type="text" class="form-control" placeholder="Masukkan nama mahasiswa..." name="search" id="search">
                                     </div>
                                 </form>
                             </div>
@@ -149,99 +149,10 @@
                                     <option value="Skripsi">Skripsi</option>
                                 </select>
                             </div>
-                            <div class="col-2">
-                                <select name="status" id="status" class="form-control form-select">
-                                    <option value="">Status Penjaminan</option>
-                                    <option value="">Semua</option>
-                                    <option value="Disetujui">Disetujui</option>
-                                    <option value="Pending">Mengunggu persetujuan</option>
-                                    <option value="Ditolak">Ditolak</option>
-                                    <option value="Tanpa Penjamin">Ditolak</option>
-                                </select>
-                            </div>
-                            <div class="col-2">
-                                <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
-                            </div>
                         </div>
-                        <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch">
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">No</th>
-                                        <th class="text-center">NIM</th>
-                                        <th class="text-center">Nama</th>
-                                        <th class="text-center">Jurusan</th>
-                                        <th class="text-center">Tanggal Pengajuan</th>
-                                        <th class="text-center">Status Tinggal</th>
-                                        <th class="text-center">Status Penjaminan</th>
-                                        <th class="text-center">Status Luar Asrama</th>
-                                        <th class="text-center">Detail</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $i = 1;
-                                    @endphp
-                                    @foreach ($daftar_pengajuan_luar_asrama as $pengajuan_luar_asrama)
-                                    <tr>
-                                        <td class="align-middle">{{ $i }}</td>
-                                        <td class="align-middle">{{ $pengajuan_luar_asrama->mahasiswa->nim }}</td>
-                                        <td class="align-middle">{{ $pengajuan_luar_asrama->mahasiswa->nama }}</td>
-                                        <td class="align-middle">{{ $pengajuan_luar_asrama->jurusan }}</td>
-                                        <td class="align-middle">{{ $pengajuan_luar_asrama->created_at }}</td>
-                                        <td class="align-middle">{{ $pengajuan_luar_asrama->status_tinggal }}</td>
-                                        @if ($pengajuan_luar_asrama->status_penjamin == 'disetujui')
-                                            <td class="align-middle">
-                                                <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                    Disetujui
-                                                </span>
-                                            </td>
-                                        @elseif ($pengajuan_luar_asrama->status_penjamin == 'ditolak')
-                                            <td class="align-middle">
-                                                <span class="bg-danger p-2 rounded-3 text-white text-center">
-                                                    Ditolak
-                                                </span>
-                                            </td>
-                                        @else
-                                            <td class="align-middle">
-                                                <span class="bg-warning p-2 rounded-3 text-white text-center">
-                                                    Pending
-                                                </span>
-                                            </td>
-                                        @endif
-                                        @if ($pengajuan_luar_asrama->status == 'disetujui')
-                                            <td class="align-middle">
-                                                <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                    Disetujui
-                                                </span>
-                                            </td>
-                                        @elseif ($pengajuan_luar_asrama->status == 'ditolak')
-                                            <td class="align-middle">
-                                                <span class="bg-danger p-2 rounded-3 text-white text-center">
-                                                    Ditolak
-                                                </span>
-                                            </td>
-                                        @else
-                                            <td class="align-middle">
-                                                <span class="bg-warning p-2 rounded-3 text-white text-center">
-                                                    Pending
-                                                </span>
-                                            </td>
-                                        @endif
-                                        <td class="align-middle">
-                                            <a href="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}" class="btn btn-primary">Detail</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    @php
-                                        $i++;
-                                    @endphp
-                                </tbody>
-                            </table>
-                        </div>
+                        @include('biro_kemahasiswaan._daftar_pengajuan_outside')
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -281,4 +192,17 @@
     </div> -->
 </div>
 
+<script>
+    $(document).ready(function () {
+        $('#search').on('keyup', function () {
+            let search = $(this).val();
+
+            if (search.length >= 3 || search.length === 0) { 
+                $.get("{{ route('biro_kemahasiswaan.search_persetujuan_luar_asrama') }}", { search: search }, function (data) {
+                    $('#search-results').html(data);
+                });
+            }
+        });
+    });
+</script>
 @endsection

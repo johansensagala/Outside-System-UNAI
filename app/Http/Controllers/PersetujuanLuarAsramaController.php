@@ -34,6 +34,28 @@ class PersetujuanLuarAsramaController extends Controller
         return view('biro_kemahasiswaan.pengajuan_luar_asrama', compact('pengajuan_luar_asrama'));
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $query = PengajuanLuarAsrama::query();
+
+        if (!empty($search)) {
+            $query->whereHas('mahasiswa', function ($query) use ($search) {
+                $query->where('nama', 'like', '%' . $search . '%');
+            });
+        }
+
+        $daftar_pengajuan_luar_asrama = $query->get();
+
+        if (empty($search)) {
+            $daftar_pengajuan_luar_asrama = PengajuanLuarAsrama::get();
+        }
+
+        // dd($daftar_pengajuan_luar_asrama);
+
+        return view('biro_kemahasiswaan._daftar_pengajuan_outside', compact('daftar_pengajuan_luar_asrama'))->render();
+    }
+
     public function approve($id) {
         $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id', $id)->first();
 
