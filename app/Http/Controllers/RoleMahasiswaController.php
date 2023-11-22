@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\Role;
 
 use Illuminate\Http\Request;
 
@@ -21,16 +22,11 @@ class RoleMahasiswaController extends Controller
         $query = Mahasiswa::query();
 
         if (!empty($search)) {
-            $query->whereHas('mahasiswa', function ($query) use ($search) {
-                $query->where('nama', 'like', '%' . $search . '%');
-            });
+            $query->where('nama', 'like', '%' . $search . '%');
+            // Tambahkan kondisi lain jika perlu
         }
 
         $daftar_data_mahasiswa = $query->get();
-
-        if (empty($search)) {
-            $daftar_data_mahasiswa = Mahasiswa::get();
-        }
 
         return view('biro_kemahasiswaan._daftar_mahasiswa', compact('daftar_data_mahasiswa'))->render();
     }

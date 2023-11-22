@@ -22,8 +22,8 @@
                 <div class="card">
                     <div class="m-5">
                         <div class="row">
-                            <div class="col-10">
-                                <form action="/biro/formulir-penjamin">
+                            <div class="col-12">
+                                <form action="/biro/daftar-mahasiswa">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder="Masukkan nama mahasiswa..." name="search" id="search" value="{{ request('search') }}">
                                     </div>
@@ -44,7 +44,7 @@
             let search = $(this).val();
 
             if (search.length >= 3 || search.length === 0) { 
-                $.get("{{ route('biro_kemahasiswaan.search_penjamin') }}", { search: search }, function (data) {
+                $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search }, function (data) {
                     $('#search-results').html(data);
                 });
             }
