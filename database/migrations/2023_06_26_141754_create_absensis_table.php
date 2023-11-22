@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('alasan')->nullable();
             $table->string('kehadiran');
             $table->unsignedBigInteger('id_mahasiswa');
-            $table->unsignedBigInteger('id_monitor');
+            $table->unsignedBigInteger('id_monitor')->nullable();
             $table->timestamps();
 
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas');

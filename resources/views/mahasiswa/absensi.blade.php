@@ -23,7 +23,11 @@
                     <div class="m-5">
                     <div class="row">
                             <div class="row">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Absen Sekarang</button>
+                                @if ($akses_absen == True)
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Absen Sekarang</button>
+                                @else
+                                    <div class="text-danger">Absen dibuka pada pukul 21.00 - 21.30</div>
+                                @endif
                             </div>
                         </div>
                         <div class="table-responsive mt-3">
