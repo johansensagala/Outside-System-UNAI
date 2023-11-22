@@ -138,15 +138,14 @@
                                 </form>
                             </div>
                             <div class="col-2">
-                                <select name="status" id="status" class="form-control form-select">
-                                    <option value="">Status Tinggal</option>
-                                    <option value="Semua">Semua</option>
-                                    <option value="Orang Tua">Orang Tua</option>
-                                    <option value="Saudara">Saudara</option>
-                                    <option value="Dosen">Dosen</option>
-                                    <option value="Married">Married</option>
-                                    <option value="Profesi Ners">Profesi Ners</option>
-                                    <option value="Skripsi">Skripsi</option>
+                                <select name="status_tinggal" id="status_tinggal" class="form-control form-select">
+                                    <option value="">Semua</option>
+                                    <option value="orang tua">Orang Tua</option>
+                                    <option value="saudara">Saudara</option>
+                                    <option value="dosen">Dosen</option>
+                                    <option value="married">Married</option>
+                                    <option value="profesi Ners">Profesi Ners</option>
+                                    <option value="skripsi">Skripsi</option>
                                 </select>
                             </div>
                         </div>
@@ -199,6 +198,20 @@
 
             if (search.length >= 3 || search.length === 0) { 
                 $.get("{{ route('biro_kemahasiswaan.search_persetujuan_luar_asrama') }}", { search: search }, function (data) {
+                    $('#search-results').html(data);
+                });
+            }
+        });
+
+        $('#status_tinggal').on('change', function () {
+            let status = $(this).val();
+
+            if (status !== "") {
+                $.get("{{ route('biro_kemahasiswaan.status_persetujuan_luar_asrama') }}", { status_tinggal: status }, function (data) {
+                    $('#search-results').html(data);
+                });
+            } else {
+                $.get("{{ route('biro_kemahasiswaan.search_persetujuan_luar_asrama') }}", function (data) {
                     $('#search-results').html(data);
                 });
             }
