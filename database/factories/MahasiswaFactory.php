@@ -21,11 +21,12 @@ class MahasiswaFactory extends Factory
 
     public function definition()
     {
-        $nama = $this->faker->unique()->name;
+        $nama = $this->faker->unique()->name();
         $namaDepan = explode(' ', $nama)[0];
 
         return [
             'nama' => $nama,
+            'email' => Str::lower($namaDepan) . '@gmail.com',
             'password' => bcrypt(Str::lower($namaDepan) . '123'),
             'nim' => $this->generateNIM(),
             'angkatan' => substr($this->generateNIM(), 0, 4),
