@@ -31,10 +31,7 @@
                             </div>
                         </div>
                         @include('biro_kemahasiswaan._daftar_mahasiswa')
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        {{ $daftar_data_mahasiswa->links() }}
-                    </div>
+                    </div>   
                 </div>
             </div>
         </div>
@@ -52,26 +49,6 @@
                 });
             }
         });
-
-        $('#toggle').change(function() {
-                var mahasiswaId = $(this).data('item-id');
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/biro/daftar-mahasiswa/' + mahasiswaId + '/toggle-role',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        console.log(response);
-                        // Handle success, update UI if needed
-                    },
-                    error: function(error) {
-                        console.log(error);
-                        // Handle error
-                    }
-                });
-            });
     });
 </script>
 @endsection
