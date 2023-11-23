@@ -61,7 +61,9 @@ class AbsensiByMahasiswaController extends Controller
 
         $absensi->latitude = $request->input('latitude');
         $absensi->longitude = $request->input('longitude');
-        $absensi->foto = $request->foto->store('bukti_absensi');
+        if ($absensi->foto) {
+            $absensi->foto = $request->foto->store('bukti_absensi');
+        }
         $absensi->alasan = $request->input('alasan');
         $absensi->kehadiran = $request->input('kehadiran');
         $absensi->id_mahasiswa = Auth::guard('mahasiswa')->user()->id;

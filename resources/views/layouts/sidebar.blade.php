@@ -162,12 +162,12 @@
         </a>
       </li>
       
-      <li class="nav-item py-3 {{ request()->is('biro/absensi-tempat-tinggal*') ? 'active' : '' }}">
+      {{-- <li class="nav-item py-3 {{ request()->is('biro/absensi-tempat-tinggal*') ? 'active' : '' }}">
         <a href="absensi-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="edit"></i>
           <span class="link-title">Absensi Tempat Tinggal</span>
         </a>
-      </li>
+      </li> --}}
       
       <form id="logout-form" action="{{ route('logout_biro_kemahasiswaan') }}" method="post">
         @csrf
