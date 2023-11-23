@@ -26,6 +26,33 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
+                                    <label for="jurusan">Jurusan</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div>
+                                        <select id="jurusan" name="jurusan" class="form-select @error('jurusan') is-invalid @enderror">
+                                            <option value="" disabled selected>Pilih Jurusan Anda</option>
+                                            <option value="Akuntansi">Akuntansi</option>
+                                            <option value="Bisnis Digital">Bisnis Digital</option>
+                                            <option value="Farmasi">Farmasi</option>
+                                            <option value="Ilmu Filsafat">Ilmu Filsafat</option>
+                                            <option value="Ilmu Keperawatan">Ilmu Keperawatan</option>
+                                            <option value="Manajemen">Manajemen</option>
+                                            <option value="Pendidikan Bahasa Inggris">Pendidikan Bahasa Inggris</option>
+                                            <option value="Pendidikan Matematika">Pendidikan Matematika</option>
+                                            <option value="Sistem Informasi">Sistem Informasi</option>
+                                            <option value="Teknik Informatika">Teknik Informatika</option>
+                                        </select>
+                                    </div>
+                                    @error('jurusan')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
                                     <label for="status_tinggal">Status Tinggal</label>
                                 </div>
                                 <div class="col-md-8">

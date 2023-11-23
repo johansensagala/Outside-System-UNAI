@@ -18,29 +18,5 @@ class BiroKemahasiswaanSeeder extends Seeder
             'password' => bcrypt('yunus123'),
             'nama' => 'Yunus Elon',
         ]);
-
-        BiroKemahasiswaan::create([
-            'username' => 'taka-subrata',
-            'password' => bcrypt('taka123'),
-            'nama' => 'Taka Subrata',
-        ]);
-
-        BiroKemahasiswaan::create([
-            'username' => 'hendra-sastrawijaya',
-            'password' => bcrypt('hendra123'),
-            'nama' => 'Yunus Elon',
-        ]);
-
-        BiroKemahasiswaan::create([
-            'username' => 'saschya',
-            'password' => bcrypt('saschya123'),
-            'nama' => 'Yunus Elon',
-        ]);
-
-        BiroKemahasiswaan::create([
-            'username' => 'gusti',
-            'password' => bcrypt('gusti123'),
-            'nama' => 'Yunus Elon',
-        ]);
     }
 }

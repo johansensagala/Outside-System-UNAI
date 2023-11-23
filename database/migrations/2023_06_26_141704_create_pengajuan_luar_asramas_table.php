@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('pengajuan_luar_asramas', function (Blueprint $table) {
             $table->id();
+            $table->string('jurusan');
             $table->string('status_tinggal');
             $table->string('surat_outside');
             $table->string('tahun_ajaran');

@@ -13,6 +13,6 @@ class PenjaminFactorySeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Penjamin::factory(400)->create();
+        \App\Models\Penjamin::factory(300)->create();
     }
 }

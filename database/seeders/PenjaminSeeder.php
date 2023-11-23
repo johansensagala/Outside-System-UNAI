@@ -17,7 +17,6 @@ class PenjaminSeeder extends Seeder
             'username' => 'susi-susanti',
             'password' => bcrypt('susi1234'),
             'nama' => 'Susi Susanti',
-            'role' => 'dosen',
             'nomor_telp' => '085371655509',
         ]);
 
@@ -25,7 +24,6 @@ class PenjaminSeeder extends Seeder
             'username' => 'riama-aritonang',
             'password' => bcrypt('riama123'),
             'nama' => 'Riama Aritonang',
-            'role' => 'dosen',
             'nomor_telp' => '085398255509',
         ]);
 

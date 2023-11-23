@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('nim');
             $table->string('password');
             $table->string('nama');
-            $table->string('jurusan');
             $table->string('jenis_kelamin');
             $table->string('angkatan');
             $table->string('nomor_pribadi');
