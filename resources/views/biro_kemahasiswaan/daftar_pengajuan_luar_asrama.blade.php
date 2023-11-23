@@ -132,7 +132,6 @@
                             <div class="col-10">
                                 <form action="/biro/formulir-penjamin">
                                     <div class="input-group mb-3">
-                                        <!-- <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search" value="{{ request('search') }}"> -->
                                         <input type="text" class="form-control" placeholder="Masukkan nama mahasiswa..." name="search" id="search">
                                     </div>
                                 </form>

@@ -32,6 +32,9 @@
                         </div>
                         @include('biro_kemahasiswaan._daftar_mahasiswa')
                     </div>
+                    <div class="d-flex justify-content-center">
+                        {{ $daftar_data_mahasiswa->links() }}
+                    </div>
                 </div>
             </div>
         </div>
