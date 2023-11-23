@@ -13,12 +13,9 @@
                 </tr>
             </thead>
             <tbody>
-                @php
-                    $index = 1;
-                @endphp
-                @foreach ($daftar_data_mahasiswa as $data_mahasiswa)
+                @foreach ($daftar_data_mahasiswa as $key => $data_mahasiswa)
                     <tr>
-                        <td class="text-center">{{ $index }}</td>
+                        <td class="text-center">{{ ($daftar_data_mahasiswa->currentPage() - 1) * $daftar_data_mahasiswa->perPage() + $key + 1 }}</td>
                         <td class="align-middle text-center">{{ $data_mahasiswa->nim }}</td>
                         <td class="align-middle">{{ $data_mahasiswa->nama }}</td>
                         <td class="align-middle text-center">{{ $data_mahasiswa->angkatan }}</td>
@@ -30,9 +27,6 @@
                             </div>
                         </td>
                     </tr>
-                    @php
-                        $index++;
-                    @endphp
                 @endforeach
             </tbody>
         </table>
