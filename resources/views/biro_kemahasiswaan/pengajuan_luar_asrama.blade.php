@@ -161,13 +161,13 @@
                             <div class="col-md-4"></div>
                             <div class="col-md-8 fw-bold">
                                 @if ($pengajuan_luar_asrama->status === 'pending' || $pengajuan_luar_asrama->status === 'ditolak')
-                                    <form method="post" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/setujui" style="display: inline;">
+                                    <form method="post" id="formSetujui" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/setujui" style="display: inline;">
                                         @csrf
-                                        <button type="submit" class="btn btn-success">Setujui</button>
+                                        <button type="submit" id="btnSetujui" class="btn btn-success">Setujui</button>
                                     </form>
                                 @endif
                                 @if ($pengajuan_luar_asrama->status === 'pending')
-                                    <button class="btn btn-danger" id="btnTolak">Tolak</button>
+                                    <button class="btn btn-danger" id="btnTampilkanTolak">Tolak</button>
                                 @endif
                             </div>
                         </div><hr>
@@ -176,10 +176,10 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-8 fw-bold mb-4">
                             <div class="col-9" id="tolakForm" style="display: none;">
-                                <form method="post" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/tolak" style="display: inline;">
+                                <form method="post" id="formTolak" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/tolak" style="display: inline;">
                                     @csrf
                                     <textarea class="form-control" name="comment" rows="3"></textarea>
-                                    <button type="submit" class="btn btn-danger mt-3">Tolak</button>
+                                    <button type="submit" id="btnTolak" class="btn btn-danger mt-3">Tolak</button>
                                 </form>
                             </div>
                         </div>
@@ -284,13 +284,55 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const btnTolak = document.getElementById("btnTolak");
+        const btnTolak = document.getElementById("btnTampilkanTolak");
         const tolakForm = document.getElementById("tolakForm");
 
         btnTolak.addEventListener("click", function () {
             tolakForm.style.display = "block";
         });
     });
+
+    window.addEventListener("load", function () {
+        const btnSetujui = document.getElementById("btnSetujui");
+        const formSetujui = document.getElementById("formSetujui");
+        const btnTolak = document.getElementById("btnTolak");
+        const formTolak = document.getElementById("formTolak");
+
+        btnSetujui.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Yakin Ingin Menyetujui?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formSetujui.submit();
+                }
+            });
+        });
+
+        btnTolak.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Yakin Ingin Menolak?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formTolak.submit();
+                }
+            });
+        });
+    });
+
 </script>
 
 @endsection

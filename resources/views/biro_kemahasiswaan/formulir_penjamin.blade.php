@@ -116,13 +116,13 @@
                             <div class="col-md-4"></div>
                             <div class="col-md-8 fw-bold">
                                 @if ($data_tempat_tinggal->status === 'pending' || $data_tempat_tinggal->status === 'ditolak')
-                                    <form method="post" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/setujui" style="display: inline;">
+                                    <form method="post" id="formSetujui" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/setujui" style="display: inline;">
                                         @csrf
-                                        <button type="submit" class="btn btn-success">Setujui</button>
+                                        <button type="submit" id="btnSetujui" class="btn btn-success">Setujui</button>
                                     </form>
                                 @endif
-                                @if ($data_tempat_tinggal->status === 'pending')
-                                    <button class="btn btn-danger" id="btnTolak">Tolak</button>
+                                @if ($data_tempat_tinggal->status === 'pending' || $data_tempat_tinggal->status === 'disetujui')
+                                    <button class="btn btn-danger" id="btnTampilkanTolak">Tolak</button>
                                 @endif
                             </div>
                         </div><hr>
@@ -132,10 +132,10 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-8 fw-bold mb-4">
                             <div class="col-9" id="tolakForm" style="display: none;">
-                                <form method="post" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/tolak" style="display: inline;">
+                                <form method="post" id="formTolak" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/tolak" style="display: inline;">
                                     @csrf
                                     <textarea class="form-control" name="comment" rows="3"></textarea>
-                                    <button type="submit" class="btn btn-danger mt-3">Tolak</button>
+                                    <button type="submit" id="btnTolak" class="btn btn-danger mt-3">Tolak</button>
                                 </form>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
 
             </div>
 
-            <div class="col-md-4 grid-margin">x
+            <div class="col-md-4 grid-margin">
                 <div class="card">
                     <div class="card-header text-center">
                         Status Permohonan Tempat Tinggal
@@ -204,11 +204,55 @@
     // Tampilkan form Tolak
 
     document.addEventListener("DOMContentLoaded", function () {
-        const btnTolak = document.getElementById("btnTolak");
+        const btnTolak = document.getElementById("btnTampilkanTolak");
         const tolakForm = document.getElementById("tolakForm");
 
         btnTolak.addEventListener("click", function () {
             tolakForm.style.display = "block";
+        });
+    });
+
+    // Sweet Alert
+
+    window.addEventListener("load", function () {
+        const btnSetujui = document.getElementById("btnSetujui");
+        const formSetujui = document.getElementById("formSetujui");
+        const btnTolak = document.getElementById("btnTolak");
+        const formTolak = document.getElementById("formTolak");
+
+        btnSetujui.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Yakin Ingin Menyetujui?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formSetujui.submit();
+                }
+            });
+        });
+
+        btnTolak.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Yakin Ingin Menolak?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formTolak.submit();
+                }
+            });
         });
     });
 

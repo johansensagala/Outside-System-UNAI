@@ -156,7 +156,7 @@
       </li>
 
       <li class="nav-item py-3 {{ request()->is('biro/persetujuan-luar-asrama*') ? 'active' : '' }}">
-        <a href="persetujuan-luar-asrama" class="nav-link">
+        <a href="{{ url('biro/persetujuan-luar-asrama') }}" class="nav-link">
           <i class="link-icon" data-feather="home"></i>
           <span class="link-title">Persetujuan Outside</span>
         </a>

@@ -106,15 +106,15 @@
                             <div class="col-md-4"></div>
                             <div class="col-md-8 fw-bold">
                                 @if ($data_mahasiswa->status_penjamin === 'pending' || $data_mahasiswa->status_penjamin === 'ditolak')
-                                    <form method="post" action="/penjamin/persetujuan-mahasiswa/{{ $data_mahasiswa->id }}/setujui" style="display: inline;">
+                                    <form method="post" id="formSetujui" action="/penjamin/persetujuan-mahasiswa/{{ $data_mahasiswa->id }}/setujui" style="display: inline;">
                                         @csrf
-                                        <button type="submit" class="btn btn-success">Setujui</button>
+                                        <button type="submit" id="btnSetujui" class="btn btn-success">Setujui</button>
                                     </form>
                                 @endif
                                 @if ($data_mahasiswa->status_penjamin === 'pending')
-                                    <form method="post" action="/penjamin/persetujuan-mahasiswa/{{ $data_mahasiswa->id }}/tolak" style="display: inline;">
+                                    <form method="post" id="formTolak" action="/penjamin/persetujuan-mahasiswa/{{ $data_mahasiswa->id }}/tolak" style="display: inline;">
                                         @csrf
-                                        <button type="submit" class="btn btn-danger">Tolak</button>
+                                        <button type="submit" id="btnTolak" class="btn btn-danger">Tolak</button>
                                     </form>
                                 @endif
                             </div>
@@ -186,5 +186,48 @@
         </div>   
     </div>
 </div>
+
+<script>
+    window.addEventListener("load", function () {
+        const btnSetujui = document.getElementById("btnSetujui");
+        const formSetujui = document.getElementById("formSetujui");
+        const btnTolak = document.getElementById("btnTolak");
+        const formTolak = document.getElementById("formTolak");
+
+        btnSetujui.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Yakin Ingin Menyetujui?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formSetujui.submit();
+                }
+            });
+        });
+
+        btnTolak.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Yakin Ingin Menolak?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formTolak.submit();
+                }
+            });
+        });
+    });
+</script>
 
 @endsection
