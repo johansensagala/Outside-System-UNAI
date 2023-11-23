@@ -54,42 +54,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2081011</td>
-                                        <td>Johansen Sagala</td>
-                                        <td><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/absensi-tempat-tinggal/1'">Detail</button></td>
-                                        <td>2023-11-20 13:07:16</td>
-                                        <td>
-                                            <span class="bg-danger p-2 rounded-3 text-white text-center">
-                                                Absen
-                                            </span>        
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>2081011</td>
-                                        <td>Jacqueline Josephine Shita Sulistiono</td>
-                                        <td><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/absensi-tempat-tinggal/1'">Detail</button></td>
-                                        <td>2023-11-20 13:07:16</td>
-                                        <td>
-                                            <span class="bg-danger p-2 rounded-3 text-white text-center">
-                                                Absen
-                                            </span>        
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>2021001</td>
-                                        <td>Wesley Suwanda Panjaitan</td>
-                                        <td><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/absensi-tempat-tinggal/1'">Detail</button></td>
-                                        <td>2023-11-20 13:07:16</td>
-                                        <td>
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Hadir
-                                            </span>        
-                                        </td>
-                                    </tr>
                                     @php
                                         $index = 1
                                     @endphp
@@ -98,7 +62,7 @@
                                         <td>{{ $index }}</td>
                                         <td>{{ $absen->mahasiswa->nim }}</td>
                                         <td>{{ $absen->mahasiswa->nama }}</td>
-                                        <td><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/absensi-tempat-tinggal/1'">Detail</button></td>
+                                        <td><button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/daftar-absensi/{{ $absen->id }}'">Detail</button></td>
                                         <td>{{ $absen->created_at }}</td>
                                         <td>
                                             <span class="bg-danger p-2 rounded-3 text-white text-center">

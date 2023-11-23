@@ -22,7 +22,7 @@ class AbsensiByMahasiswaController extends Controller
                                 ->get();
 
         $now = Carbon::now();
-        $batas_bawah = Carbon::createFromTime(21, 0);
+        $batas_bawah = Carbon::createFromTime(0, 0);
         $batas_atas = Carbon::createFromTime(21, 30);
     
         $absen_time = $now->between($batas_bawah, $batas_atas);
@@ -55,11 +55,15 @@ class AbsensiByMahasiswaController extends Controller
             'latitude' => 'required',
         ]);
 
+            // dd($request);
+
         $absensi = new Absensi();
 
         $absensi->latitude = $request->input('latitude');
         $absensi->longitude = $request->input('longitude');
-        $absensi->kehadiran = 'hadir';
+        $absensi->foto = $request->foto->store('bukti_absensi');
+        $absensi->alasan = $request->input('alasan');
+        $absensi->kehadiran = $request->input('kehadiran');
         $absensi->id_mahasiswa = Auth::guard('mahasiswa')->user()->id;
 
         $absensi->save();

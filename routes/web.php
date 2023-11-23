@@ -69,6 +69,7 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::get('/mhs/absensi/{year}/{month}/{date}', [AbsensiByMahasiswaController::class, 'show']);
 
     Route::get('/mhs/daftar-absensi', [DaftarAbsensiController::class, 'index']);
+    Route::get('/mhs/daftar-absensi/{id}', [DaftarAbsensiController::class, 'show']);
 });
 
 // Rute-rute untuk Penjamin
