@@ -29,6 +29,7 @@ class MahasiswaFactory extends Factory
             'nama' => $namaDepan . ' ' . $namaBelakang,
             'password' => bcrypt(Str::lower($namaDepan) . '123'),
             'nim' => substr($this->generateNIM(), 0, 7),
+            'jurusan' => $this->faker->randomElement(['Akuntansi', 'Bisnis Digital', 'Farmasi', 'Ilmu Filsafat', 'Ilmu Keperawatan', 'Manajemen', 'Pendidikan Bahasa Inggris', 'Pendidikan Matematika', 'Sistem Informasi', 'Teknik Informatika']),
             'jenis_kelamin' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
             'angkatan' => $this->faker->randomElement(['2020', '2021', '2022', '2023']),
             'nomor_pribadi' => $this->generateNomorTelepon(),
