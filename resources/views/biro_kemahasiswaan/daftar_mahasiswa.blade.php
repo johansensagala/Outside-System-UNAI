@@ -27,7 +27,7 @@
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder="Masukkan nama mahasiswa..." name="search" id="search" value="{{ request('search') }}">
                                     </div>
-                                </form>
+                                </form>                                
                             </div>
                         </div>
                         @include('biro_kemahasiswaan._daftar_mahasiswa')
@@ -39,16 +39,46 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('#search').on('keyup', function () {
-            let search = $(this).val();
+    // $(document).ready(function () {
+    //     $('#search').on('keyup', function () {
+    //         let search = $(this).val();
 
-            if (search.length >= 3 || search.length === 0) { 
-                $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search }, function (data) {
-                    $('#search-results').html(data);
-                });
-            }
-        });
+    //         if (search.length >= 3 || search.length === 0) { 
+    //             $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search }, function (data) {
+    //                 $('#search-results').html(data);
+    //             });
+    //         }
+    //     });
+    // });
+
+    $(document).ready(function () {
+        
+    $('#search').on('keyup', function () {
+        let search = $(this).val();
+        updateSearchResults(search);
     });
+
+    $('body').on('click', '.pagination a', function (e) {
+        e.preventDefault();
+        let page = $(this).attr('href').split('page=')[1];
+        let search = $('#search').val();
+        updateSearchResults(search, page);
+    });
+
+    $('form').submit(function (event) {
+        event.preventDefault();
+        let search = $('#search').val();
+        updateSearchResults(search);
+    });
+
+    function updateSearchResults(search, page = 1) {
+        if (search.length >= 3 || search.length === 0) {
+            $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search, page: page }, function (data) {
+                $('#search-results').html(data);
+            });
+        }
+    }
+});
+
 </script>
 @endsection
