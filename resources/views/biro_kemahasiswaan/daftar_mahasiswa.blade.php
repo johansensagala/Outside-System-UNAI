@@ -25,7 +25,7 @@
                             <div class="col-12">
                                 <form action="/biro/daftar-mahasiswa">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Masukkan nama mahasiswa..." name="search" id="search" value="{{ request('search') }}">
+                                        <input type="text" class="form-control" placeholder="Masukkan nim atau nama mahasiswa..." name="search" id="search" value="{{ request('search') }}">
                                     </div>
                                 </form>
                             </div>
@@ -40,15 +40,26 @@
 
 <script>
     $(document).ready(function () {
-        $('#search').on('keyup', function () {
-            let search = $(this).val();
+    $('#search').on('keyup', function () {
+        let search = $(this).val();
 
-            if (search.length >= 3 || search.length === 0) { 
-                $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search }, function (data) {
-                    $('#search-results').html(data);
-                });
-            }
-        });
+        if (search.length >= 3 || search.length === 0) {
+            let page = getUrlParameter('page') || 1; // Get the 'page' parameter from the URL or default to 1
+
+            $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search, page: page }, function (data) {
+                $('#search-results').html(data);
+            });
+        }
     });
+
+    // Function to get URL parameters by name
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        let regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        let results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+});
+
 </script>
 @endsection
