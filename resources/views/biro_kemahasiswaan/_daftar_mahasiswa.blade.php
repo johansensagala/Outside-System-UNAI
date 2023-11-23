@@ -30,6 +30,11 @@
                 @endforeach
             </tbody>
         </table>
+        @if ($daftar_data_mahasiswa->total() > $daftar_data_mahasiswa->perPage())
+            <div class="pagination">
+                {{ $daftar_data_mahasiswa->links() }}
+            </div>
+        @endif
         @if ($daftar_data_mahasiswa->count() === 0)
             <h4 class="my-4 text-center fw-bold">
                 Belum ada mahasiswa
