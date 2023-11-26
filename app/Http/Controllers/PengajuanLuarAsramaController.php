@@ -32,12 +32,10 @@ class PengajuanLuarAsramaController extends Controller
     public function process(Request $request)
     {
         $request->validate([
-            'jurusan' => 'required',
             'status_tinggal' => 'required',
             'surat_outside' => 'required|file|mimes:pdf',
         ]);
 
-        $request->session()->put('jurusan', $request->input('jurusan'));
         $request->session()->put('status_tinggal', $request->input('status_tinggal'));
         // $request->session()->put('surat_outside', $request->surat_outside);
         $request->session()->put('surat_outside', $request->surat_outside->store('surat_outside'));
@@ -122,7 +120,6 @@ class PengajuanLuarAsramaController extends Controller
             $pengajuan_luar_asrama->id_mahasiswa = $id_mahasiswa;
             $pengajuan_luar_asrama->id_penjamin = $data_pengajuan_penjamin->id_penjamin;
 
-            $pengajuan_luar_asrama->jurusan = $request->session()->get('jurusan');
             $pengajuan_luar_asrama->status_tinggal = $request->session()->get('status_tinggal');
             $pengajuan_luar_asrama->surat_outside = $request->session()->get('surat_outside');
             
@@ -139,7 +136,7 @@ class PengajuanLuarAsramaController extends Controller
             
             $pengajuan_luar_asrama->save();
 
-            $request->session()->forget(['jurusan', 'status_tinggal', 'surat_outside']);
+            $request->session()->forget(['status_tinggal', 'surat_outside']);
 
             return redirect()->route('mhs.data-pengajuan');
         }
@@ -177,7 +174,6 @@ class PengajuanLuarAsramaController extends Controller
         $pengajuan_luar_asrama->foto_tempat_tinggal = $request->foto_tempat_tinggal->store('pengajuan_luar_asrama');
         $pengajuan_luar_asrama->surat_kebenaran = $request->surat_kebenaran->store('surat_kebenaran');
 
-        $pengajuan_luar_asrama->jurusan = $request->session()->get('jurusan');
         $pengajuan_luar_asrama->status_tinggal = $request->session()->get('status_tinggal');
         $pengajuan_luar_asrama->surat_outside = $request->session()->get('surat_outside');
 
@@ -194,7 +190,7 @@ class PengajuanLuarAsramaController extends Controller
 
         $pengajuan_luar_asrama->save();
 
-        $request->session()->forget(['jurusan', 'status_tinggal', 'surat_outside']);
+        $request->session()->forget(['status_tinggal', 'surat_outside']);
 
         return redirect()->route('mhs.data-pengajuan');
     }
