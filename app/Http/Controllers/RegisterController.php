@@ -20,11 +20,15 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'username' => ['required', 'min:3', 'max:255', 'unique:penjamins'],
-            'password' => 'required|min:5|max:255',
+            'password' => 'required|min:8|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/',
+            'repassword' => 'required|same:password',
             'nama' => 'required|max:255',
-            'nomor_telp' => 'required|max:120'
+            'nomor_telp' => 'required|numeric|digits_between:10,14',
+        ], [
+            'password.regex' => 'The password format is invalid. Password must be at least 8 characters with a combination of numbers and letters.',
         ]);
-        
+                
+                
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }

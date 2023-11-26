@@ -23,7 +23,6 @@
                 </div>
                 <div>
                   <form id="registrationForm" action="/penjamin/register" method="POST">
-                    {{-- <form class="forms-sample" id="registrationForm"> --}}
                     @csrf
                     <div class="p-4" style="background-color: #EAEAEC">
                       <div class="mb-3">
@@ -33,6 +32,10 @@
                       <div class="mb-3">
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                         <small class="text-danger" id="password-error"></small>
+                      </div>
+                      <div class="mb-3">
+                        <input type="repassword" class="form-control" id="repassword" name="repassword" placeholder="Password">
+                        <small class="text-danger" id="repassword-error"></small>
                       </div>
                       <div class="mb-3">
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
@@ -49,6 +52,7 @@
                       </div>
                     </div>
                   </form>
+
                   <div class="modal fade" id="OTPModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
@@ -160,6 +164,11 @@
           } else {
             document.getElementById('password-error').textContent = '';
           }         
+          if (data.errors['repassword']) {
+            document.getElementById('repassword-error').textContent = data.errors['repassword'][0];
+          } else {
+            document.getElementById('repassword-error').textContent = '';
+          }         
           if (data.errors['nama']) {
             document.getElementById('nama-error').textContent = data.errors['nama'][0];
           } else {
@@ -174,6 +183,7 @@
         else {
           document.getElementById('username-error').textContent = '';
           document.getElementById('password-error').textContent = '';
+          document.getElementById('repassword-error').textContent = '';
           document.getElementById('nama-error').textContent = '';
           document.getElementById('nomor-telp-error').textContent = '';
           const myModal = new bootstrap.Modal(document.getElementById('OTPModal'));
