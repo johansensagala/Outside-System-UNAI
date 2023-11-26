@@ -26,7 +26,7 @@ class MahasiswaFactory extends Factory
         $namaBelakang = explode(' ', $nama)[1];
 
         return [
-            'nama' => $nama,
+            'nama' => $namaDepan . $namaBelakang,
             'password' => bcrypt(Str::lower($namaDepan) . '123'),
             'nim' => substr($this->generateNIM(), 0, 7),
             'jurusan' => $this->faker->randomElement(['Akuntansi', 'Bisnis Digital', 'Farmasi', 'Ilmu Filsafat', 'Ilmu Keperawatan', 'Manajemen', 'Pendidikan Bahasa Inggris', 'Pendidikan Matematika', 'Sistem Informasi', 'Teknik Informatika']),

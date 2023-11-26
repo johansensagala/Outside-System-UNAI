@@ -131,20 +131,67 @@
                             </div>
                         </div>
                     </div>
-                    @endif
-                    @if ($pengajuan_luar_asrama->surat_outside)
+                    @else
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                Surat Pernyataan Kesediaan
+                                Alamat
                             </div>
                             <div class="col-md-8 fw-bold">
-                                <a href="{{ asset('storage/' . $pengajuan_luar_asrama->surat_outside) }}" download>Klik untuk unduh</a>
+                                {{ $pengajuan_luar_asrama->alamat }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Foto Tempat Tinggal
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                <button type="button" class="btn btn-warning fw-bold text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="link-icon" data-feather="eye"></i>
+                                    &nbsp;Lihat Foto
+                                </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Foto Tempat Tinggal Mahasiswa</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img id="myImg" src="{{ asset('storage/' . $pengajuan_luar_asrama->foto_tempat_tinggal) }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Lokasi
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                <div class="container">
+                                    <h1 class="status"></h1>
+                                </div>
+                            
+                                <div class="latitude d-none"></div>
+                                <div class="longitude d-none"></div>
+                            
+                                <div id="googleMap" class="" style="width:100%;height:400px;"></div>
+                                <div>
+                                    <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $pengajuan_luar_asrama->latitude }},{{ $pengajuan_luar_asrama->longitude }}" target="_blank">Buka di Google Maps</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @endif
-                    @if ($pengajuan_luar_asrama->surat_kebenaran)
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -155,7 +202,16 @@
                             </div>
                         </div>
                     </div>
-                    @endif
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Surat Pernyataan Kesediaan
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                <a href="{{ asset('storage/' . $pengajuan_luar_asrama->surat_outside) }}" download>Klik untuk unduh</a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4"></div>
@@ -269,6 +325,28 @@
         let myLatLng = { lat: latitude, lng: longitude };
 
         let map = new google.maps.Map(document.getElementById('googleMapPenjamin'), {
+            zoom: 14,
+            center: myLatLng
+        });
+
+        let marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Lokasi saya'
+        });
+    }
+</script>
+@else
+<script>
+    let latitude = {{ $pengajuan_luar_asrama->latitude }};
+    let longitude = {{ $pengajuan_luar_asrama->longitude }};
+
+    initMap();
+
+    function initMap() {
+        let myLatLng = { lat: latitude, lng: longitude };
+
+        let map = new google.maps.Map(document.getElementById('googleMap'), {
             zoom: 14,
             center: myLatLng
         });
