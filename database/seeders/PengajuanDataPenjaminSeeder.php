@@ -24,7 +24,7 @@ class PengajuanDataPenjaminSeeder extends Seeder
 
             $kapasitas = $faker->randomElement([1, 2]);
             $status = $faker->randomElement(['pending', 'disetujui', 'ditolak']);
-            $comment = ($status == 'ditolak') ? $faker->sentence : null;
+            $comment = ($status == 'ditolak') ? $faker->randomElement(['Data tidak benar', 'Data tidak lengkap', 'Mohon memasukkan data dengan benar']) : null;
 
             $kodePenjamin = ($status == 'disetujui') ? $this->generate_random_code() : null;
 
@@ -39,6 +39,8 @@ class PengajuanDataPenjaminSeeder extends Seeder
                 'kode_penjamin' => $kodePenjamin,
                 'id_penjamin' => $i,
                 'id_biro_kemahasiswaan' => $faker->numberBetween(1, 5),
+                'created_at' => now(),
+                'updated_at' => now(),            
             ]);
         }
     }

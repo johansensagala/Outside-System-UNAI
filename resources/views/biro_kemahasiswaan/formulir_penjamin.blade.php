@@ -79,7 +79,12 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <img id="myImg" src="{{ asset('storage/' . $data_tempat_tinggal->foto_tempat_tinggal) }}" alt="Snow" style="width: 100%; height: auto;">
+                                                @if(file_exists(public_path('storage/' . $data_tempat_tinggal->foto_tempat_tinggal)))
+                                                    <img id="myImg" src="{{ asset('storage/' . $data_tempat_tinggal->foto_tempat_tinggal) }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                                @else
+                                                    {{-- HANYA INI YANG DIPAKAI DI PRODUCTION --}}
+                                                    <img id="myImg" src="{{ $data_tempat_tinggal->foto_tempat_tinggal }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                                @endif
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
