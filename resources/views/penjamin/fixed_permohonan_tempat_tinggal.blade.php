@@ -39,6 +39,7 @@
                             </div>
                         </div>
                     </div>
+                    @if ($data_tempat_tinggal->status == 'disetujui')
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -49,6 +50,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
