@@ -24,10 +24,9 @@ class PersetujuanLuarAsramaController extends Controller
         $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id', $id)->first();
 
         if ($pengajuan_luar_asrama->id_penjamin) {
-            $penjamin = Penjamin::where('id', $pengajuan_luar_asrama->id_penjamin)->first();
+            $data_pengajuan_penjamin = PengajuanDataPenjamin::where('id_penjamin', $pengajuan_luar_asrama->id_penjamin)->first();
 
-            $data_pengajuan_penjamin = PengajuanDataPenjamin::where('id_penjamin', $penjamin->id)->first();
-
+            dd($data_pengajuan_penjamin);
             return view('biro_kemahasiswaan.pengajuan_luar_asrama', compact('pengajuan_luar_asrama', 'data_pengajuan_penjamin'));
         }
 
