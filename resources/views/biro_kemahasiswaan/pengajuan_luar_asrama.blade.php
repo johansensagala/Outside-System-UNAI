@@ -46,7 +46,7 @@
                                 Jurusan
                             </div>
                             <div class="col-md-8 fw-bold">
-                                {{ $pengajuan_luar_asrama->jurusan }}
+                                {{ $pengajuan_luar_asrama->mahasiswa->jurusan }}
                             </div>
                         </div>
                     </div>
