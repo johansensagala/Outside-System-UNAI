@@ -11,6 +11,8 @@ class PengajuanDataPenjamin extends Model
 
     protected $guarded = ['id'];
 
+    public $timestamps = true;
+
     public function penjamin ()
     {
         return $this->belongsTo(Penjamin::class, 'id_penjamin');

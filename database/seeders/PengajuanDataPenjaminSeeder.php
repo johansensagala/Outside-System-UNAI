@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 
 class PengajuanDataPenjaminSeeder extends Seeder
@@ -15,7 +16,9 @@ class PengajuanDataPenjaminSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 1; $i <= 100; $i++) {
+        $jumlah_data = 350; 
+
+        for ($i = 1; $i <= $jumlah_data; $i++) {
             $latitude = -6.80 + ($i * 0.0001);
             $longitude = 107.57 + ($i * 0.0001);
 
@@ -25,7 +28,7 @@ class PengajuanDataPenjaminSeeder extends Seeder
 
             $kodePenjamin = ($status == 'disetujui') ? $this->generate_random_code() : null;
 
-            DB::table('nama_tabel_anda')->insert([
+            DB::table('pengajuan_data_penjamins')->insert([
                 'alamat' => $faker->address,
                 'latitude' => $latitude,
                 'longitude' => $longitude,
