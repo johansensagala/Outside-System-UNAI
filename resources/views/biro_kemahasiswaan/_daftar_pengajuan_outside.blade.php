@@ -20,7 +20,7 @@
             @endphp
             @foreach ($daftar_pengajuan_luar_asrama as $pengajuan_luar_asrama)
             <tr>
-                <td class="align-middle">{{ $i }}</td>
+                <td class="align-middle">{{ $i++ }}</td>
                 <td class="align-middle">{{ $pengajuan_luar_asrama->mahasiswa->nim }}</td>
                 <td class="align-middle">{{ $pengajuan_luar_asrama->mahasiswa->nama }}</td>
                 <td class="align-middle">{{ $pengajuan_luar_asrama->jurusan }}</td>

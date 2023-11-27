@@ -193,8 +193,12 @@
         $('#search').on('keyup', function (event) {
             let search = $(this).val();
 
-            if (search.length >= 3 || search.length === 0) { 
+            if (search.length >= 3) { 
                 $.get("{{ route('biro_kemahasiswaan.search_persetujuan_luar_asrama') }}", { search: search }, function (data) {
+                    $('#search-results').html(data);
+                });
+            } else {
+                $.get("{{ route('biro_kemahasiswaan.data_persetujuan_luar_asrama') }}", function (data) {
                     $('#search-results').html(data);
                 });
             }
@@ -208,7 +212,7 @@
                     $('#search-results').html(data);
                 });
             } else {
-                $.get("{{ route('biro_kemahasiswaan.search_persetujuan_luar_asrama') }}", function (data) {
+                $.get("{{ route('biro_kemahasiswaan.data_persetujuan_luar_asrama') }}", function (data) {
                     $('#search-results').html(data);
                 });
             }
