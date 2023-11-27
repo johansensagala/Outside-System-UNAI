@@ -56,13 +56,4 @@ class RoleMahasiswaController extends Controller
 
         return view('biro_kemahasiswaan.daftar_mahasiswa', compact('penjamin'));
     }
-
-    public function toggleRole(Request $request, $id)
-    {
-        $mahasiswa = Mahasiswa::find($id);
-
-        $mahasiswa->update(['role' => !$mahasiswa->role]);
-    
-        return view('biro_kemahasiswaan._daftar_mahasiswa', compact('daftar_data_mahasiswa'))->render();
-    }
 }
