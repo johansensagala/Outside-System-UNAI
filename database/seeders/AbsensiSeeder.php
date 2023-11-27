@@ -52,11 +52,11 @@ class AbsensiSeeder extends Seeder
         $random_number = rand(1, 100);
 
         if ($random_number <= 80) {
-            return 'hadir';
+            return 'Hadir';
         } elseif ($random_number <= 90) {
-            return 'izin';
+            return 'Izin';
         } else {
-            return 'absen';
+            return 'Absen';
         }
     }
 }
