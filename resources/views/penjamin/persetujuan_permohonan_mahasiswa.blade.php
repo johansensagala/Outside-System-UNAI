@@ -46,7 +46,7 @@
                                 Jurusan
                             </div>
                             <div class="col-md-8 fw-bold">
-                                {{ $data_mahasiswa->jurusan }}
+                                {{ $data_mahasiswa->mahasiswa->jurusan }}
                             </div>
                         </div>
                     </div>

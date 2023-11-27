@@ -28,19 +28,19 @@ class BiroKemahasiswaanSeeder extends Seeder
         BiroKemahasiswaan::create([
             'username' => 'hendra-sastrawijaya',
             'password' => bcrypt('hendra123'),
-            'nama' => 'Yunus Elon',
+            'nama' => 'Hendra Sastrawijaya',
         ]);
 
         BiroKemahasiswaan::create([
             'username' => 'saschya',
             'password' => bcrypt('saschya123'),
-            'nama' => 'Yunus Elon',
+            'nama' => 'Saschya',
         ]);
 
         BiroKemahasiswaan::create([
             'username' => 'gusti',
             'password' => bcrypt('gusti123'),
-            'nama' => 'Yunus Elon',
+            'nama' => 'Gusti',
         ]);
     }
 }

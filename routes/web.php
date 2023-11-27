@@ -20,6 +20,10 @@ use App\Http\Controllers\DataPermohonanPenjaminController;
 use App\Http\Controllers\LoginBiroKemahasiswaanController;
 use App\Http\Controllers\PermohonanTempatTinggalController;
 use App\Http\Controllers\DaftarAbsensiController;
+use App\Http\Controllers\MahasiswaProfileController;
+use App\Http\Controllers\PenjaminProfileController;
+use App\Http\Controllers\BiroKemahasiswaanProfileController;
+use App\Models\BiroKemahasiswaan;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +60,8 @@ Route::post('biro/logout', [LoginBiroKemahasiswaanController::class, 'logout'])-
 // Rute-rute untuk Mahasiswa
 Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::get('/mhs/dashboard', [MahasiswaController::class, 'index']);
+
+    Route::get('/mhs/profile', [MahasiswaProfileController::class, 'index']);
     
     Route::get('/mhs/pengajuan-luar-asrama', [PengajuanLuarAsramaController::class, 'index'])->name('pengajuan-luar-asrama');
     Route::post('/mhs/pengajuan-luar-asrama', [PengajuanLuarAsramaController::class, 'process']);
@@ -76,6 +82,8 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
 Route::middleware(['penjamin_middleware'])->group(function () {
     Route::get('/penjamin/dashboard', [PenjaminController::class, 'index']);
 
+    Route::get('/penjamin/profile', [PenjaminProfileController::class, 'index']);
+
     Route::get('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'index'])->name('penjamin.permohonan-tempat-tinggal');
     Route::post('/penjamin/permohonan-tempat-tinggal', [PermohonanTempatTinggalController::class, 'store']);
 
@@ -90,6 +98,8 @@ Route::middleware(['penjamin_middleware'])->group(function () {
 // Rute-rute untuk Biro Kemahasiswaan
 Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     Route::get('/biro/dashboard', [BiroKemahasiswaanController::class, 'index']);
+
+    Route::get('/biro/profile', [BiroKemahasiswaanProfileController::class, 'index']);
 
     Route::get('/biro/formulir-penjamin', [FormulirPenjaminController::class, 'index'])->name('biro_kemahasiswaan.daftar_penjamin');
     Route::get('/biro/search-penjamin', [FormulirPenjaminController::class, 'search'])->name('biro_kemahasiswaan.search_penjamin');

@@ -22,6 +22,13 @@
           <span class="link-title">Dashboard</span>
         </a>
       </li>
+
+      <li class="nav-item py-3 {{ request()->is('mhs/profile') ? 'active' : '' }}">
+        <a href="{{ url('/mhs/profile') }}" class="nav-link">
+          <i class="link-icon" data-feather="table"></i>
+          <span class="link-title">Profile</span>
+        </a>
+      </li>
       
       @php
         $data_pengajuan = \App\Models\PengajuanLuarAsrama::where('id_mahasiswa', Auth::guard('mahasiswa')->id())->get();
@@ -91,6 +98,13 @@
         </a>
       </li>
 
+      <li class="nav-item py-3 {{ request()->is('penjamin/profile') ? 'active' : '' }}">
+        <a href="{{ url('/penjamin/profile') }}" class="nav-link">
+          <i class="link-icon" data-feather="table"></i>
+          <span class="link-title">Profile</span>
+        </a>
+      </li>
+
       @php
         $data_permohonan = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())->get();
         $data_permohonan_terakhir = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())
@@ -140,6 +154,13 @@
         <a href="{{ url('/biro/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="table"></i>
           <span class="link-title">Dashboard</span>
+        </a>
+      </li>
+
+      <li class="nav-item py-3 {{ request()->is('biro/profile') ? 'active' : '' }}">
+        <a href="{{ url('/biro/profile') }}" class="nav-link">
+          <i class="link-icon" data-feather="table"></i>
+          <span class="link-title">Profile</span>
         </a>
       </li>
       
