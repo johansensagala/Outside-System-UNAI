@@ -130,11 +130,9 @@
                     <div class="m-5">
                     <div class="row">
                             <div class="col-10">
-                                <form action="/biro/formulir-penjamin">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Masukkan nama mahasiswa..." name="search" id="search">
-                                    </div>
-                                </form>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Masukkan nama mahasiswa..." name="search" id="search">
+                                </div>
                             </div>
                             <div class="col-2">
                                 <select name="status_tinggal" id="status_tinggal" class="form-control form-select">
@@ -192,7 +190,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#search').on('keyup', function () {
+        $('#search').on('keyup', function (event) {
             let search = $(this).val();
 
             if (search.length >= 3 || search.length === 0) { 

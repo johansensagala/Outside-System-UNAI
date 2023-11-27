@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('surat_outside');
             $table->string('tahun_ajaran');
             $table->string('comment')->nullable();
-            $table->string('status_penjamin')->default('pending');
+            $table->string('status_penjamin')->nullable();
             $table->text('alamat')->nullable();
             $table->decimal('latitude', 9, 6)->nullable();
             $table->decimal('longitude', 9, 6)->nullable();

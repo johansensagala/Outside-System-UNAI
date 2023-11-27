@@ -122,6 +122,7 @@ class PengajuanLuarAsramaController extends Controller
 
             $pengajuan_luar_asrama->status_tinggal = $request->session()->get('status_tinggal');
             $pengajuan_luar_asrama->surat_outside = $request->session()->get('surat_outside');
+            $pengajuan_luar_asrama->status_penjamin = 'pending';
             
             $bulan = date('n');
             $tahun = date('Y');
