@@ -50,12 +50,14 @@
           </li>
       @endif
       
+      @if ($data_pengajuan_terakhir->status == 'disetujui')
       <li class="nav-item py-3 {{ request()->is('mhs/absensi') ? 'active' : '' }}">
           <a href="{{ url('/mhs/absensi') }}" class="nav-link">
               <i class="link-icon" data-feather="clock"></i>
               <span class="link-title">Absensi</span>
           </a>
       </li>
+      @endif
 
       @if(Auth::guard('mahasiswa')->user()->role == 1)
 
@@ -108,7 +110,7 @@
       <li class="nav-item py-3 {{ request()->is('penjamin/permohonan-tempat-tinggal*') ? 'active' : '' }}">
         <a href="/penjamin/permohonan-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="file"></i>
-          <span class="link-title">Permohonan Penjamin</span>
+          <span class="link-title">Permohonan Penjamin<br> {{ $data_permohonan_terakhir->status }}</span>
         </a>
       </li>
       @endif
