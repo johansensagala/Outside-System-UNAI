@@ -1,13 +1,177 @@
 @extends('layouts.main')
-<title>UNAI Outside System</title>
+@section('title', 'UNAI Outside System')
 
 @push('plugin-styles')
     <link href="{{ asset('assets/plugins/flatpickr/flatpickr.min.css') }}" rel="stylesheet"/>
+
+    <style>
+    @media (max-width: 767px) {
+        .table-responsive.card-list-table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .table-responsive.card-list-table table {
+            display: block;
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            white-space: nowrap;
+        }
+
+        .table-responsive.card-list-table thead {
+            display: none;
+        }
+
+        .table-responsive.card-list-table tbody {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .table-responsive.card-list-table tbody tr {
+            display: block;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .table-responsive.card-list-table tbody td {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            text-align: left;
+            font-size: 14px;
+            padding: 8px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+    }
+</style>
+
 @endpush
 
 @section('content')
+    <body class="large-screen">
+        <div class="wrap">
+            <div class="table-wrapper">
+                <table class="table-responsive card-list-table">
+                    <thead>
+                        <tr>
+                            <th>Column #1</th>
+                            <th>Column #2</th>
+                            <th>Column #3</th>
+                            <th>Column #4</th>
+                            <th>Column #5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                        <tr>
+                            <td data-title="Column #1">Value #1</td>
+                            <td data-title="Column #2">Value #2</td>
+                            <td data-title="Column #3">Value #3</td>
+                            <td data-title="Column #4">Value #4</td>
+                            <td data-title="Column #5">Value #5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
 
-<div class="row common-font-color">
+
+
+    </script>
+@endsection
+
+<!-- <div class="row common-font-color">
     <div class="col-12 col-xl-12 stretch-card">
         <div class="row flex-grow-1">
 
@@ -72,5 +236,4 @@
             }
         });
     });
-</script>
-@endsection
+</script> -->

@@ -2,9 +2,10 @@
 <html>
 <head>
   @include('layouts.links')
+  @stack('styles')
 </head>
 <body class="sidebar-dark"  data-base-url="{{url('/')}}">
-
+@stack('scripts')
   <script src="{{ asset('assets/js/spinner.js') }}"></script>
 
   <div class="main-wrapper" id="app">
@@ -31,7 +32,6 @@
     <!-- common js -->
     <script src="{{ asset('assets/js/template.js') }}"></script>
     <!-- end common js -->
-
     @stack('custom-scripts')
 </body>
 </html>
