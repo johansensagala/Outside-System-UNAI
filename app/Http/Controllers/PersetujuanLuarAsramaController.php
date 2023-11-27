@@ -36,19 +36,19 @@ class PersetujuanLuarAsramaController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
+
         $query = PengajuanLuarAsrama::query();
 
         if (!empty($search)) {
-            $query->whereHas('mahasiswa', function ($query) use ($search) {
-                $query->where('nama', 'like', '%' . $search . '%');
+            $query->where(function ($query) use ($search) {
+                $query->whereHas('mahasiswa', function ($query) use ($search) {
+                    $query->where('nama', 'like', '%' . $search . '%');
+                })
+                ->whereNotIn('status_penjamin', ['pending', 'ditolak']);
             });
         }
 
         $daftar_pengajuan_luar_asrama = $query->get();
-
-        if (empty($search)) {
-            $daftar_pengajuan_luar_asrama = PengajuanLuarAsrama::get();
-        }
 
         return view('biro_kemahasiswaan._daftar_pengajuan_outside', compact('daftar_pengajuan_luar_asrama'))->render();
     }
@@ -59,10 +59,17 @@ class PersetujuanLuarAsramaController extends Controller
         $query = PengajuanLuarAsrama::query();
 
         if (!empty($status)) {
-            $query->where('status_tinggal', $status);
+            $query->where('status_tinggal', $status)->whereNotIn('status_penjamin', ['pending', 'ditolak']);
         }
 
         $daftar_pengajuan_luar_asrama = $query->get();
+
+        return view('biro_kemahasiswaan._daftar_pengajuan_outside', compact('daftar_pengajuan_luar_asrama'))->render();
+    }
+    
+    public function data(Request $request)
+    {
+        $daftar_pengajuan_luar_asrama = PengajuanLuarAsrama::whereNotIn('status_penjamin', ['pending', 'ditolak'])->get();
 
         return view('biro_kemahasiswaan._daftar_pengajuan_outside', compact('daftar_pengajuan_luar_asrama'))->render();
     }
