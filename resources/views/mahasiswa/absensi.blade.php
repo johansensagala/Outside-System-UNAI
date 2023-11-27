@@ -23,10 +23,12 @@
                     <div class="m-5">
                     <div class="row">
                             <div class="row">
-                                @if ($belum_absen == True && $belum_absen = True)
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Absen Sekarang</button>
-                                @elseif ()
-                                    <div class="text-danger">Absen dibuka pada pukul 21.00 - 21.30</div>
+                                @if ($belum_absen == True && $absen_time == True)
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#absentModal" onclick="isPresent()">Absen Sekarang</button>
+                                @elseif ($belum_absen == False)
+                                    <div class="text-success">Anda sudah melakukan absen hari ini. Absen dibuka besok pada pukul 21.00 - 21.30 WIB.</div>
+                                @else
+                                    <div class="text-danger">Absen dibuka pada pukul 21.00 - 21.30 WIB</div>
                                 @endif
                             </div>
                         </div>
@@ -70,11 +72,11 @@
 </div>
 
   
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="absentModal" tabindex="-1" aria-labelledby="absentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="absentModalLabel">Modal title</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="/mhs/absensi" method="post" enctype="multipart/form-data">
@@ -101,24 +103,24 @@
                     <input type="hidden" id="longitude" name="longitude" value="">
 
                     @error('latitude')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     @error('longitude')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <div class="mt-3">Keterangan</div>
+
                     <div class="bg-success p-2 rounded-3 text-white text-center">
                         Hadir
                     </div>
-
-                    <input type="hidden" value="hadir">
+                    <input type="hidden" id="kehadiran" name="kehadiran" value="hadir">
                     
                     <label for="alasan" class="mt-3">Keterangan (Jika tidak hadir)</label>
-                    <textarea class="form-control" id="alasan" rows="3"></textarea>
+                    <textarea class="form-control" id="alasan" name="alasan" rows="3"></textarea>
 
                     <label for="foto" class="mt-3">Foto Bukti (Jika tidak hadir)</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file" id="foto" name="foto" id="formFile">
 
 
 
@@ -199,7 +201,6 @@ async function initMap() {
 }
 
 
-// test
 
 function toRadians(degrees) {
     return degrees * Math.PI / 180;
@@ -221,16 +222,42 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
     return distance;
 }
 
-const lat1 = -6.807786;
-const lon1 = 107.577864;
-const lat2 = -6.805558;
-const lon2 = 107.579268;
+function isPresent() {
+    const lat1 = latitude;
+    const lon1 = longitude;
+    const lat2 = {{ $latitude }};
+    const lon2 = {{ $longitude }};
 
-const distanceInKilometers = haversineDistance(lat1, lon1, lat2, lon2);
-const distanceInMeters = distanceInKilometers * 1000;
+    const distanceInKilometers = haversineDistance(lat1, lon1, lat2, lon2);
+    const distanceInMeters = distanceInKilometers * 1000;
 
-console.log(`Jarak antara kedua titik adalah ${distanceInMeters.toFixed(2)} meter.`);
+    console.log(lat1);
+    console.log(lon1);
+    console.log(lat2);
+    console.log(lon2);
+    console.log(distanceInMeters);
+    console.log(`Jarak antara kedua titik adalah ${distanceInMeters.toFixed(2)} meter.`);
 
+    // Select the elements to be modified
+    const statusElement = document.querySelector('.modal-body .bg-success');
+    const hiddenInputElement = document.querySelector('#kehadiran');
+
+    // Check the distance and update the DOM accordingly
+    if (distanceInMeters <= 50.0) {
+        statusElement.innerHTML = 'Hadir';
+        hiddenInputElement.value = 'hadir';
+        statusElement.classList.add('bg-success');
+        statusElement.classList.remove('bg-danger');
+    } else {
+        statusElement.innerHTML = 'Absen';
+        hiddenInputElement.value = 'absen';
+        statusElement.classList.remove('bg-success');
+        statusElement.classList.add('bg-danger');
+    }
+}
+
+// Call the function when the page loads
+// isPresent();
 
 </script>
 

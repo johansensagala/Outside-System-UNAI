@@ -23,11 +23,11 @@ class PenjaminFactory extends Factory
     {
         $nama = $this->faker->unique()->name;
         $namaDepan = explode(' ', $nama)[0];
-        $namaIndonesia = $this->faker->name;
+        $namaBelakang = explode(' ', $nama)[1];
 
         return [
-            'nama' => $namaIndonesia,
-            'username' => Str::lower(str_replace(' ', '-', $nama)),
+            'nama' => $namaDepan . $namaBelakang,
+            'username' => Str::lower(str_replace(' ', '-', $namaDepan . $namaBelakang)),
             'password' => bcrypt(Str::lower($namaDepan) . '123'),
             'nomor_telp' => $this->generateNomorTelepon(),
         ];

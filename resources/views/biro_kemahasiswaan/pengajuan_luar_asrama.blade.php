@@ -46,7 +46,7 @@
                                 Jurusan
                             </div>
                             <div class="col-md-8 fw-bold">
-                                {{ $pengajuan_luar_asrama->jurusan }}
+                                {{ $pengajuan_luar_asrama->mahasiswa->jurusan }}
                             </div>
                         </div>
                     </div>
@@ -131,20 +131,67 @@
                             </div>
                         </div>
                     </div>
-                    @endif
-                    @if ($pengajuan_luar_asrama->surat_outside)
+                    @else
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                Surat Pernyataan Kesediaan
+                                Alamat
                             </div>
                             <div class="col-md-8 fw-bold">
-                                <a href="{{ asset('storage/' . $pengajuan_luar_asrama->surat_outside) }}" download>Klik untuk unduh</a>
+                                {{ $pengajuan_luar_asrama->alamat }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Foto Tempat Tinggal
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                <button type="button" class="btn btn-warning fw-bold text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="link-icon" data-feather="eye"></i>
+                                    &nbsp;Lihat Foto
+                                </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Foto Tempat Tinggal Mahasiswa</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img id="myImg" src="{{ asset('storage/' . $pengajuan_luar_asrama->foto_tempat_tinggal) }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Lokasi
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                <div class="container">
+                                    <h1 class="status"></h1>
+                                </div>
+                            
+                                <div class="latitude d-none"></div>
+                                <div class="longitude d-none"></div>
+                            
+                                <div id="googleMap" class="" style="width:100%;height:400px;"></div>
+                                <div>
+                                    <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $pengajuan_luar_asrama->latitude }},{{ $pengajuan_luar_asrama->longitude }}" target="_blank">Buka di Google Maps</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @endif
-                    @if ($pengajuan_luar_asrama->surat_kebenaran)
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -155,19 +202,28 @@
                             </div>
                         </div>
                     </div>
-                    @endif
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Surat Pernyataan Kesediaan
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                <a href="{{ asset('storage/' . $pengajuan_luar_asrama->surat_outside) }}" download>Klik untuk unduh</a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-8 fw-bold">
                                 @if ($pengajuan_luar_asrama->status === 'pending' || $pengajuan_luar_asrama->status === 'ditolak')
-                                    <form method="post" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/setujui" style="display: inline;">
+                                    <form method="post" id="formSetujui" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/setujui" style="display: inline;">
                                         @csrf
-                                        <button type="submit" class="btn btn-success">Setujui</button>
+                                        <button type="submit" id="btnSetujui" class="btn btn-success">Setujui</button>
                                     </form>
                                 @endif
                                 @if ($pengajuan_luar_asrama->status === 'pending')
-                                    <button class="btn btn-danger" id="btnTolak">Tolak</button>
+                                    <button class="btn btn-danger" id="btnTampilkanTolak">Tolak</button>
                                 @endif
                             </div>
                         </div><hr>
@@ -176,10 +232,10 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-8 fw-bold mb-4">
                             <div class="col-9" id="tolakForm" style="display: none;">
-                                <form method="post" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/tolak" style="display: inline;">
+                                <form method="post" id="formTolak" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/tolak" style="display: inline;">
                                     @csrf
                                     <textarea class="form-control" name="comment" rows="3"></textarea>
-                                    <button type="submit" class="btn btn-danger mt-3">Tolak</button>
+                                    <button type="submit" id="btnTolak" class="btn btn-danger mt-3">Tolak</button>
                                 </form>
                             </div>
                         </div>
@@ -280,17 +336,81 @@
         });
     }
 </script>
+@else
+<script>
+    let latitude = {{ $pengajuan_luar_asrama->latitude }};
+    let longitude = {{ $pengajuan_luar_asrama->longitude }};
+
+    initMap();
+
+    function initMap() {
+        let myLatLng = { lat: latitude, lng: longitude };
+
+        let map = new google.maps.Map(document.getElementById('googleMap'), {
+            zoom: 14,
+            center: myLatLng
+        });
+
+        let marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Lokasi saya'
+        });
+    }
+</script>
 @endif
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const btnTolak = document.getElementById("btnTolak");
+        const btnTolak = document.getElementById("btnTampilkanTolak");
         const tolakForm = document.getElementById("tolakForm");
 
         btnTolak.addEventListener("click", function () {
             tolakForm.style.display = "block";
         });
     });
+
+    window.addEventListener("load", function () {
+        const btnSetujui = document.getElementById("btnSetujui");
+        const formSetujui = document.getElementById("formSetujui");
+        const btnTolak = document.getElementById("btnTolak");
+        const formTolak = document.getElementById("formTolak");
+
+        btnSetujui.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Yakin Ingin Menyetujui?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formSetujui.submit();
+                }
+            });
+        });
+
+        btnTolak.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Yakin Ingin Menolak?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formTolak.submit();
+                }
+            });
+        });
+    });
+
 </script>
 
 @endsection

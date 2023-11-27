@@ -39,6 +39,7 @@
                             </div>
                         </div>
                     </div>
+                    @if ($data_tempat_tinggal->status == 'disetujui')
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -49,6 +50,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -67,7 +69,12 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <img id="myImg" src="{{ asset('storage/' . $data_tempat_tinggal->foto_tempat_tinggal) }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                                @if(file_exists(public_path('storage/' . $data_tempat_tinggal->foto_tempat_tinggal)))
+                                                    <img id="myImg" src="{{ asset('storage/' . $data_tempat_tinggal->foto_tempat_tinggal) }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                                @else
+                                                    {{-- HANYA INI YANG DIPAKAI DI PRODUCTION --}}
+                                                    <img id="myImg" src="{{ $data_tempat_tinggal->foto_tempat_tinggal }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                                @endif
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>

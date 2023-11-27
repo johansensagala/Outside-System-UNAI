@@ -69,6 +69,7 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::get('/mhs/absensi/{year}/{month}/{date}', [AbsensiByMahasiswaController::class, 'show']);
 
     Route::get('/mhs/daftar-absensi', [DaftarAbsensiController::class, 'index']);
+    Route::get('/mhs/daftar-absensi/{id}', [DaftarAbsensiController::class, 'show']);
 });
 
 // Rute-rute untuk Penjamin
@@ -104,6 +105,8 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     
     Route::get('/biro/persetujuan-luar-asrama', [PersetujuanLuarAsramaController::class, 'index']);
     Route::get('/biro/search-persetujuan-luar-asrama', [PersetujuanLuarAsramaController::class, 'search'])->name('biro_kemahasiswaan.search_persetujuan_luar_asrama');
+    Route::get('/biro/status-persetujuan-luar-asrama', [PersetujuanLuarAsramaController::class, 'status_tinggal'])->name('biro_kemahasiswaan.status_persetujuan_luar_asrama');
+    
     Route::get('/biro/persetujuan-luar-asrama/{id}', [PersetujuanLuarAsramaController::class, 'show']);
     Route::post('/biro/persetujuan-luar-asrama/{id}/setujui', [PersetujuanLuarAsramaController::class, 'approve']);
     Route::post('/biro/persetujuan-luar-asrama/{id}/tolak', [PersetujuanLuarAsramaController::class, 'reject']);

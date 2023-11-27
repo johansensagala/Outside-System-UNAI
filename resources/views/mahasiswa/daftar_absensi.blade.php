@@ -21,8 +21,8 @@
                 </div>
                 <div class="card">
                     <div class="m-5">
-                        <div class="row">
-                            <div class="col-8">
+                        {{-- <div class="row">
+                            <div class="col-10">
                                 <form action="/biro/formulir-penjamin">
                                     <div class="input-group mb-3">
                                         <!-- <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search" value="{{ request('search') }}"> -->
@@ -37,10 +37,7 @@
                                     <option value="Absen">Absen</option>
                                 </select>
                             </div>
-                            <div class="col-2">
-                                <input type="date" class="form-control" id="tanggal_absensi" name="tanggal_absensi">
-                            </div>
-                        </div>
+                        </div> --}}
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped">
                                 <thead>
@@ -54,56 +51,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2081011</td>
-                                        <td>Johansen Sagala</td>
-                                        <td><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/absensi-tempat-tinggal/1'">Detail</button></td>
-                                        <td>2023-11-20 13:07:16</td>
-                                        <td>
-                                            <span class="bg-danger p-2 rounded-3 text-white text-center">
-                                                Absen
-                                            </span>        
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>2081011</td>
-                                        <td>Jacqueline Josephine Shita Sulistiono</td>
-                                        <td><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/absensi-tempat-tinggal/1'">Detail</button></td>
-                                        <td>2023-11-20 13:07:16</td>
-                                        <td>
-                                            <span class="bg-danger p-2 rounded-3 text-white text-center">
-                                                Absen
-                                            </span>        
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>2021001</td>
-                                        <td>Wesley Suwanda Panjaitan</td>
-                                        <td><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/absensi-tempat-tinggal/1'">Detail</button></td>
-                                        <td>2023-11-20 13:07:16</td>
-                                        <td>
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                Hadir
-                                            </span>        
-                                        </td>
-                                    </tr>
                                     @php
                                         $index = 1
                                     @endphp
                                     @foreach ($data_absen as $absen)
                                     <tr>
-                                        <td>{{ $index }}</td>
-                                        <td>{{ $absen->mahasiswa->nim }}</td>
-                                        <td>{{ $absen->mahasiswa->nama }}</td>
-                                        <td><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/absensi-tempat-tinggal/1'">Detail</button></td>
-                                        <td>{{ $absen->created_at }}</td>
-                                        <td>
+                                        <td class="align-middle">{{ $index }}</td>
+                                        <td class="align-middle">{{ $absen->mahasiswa->nim }}</td>
+                                        <td class="align-middle">{{ $absen->mahasiswa->nama }}</td>
+                                        <td class="align-middle"><button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/daftar-absensi/{{ $absen->id }}'">Detail</button></td>
+                                        <td class="align-middle">{{ $absen->created_at }}</td>
+                                        <td class="align-middle">
+                                            @if ($absen->kehadiran == 'hadir')
+                                            <span class="bg-success p-2 rounded-3 text-white text-center">
+                                                Hadir
+                                            </span>
+                                            @else
                                             <span class="bg-danger p-2 rounded-3 text-white text-center">
-                                                {{ $absen->kehadiran }}
-                                            </span>        
+                                                Absen
+                                            </span>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

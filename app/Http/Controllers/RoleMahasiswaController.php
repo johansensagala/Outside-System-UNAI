@@ -11,10 +11,26 @@ class RoleMahasiswaController extends Controller
 {
     public function index(Request $request)
     {
-        $daftar_data_mahasiswa = Mahasiswa::get();
-            
+        $daftar_data_mahasiswa = Mahasiswa::paginate(10);
+                
         return view('biro_kemahasiswaan.daftar_mahasiswa', compact('daftar_data_mahasiswa'));
     }
+
+    // public function search(Request $request)
+    // {
+    //     $search = $request->input('search');
+    //     $query = Mahasiswa::query();
+
+    //     if (!empty($search)) {
+    //         $query->where('nama', 'like', '%' . $search . '%')->orWhere('nim', 'like', '%' . $search . '%') ;
+    //     }
+
+    //     $daftar_data_mahasiswa = $query->paginate(10);
+
+    //     // $showPagination = $daftar_data_mahasiswa->total() > 10;
+
+    //     return view('biro_kemahasiswaan._daftar_mahasiswa', compact('daftar_data_mahasiswa'));
+    // }
 
     public function search(Request $request)
     {
@@ -22,14 +38,17 @@ class RoleMahasiswaController extends Controller
         $query = Mahasiswa::query();
 
         if (!empty($search)) {
-            $query->where('nama', 'like', '%' . $search . '%');
-            // Tambahkan kondisi lain jika perlu
+            $query->where('nama', 'like', '%' . $search . '%')->orWhere('nim', 'like', '%' . $search . '%');
         }
 
-        $daftar_data_mahasiswa = $query->get();
+        $daftar_data_mahasiswa = $query->paginate(10);
+
+        // Append the search parameter to pagination links
+        $daftar_data_mahasiswa->appends(['search' => $search]);
 
         return view('biro_kemahasiswaan._daftar_mahasiswa', compact('daftar_data_mahasiswa'))->render();
     }
+
 
     public function show($id)
     {

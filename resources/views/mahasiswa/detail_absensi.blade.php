@@ -27,8 +27,7 @@
                                 Nama
                             </div>
                             <div class="col-md-8 fw-bold">
-                                {{-- {{ $data_tempat_tinggal->alamat }} --}}
-                                Wesley Suwanda Panjaitan
+                                {{ $data_absen->mahasiswa->nama }}
                             </div>
                         </div>
                     </div>
@@ -38,19 +37,17 @@
                                 NIM
                             </div>
                             <div class="col-md-8 fw-bold">
-                                {{-- {{ $data_tempat_tinggal->alamat }} --}}
-                                2081011
+                                {{ $data_absen->mahasiswa->nim }}
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                Tanggal
+                                Tanggal & Waktu Absen
                             </div>
                             <div class="col-md-8 fw-bold">
-                                {{-- {{ $data_tempat_tinggal->alamat }} --}}
-                                16 November 2023
+                                {{ $data_absen->created_at }}
                             </div>
                         </div>
                     </div>
@@ -73,8 +70,8 @@
                                 </div>
                                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script>
                                 <script>
-                                    let latitudeAlamat = -6.807741;
-                                    let longitudeAlamat = 107.577888;
+                                    let latitudeAlamat = {{ $latitude}};
+                                    let longitudeAlamat = {{ $longitude }};
                                 
                                     initMapAlamat();
                                     
@@ -113,8 +110,8 @@
                                     <a class="btn btn-primary mt-3" href="https://www.google.com/maps" target="_blank">Buka di Google Maps</a>
                                 </div>
                                 <script>
-                                    let latitudeAbsen = -6.804674;
-                                    let longitudeAbsen = 107.571838;
+                                    let latitudeAbsen = {{ $data_absen->latitude }};
+                                    let longitudeAbsen = {{ $data_absen->longitude }};
 
                                     initMapAbsen();
                                     
@@ -154,13 +151,29 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                {{-- <img id="myImg" src="{{ asset('storage/' . $data_tempat_tinggal->foto_tempat_tinggal) }}" alt="Snow" style="width: 100%; height: auto;"> --}}
+                                                <img id="myImg" src="{{ asset('storage/' . $data_absen->foto) }}" alt="Snow" style="width: 100%; height: auto;">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Status Kehadiran
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                <div class="form-check form-switch">
+                                    <span class="bg-success p-2 rounded-3 text-white text-center">
+                                        {{ $data_absen->kehadiran }}
+                                    </span>
+                                    {{-- <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked> --}}
                                 </div>
                             </div>
                         </div>

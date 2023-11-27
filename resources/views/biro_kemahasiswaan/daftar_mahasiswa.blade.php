@@ -27,11 +27,11 @@
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder="Masukkan nama mahasiswa..." name="search" id="search" value="{{ request('search') }}">
                                     </div>
-                                </form>
+                                </form>                                
                             </div>
                         </div>
                         @include('biro_kemahasiswaan._daftar_mahasiswa')
-                    </div>
+                    </div>   
                 </div>
             </div>
         </div>
@@ -39,36 +39,46 @@
 </div>
 
 <script>
+    // $(document).ready(function () {
+    //     $('#search').on('keyup', function () {
+    //         let search = $(this).val();
+
+    //         if (search.length >= 3 || search.length === 0) { 
+    //             $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search }, function (data) {
+    //                 $('#search-results').html(data);
+    //             });
+    //         }
+    //     });
+    // });
+
     $(document).ready(function () {
-        $('#search').on('keyup', function () {
-            let search = $(this).val();
-
-            if (search.length >= 3 || search.length === 0) { 
-                $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search }, function (data) {
-                    $('#search-results').html(data);
-                });
-            }
-        });
-
-        $('#toggle').change(function() {
-                var mahasiswaId = $(this).data('item-id');
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/biro/daftar-mahasiswa/' + mahasiswaId + '/toggle-role',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        console.log(response);
-                        // Handle success, update UI if needed
-                    },
-                    error: function(error) {
-                        console.log(error);
-                        // Handle error
-                    }
-                });
-            });
+        
+    $('#search').on('keyup', function () {
+        let search = $(this).val();
+        updateSearchResults(search);
     });
+
+    $('body').on('click', '.pagination a', function (e) {
+        e.preventDefault();
+        let page = $(this).attr('href').split('page=')[1];
+        let search = $('#search').val();
+        updateSearchResults(search, page);
+    });
+
+    $('form').submit(function (event) {
+        event.preventDefault();
+        let search = $('#search').val();
+        updateSearchResults(search);
+    });
+
+    function updateSearchResults(search, page = 1) {
+        if (search.length >= 3 || search.length === 0) {
+            $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search, page: page }, function (data) {
+                $('#search-results').html(data);
+            });
+        }
+    }
+});
+
 </script>
 @endsection
