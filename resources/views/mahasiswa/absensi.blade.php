@@ -21,7 +21,7 @@
                 </div>
                 <div class="card">
                     <div class="m-5">
-                    <div class="row">
+                        <div class="row">
                             <div class="row">
                                 @if ($belum_absen == True && $absen_time == True)
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#absentModal" onclick="isPresent()">Absen Sekarang</button>
@@ -32,35 +32,104 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="table-responsive mt-3">
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Tanggal</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $i = 1;
-                                    @endphp
-                                    @foreach ($data_absen as $absen)
-                                    <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $absen->created_at }}</td>
-                                        <td>
-                                            <span class="bg-success p-2 rounded-3 text-white text-center">
-                                                {{ $absen->kehadiran }}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    @php
-                                        $i++;
-                                    @endphp
-                                    @endforeach
-                                </tbody>
-                            </table>
+                        <div class="row">
+                            <div class="col-md-8 table-responsive mt-3">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Tanggal</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $i = 1;
+                                        @endphp
+                                        @foreach ($data_absen as $absen)
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $absen->created_at }}</td>
+                                            <td>
+                                                @if ($absen->kehadiran == 'Hadir')
+                                                <span class="bg-success p-2 rounded-3 text-white text-center">
+                                                    Hadir
+                                                </span>
+                                                @elseif ($absen->kehadiran == 'Izin')
+                                                <span class="bg-warning p-2 rounded-3 text-white text-center">
+                                                    Izin
+                                                </span>                                            
+                                                @else
+                                                <span class="bg-danger p-2 rounded-3 text-white text-center">
+                                                    Absen
+                                                </span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $i++;
+                                        @endphp
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4 mt-3">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">Detail Absensi Semester</h5>
+
+                                        <div id="grafik_absensi_semester" class="row my-3 me-5 d-flex justify-content-center align-items-center">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="tanggalFilter" class="form-label">Tanggal:</label>
+                                            <input type="date" id="tanggalFilter" class="form-control">
+                                        </div>
+                                                        
+                                        <div class="mb-3">
+                                            <label for="jenisFilter" class="form-label">Jenis:</label>
+                                            <select id="jenisFilter" class="form-select">
+                                                <option value="">Semua</option>
+                                                <option value="hadir">Hadir</option>
+                                                <option value="izin">Izin</option>
+                                                <option value="absen">Absen</option>
+                                            </select>
+                                        </div>
+                            
+                                        <button type="button" class="btn btn-primary" onclick="filterData()">Filter</button>
+                                    </div>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">Detail Absensi Bulan </h5>
+                            
+                                        <div class="mb-3">
+                                            <label for="tanggalFilter" class="form-label">Tanggal:</label>
+                                            <select id="tanggalFilter" class="form-select">
+                                                @foreach($bulan_tahun_combinations as $bulan)
+                                                    <?php
+                                                        $formattedDate = \Carbon\Carbon::createFromDate($bulan->tahun, $bulan->bulan, 1)->format('F Y');
+                                                        $isSelected = ($bulan->tahun == \Carbon\Carbon::now()->year && $bulan->bulan == \Carbon\Carbon::now()->month);
+                                                    ?>
+                                                    <option value="{{ $formattedDate }}" {{ $isSelected ? 'selected' : '' }}>{{ $formattedDate }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                                                                                                                        
+                                        <div class="mb-3">
+                                            <label for="jenisFilter" class="form-label">Jenis:</label>
+                                            <select id="jenisFilter" class="form-select">
+                                                <option value="">Semua</option>
+                                                <option value="hadir">Hadir</option>
+                                                <option value="izin">Izin</option>
+                                                <option value="absen">Absen</option>
+                                            </select>
+                                        </div>
+                            
+                                        <button type="button" class="btn btn-primary" onclick="filterData()">Filter</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -258,6 +327,31 @@ function isPresent() {
 
 // Call the function when the page loads
 // isPresent();
+
+var options = {
+    series: [44, 55],
+    chart: {
+        width: 300,
+        type: 'pie',
+    },
+    labels: ['Hadir', 'Absen'],
+    colors:['#0f0', '#f00'],
+    responsive: [{
+        breakpoint: 480,
+        options: {
+            chart: {
+                width: 300
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }]
+};
+
+var chart = new ApexCharts(document.querySelector("#grafik_absensi_semester"), options);
+chart.render();
+
 
 </script>
 

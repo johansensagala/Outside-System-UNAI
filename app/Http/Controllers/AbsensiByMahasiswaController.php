@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Absensi;
 use App\Models\PengajuanDataPenjamin;
 use App\Models\PengajuanLuarAsrama;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use Carbon\Carbon;
 
 class AbsensiByMahasiswaController extends Controller
@@ -14,15 +17,32 @@ class AbsensiByMahasiswaController extends Controller
     public function index () {
         $mahasiswa = Auth::guard('mahasiswa')->user();
         $id_mahasiswa = $mahasiswa->id;
+        
+        // Bagian ini untuk mengurus tabel absensi dan detail absensi
 
-        $data_absen = Absensi::where('id_mahasiswa', $id_mahasiswa)->get();
+        $data_absen = Absensi::where('id_mahasiswa', $id_mahasiswa)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->orderBy('created_at', 'desc')
+            ->get();
+    
+        $bulan_tahun_combinations = Absensi::select(DB::raw('YEAR(created_at) AS tahun, MONTH(created_at) AS bulan'))
+            ->where('id_mahasiswa', $id_mahasiswa)
+            ->groupBy('tahun', 'bulan')
+            ->get();
 
+            // foreach($bulan_tahun_combinations as $bulan) {
+            //     $formattedDate = Carbon::createFromDate($bulan->tahun, $bulan->bulan, 1)->format('F Y');
+            //     echo $formattedDate . '<br>';
+            // }
+                    
+        // Bagian ini untuk mengurus aksi absensi 
+    
         $data_absen_today = Absensi::where('id_mahasiswa', $id_mahasiswa)
                                 ->whereDate('created_at', Carbon::today())
                                 ->get();
 
         $now = Carbon::now();
-        $batas_bawah = Carbon::createFromTime(0, 0);
+        $batas_bawah = Carbon::createFromTime(21, 00);
         $batas_atas = Carbon::createFromTime(21, 30);
     
         $absen_time = $now->between($batas_bawah, $batas_atas);
@@ -42,7 +62,7 @@ class AbsensiByMahasiswaController extends Controller
             $longitude = $data_penjamin->longitude;
         }
         
-        return view('mahasiswa.absensi', compact('data_absen', 'mahasiswa', 'belum_absen', 'absen_time', 'latitude', 'longitude'));
+        return view('mahasiswa.absensi', compact('data_absen', 'mahasiswa', 'belum_absen', 'absen_time', 'latitude', 'longitude', 'bulan_tahun_combinations'));
     }
 
     public function show () {

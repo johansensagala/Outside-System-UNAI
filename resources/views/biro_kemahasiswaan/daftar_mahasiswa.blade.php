@@ -72,7 +72,7 @@
     });
 
     function updateSearchResults(search, page = 1) {
-        if (search.length >= 3 || search.length === 0) {
+        if (search.length >= 3 || search.length == 0) {
             $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search, page: page }, function (data) {
                 $('#search-results').html(data);
             });
