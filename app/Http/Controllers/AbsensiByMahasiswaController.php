@@ -30,11 +30,8 @@ class AbsensiByMahasiswaController extends Controller
             ->groupBy('tahun', 'bulan')
             ->get();
 
-            // foreach($bulan_tahun_combinations as $bulan) {
-            //     $formattedDate = Carbon::createFromDate($bulan->tahun, $bulan->bulan, 1)->format('F Y');
-            //     echo $formattedDate . '<br>';
-            // }
-                    
+        // TAMBAH DISINI
+
         // Bagian ini untuk mengurus aksi absensi 
     
         $data_absen_today = Absensi::where('id_mahasiswa', $id_mahasiswa)
