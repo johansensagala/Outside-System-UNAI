@@ -26,14 +26,15 @@ class PengajuanLuarAsramaDenganPenjaminSeeder extends Seeder
             $surat_outside = 'surat_outside/surat_permohonan_tinggal_di_asrama.pdf';
             $tahun_ajaran = '2023/2024';
             $status_penjamin_random = $status_penjamin[array_rand($status_penjamin)];
-            $id_penjamin = null;
+            $id_penjamin = $id_penjamin = rand(1, 400);;
             $status = 'pending';
             $id_biro_kemahasiswaan = rand(1, 5);
             $comment = ($status == 'ditolak') ? $faker->randomElement(['Mahasiswa bermasalah', 'Mahasiswa sudah ditolak', 'Mahasiswa tidak layak tinggal outside']) : null;
 
             if ($status_penjamin_random == 'disetujui') {
-                $id_penjamin = rand(1, 400);
                 $status = $statuses[array_rand($statuses)];
+            } else if ($status_penjamin_random == 'ditolak') {
+                $status = 'ditolak';
             }
 
             PengajuanLuarAsrama::create([

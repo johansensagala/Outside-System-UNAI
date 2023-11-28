@@ -49,5 +49,19 @@ class PengajuanLuarAsramaTanpaPenjaminSeeder extends Seeder
                 'comment' => $comment,
             ]);
         }
+
+        // ISI KEKOSONGAN ID (DIJALANKAN SESUDAH SEED)
+
+        // CREATE TEMPORARY TABLE temp_table
+        //     SELECT @row := @row + 1 AS new_id, id as old_id
+        //     FROM pengajuan_luar_asramas
+        //     CROSS JOIN (SELECT @row := 0) AS init
+        //     ORDER BY id;
+
+        // UPDATE pengajuan_luar_asramas
+        // JOIN temp_table ON pengajuan_luar_asramas.id = temp_table.old_id
+        // SET pengajuan_luar_asramas.id = temp_table.new_id;
+
+        // DROP TEMPORARY TABLE IF EXISTS temp_table;
     }
 }

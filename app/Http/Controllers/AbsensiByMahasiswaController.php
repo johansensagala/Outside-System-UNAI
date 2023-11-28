@@ -50,6 +50,11 @@ class AbsensiByMahasiswaController extends Controller
         $belum_absen = $data_absen_today->isEmpty();
 
         $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id_mahasiswa', $id_mahasiswa)->where('status', 'disetujui')->first();
+
+        if (!($pengajuan_luar_asrama)) {
+            return view('mahasiswa.no_absensi');
+        }
+
         $status_tinggal = $pengajuan_luar_asrama->status_tinggal;
 
         if ($status_tinggal == 'Married' || $status_tinggal == 'Profesi Ners' || $status_tinggal == 'Skripsi') {

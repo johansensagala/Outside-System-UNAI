@@ -28,6 +28,7 @@ class DataPengajuanMahasiswaController extends Controller
             $penjamin = Penjamin::where('id', $data_pengajuan_luar_asrama->id_penjamin)->first();
 
             $data_pengajuan_penjamin = PengajuanDataPenjamin::where('id_penjamin', $penjamin->id)->first();
+            // dd($penjamin->id);
 
             return view('mahasiswa.fixed_pengajuan_luar_asrama', compact('data_pengajuan_luar_asrama', 'data_pengajuan_penjamin'));
         }
