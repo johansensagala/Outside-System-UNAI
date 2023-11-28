@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('semesters', function (Blueprint $table) {
             $table->id();
             $table->string('aksi');
-            $table->string('kehadiran');
             $table->unsignedBigInteger('id_biro_kemahasiswaan')->nullable();
             $table->timestamps();
 

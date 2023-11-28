@@ -46,7 +46,7 @@
                                         @php
                                             $i = 1;
                                         @endphp
-                                        @foreach ($data_absen as $absen)
+                                        @foreach ($data_absen_bulanan as $absen)
                                         <tr>
                                             <td>{{ $i }}</td>
                                             <td>{{ $absen->created_at }}</td>
@@ -80,53 +80,54 @@
 
                                         <div id="grafik_absensi_semester" class="row my-3 me-5 d-flex justify-content-center align-items-center">
                                         </div>
-
-                                        <div class="mb-3">
-                                            <label for="tanggalFilter" class="form-label">Tanggal:</label>
-                                            <input type="date" id="tanggalFilter" class="form-control">
+                                        
+                                        <div>
+                                            <p>
+                                                Jumlah hadir: {{ $summary['hadir'] }}
+                                            </p>
+                                            <p>
+                                                Jumlah izin: {{ $summary['izin'] }}
+                                            </p>
+                                            <p>
+                                                Jumlah absen: {{ $summary['absen'] }}
+                                            </p>
+                                            <p class="text-danger">
+                                                Selalu ingat untuk melakukan absensi, tidak melakukan absensi akan terhitung sebagai absen
+                                            </p>
                                         </div>
-                                                        
-                                        <div class="mb-3">
-                                            <label for="jenisFilter" class="form-label">Jenis:</label>
-                                            <select id="jenisFilter" class="form-select">
-                                                <option value="">Semua</option>
-                                                <option value="hadir">Hadir</option>
-                                                <option value="izin">Izin</option>
-                                                <option value="absen">Absen</option>
-                                            </select>
-                                        </div>
-                            
-                                        <button type="button" class="btn btn-primary" onclick="filterData()">Filter</button>
                                     </div>
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <h5 class="card-title text-center">Detail Absensi Bulan </h5>
+
+                                        <div id="grafik_absensi_bulanan" class="row my-3 me-5 d-flex justify-content-center align-items-center">
+                                        </div>
+                                        
+                                        <div>
+                                            <p>
+                                                Jumlah hadir: {{ $summary_bulanan['hadir'] }}
+                                            </p>
+                                            <p>
+                                                Jumlah izin: {{ $summary_bulanan['izin'] }}
+                                            </p>
+                                            <p>
+                                                Jumlah absen: {{ $summary_bulanan['absen'] }}
+                                            </p>
+                                        </div>
                             
-                                        <div class="mb-3">
+                                        <div class="my-3">
                                             <label for="tanggalFilter" class="form-label">Tanggal:</label>
                                             <select id="tanggalFilter" class="form-select">
                                                 @foreach($bulan_tahun_combinations as $bulan)
-                                                    <?php
+                                                    @php
                                                         $formattedDate = \Carbon\Carbon::createFromDate($bulan->tahun, $bulan->bulan, 1)->format('F Y');
                                                         $isSelected = ($bulan->tahun == \Carbon\Carbon::now()->year && $bulan->bulan == \Carbon\Carbon::now()->month);
-                                                    ?>
+                                                    @endphp
                                                     <option value="{{ $formattedDate }}" {{ $isSelected ? 'selected' : '' }}>{{ $formattedDate }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                                                                                                                        
-                                        <div class="mb-3">
-                                            <label for="jenisFilter" class="form-label">Jenis:</label>
-                                            <select id="jenisFilter" class="form-select">
-                                                <option value="">Semua</option>
-                                                <option value="hadir">Hadir</option>
-                                                <option value="izin">Izin</option>
-                                                <option value="absen">Absen</option>
-                                            </select>
-                                        </div>
-                            
-                                        <button type="button" class="btn btn-primary" onclick="filterData()">Filter</button>
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +142,7 @@
 </div>
 
   
-  <div class="modal fade" id="absentModal" tabindex="-1" aria-labelledby="absentModalLabel" aria-hidden="true">
+<div class="modal fade" id="absentModal" tabindex="-1" aria-labelledby="absentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -150,61 +151,50 @@
         </div>
         <form action="/mhs/absensi" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="modal-body">
-          
-
-
-
-
-                    <div>Lokasi</div>
-                    <div class="loading text-center">
-                        <p>Melacak lokasi</p>
-                        <div class="spinner-border mt-3" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
+            <div class="modal-body">
+                <div>Lokasi</div>
+                <div class="loading text-center">
+                    <p>Melacak lokasi</p>
+                    <div class="spinner-border mt-3" role="status">
+                        <span class="visually-hidden">Loading...</span>
                     </div>
-                    <div class="container">
-                        <h1 class="status"></h1>
-                    </div>
-                    <div id="googleMap" class="" style="width: 100%; height: 300px;"></div>
+                </div>
+                <div class="container">
+                    <h1 class="status"></h1>
+                </div>
+                <div id="googleMap" class="" style="width: 100%; height: 300px;"></div>
 
-                    <input type="hidden" id="latitude" name="latitude" value="">
-                    <input type="hidden" id="longitude" name="longitude" value="">
+                <input type="hidden" id="latitude" name="latitude" value="">
+                <input type="hidden" id="longitude" name="longitude" value="">
 
-                    @error('latitude')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    @error('longitude')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                @error('latitude')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                @error('longitude')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
-                    <div class="mt-3">Keterangan</div>
+                <div class="mt-3">Keterangan</div>
 
-                    <div class="bg-success p-2 rounded-3 text-white text-center">
-                        Hadir
-                    </div>
-                    <input type="hidden" id="kehadiran" name="kehadiran" value="hadir">
-                    
-                    <label for="alasan" class="mt-3">Keterangan (Jika tidak hadir)</label>
-                    <textarea class="form-control" id="alasan" name="alasan" rows="3"></textarea>
+                <div class="bg-success p-2 rounded-3 text-white text-center">
+                    Hadir
+                </div>
+                <input type="hidden" id="kehadiran" name="kehadiran" value="hadir">
+                
+                <label for="alasan" class="mt-3">Keterangan (Jika tidak hadir)</label>
+                <textarea class="form-control" id="alasan" name="alasan" rows="3"></textarea>
 
-                    <label for="foto" class="mt-3">Foto Bukti (Jika tidak hadir)</label>
-                    <input class="form-control" type="file" id="foto" name="foto" id="formFile">
-
-
-
-
-
-
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" style="width: 50%">Absen</button>
-        </div>
+                <label for="foto" class="mt-3">Foto Bukti (Jika tidak hadir)</label>
+                <input class="form-control" type="file" id="foto" name="foto" id="formFile">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" style="width: 50%">Absen</button>
+            </div>
 
         </form>
       </div>
     </div>
-  </div>
+</div>
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script>
@@ -269,8 +259,6 @@ async function initMap() {
   });
 }
 
-
-
 function toRadians(degrees) {
     return degrees * Math.PI / 180;
 }
@@ -307,11 +295,9 @@ function isPresent() {
     console.log(distanceInMeters);
     console.log(`Jarak antara kedua titik adalah ${distanceInMeters.toFixed(2)} meter.`);
 
-    // Select the elements to be modified
     const statusElement = document.querySelector('.modal-body .bg-success');
     const hiddenInputElement = document.querySelector('#kehadiran');
 
-    // Check the distance and update the DOM accordingly
     if (distanceInMeters <= 50.0) {
         statusElement.innerHTML = 'Hadir';
         hiddenInputElement.value = 'hadir';
@@ -325,17 +311,14 @@ function isPresent() {
     }
 }
 
-// Call the function when the page loads
-// isPresent();
-
-var options = {
-    series: [44, 55],
+let grafik_absensi_semester = {
+    series: [{{ $summary['hadir'] }}, {{ $summary['izin'] }}, {{ $summary['absen'] }}],
     chart: {
         width: 300,
         type: 'pie',
     },
-    labels: ['Hadir', 'Absen'],
-    colors:['#0f0', '#f00'],
+    labels: ['Hadir', 'Izin', 'Absen'],
+    colors:['#0f0', '#ff0', '#f00'],
     responsive: [{
         breakpoint: 480,
         options: {
@@ -349,9 +332,31 @@ var options = {
     }]
 };
 
-var chart = new ApexCharts(document.querySelector("#grafik_absensi_semester"), options);
-chart.render();
+let grafik_absensi_bulanan = {
+    series: [{{ $summary_bulanan['hadir'] }}, {{ $summary_bulanan['izin'] }}, {{ $summary_bulanan['absen'] }}],
+    chart: {
+        width: 300,
+        type: 'pie',
+    },
+    labels: ['Hadir', 'Izin', 'Absen'],
+    colors:['#0f0', '#ff0', '#f00'],
+    responsive: [{
+        breakpoint: 480,
+        options: {
+            chart: {
+                width: 300
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }]
+};
 
+let chart_semester = new ApexCharts(document.querySelector("#grafik_absensi_semester"), grafik_absensi_semester);
+let chart_bulanan = new ApexCharts(document.querySelector("#grafik_absensi_bulanan"), grafik_absensi_bulanan);
+chart_semester.render();
+chart_bulanan.render();
 
 </script>
 
