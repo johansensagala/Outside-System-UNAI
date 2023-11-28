@@ -1,6 +1,6 @@
 <div id="search-results">
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
+    <div class="table-wrapper card bs-gray-100 fw-bold">
+        <table class="table table-responsive card-list-table table-bordered table-striped">
             <thead>
                 <tr>
                     <th class="text-center">No</th>
@@ -15,9 +15,9 @@
             <tbody>
                 @foreach ($daftar_data_mahasiswa as $key => $data_mahasiswa)
                     <tr>
-                        <td class="text-center">{{ ($daftar_data_mahasiswa->currentPage() - 1) * $daftar_data_mahasiswa->perPage() + $key + 1 }}</td>
+                        <td class="text-center number">{{ ($daftar_data_mahasiswa->currentPage() - 1) * $daftar_data_mahasiswa->perPage() + $key + 1 }}</td>
                         <td class="align-middle text-center">{{ $data_mahasiswa->nim }}</td>
-                        <td class="align-middle">{{ $data_mahasiswa->nama }}</td>
+                        <td class="align-middle nama">{{ $data_mahasiswa->nama }}</td>
                         <td class="align-middle text-center">{{ $data_mahasiswa->angkatan }}</td>
                         <td class="align-middle text-center">{{ $data_mahasiswa->nomor_pribadi }}</td>
                         <td class="align-middle text-center">{{ $data_mahasiswa->role ? 'monitor' : 'mahasiswa' }}</td>
