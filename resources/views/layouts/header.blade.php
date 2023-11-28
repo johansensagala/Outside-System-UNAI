@@ -3,7 +3,7 @@
     <i data-feather="menu"></i>
   </a>
   <div class="navbar-content">
-  <div class="m-2">
+  <div class="m-2 ms-auto">
     <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Username</button>
         <div class="dropdown-menu">
