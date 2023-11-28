@@ -21,6 +21,14 @@
             white-space: nowrap;
         }
 
+        .table-responsive.card-list-table tbody tr .number {
+            display: none;
+        }
+
+        .table-responsive.card-list-table tbody tr .name {
+            font-size: 16px;
+        }
+
         .table-responsive.card-list-table thead {
             display: none;
         }
@@ -34,7 +42,7 @@
         .table-responsive.card-list-table tbody tr {
             display: block;
             margin-bottom: 10px;
-            border: 1px solid #ddd;
+            border: 8px solid #ddd;
             width: 100%;
             box-sizing: border-box;
         }
@@ -42,7 +50,7 @@
         .table-responsive.card-list-table tbody td {
             display: flex;
             align-items: baseline;
-            justify-content: space-between;
+            justify-content:center;
             text-align: left;
             font-size: 14px;
             padding: 8px;
@@ -55,17 +63,17 @@
 @endpush
 
 @section('content')
-    <body class="large-screen">
-        <div class="wrap">
-            <div class="table-wrapper">
+    <!-- <body class="large-screen">
+        <div class="row common-font-color wrap common-font-color">
+            <div class="table-wrapper card bs-gray-200 fw-bold ">
                 <table class="table-responsive card-list-table">
                     <thead>
                         <tr>
-                            <th>Column #1</th>
-                            <th>Column #2</th>
-                            <th>Column #3</th>
-                            <th>Column #4</th>
-                            <th>Column #5</th>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Tanggal</th>
+                            <th>Detail</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -164,14 +172,9 @@
                 </table>
             </div>
         </div>
-    </body>
+    </body> -->
 
-
-
-    </script>
-@endsection
-
-<!-- <div class="row common-font-color">
+    <div class="row common-font-color">
     <div class="col-12 col-xl-12 stretch-card">
         <div class="row flex-grow-1">
 
@@ -208,7 +211,11 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
+
+    </script>
+@endsection
+
 
 <script>
     $(document).ready(function () {
@@ -236,4 +243,4 @@
             }
         });
     });
-</script> -->
+</script>

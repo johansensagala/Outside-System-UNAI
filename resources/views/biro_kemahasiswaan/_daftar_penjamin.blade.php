@@ -1,6 +1,6 @@
 <div id="search-results">
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
+    <div class="table-wrapper card bs-gray-100 fw-bold">
+        <table class="table table-responsive card-list-table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>No</th>
@@ -16,8 +16,8 @@
                 @endphp
                 @foreach ($daftar_data_penjamin as $data_penjamin)
                     <tr>
-                        <td>{{ $index }}</td>
-                        <td class="align-middle">{{ $data_penjamin->penjamin->nama }}</td>
+                        <td class="align-middle number">{{ $index }}</td>
+                        <td class="align-middle name">{{ $data_penjamin->penjamin->nama }}</td>
                         <td class="align-middle">{{ $data_penjamin->created_at->format('d/m/Y') }}</td>
                         <td class="align-middle">
                             <a href="/biro/formulir-penjamin/{{ $data_penjamin->id }}" class="btn btn-primary">Detail</a>

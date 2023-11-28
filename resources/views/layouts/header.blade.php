@@ -3,27 +3,20 @@
     <i data-feather="menu"></i>
   </a>
   <div class="navbar-content">
-    <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img class="wd-30 ht-30 rounded-circle" src="../ " alt="profile">
-        </a>
-        <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
-          <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
-            <div class="text-center">
-              <p class="tx-16 fw-bolder">Username</p>
-            </div>
-          </div>
-          <ul class="list-unstyled p-1">
-            <li class="dropdown-item py-2">
-              <a href="javascript:;" class="text-body ms-0">
-                <i class="me-2 icon-md" data-feather="log-out"></i>
-                <span>Log Out</span>
-              </a>
-            </li>
-          </ul>
+  <div class="m-2">
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Username</button>
+        <div class="dropdown-menu">
+            <a href="#" class="dropdown-item">Logout</a>
+        </div>
+    </div>
+    <!-- <ul class="navbar-nav">
+    <li class="nav-item dropdown">
+      <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
+        <div class="dropdown-menu dropdown-menu-end">
+          <a href="#" class="dropdown-item">Logout</a>
         </div>
       </li>
-    </ul>
+    </ul> -->
   </div>
 </nav>
