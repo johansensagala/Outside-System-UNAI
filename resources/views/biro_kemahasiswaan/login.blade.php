@@ -52,7 +52,7 @@
                   </div>
                   <div class="bg-white pt-3 pb-4" style="border-bottom-left-radius: 20px;border-bottom-right-radius: 20px">
                     <div class="form-check mb-2" style="align-items: first baseline;">
-                    <button type="button" style="color: #1cb4ac" class="btn btn-sm btn-white" data-toggle="popover" title="Forgot Password?" data-content="Silahkan datang ke BAA untuk reset password anda!">Forgot Password?</button>
+                    <button type="button" style="color: #1cb4ac" class="btn btn-sm btn-white" data-toggle="popover" title="Forgot Password?" data-content="Silahkan datang ke BAA untuk reset password anda!" id="forgotPasswordBtn">Forgot Password?</button>
                     </div>
                     <div class="px-4">
                       <button class="w-100 btn btn-lg d-flex text-white justify-content-center fw-bold" style="background-color: #E5BC37" type="submit">Login</button>

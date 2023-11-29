@@ -50,12 +50,12 @@
                     </div>
                   </div>
                   <div class="bg-white pt-3 pb-4" style="border-bottom-left-radius: 20px;border-bottom-right-radius: 20px">
-                    <div class="form-check mb-2" style="align-items: first baseline;">
-                      <button type="button" style="color: #1cb4ac" class="btn btn-sm btn-white" data-toggle="popover" title="Forgot Password?" data-content="Silahkan datang ke BAA untuk reset password anda!">Forgot Password?</button>
-                    </div>
-                    <div class="px-4">
-                      <button class="w-100 btn btn-lg d-flex text-white justify-content-center fw-bold" style="background-color: #E5BC37" type="submit">Login</button>
-                    </div>
+                  <div class="form-check mb-2" style="align-items: first baseline;">
+                    <button type="button" style="color: #1cb4ac" class="btn btn-sm btn-white" data-toggle="popover" title="Forgot Password?" data-content="Silahkan datang ke BAA untuk reset password anda!" id="forgotPasswordBtn">Forgot Password?</button>
+                  </div>
+                  <div class="px-4">
+                    <button class="w-100 btn btn-lg d-flex text-white justify-content-center fw-bold" style="background-color: #E5BC37" type="submit">Login</button>
+                  </div>
                   </div>
                 </form>
               </div>
@@ -69,14 +69,19 @@
         <!-- Popper.js first, then Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script> -->
         
         <script>
-            var popoverTriggerList = [].slice.call( document.querySelectorAll( '[data-toggle="popover"]' ) );
-            var popoverList = popoverTriggerList.map( function( popoverTrigger )
-            {
-                return new bootstrap.Popover( popoverTrigger );
-            } );
+          document.addEventListener('DOMContentLoaded', function () {
+            var popover = new bootstrap.Popover(document.getElementById('forgotPasswordBtn'));
+
+            document.addEventListener('click', function (e) {
+              var isPopoverClick = e.target.closest('[data-original-title]');
+              if (!isPopoverClick) {
+                popover.hide();
+              }
+            });
+          });
         </script>
 </body>
 
