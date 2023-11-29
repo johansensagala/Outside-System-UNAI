@@ -32,68 +32,8 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-8 table-responsive mt-3">
-                                @include('mahasiswa._absensi')
-                            </div>
-                            <div class="col-md-4 mt-3">
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center">Detail Absensi Semester</h5>
-
-                                        <div id="grafik_absensi_semester" class="row my-3 me-5 d-flex justify-content-center align-items-center">
-                                        </div>
-                                        
-                                        <div>
-                                            <p>
-                                                Jumlah hadir: {{ $summary['hadir'] }}
-                                            </p>
-                                            <p>
-                                                Jumlah izin: {{ $summary['izin'] }}
-                                            </p>
-                                            <p>
-                                                Jumlah absen: {{ $summary['absen'] }}
-                                            </p>
-                                            <p class="text-danger">
-                                                Selalu ingat untuk melakukan absensi, tidak melakukan absensi akan terhitung sebagai absen
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center">Detail Absensi Bulan </h5>
-
-                                        <div id="grafik_absensi_bulanan" class="row my-3 me-5 d-flex justify-content-center align-items-center">
-                                        </div>
-                                        
-                                        <div>
-                                            <p>
-                                                Jumlah hadir: {{ $summary_bulanan['hadir'] }}
-                                            </p>
-                                            <p>
-                                                Jumlah izin: {{ $summary_bulanan['izin'] }}
-                                            </p>
-                                            <p>
-                                                Jumlah absen: {{ $summary_bulanan['absen'] }}
-                                            </p>
-                                        </div>
-                            
-                                        <div class="my-3">
-                                            <label for="tanggalFilter" class="form-label">Tanggal:</label>
-                                            <select id="tanggalFilter" class="form-select">
-                                                @foreach($bulan_tahun_combinations as $bulan)
-                                                    @php
-                                                        $formattedDate = \Carbon\Carbon::createFromDate($bulan->tahun, $bulan->bulan, 1)->format('F Y');
-                                                        $isSelected = ($bulan->tahun == \Carbon\Carbon::now()->year && $bulan->bulan == \Carbon\Carbon::now()->month);
-                                                    @endphp
-                                                    <option value="{{ $formattedDate }}" {{ $isSelected ? 'selected' : '' }}>{{ $formattedDate }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="mainAbsensi" class="row">
+                            @include('mahasiswa._absensi')
                         </div>
                     </div>
                 </div>
@@ -162,7 +102,7 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script>
 <script>
-    let latitude = null;
+let latitude = null;
 let longitude = null;
 
 const success = (position) => {
@@ -274,52 +214,10 @@ function isPresent() {
     }
 }
 
-let grafik_absensi_semester = {
-    series: [{{ $summary['hadir'] }}, {{ $summary['izin'] }}, {{ $summary['absen'] }}],
-    chart: {
-        width: 300,
-        type: 'pie',
-    },
-    labels: ['Hadir', 'Izin', 'Absen'],
-    colors:['#0f0', '#ff0', '#f00'],
-    responsive: [{
-        breakpoint: 480,
-        options: {
-            chart: {
-                width: 300
-            },
-            legend: {
-                position: 'bottom'
-            }
-        }
-    }]
-};
-
-let grafik_absensi_bulanan = {
-    series: [{{ $summary_bulanan['hadir'] }}, {{ $summary_bulanan['izin'] }}, {{ $summary_bulanan['absen'] }}],
-    chart: {
-        width: 300,
-        type: 'pie',
-    },
-    labels: ['Hadir', 'Izin', 'Absen'],
-    colors:['#0f0', '#ff0', '#f00'],
-    responsive: [{
-        breakpoint: 480,
-        options: {
-            chart: {
-                width: 300
-            },
-            legend: {
-                position: 'bottom'
-            }
-        }
-    }]
-};
-
-let chart_semester = new ApexCharts(document.querySelector("#grafik_absensi_semester"), grafik_absensi_semester);
-let chart_bulanan = new ApexCharts(document.querySelector("#grafik_absensi_bulanan"), grafik_absensi_bulanan);
-chart_semester.render();
-chart_bulanan.render();
+let grafik_absensi_semester;
+let grafik_absensi_bulanan;
+let chart_semester;
+let chart_bulanan;
 
 </script>
 

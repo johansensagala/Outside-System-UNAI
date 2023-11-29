@@ -7,7 +7,7 @@
 
     @if(Auth::guard('mahasiswa')->check())
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+      <button type="button" class="btn btn-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown">
         {{ Auth::guard('mahasiswa')->user()->nama }}
       </button>
       <div class="dropdown-menu">
@@ -22,7 +22,7 @@
 
     @if(Auth::guard('penjamin')->check())
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+      <button type="button" class="btn btn-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown">
         {{ Auth::guard('penjamin')->user()->nama }}
       </button>
       <div class="dropdown-menu">
@@ -37,7 +37,7 @@
 
     @if(Auth::guard('biro_kemahasiswaan')->check())
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+      <button type="button" class="btn btn-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown">
         {{ Auth::guard('biro_kemahasiswaan')->user()->nama }}
       </button>
       <div class="dropdown-menu">
