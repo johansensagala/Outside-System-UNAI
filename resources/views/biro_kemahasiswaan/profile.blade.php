@@ -12,7 +12,7 @@
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            PROFIL MAHASISWA
+                            PROFIL PENJAMIN
                         </div>
                     </div>
                 </div>

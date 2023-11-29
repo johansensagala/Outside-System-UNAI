@@ -7,8 +7,8 @@
 
     @if(Auth::guard('mahasiswa')->check())
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown">
-        {{ Auth::guard('mahasiswa')->user()->nama }}
+      <button type="button" class="btn btn-light dropdown-toggle rounded-pill" data-bs-toggle="dropdown">
+        <a style="font-size: small;">{{ Auth::guard('mahasiswa')->user()->nama }}</a>
       </button>
       <div class="dropdown-menu">
         <a href="/mhs/profile" class="dropdown-item">Profil</a>
@@ -22,8 +22,8 @@
 
     @if(Auth::guard('penjamin')->check())
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown">
-        {{ Auth::guard('penjamin')->user()->nama }}
+      <button type="button" class="btn btn-light dropdown-toggle rounded-pill" data-bs-toggle="dropdown">
+      <a style="font-size: small;">{{ Auth::guard('penjamin')->user()->nama }}</a>
       </button>
       <div class="dropdown-menu">
         <a href="/penjamin/profile" class="dropdown-item">Profil</a>
@@ -37,8 +37,8 @@
 
     @if(Auth::guard('biro_kemahasiswaan')->check())
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown">
-        {{ Auth::guard('biro_kemahasiswaan')->user()->nama }}
+      <button type="button" class="btn btn-light dropdown-toggle rounded-pill" st data-bs-toggle="dropdown">
+        <a style="font-size: small;">{{ Auth::guard('biro_kemahasiswaan')->user()->nama }}</a>
       </button>
       <div class="dropdown-menu">
         <a href="/biro/profile" class="dropdown-item">Profil</a>
