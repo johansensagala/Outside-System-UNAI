@@ -73,7 +73,7 @@
         <a href="/biro/penjamin/create" class="btn btn-primary mb-3">Tambah Penjamin</a>
         <table class="table table-striped table-sm">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th scope="col">No.</th>
                     <th scope="col">Username</th>
                     <th scope="col">Nama</th>
@@ -88,9 +88,9 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $penjamin->username }}</td>
                         <td>{{ $penjamin->nama }}</td>
-                        <td>{{ $penjamin->nomor_telp }}</td>
-                        <td>{{ $penjamin->role }}</td>
-                        <td>
+                        <td class="text-center">{{ $penjamin->nomor_telp }}</td>
+                        <td class="text-center">{{ $penjamin->role }}</td>
+                        <td class="text-center">
                             <a href="/biro/penjamin/{{ $penjamin->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
                             <form action="/biro/penjamin/{{ $penjamin->id }}" method="POST" class="d-inline">
                                 @method('delete')
@@ -99,8 +99,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
-                
+                @endforeach         
             </tbody>
         </table>
     </div>
