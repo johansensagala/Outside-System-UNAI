@@ -60,7 +60,7 @@
                     <option value="dosen">Dosen</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Tambah Penjamin</button>
+            <button type="submit" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>&nbsp;&nbsp;Tambah Penjamin</button>
         </form>  
     </div>
 @endsection
