@@ -105,15 +105,18 @@ class DaftarAbsensiController extends Controller
             $query->whereDate('created_at', $tanggalInput);
         } elseif ($tanggalAwal && $tanggalAkhir) {
             $query->whereBetween('created_at', [$tanggalAwal, $tanggalAkhir]);
+        } else {
+            $query->latest('created_at');
         }
     
         $filteredData = $query->paginate(20);
     
         $result = collect($filteredData->items())->map(function ($item) {
             return [
+                'id' => $item->id,
                 'nim' => $item->mahasiswa->nim,
                 'nama' => $item->mahasiswa->nama,
-                'tanggal' => $item->created_at->toDateTimeString(), // Adjust date format if needed
+                'tanggal' => $item->created_at->toDateTimeString(),
                 'status' => $item->kehadiran,
             ];
         });
