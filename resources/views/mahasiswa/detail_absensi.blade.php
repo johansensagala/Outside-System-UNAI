@@ -128,7 +128,7 @@
                                             title: 'Lokasi Absen'
                                         });
                                     }
-                                    </script>
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -173,7 +173,7 @@
                                     <span class="bg-success p-2 rounded-3 text-white text-center">
                                         {{ $data_absen->kehadiran }}
                                     </span>
-                                    {{-- <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked> --}}
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
                                 </div>
                             </div>
                         </div>
