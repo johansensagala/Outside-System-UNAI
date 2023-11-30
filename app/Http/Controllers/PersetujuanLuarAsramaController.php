@@ -15,7 +15,6 @@ class PersetujuanLuarAsramaController extends Controller
     {
         $daftar_pengajuan_luar_asrama = PengajuanLuarAsrama::whereNotIn('status_penjamin', ['pending', 'ditolak'])->get();
 
-        // dd($daftar_pengajuan_luar_asrama->first()->mahasiswa->nama);
         return view('biro_kemahasiswaan.daftar_pengajuan_luar_asrama', compact('daftar_pengajuan_luar_asrama'));
     }
 
@@ -26,7 +25,6 @@ class PersetujuanLuarAsramaController extends Controller
         if ($pengajuan_luar_asrama->id_penjamin) {
             $data_pengajuan_penjamin = PengajuanDataPenjamin::where('id_penjamin', $pengajuan_luar_asrama->id_penjamin)->first();
 
-            dd($data_pengajuan_penjamin);
             return view('biro_kemahasiswaan.pengajuan_luar_asrama', compact('pengajuan_luar_asrama', 'data_pengajuan_penjamin'));
         }
 

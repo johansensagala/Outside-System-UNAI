@@ -122,6 +122,8 @@ class AbsensiByMahasiswaController extends Controller
         $selectedYear = $selectedDate->year;
         $selectedMonth = $selectedDate->month;
 
+        dd($selectedDate);
+
         $awal_absensi = Semester::where('aksi', 'mulai absensi')
             ->latest('created_at')
             ->first()
