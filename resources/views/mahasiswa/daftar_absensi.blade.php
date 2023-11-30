@@ -184,8 +184,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const liveSearchInput = document.getElementById('liveSearch');
     liveSearchInput.addEventListener('input', function () {
         const searchQuery = this.value;
+        const jenisFilter = document.getElementById('jenisFilter').value;
+        const tanggalInput = document.getElementById('tanggalInput').value;
+        const tanggalAwal = document.getElementById('tanggalAwal').value;
+        const tanggalAkhir = document.getElementById('tanggalAkhir').value;
 
-        fetch(`/mhs/daftar-absensi-mahasiswa/live-search?q=${searchQuery}`)
+        let apiUrl = `/mhs/daftar-absensi-mahasiswa/live-search?q=${searchQuery}`;
+
+        if (jenisFilter === 'Berdasarkan tanggal') {
+            apiUrl += `&tanggalInput=${tanggalInput}`;
+        } else if (jenisFilter === 'Berdasarkan interval tanggal') {
+            apiUrl += `&tanggalAwal=${tanggalAwal}&tanggalAkhir=${tanggalAkhir}`;
+        }
+
+        fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 updateTable(data);

@@ -88,24 +88,36 @@ class DaftarAbsensiController extends Controller
         }
     }
 
-    public function liveSearch(Request $request) {
+    public function liveSearch(Request $request)
+    {
         $searchQuery = $request->input('q');
+        $tanggalInput = $request->input('tanggalInput');
+        $tanggalAwal = $request->input('tanggalAwal');
+        $tanggalAkhir = $request->input('tanggalAkhir');
     
-        $filteredData = Absensi::whereHas('mahasiswa', function ($query) use ($searchQuery) {
-            $query->where('nama', 'like', "%{$searchQuery}%");
-        })->paginate(20);
+        $query = Absensi::query();
     
-        // Extracting relevant information from the paginated data
-        $result = $filteredData->map(function ($item) {
+        $query->whereHas('mahasiswa', function ($subQuery) use ($searchQuery) {
+            $subQuery->where('nama', 'like', "%{$searchQuery}%");
+        });
+    
+        if ($tanggalInput) {
+            $query->whereDate('created_at', $tanggalInput);
+        } elseif ($tanggalAwal && $tanggalAkhir) {
+            $query->whereBetween('created_at', [$tanggalAwal, $tanggalAkhir]);
+        }
+    
+        $filteredData = $query->paginate(20);
+    
+        $result = collect($filteredData->items())->map(function ($item) {
             return [
                 'nim' => $item->mahasiswa->nim,
                 'nama' => $item->mahasiswa->nama,
-                'tanggal' => $item->created_at,
+                'tanggal' => $item->created_at->toDateTimeString(), // Adjust date format if needed
                 'status' => $item->kehadiran,
             ];
         });
     
-        // Constructing the final JSON response
         $response = [
             'data' => $result,
             'links' => [
@@ -118,7 +130,7 @@ class DaftarAbsensiController extends Controller
     
         return response()->json($response);
     }
-            
+                        
     public function show ($id) {
         $data_absen = Absensi::where('id', $id)->first();
 
