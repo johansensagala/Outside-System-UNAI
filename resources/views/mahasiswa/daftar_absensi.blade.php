@@ -36,7 +36,7 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $index = 1
+                                        $index = ($data_absen->currentPage() - 1) * $data_absen->perPage() + 1;
                                     @endphp
                                     @foreach ($data_absen as $absen)
                                     <tr>
