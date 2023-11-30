@@ -22,9 +22,7 @@
                         <td class="align-middle text-center">{{ $data_mahasiswa->nomor_pribadi }}</td>
                         <td class="align-middle text-center">{{ $data_mahasiswa->role ? 'monitor' : 'mahasiswa' }}</td>
                         <td class="align-middle">
-                            <div class="form-switch text-center">
-                                <input class="form-check-input" type="checkbox" role="switch" id="toggle" data-item-id="{{ $data_mahasiswa->id }}" {{ $data_mahasiswa->status ? 'checked' : '' }}>
-                            </div>
+                        <a href="/biro/daftar-mahasiswa/{{$data_mahasiswa->id}}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
                         </td>
                     </tr>
                 @endforeach

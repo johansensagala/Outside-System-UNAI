@@ -105,10 +105,9 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     Route::get('/biro/formulir-penjamin', [FormulirPenjaminController::class, 'index'])->name('biro_kemahasiswaan.daftar_penjamin');
     Route::get('/biro/search-penjamin', [FormulirPenjaminController::class, 'search'])->name('biro_kemahasiswaan.search_penjamin');
     Route::get('/biro/status-penjamin', [FormulirPenjaminController::class, 'status'])->name('biro_kemahasiswaan.status_penjamin');
-    
-    Route::get('/biro/daftar-mahasiswa', [RoleMahasiswaController::class, 'index'])->name('biro_kemahasiswaan.daftar_mahasiswa');
+        
+    Route::resource('/biro/daftar-mahasiswa', RoleMahasiswaController::class)->except('create, store');
     Route::get('/biro/search-mahasiswa', [RoleMahasiswaController::class, 'search'])->name('biro_kemahasiswaan.search_mahasiswa');
-    Route::post('/biro/daftar-mahasiswa/{id}/toggle-role', [RoleMahasiswaController::class, 'index'])->name('biro_kemahasiswaan.toggle_role_mahasiswa');
     
     Route::get('/biro/formulir-penjamin/{id}', [FormulirPenjaminController::class, 'show'])->name('biro_kemahasiswaan.formulir_penjamin');
     Route::post('/biro/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);

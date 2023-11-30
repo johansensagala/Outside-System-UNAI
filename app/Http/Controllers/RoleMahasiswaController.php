@@ -3,34 +3,67 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
-use App\Models\Role;
-
 use Illuminate\Http\Request;
 
 class RoleMahasiswaController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index(Request $request)
     {
         $daftar_data_mahasiswa = Mahasiswa::paginate(10);
                 
-        return view('biro_kemahasiswaan.daftar_mahasiswa', compact('daftar_data_mahasiswa'));
+        return view('biro_kemahasiswaan.mahasiswa.daftar_mahasiswa', compact('daftar_data_mahasiswa'));
     }
 
-    // public function search(Request $request)
-    // {
-    //     $search = $request->input('search');
-    //     $query = Mahasiswa::query();
+    /**
+     * Display the specified resource.
+     */
+    public function show(Mahasiswa $mahasiswa)
+    {
+        $mahasiswa = Mahasiswa::where('id')->first();
 
-    //     if (!empty($search)) {
-    //         $query->where('nama', 'like', '%' . $search . '%')->orWhere('nim', 'like', '%' . $search . '%') ;
-    //     }
+        return view('biro_kemahasiswaan.mahasiswa.daftar_mahasiswa', compact('penjamin'));
+    }
 
-    //     $daftar_data_mahasiswa = $query->paginate(10);
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        $mahasiswa = Mahasiswa::where('id', $id)->first();
 
-    //     // $showPagination = $daftar_data_mahasiswa->total() > 10;
+        return view('biro_kemahasiswaan.mahasiswa.edit', compact('mahasiswa'));
+    }
 
-    //     return view('biro_kemahasiswaan._daftar_mahasiswa', compact('daftar_data_mahasiswa'));
-    // }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+    {
+        $rules = [
+            'role' => 'required'
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        $mahasiswa = Mahasiswa::where('id', $id)->first();
+
+        $mahasiswa->role = $request->input('role');
+        $mahasiswa->save();
+
+        // dd($id);
+        return redirect('/biro/daftar-mahasiswa')->with('success', "Role Mahasiswa {$mahasiswa->nama} telah berubah!");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Mahasiswa $mahasiswa)
+    {
+        //
+    }
 
     public function search(Request $request)
     {
@@ -46,14 +79,6 @@ class RoleMahasiswaController extends Controller
         // Append the search parameter to pagination links
         $daftar_data_mahasiswa->appends(['search' => $search]);
 
-        return view('biro_kemahasiswaan._daftar_mahasiswa', compact('daftar_data_mahasiswa'))->render();
-    }
-
-
-    public function show($id)
-    {
-        $mahasiswa = Mahasiswa::where('id')->first();
-
-        return view('biro_kemahasiswaan.daftar_mahasiswa', compact('penjamin'));
+        return view('biro_kemahasiswaan.mahasiswa._daftar_mahasiswa', compact('daftar_data_mahasiswa'))->render();
     }
 }

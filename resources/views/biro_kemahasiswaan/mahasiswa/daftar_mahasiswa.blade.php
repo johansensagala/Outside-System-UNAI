@@ -85,7 +85,7 @@
                                 </form>                                
                             </div>
                         </div>
-                        @include('biro_kemahasiswaan._daftar_mahasiswa')
+                        @include('biro_kemahasiswaan.mahasiswa._daftar_mahasiswa')
                     </div>   
                 </div>
             </div>
