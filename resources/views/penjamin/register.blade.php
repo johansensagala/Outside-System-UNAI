@@ -34,7 +34,7 @@
                         <small class="text-danger" id="password-error"></small>
                       </div>
                       <div class="mb-3">
-                        <input type="repassword" class="form-control" id="repassword" name="repassword" placeholder="Password">
+                        <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Password">
                         <small class="text-danger" id="repassword-error"></small>
                       </div>
                       <div class="mb-3">
