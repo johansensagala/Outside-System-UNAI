@@ -1,6 +1,6 @@
 <div id="search-results">
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
+    <div class="table-wrapper card bs-gray-100 fw-bold">
+        <table class="table table-responsive card-list-table table-bordered table-striped">
         <thead>
             <tr>
                 <th class="text-center">No</th>
@@ -23,51 +23,39 @@
                 <td class="align-middle">{{ $i++ }}</td>
                 <td class="align-middle">{{ $pengajuan_luar_asrama->mahasiswa->nim }}</td>
                 <td class="align-middle">{{ $pengajuan_luar_asrama->mahasiswa->nama }}</td>
-                <td class="align-middle">{{ $pengajuan_luar_asrama->jurusan }}</td>
+                <td class="align-middle">{{ $pengajuan_luar_asrama->mahasiswa->jurusan }}</td>
                 <td class="align-middle">{{ $pengajuan_luar_asrama->created_at }}</td>
                 <td class="align-middle">{{ $pengajuan_luar_asrama->status_tinggal }}</td>
                 
                 @if ($pengajuan_luar_asrama->status_penjamin == 'disetujui')
-                <td class="align-middle">
-                    <span class="bg-success p-2 rounded-3 text-white text-center">
-                        Disetujui
-                    </span>
+                <td class="align-middle fw-bolder" style="color: green">
+                    Disetujui
                 </td>
                 
                 @elseif ($pengajuan_luar_asrama->status_penjamin == 'ditolak')
-                <td class="align-middle">
-                    <span class="bg-danger p-2 rounded-3 text-white text-center">
-                        Ditolak
-                    </span>
+                <td class="align-middle fw-bolder" style="color: red">
+                    Ditolak
                 </td>
                 
                 @else
-                <td class="align-middle">
-                    <span class="bg-warning p-2 rounded-3 text-white text-center">
-                        Pending
-                    </span>
+                <td class="align-middle fw-bolder" style="color: yellow">
+                    Pending
                 </td>
                 @endif
                 
                 @if ($pengajuan_luar_asrama->status == 'disetujui')
-                <td class="align-middle">
-                    <span class="bg-success p-2 rounded-3 text-white text-center">
-                        Disetujui
-                    </span>
+                <td class="align-middle fw-bolder" style="color: green">
+                    Disetujui
                 </td>
                 
                 @elseif ($pengajuan_luar_asrama->status == 'ditolak')
-                <td class="align-middle">
-                    <span class="bg-danger p-2 rounded-3 text-white text-center">
-                        Ditolak
-                    </span>
+                <td class="align-middle fw-bolder" style="color: red">
+                    Ditolak
                 </td>
                                         
                 @else
-                <td class="align-middle">
-                    <span class="bg-warning p-2 rounded-3 text-white text-center">
-                        Pending
-                    </span>
+                <td class="align-middle fw-bolder" style="color: #f3c022">
+                    Pending
                 </td>
                                         
                 @endif

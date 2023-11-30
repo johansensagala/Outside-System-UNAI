@@ -123,7 +123,7 @@
                                 @if ($data_tempat_tinggal->status === 'pending' || $data_tempat_tinggal->status === 'ditolak')
                                     <form method="post" id="formSetujui" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/setujui" style="display: inline;">
                                         @csrf
-                                        <button type="submit" id="btnSetujui" class="btn btn-success">Setujui</button>
+                                        <button type="submit" id="btnSetujui" class="btn btn-success"><i class="link-icon" data-feather="check  "></i>&nbsp;Setujui</button>
                                     </form>
                                 @endif
                                 @if ($data_tempat_tinggal->status === 'pending' || $data_tempat_tinggal->status === 'disetujui')
