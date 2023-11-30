@@ -18,7 +18,7 @@ class AbsensiSeeder extends Seeder
     public function run(): void
     {
         $result = DB::select('SELECT DATEDIFF(NOW(), "2023-08-21") AS jumlah_hari')[0];
-        $total_records = $result->jumlah_hari;
+        $total_records = $result->jumlah_hari + 1;
 
         $mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->get();
 

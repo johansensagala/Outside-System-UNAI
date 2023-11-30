@@ -79,9 +79,11 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::post('/mhs/absensi', [AbsensiByMahasiswaController::class, 'store']);
 
     Route::get('/mhs/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'index']);
+    Route::post('/mhs/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'index']);
+    Route::get('/mhs/daftar-absensi-mahasiswa/live-search', [DaftarAbsensiController::class, 'liveSearch']);
+
     Route::get('/mhs/daftar-absensi-mahasiswa/{id}', [DaftarAbsensiController::class, 'show']);
     Route::post('/mhs/update-kehadiran', [DaftarAbsensiByMahasiswaController::class, 'update_kehadiran']);
-
 });
 
 // Rute-rute untuk Penjamin

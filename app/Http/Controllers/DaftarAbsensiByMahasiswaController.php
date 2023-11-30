@@ -79,37 +79,13 @@ class DaftarAbsensiByMahasiswaController extends Controller
     
         // Bagian ini untuk mengurus aksi absensi
     
-        $data_absen_today = Absensi::where('id_mahasiswa', $id_mahasiswa)
-            ->whereDate('created_at', Carbon::today())
-            ->where('kehadiran', 'Hadir')
-            ->get();
-
-        $batas_bawah = Carbon::createFromTime(19, 30);
-        $batas_atas = Carbon::createFromTime(21, 0);
-    
-        $absen_time = $now->between($batas_bawah, $batas_atas);
-        
-        $belum_absen = $data_absen_today->isEmpty();
-
         $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id_mahasiswa', $id_mahasiswa)->where('status', 'disetujui')->first();
 
         if (!($pengajuan_luar_asrama)) {
             return view('mahasiswa.no_absensi');
         }
-
-        $status_tinggal = $pengajuan_luar_asrama->status_tinggal;
-
-        if ($status_tinggal == 'Married' || $status_tinggal == 'Profesi Ners' || $status_tinggal == 'Skripsi') {
-            $latitude = $pengajuan_luar_asrama->latitude;
-            $longitude = $pengajuan_luar_asrama->longitude;
-        } else {
-            $data_penjamin = PengajuanDataPenjamin::where('id_penjamin', $pengajuan_luar_asrama->id_penjamin)->where('status', 'disetujui')->first();
-
-            $latitude = $data_penjamin->latitude;
-            $longitude = $data_penjamin->longitude;
-        }
         
-        return view('mahasiswa.absensi', compact('data_absen_bulanan', 'mahasiswa', 'belum_absen', 'absen_time', 'latitude', 'longitude', 'bulan_tahun_combinations', 'summary', 'summary_bulanan', 'absensi_content', 'absensi_bulanan', 'selectedDate'));
+        return view('mahasiswa.absensi', compact('data_absen_bulanan', 'mahasiswa', 'bulan_tahun_combinations', 'summary', 'summary_bulanan', 'absensi_content', 'absensi_bulanan', 'selectedDate'));
     }
 
     public function filter (Request $request) {

@@ -10,7 +10,6 @@
 <div class="row common-font-color">
     <div class="stretch-card">
         <div class="row flex-grow-1">
-
             <div class="grid-margin">
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
@@ -27,20 +26,61 @@
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#absentModal" onclick="isPresent()">Absen Sekarang</button>
                                 @elseif ($belum_absen == False)
                                     <div class="text-success">Anda sudah melakukan absen hari ini. Absen dibuka besok pada pukul 19.30 - 21.00 WIB.</div>
+                                    <div class="modal fade" id="modalAbsensi" tabindex="-1" aria-labelledby="modalAbsensiLabel">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="modalAbsensiLabel">Sudah Hadir</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Anda sudah mengisi kehadiran hari ini.
+                                                </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            let modal = new bootstrap.Modal(document.getElementById('modalAbsensi'));
+                                            modal.show();
+                                        });
+                                    </script>
                                 @else
-                                    <div class="text-danger">Absen dibuka pada pukul 19.30 - 21.00 WIB</div>
+                                <div class="text-danger">Absen dibuka pada pukul 19.30 - 21.00 WIB.</div>
+                                    <div class="modal fade" id="modalAbsensi" tabindex="-1" aria-labelledby="modalAbsensiLabel">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="modalAbsensiLabel">Absen Ditutup</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Absen dibuka pada pukul 19.30 - 21.00 WIB.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            let modal = new bootstrap.Modal(document.getElementById('modalAbsensi'));
+                                            modal.show();
+                                        });
+                                    </script>
                                 @endif
                             </div>
                         </div>
                     </div>
-                </div>
-                
+                </div>      
             </div>
         </div>
     </div>
-
 </div>
-
   
 <div class="modal fade" id="absentModal" tabindex="-1" aria-labelledby="absentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -49,7 +89,7 @@
           <h1 class="modal-title fs-5" id="absentModalLabel">Modal title</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="/mhs/daftar-absensi" method="post" enctype="multipart/form-data">
+        <form action="/mhs/absensi" method="post" enctype="multipart/form-data">
         @csrf
             <div class="modal-body">
                 <div>Lokasi</div>

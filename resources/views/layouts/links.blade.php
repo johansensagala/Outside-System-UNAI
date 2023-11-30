@@ -48,3 +48,7 @@
 
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Flatpickr -->
+<link href="{{ asset('assets/plugins/flatpickr/flatpickr.min.css') }}" rel="stylesheet"/>
+<script src="{{ asset('assets/plugins/flatpickr/flatpickr.min.js') }}"></script>
