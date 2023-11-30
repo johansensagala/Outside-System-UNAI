@@ -124,7 +124,7 @@
       <li class="nav-item py-3 {{ request()->is('penjamin/permohonan-tempat-tinggal*') ? 'active' : '' }}">
         <a href="/penjamin/permohonan-tempat-tinggal" class="nav-link">
           <i class="link-icon" data-feather="file"></i>
-          <span class="link-title">Permohonan Penjamin<br> {{ $data_permohonan_terakhir->status }}</span>
+          <span class="link-title">Permohonan Penjamin</span>
         </a>
       </li>
       @endif
@@ -175,6 +175,13 @@
         <a href="{{ url('biro/daftar-mahasiswa') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Mahasiswa</span>
+        </a>
+      </li>
+      
+      <li class="nav-item py-3 {{ request()->is('biro/penjamin*') ? 'active' : '' }}">
+        <a href="{{ url('biro/penjamin') }}" class="nav-link">
+          <i class="link-icon" data-feather="user"></i>
+          <span class="link-title">Penjamin</span>
         </a>
       </li>
 

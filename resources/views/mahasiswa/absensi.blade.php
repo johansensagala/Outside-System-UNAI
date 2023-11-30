@@ -26,9 +26,9 @@
                                 @if ($belum_absen == True && $absen_time == True)
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#absentModal" onclick="isPresent()">Absen Sekarang</button>
                                 @elseif ($belum_absen == False)
-                                    <div class="text-success">Anda sudah melakukan absen hari ini. Absen dibuka besok pada pukul 21.00 - 21.30 WIB.</div>
+                                    <div class="text-success">Anda sudah melakukan absen hari ini. Absen dibuka besok pada pukul 19.30 - 21.00 WIB.</div>
                                 @else
-                                    <div class="text-danger">Absen dibuka pada pukul 21.00 - 21.30 WIB</div>
+                                    <div class="text-danger">Absen dibuka pada pukul 19.30 - 21.00 WIB</div>
                                 @endif
                             </div>
                         </div>
@@ -203,12 +203,12 @@ function isPresent() {
 
     if (distanceInMeters <= 50.0) {
         statusElement.innerHTML = 'Hadir';
-        hiddenInputElement.value = 'hadir';
+        hiddenInputElement.value = 'Hadir';
         statusElement.classList.add('bg-success');
         statusElement.classList.remove('bg-danger');
     } else {
         statusElement.innerHTML = 'Absen';
-        hiddenInputElement.value = 'absen';
+        hiddenInputElement.value = 'Absen';
         statusElement.classList.remove('bg-success');
         statusElement.classList.add('bg-danger');
     }

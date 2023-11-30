@@ -21,12 +21,14 @@ class AbsensiByMahasiswaController extends Controller
 
         // Bagian ini untuk mengurus tabel absensi dan detail absensi
 
-        $data_absen = Absensi::where('id_mahasiswa', $id_mahasiswa)->get();
-
+        $data_absen = Absensi::where('id_mahasiswa', $id_mahasiswa)
+            ->orderByDesc('created_at')
+            ->get();
+    
         $data_absen_bulanan = $data_absen->filter(function ($absen) {
             return $absen->created_at->isCurrentMonth();
         });
-
+    
         $bulan_tahun_combinations = Absensi::select(DB::raw('YEAR(created_at) AS tahun, MONTH(created_at) AS bulan'))
             ->where('id_mahasiswa', $id_mahasiswa)
             ->groupBy('tahun', 'bulan')
@@ -37,15 +39,15 @@ class AbsensiByMahasiswaController extends Controller
             ->first()
             ->created_at;
         
-        $tanggal_awal_absensi = Carbon::parse($awal_absensi)->setTime(21, 30, 0);
+        $tanggal_awal_absensi = Carbon::parse($awal_absensi)->setTime(21, 0, 0);
         $now = Carbon::now();
         $selectedDate = $now;
         
-        if ($now->hour >= 21 && $now->minute >= 30) {
+        if ($now->hour >= 21 && $now->minute >= 00) {
             $selisih_hari = $tanggal_awal_absensi->diffInDays($now) + 1;
             $jumlah_hari_bulan_ini = $now->day;
         } else {
-            $kemarin = Carbon::yesterday()->setTime(21, 30, 0);
+            $kemarin = Carbon::yesterday()->setTime(21, 0, 0);
             $selisih_hari = $tanggal_awal_absensi->diffInDays($kemarin) + 1;
             $jumlah_hari_bulan_ini = $now->day - 1;
         }
@@ -79,10 +81,11 @@ class AbsensiByMahasiswaController extends Controller
     
         $data_absen_today = Absensi::where('id_mahasiswa', $id_mahasiswa)
             ->whereDate('created_at', Carbon::today())
+            ->where('kehadiran', 'Hadir')
             ->get();
 
-        $batas_bawah = Carbon::createFromTime(21, 00);
-        $batas_atas = Carbon::createFromTime(21, 30);
+        $batas_bawah = Carbon::createFromTime(19, 30);
+        $batas_atas = Carbon::createFromTime(21, 0);
     
         $absen_time = $now->between($batas_bawah, $batas_atas);
         
@@ -110,6 +113,8 @@ class AbsensiByMahasiswaController extends Controller
     }
 
     public function filter (Request $request) {
+        $selectedDate = null;
+
         $mahasiswa = Auth::guard('mahasiswa')->user();
         $id_mahasiswa = $mahasiswa->id;
 
@@ -117,35 +122,45 @@ class AbsensiByMahasiswaController extends Controller
 
         $selectedMonth = $request->input('month');
 
-        $selectedDate = Carbon::createFromFormat('F Y', $selectedMonth);
+        if ($selectedMonth == 'semua') {
+            $data_absen_bulanan = DB::table('absensis')
+                ->where('id_mahasiswa', $id_mahasiswa)
+                ->get();
+        } else {
+            $selectedDate = Carbon::createFromFormat('F Y', $selectedMonth);
+    
+            $selectedYear = $selectedDate->year;
+            $selectedMonth = $selectedDate->month;
 
-        $selectedYear = $selectedDate->year;
-        $selectedMonth = $selectedDate->month;
+            $data_absen_bulanan = DB::table('absensis')
+                ->where('id_mahasiswa', $id_mahasiswa)
+                ->whereYear('created_at', $selectedYear)
+                ->whereMonth('created_at', $selectedMonth)
+                ->get();
+        }
+
+
+        // dd(Absensi::where('id_mahasiswa', $id_mahasiswa)->first()->created_at);
 
         $awal_absensi = Semester::where('aksi', 'mulai absensi')
             ->latest('created_at')
             ->first()
             ->created_at;
 
-        $data_absen_bulanan = DB::table('absensis')
-            ->where('id_mahasiswa', $id_mahasiswa)
-            ->whereYear('created_at', $selectedYear)
-            ->whereMonth('created_at', $selectedMonth)
-            ->get();
 
         $bulan_tahun_combinations = Absensi::select(DB::raw('YEAR(created_at) AS tahun, MONTH(created_at) AS bulan'))
             ->where('id_mahasiswa', $id_mahasiswa)
             ->groupBy('tahun', 'bulan')
             ->get();
 
-        $tanggal_awal_absensi = Carbon::parse($awal_absensi)->setTime(21, 30, 0);
+        $tanggal_awal_absensi = Carbon::parse($awal_absensi)->setTime(21, 0, 0);
         $now = Carbon::now();
 
-        if ($now->hour >= 21 && $now->minute >= 30) {
+        if ($now->hour >= 21 && $now->minute >= 0) {
             $selisih_hari = $tanggal_awal_absensi->diffInDays($now) + 1;
             $jumlah_hari_bulan_ini = $now->day;
         } else {
-            $kemarin = Carbon::yesterday()->setTime(21, 30, 0);
+            $kemarin = Carbon::yesterday()->setTime(21, 0, 0);
             $selisih_hari = $tanggal_awal_absensi->diffInDays($kemarin) + 1;
             $jumlah_hari_bulan_ini = $now->day - 1;
         }
@@ -188,6 +203,17 @@ class AbsensiByMahasiswaController extends Controller
             'latitude' => 'required',
         ]);
 
+        $mahasiswa = Auth::guard('mahasiswa')->user();
+        $id_mahasiswa = $mahasiswa->id;
+
+        $data_absen_today = Absensi::where('id_mahasiswa', $id_mahasiswa)
+            ->whereDate('created_at', Carbon::today())
+            ->get();
+
+        $data_absen_today->each(function ($absensi) {
+            $absensi->delete();
+        });
+
         $absensi = new Absensi();
 
         $absensi->latitude = $request->input('latitude');
@@ -203,4 +229,19 @@ class AbsensiByMahasiswaController extends Controller
 
         return redirect()->back();
     }
+
+    public function update_kehadiran(Request $request)
+    {
+        $id_absen = $request->input('id_absen');
+        $kehadiran = $request->input('kehadiran');
+
+        $absen = Absensi::find($id_absen);
+        if ($absen) {
+            $absen->kehadiran = $kehadiran;
+            $absen->save();
+        }
+
+        return response()->json(['kehadiran' => $kehadiran]);
+    }
+
 }

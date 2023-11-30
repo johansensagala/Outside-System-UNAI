@@ -65,7 +65,11 @@
 <div class="row common-font-color">
     <div class="col-12 col-xl-12 stretch-card">
         <div class="row flex-grow-1">
-
+            @if (session()->has('success'))
+                <div class="alert alert-success col-lg-12" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="grid-margin">
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
