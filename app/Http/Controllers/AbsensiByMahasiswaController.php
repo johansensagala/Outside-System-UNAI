@@ -125,6 +125,7 @@ class AbsensiByMahasiswaController extends Controller
         if ($selectedMonth == 'semua') {
             $data_absen_bulanan = DB::table('absensis')
                 ->where('id_mahasiswa', $id_mahasiswa)
+                ->orderByDesc('created_at')
                 ->get();
         } else {
             $selectedDate = Carbon::createFromFormat('F Y', $selectedMonth);
@@ -136,6 +137,7 @@ class AbsensiByMahasiswaController extends Controller
                 ->where('id_mahasiswa', $id_mahasiswa)
                 ->whereYear('created_at', $selectedYear)
                 ->whereMonth('created_at', $selectedMonth)
+                ->orderByDesc('created_at')
                 ->get();
         }
 
