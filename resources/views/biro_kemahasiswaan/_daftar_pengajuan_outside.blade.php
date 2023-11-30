@@ -57,7 +57,7 @@
                 <td class="align-middle fw-bolder" style="color: #f3c022">
                     Pending
                 </td>
-                                        
+
                 @endif
                     <td class="align-middle">
                         <a href="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}" class="btn btn-primary">Detail</a>

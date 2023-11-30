@@ -141,14 +141,10 @@ class AbsensiByMahasiswaController extends Controller
                 ->get();
         }
 
-
-        // dd(Absensi::where('id_mahasiswa', $id_mahasiswa)->first()->created_at);
-
         $awal_absensi = Semester::where('aksi', 'mulai absensi')
             ->latest('created_at')
             ->first()
             ->created_at;
-
 
         $bulan_tahun_combinations = Absensi::select(DB::raw('YEAR(created_at) AS tahun, MONTH(created_at) AS bulan'))
             ->where('id_mahasiswa', $id_mahasiswa)
