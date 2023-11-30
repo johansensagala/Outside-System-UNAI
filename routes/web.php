@@ -2,28 +2,28 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\AbsensiController;
-use App\Http\Controllers\PenjaminController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\MahasiswaController;
-use App\Http\Controllers\LoginPenjaminController;
-use App\Http\Controllers\RoleMahasiswaController;
-use App\Http\Controllers\LoginMahasiswaController;
-use App\Http\Controllers\FormulirPenjaminController;
-use App\Http\Controllers\BiroKemahasiswaanController;
 use App\Http\Controllers\AbsensiByMahasiswaController;
-use App\Http\Controllers\PengajuanLuarAsramaController;
-use App\Http\Controllers\PersetujuanMahasiswaController;
-use App\Http\Controllers\PersetujuanLuarAsramaController;
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\BiroKemahasiswaanController;
+use App\Http\Controllers\BiroKemahasiswaanProfileController;
+use App\Http\Controllers\DaftarAbsensiByMahasiswaController;
+use App\Http\Controllers\DaftarAbsensiController;
 use App\Http\Controllers\DataPengajuanMahasiswaController;
 use App\Http\Controllers\DataPermohonanPenjaminController;
+use App\Http\Controllers\FormulirPenjaminController;
 use App\Http\Controllers\LoginBiroKemahasiswaanController;
-use App\Http\Controllers\PermohonanTempatTinggalController;
-use App\Http\Controllers\DaftarAbsensiController;
+use App\Http\Controllers\LoginMahasiswaController;
+use App\Http\Controllers\LoginPenjaminController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaProfileController;
+use App\Http\Controllers\PengajuanLuarAsramaController;
+use App\Http\Controllers\PenjaminController;
 use App\Http\Controllers\PenjaminProfileController;
-use App\Http\Controllers\BiroKemahasiswaanProfileController;
-use App\Models\BiroKemahasiswaan;
+use App\Http\Controllers\PermohonanTempatTinggalController;
+use App\Http\Controllers\PersetujuanLuarAsramaController;
+use App\Http\Controllers\PersetujuanMahasiswaController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RoleMahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,14 +70,17 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
 
     Route::get('/mhs/data-pengajuan', [DataPengajuanMahasiswaController::class, 'index'])->name('mhs.data-pengajuan');
 
+    Route::get('/mhs/daftar-absensi', [DaftarAbsensiByMahasiswaController::class, 'index']);
+    // Route::post('/mhs/daftar-absensi', [DaftarAbsensiByMahasiswaController::class, 'store']);
+    Route::get('/mhs/daftar-absensi/filter', [DaftarAbsensiByMahasiswaController::class, 'filter']);
+    Route::get('/mhs/daftar-absensi/{year}/{month}/{date}', [DaftarAbsensiByMahasiswaController::class, 'show']);
+    
     Route::get('/mhs/absensi', [AbsensiByMahasiswaController::class, 'index']);
     Route::post('/mhs/absensi', [AbsensiByMahasiswaController::class, 'store']);
-    Route::get('/mhs/absensi/filter', [AbsensiByMahasiswaController::class, 'filter']);
-    Route::get('/mhs/absensi/{year}/{month}/{date}', [AbsensiByMahasiswaController::class, 'show']);
-    Route::post('/mhs/update-kehadiran', [AbsensiByMahasiswaController::class, 'update_kehadiran']);
 
-    Route::get('/mhs/daftar-absensi', [DaftarAbsensiController::class, 'index']);
-    Route::get('/mhs/daftar-absensi/{id}', [DaftarAbsensiController::class, 'show']);
+    Route::get('/mhs/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'index']);
+    Route::get('/mhs/daftar-absensi-mahasiswa/{id}', [DaftarAbsensiController::class, 'show']);
+    Route::post('/mhs/update-kehadiran', [DaftarAbsensiByMahasiswaController::class, 'update_kehadiran']);
 
 });
 

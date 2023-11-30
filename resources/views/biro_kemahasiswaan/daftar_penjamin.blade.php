@@ -208,6 +208,16 @@
                         </div>
                         @include('biro_kemahasiswaan._daftar_penjamin')
                     </div>
+                    @if ($daftar_data_penjamin->total() > $daftar_data_penjamin->perPage())
+                        <div class="pagination">
+                            {{ $daftar_data_penjamin->links() }}
+                        </div>
+                    @endif
+                    @if ($daftar_data_penjamin->count() === 0)
+                        <h4 class="my-4 text-center fw-bold">
+                            Belum ada Mahasiswa
+                        </h4>
+                    @endif
                 </div>
             </div>
         </div>

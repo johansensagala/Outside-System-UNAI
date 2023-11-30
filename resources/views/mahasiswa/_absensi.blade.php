@@ -134,7 +134,7 @@ $(document).ready(function () {
         let selectedMonth = $(this).val();
 
         $.ajax({
-            url: '/mhs/absensi/filter',
+            url: '/mhs/daftar-absensi/filter',
             method: 'GET',
             data: { month: selectedMonth },
             success: function (data) {
