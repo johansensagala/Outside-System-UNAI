@@ -177,6 +177,13 @@
           <span class="link-title">Mahasiswa</span>
         </a>
       </li>
+      
+      <li class="nav-item py-3 {{ request()->is('biro/penjamin*') ? 'active' : '' }}">
+        <a href="{{ url('biro/penjamin') }}" class="nav-link">
+          <i class="link-icon" data-feather="user"></i>
+          <span class="link-title">Penjamin</span>
+        </a>
+      </li>
 
       <li class="nav-item py-3 {{ request()->is('biro/persetujuan-luar-asrama*') ? 'active' : '' }}">
         <a href="{{ url('biro/persetujuan-luar-asrama') }}" class="nav-link">
