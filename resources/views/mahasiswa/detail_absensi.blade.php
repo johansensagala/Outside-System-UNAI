@@ -170,15 +170,15 @@
                             </div>
                             <div class="col-md-8 fw-bold">
                                 <div class="form-check form-switch">
-                                    <span class="bg-success p-2 rounded-3 text-white text-center">
+                                    <span id="kehadiranStatus" class="bg-success p-2 rounded-3 text-white text-center">
                                         {{ $data_absen->kehadiran }}
                                     </span>
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="toggleKehadiran" {{ $data_absen->kehadiran === 'Hadir' ? 'checked' : '' }}>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
                 </div>
 
             </div>
@@ -188,30 +188,6 @@
 </div> <!-- row -->
 
 <script>
-    // let latitude = -6.807741;
-    // let longitude = 107.577888;
-    // let latitude2 = -6.804674;
-    // let longitude2 = 107.571838;
-
-    // initMap();
-
-    // function initMap() {
-    //     let myLatLng = { lat: latitude, lng: longitude };
-
-    //     let map = new google.maps.Map(document.getElementById('googleMap'), {
-    //         zoom: 14,
-    //         center: myLatLng
-    //     });
-
-    //     let marker = new google.maps.Marker({
-    //         position: myLatLng,
-    //         map: map,
-    //         title: 'Lokasi saya'
-    //     });
-    // }
-
-    // Tampilkan form Tolak
-
     document.addEventListener("DOMContentLoaded", function () {
         const btnTolak = document.getElementById("btnTolak");
         const tolakForm = document.getElementById("tolakForm");
@@ -221,6 +197,42 @@
         });
     });
 
+    // Toggle kehadiran
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleKehadiran = document.getElementById("toggleKehadiran");
+        const kehadiranStatus = document.getElementById("kehadiranStatus");
+
+        function setKehadiranBackground(status) {
+            kehadiranStatus.classList.remove('bg-success', 'bg-danger');
+            kehadiranStatus.classList.add(status === 'Hadir' ? 'bg-success' : 'bg-danger');
+        }
+
+        setKehadiranBackground("{{ $data_absen->kehadiran }}");
+
+        toggleKehadiran.addEventListener("change", function () {
+            const isChecked = toggleKehadiran.checked;
+
+            fetch('/mhs/update-kehadiran', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({
+                    id_absen: {{ $data_absen->id }},
+                    kehadiran: isChecked ? 'Hadir' : 'Tidak Hadir',
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                kehadiranStatus.textContent = data.kehadiran;
+
+                setKehadiranBackground(data.kehadiran);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
 </script>
 
 @endsection

@@ -217,4 +217,19 @@ class AbsensiByMahasiswaController extends Controller
 
         return redirect()->back();
     }
+
+    public function update_kehadiran(Request $request)
+    {
+        $id_absen = $request->input('id_absen');
+        $kehadiran = $request->input('kehadiran');
+
+        $absen = Absensi::find($id_absen);
+        if ($absen) {
+            $absen->kehadiran = $kehadiran;
+            $absen->save();
+        }
+
+        return response()->json(['kehadiran' => $kehadiran]);
+    }
+
 }
