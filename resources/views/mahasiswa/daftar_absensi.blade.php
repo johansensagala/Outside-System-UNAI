@@ -22,6 +22,7 @@
                 <div class="card">
                     <div class="m-5 row" id="absensiTable">
                         <div class="table-responsive col-md-8 mt-3">
+                            <input type="text" id="liveSearch" class="form-control mb-2" placeholder="Live Search"/>
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -176,7 +177,48 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (selectedOption === 'Berdasarkan interval tanggal') {
             document.getElementById('intervalTanggal').classList.remove('d-none');
         }
-    });    
+    });
+    
+    // Untuk livesearch
+
+    const liveSearchInput = document.getElementById('liveSearch');
+    liveSearchInput.addEventListener('input', function () {
+        const searchQuery = this.value;
+
+        fetch(`/mhs/daftar-absensi-mahasiswa/live-search?q=${searchQuery}`)
+            .then(response => response.json())
+            .then(data => {
+                updateTable(data);
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    function updateTable(data) {
+        const tableBody = document.querySelector('.table tbody');
+        tableBody.innerHTML = '';
+
+        const absenData = data.data; // Extract the 'data' property from the response
+
+        console.log(absenData)
+        absenData.forEach(absen => {
+            const row = `
+                <tr>
+                    <td class="align-middle">${absen.index}</td>
+                    <td class="align-middle">${absen.nim}</td>
+                    <td class="align-middle">${absen.nama}</td>
+                    <td class="align-middle">${absen.created_at}</td>
+                    <td class="align-middle">
+                        ${absen.kehadiran === 'Hadir' ? '<span class="bg-success p-2 rounded-3 text-white text-center">Hadir</span>' : (absen.kehadiran === 'Izin' ? '<span class="bg-warning p-2 rounded-3 text-white text-center">Izin</span>' : '<span class="bg-danger p-2 rounded-3 text-white text-center">Absen</span>')}
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/daftar-absensi-mahasiswa/${absen.id}'">Detail</button>
+                    </td>
+                </tr>
+            `;
+
+            tableBody.innerHTML += row;
+        });
+    }
 });
 
 // Untuk grafik absensi

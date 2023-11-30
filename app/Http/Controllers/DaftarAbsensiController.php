@@ -87,6 +87,16 @@ class DaftarAbsensiController extends Controller
             return view('mahasiswa.daftar_absensi', compact('data_absen', 'summary'));
         }
     }
+
+    public function liveSearch(Request $request) {
+        $searchQuery = $request->input('q');
+    
+        $filteredData = Absensi::whereHas('mahasiswa', function ($query) use ($searchQuery) {
+            $query->where('nama', 'like', "%{$searchQuery}%");
+        })->paginate(20);
+    
+        return response()->json($filteredData);
+    }    
         
     public function show ($id) {
         $data_absen = Absensi::where('id', $id)->first();
