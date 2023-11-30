@@ -122,9 +122,12 @@ class AbsensiByMahasiswaController extends Controller
 
         $selectedMonth = $request->input('month');
 
+        // dd($selectedMonth);
+
         if ($selectedMonth == 'semua') {
             $data_absen_bulanan = DB::table('absensis')
                 ->where('id_mahasiswa', $id_mahasiswa)
+                ->orderByDesc('created_at')
                 ->get();
         } else {
             $selectedDate = Carbon::createFromFormat('F Y', $selectedMonth);
@@ -136,17 +139,19 @@ class AbsensiByMahasiswaController extends Controller
                 ->where('id_mahasiswa', $id_mahasiswa)
                 ->whereYear('created_at', $selectedYear)
                 ->whereMonth('created_at', $selectedMonth)
+                ->orderByDesc('created_at')
                 ->get();
         }
-
-
-        // dd(Absensi::where('id_mahasiswa', $id_mahasiswa)->first()->created_at);
 
         $awal_absensi = Semester::where('aksi', 'mulai absensi')
             ->latest('created_at')
             ->first()
             ->created_at;
 
+        $akhir_absensi = Absensi::where('id_mahasiswa', $mahasiswa->id)
+            ->latest('created_at')
+            ->first()
+            ->created_at;
 
         $bulan_tahun_combinations = Absensi::select(DB::raw('YEAR(created_at) AS tahun, MONTH(created_at) AS bulan'))
             ->where('id_mahasiswa', $id_mahasiswa)
@@ -163,6 +168,16 @@ class AbsensiByMahasiswaController extends Controller
             $kemarin = Carbon::yesterday()->setTime(21, 0, 0);
             $selisih_hari = $tanggal_awal_absensi->diffInDays($kemarin) + 1;
             $jumlah_hari_bulan_ini = $now->day - 1;
+        }
+
+        if (!is_null($selectedDate)) {
+            if ($selectedDate->month != $akhir_absensi->month) {
+                if ($selectedDate->month == $awal_absensi->month) {
+                    $jumlah_hari_bulan_ini = Carbon::parse($awal_absensi)->daysInMonth - $awal_absensi->day + 1;
+                } else {
+                    $jumlah_hari_bulan_ini = $selectedDate->daysInMonth;
+                }
+            }
         }
 
         $jumlah_hadir = $data_absen->where('kehadiran', 'Hadir')->count();

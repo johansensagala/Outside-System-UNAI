@@ -29,6 +29,7 @@
         <div class="card-body">
             <h5 class="card-title text-center">Detail Absensi Bulan </h5>
 
+            @if (!is_null($selectedDate))
             <div id="absensiBulanan">
                 <div id="grafik_absensi_bulanan" class="row my-3 me-5 d-flex justify-content-center align-items-center">
                 </div>
@@ -44,6 +45,7 @@
                     </p>
                 </div>
             </div>
+            @endif
 
             <div class="my-3">
                 <label for="bulanFilter" class="form-label">Pilih bulan:</label>

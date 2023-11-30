@@ -13,9 +13,9 @@ class PenjaminController extends Controller
      */
     public function index()
     {
-        return view('biro_kemahasiswaan.penjamin.index', [
-            'penjamins' =>Penjamin::all()
-        ]);
+        $penjamins = Penjamin::paginate(100);
+
+        return view('biro_kemahasiswaan.penjamin.index', compact('penjamins'));
     }
 
     /**
@@ -118,5 +118,22 @@ class PenjaminController extends Controller
 
     public function dashboad () {
         return view('penjamin.dashboard');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $query = Penjamin::query();
+
+        if (!empty($search)) {
+            $query->where('nama', 'like', '%' . $search . '%')->orWhere('username', 'like', '%' . $search . '%');
+        }
+
+        $penjamins = $query->paginate(10);
+
+        // Append the search parameter to pagination links
+        $penjamins->appends(['search' => $search]);
+
+        return view('biro_kemahasiswaan.penjamin._daftar_penjamin', compact('penjamins'))->render();
     }
 }
