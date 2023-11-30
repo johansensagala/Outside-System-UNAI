@@ -6,13 +6,23 @@ use App\Models\Absensi;
 use App\Models\PengajuanLuarAsrama;
 use App\Models\PengajuanDataPenjamin;
 
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 
 class DaftarAbsensiController extends Controller
 {
     public function index () {
-        $data_absen = Absensi::get();
-
+        $now = Carbon::now();
+        $tutup_absen = Carbon::now()->setTime(21, 0, 0);
+    
+        if ($now->greaterThan($tutup_absen)) {
+            $data_absen = Absensi::whereDate('created_at', $now->toDateString())->get();
+        } else {
+            $kemarin = $now->subDay();
+            $data_absen = Absensi::whereDate('created_at', $kemarin->toDateString())->get();
+        }
+    
         return view('mahasiswa.daftar_absensi', compact('data_absen'));
     }
 
