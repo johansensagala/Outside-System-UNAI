@@ -15,7 +15,7 @@ class FormulirPenjaminController extends Controller
 {
     public function index(Request $request)
     {
-        $daftar_data_penjamin = PengajuanDataPenjamin::get();
+        $daftar_data_penjamin = PengajuanDataPenjamin::paginate(100);
             
         return view('biro_kemahasiswaan.daftar_penjamin', compact('daftar_data_penjamin'));
     }
