@@ -80,6 +80,7 @@ class PenjaminController extends Controller
             'username' => ['required', 'min:3', 'max:255', 'unique:penjamins,username,' . $penjamin->id],
             'nama' => 'required|max:255',
             'nomor_telp' => 'required|numeric|digits_between:10,14|unique:penjamins,nomor_telp,' . $penjamin->id,
+            'role' => 'required'
         ];
 
         // Check if password is present in the request and not empty
@@ -94,6 +95,7 @@ class PenjaminController extends Controller
         $penjamin->username = $validatedData['username'];
         $penjamin->nama = $validatedData['nama'];
         $penjamin->nomor_telp = $validatedData['nomor_telp'];
+        $penjamin->role = $validatedData['role'];
 
         // Check if password is present in the request and not empty, then update it
         if ($request->filled('password')) {

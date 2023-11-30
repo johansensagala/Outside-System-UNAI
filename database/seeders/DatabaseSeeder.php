@@ -15,9 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Mahasiswa::factory(1500)->create();
-        Penjamin::factory(400)->create();
-
+        
         // \App\Models\User::factory()->create([
             //     'name' => 'Test User',
             //     'email' => 'test@example.com',
@@ -92,7 +90,7 @@ class DatabaseSeeder extends Seeder
             'nomor_pribadi' => '081323235789',
             'nomor_ortu_wali' => '081231234886',
         ]);
-
+        
         Mahasiswa::create([
             'nim' => '2081035',
             'password' => bcrypt('iman123'),
@@ -136,7 +134,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         
         // Mahasiswa::create([
-        //     'nim' => '2081035',
+            //     'nim' => '2081035',
         //     'password' => bcrypt('iman123'),
         //     'nama' => 'Iman Saputra Zendato',
         //     'angkatan' => '2020',
@@ -145,9 +143,9 @@ class DatabaseSeeder extends Seeder
         // ]);
         
         // Mahasiswa::create([
-        //     'nim' => '2081036',
-        //     'password' => bcrypt('krismes123'),
-        //     'nama' => 'Krismes Situmeang',
+            //     'nim' => '2081036',
+            //     'password' => bcrypt('krismes123'),
+            //     'nama' => 'Krismes Situmeang',
         //     'angkatan' => '2020',
         //     'nomor_pribadi' => '081323456088',
         //     'nomor_ortu_wali' => '08117567886',
@@ -200,17 +198,20 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('hendra123'),
             'nama' => 'Yunus Elon',
         ]);
-
+        
         BiroKemahasiswaan::create([
             'username' => 'saschya',
             'password' => bcrypt('saschya123'),
             'nama' => 'Yunus Elon',
         ]);
-
+        
         BiroKemahasiswaan::create([
             'username' => 'gusti',
             'password' => bcrypt('gusti123'),
             'nama' => 'Yunus Elon',
         ]);
+        
+        Mahasiswa::factory(1500)->create();
+        Penjamin::factory(400)->create();
     }
 }

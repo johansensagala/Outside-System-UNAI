@@ -20,8 +20,8 @@
                         <td class="align-middle nama">{{ $data_mahasiswa->nama }}</td>
                         <td class="align-middle text-center">{{ $data_mahasiswa->angkatan }}</td>
                         <td class="align-middle text-center">{{ $data_mahasiswa->nomor_pribadi }}</td>
-                        <td class="align-middle text-center">{{ $data_mahasiswa->role ? 'monitor' : 'mahasiswa' }}</td>
-                        <td class="align-middle">
+                        <td class="align-middle text-center">{{ $data_mahasiswa->role ? 'Monitor' : 'Mahasiswa' }}</td>
+                        <td class="align-middle text-center">
                         <a href="/biro/daftar-mahasiswa/{{$data_mahasiswa->id}}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
                         </td>
                     </tr>

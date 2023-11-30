@@ -59,7 +59,7 @@
                         </div>
                     </div>
                  </div>
-                 <button type="submit" class="btn btn-warning col-md-3">Update Mahasiswa</button>
+                 <button type="submit" class="btn btn-warning fw-bold">Update Mahasiswa</button>
             </div>
         </form>  
     </div>
