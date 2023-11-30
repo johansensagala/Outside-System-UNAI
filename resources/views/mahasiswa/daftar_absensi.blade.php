@@ -66,7 +66,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $data_absen->links() }}
+                            {{-- {{ $data_absen->links() }} --}}
                         </div>
                         <div class="col-md-4 mt-3">
                             <div class="card mb-3">
@@ -79,7 +79,7 @@
                                     </select>
                             
                                     <div id="tanggal" class="{{ isset($tanggal_awal) || isset($tanggal_akhir) ? 'd-none' : '' }}">
-                                        <form action="/mhs/daftar-absensi-mahasiswa/filter-tanggal" method="POST">
+                                        <form action="/mhs/daftar-absensi-mahasiswa" method="POST">
                                             @csrf
                                             <label for="tanggalInput" class="mb-1">Pilih Filter Tanggal</label>
                                             <input type="text" name="tanggalInput" id="tanggalInput" class="form-control mb-2" value="{{ isset($tanggal_input) ? $tanggal_input : '' }}" placeholder="Pilih Tanggal"/>
@@ -90,7 +90,7 @@
                                     </div>
                                     
                                     <div id="intervalTanggal" class="{{ isset($tanggal_awal) || isset($tanggal_akhir) ? '' : 'd-none' }}">
-                                        <form action="/mhs/daftar-absensi-mahasiswa/filter-interval-tanggal" method="POST">
+                                        <form action="/mhs/daftar-absensi-mahasiswa" method="POST">
                                             @csrf    
                                             <label for="tanggalAwal" class="mb-1">Pilih Tanggal Awal</label>
                                             <input type="text" name="tanggalAwal" id="tanggalAwal" class="form-control mb-2" value="{{ isset($tanggal_awal) ? $tanggal_awal : '' }}" placeholder="Pilih Tanggal"/>
