@@ -2,37 +2,120 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Penjamin;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PenjaminController extends Controller
 {
-    public function index () {
-        return view('penjamin.dashboard');
-    }
-    public function showPermohonanTempatTinggal () {
-        return view('penjamin.permohonan_tempat_tinggal');
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return view('biro_kemahasiswaan.penjamin.index', [
+            'penjamins' =>Penjamin::all()
+        ]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('biro_kemahasiswaan.penjamin.create', [
+            'penjamins' =>Penjamin::all()
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'author' => 'required',
-            'year' => 'required|integer',
+        $validatedData = $request->validate([
+            'username' => ['required', 'min:3', 'max:255', 'unique:penjamins'],
+            'password' => 'required|min:8|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/',
+            'repassword' => 'required|same:password',
+            'nama' => 'required|max:255',
+            'nomor_telp' => 'required|numeric|digits_between:10,14', 'unique:penjamins',
+        ], [
+            'password.regex' => 'The password format is invalid. Password must be at least 8 characters with a combination of numbers and letters.',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 400);
-        }
+        // $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData['password'] = Hash::make($validatedData['password']);
 
-        $book = Penjamin::create($request->all());
-
-        return response()->json(['data' => $book], 201);
+        Penjamin::create($validatedData);
+        
+        // $request->session()->flash('success', 'Registration successfull! Please login');
+        
+        return redirect('/biro/penjamin')->with('success', 'Registration successfull! Please login');
     }
 
-    public function showPersetujuanPermohonanMahasiswa () {
-        return view('penjamin.daftar_');
+    /**
+     * Display the specified resource.
+     */
+    public function show(Penjamin $penjamin)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Penjamin $penjamin)
+    {
+        return view('biro_kemahasiswaan.penjamin.edit', [
+            'penjamin' => $penjamin
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Penjamin $penjamin)
+{
+    $rules = [
+        'username' => ['required', 'min:3', 'max:255', 'unique:penjamins,username,' . $penjamin->id],
+        'nama' => 'required|max:255',
+        'nomor_telp' => 'required|numeric|digits_between:10,14|unique:penjamins,nomor_telp,' . $penjamin->id,
+    ];
+
+    // Check if password is present in the request
+    if ($request->has('password')) {
+        $rules['password'] = 'required|min:8|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/';
+        $rules['repassword'] = 'required|same:password';
+    }
+
+    $validatedData = $request->validate($rules);
+
+    // Update fields other than the password
+    $penjamin->username = $validatedData['username'];
+    $penjamin->nama = $validatedData['nama'];
+    $penjamin->nomor_telp = $validatedData['nomor_telp'];
+
+    // Check if password is present in the request and update it
+    if ($request->has('password')) {
+        $penjamin->password = bcrypt($validatedData['password']);
+    }
+
+    $penjamin->save();
+
+    return redirect('/biro/penjamin')->with('success', 'Penjamin telah dibuat!');
+}
+
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Penjamin $penjamin)
+    {
+        Penjamin::destroy($penjamin->id);
+        return redirect('biro/penjamin')->with('success', 'penjamin has been deleted!');
+    }
+
+    public function dashboad () {
+        return view('penjamin.dashboard');
     }
 }

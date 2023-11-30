@@ -23,7 +23,7 @@ class RegisterController extends Controller
             'password' => 'required|min:8|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/',
             'repassword' => 'required|same:password',
             'nama' => 'required|max:255',
-            'nomor_telp' => 'required|numeric|digits_between:10,14',
+            'nomor_telp' => 'required|numeric|digits_between:10,14', 'unique:penjamins',
         ], [
             'password.regex' => 'The password format is invalid. Password must be at least 8 characters with a combination of numbers and letters.',
         ]);

@@ -83,7 +83,7 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
 
 // Rute-rute untuk Penjamin
 Route::middleware(['penjamin_middleware'])->group(function () {
-    Route::get('/penjamin/dashboard', [PenjaminController::class, 'index']);
+    Route::get('/penjamin/dashboard', [PenjaminController::class, 'dashboad']);
 
     Route::get('/penjamin/profile', [PenjaminProfileController::class, 'index']);
 
@@ -108,8 +108,10 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     Route::get('/biro/search-penjamin', [FormulirPenjaminController::class, 'search'])->name('biro_kemahasiswaan.search_penjamin');
     Route::get('/biro/status-penjamin', [FormulirPenjaminController::class, 'status'])->name('biro_kemahasiswaan.status_penjamin');
         
-    Route::resource('/biro/daftar-mahasiswa', RoleMahasiswaController::class)->except('create, store');
+    Route::resource('/biro/daftar-mahasiswa', RoleMahasiswaController::class)->except('create, store, destroy');
     Route::get('/biro/search-mahasiswa', [RoleMahasiswaController::class, 'search'])->name('biro_kemahasiswaan.search_mahasiswa');
+
+    Route::resource('/biro/penjamin', PenjaminController::class)->except('show');
     
     Route::get('/biro/formulir-penjamin/{id}', [FormulirPenjaminController::class, 'show'])->name('biro_kemahasiswaan.formulir_penjamin');
     Route::post('/biro/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);
