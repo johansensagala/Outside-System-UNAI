@@ -62,9 +62,13 @@
                                         <td class="align-middle"><button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/daftar-absensi/{{ $absen->id }}'">Detail</button></td>
                                         <td class="align-middle">{{ $absen->created_at }}</td>
                                         <td class="align-middle">
-                                            @if ($absen->kehadiran == 'hadir')
+                                            @if ($absen->kehadiran == 'Hadir')
                                             <span class="bg-success p-2 rounded-3 text-white text-center">
                                                 Hadir
+                                            </span>
+                                            @elseif ($absen->kehadiran == 'Izin')
+                                            <span class="bg-warning p-2 rounded-3 text-white text-center">
+                                                Izin
                                             </span>
                                             @else
                                             <span class="bg-danger p-2 rounded-3 text-white text-center">
@@ -73,10 +77,10 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    @endforeach
                                     @php
                                         $index += 1;
                                     @endphp
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

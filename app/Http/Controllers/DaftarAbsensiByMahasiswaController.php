@@ -85,7 +85,7 @@ class DaftarAbsensiByMahasiswaController extends Controller
             return view('mahasiswa.no_absensi');
         }
         
-        return view('mahasiswa.absensi', compact('data_absen_bulanan', 'mahasiswa', 'belum_absen', 'absen_time', 'latitude', 'longitude', 'bulan_tahun_combinations', 'summary', 'summary_bulanan', 'absensi_content', 'absensi_bulanan', 'selectedDate'));
+        return view('mahasiswa.absensi', compact('data_absen_bulanan', 'mahasiswa', 'bulan_tahun_combinations', 'summary', 'summary_bulanan', 'absensi_content', 'absensi_bulanan', 'selectedDate'));
     }
 
     public function filter (Request $request) {
