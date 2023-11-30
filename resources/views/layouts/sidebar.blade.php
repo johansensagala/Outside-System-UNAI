@@ -58,23 +58,28 @@
       @endif
       
       @if ($data_pengajuan_terakhir->status == 'disetujui')
-      <li class="nav-item py-3 {{ request()->is('mhs/absensi') ? 'active' : '' }}">
-          <a href="{{ url('/mhs/absensi') }}" class="nav-link">
-              <i class="link-icon" data-feather="clock"></i>
-              <span class="link-title">Absensi</span>
+        <li class="nav-item py-3 {{ request()->is('mhs/daftar-absensi') ? 'active' : '' }}">
+            <a href="{{ url('/mhs/daftar-absensi') }}" class="nav-link">
+                <i class="link-icon" data-feather="clock"></i>
+                <span class="link-title">Laporan Absensi</span>
+            </a>
+        </li>
+
+        <li class="nav-item py-3 {{ request()->is('mhs/absensi') ? 'active' : '' }}">
+            <a href="{{ url('/mhs/absensi') }}" class="nav-link">
+                <i class="link-icon" data-feather="clock"></i>
+                <span class="link-title">Absensi</span>
+            </a>
+        </li>
+        
+        @if(Auth::guard('mahasiswa')->user()->role == 1)
+        <li class="nav-item py-3 {{ request()->is('mhs/daftar-absensi-mahasiswa') ? 'active' : '' }}">
+          <a href="{{ url('/mhs/daftar-absensi-mahasiswa') }}" class="nav-link">
+            <i class="link-icon" data-feather="clock"></i>
+            <span class="link-title">Daftar Absensi Mahasiswa</span>
           </a>
-      </li>
-      @endif
-
-      @if(Auth::guard('mahasiswa')->user()->role == 1)
-
-      <li class="nav-item py-3 {{ request()->is('mhs/daftar-absensi') ? 'active' : '' }}">
-          <a href="{{ url('/mhs/daftar-absensi') }}" class="nav-link">
-              <i class="link-icon" data-feather="clock"></i>
-              <span class="link-title">Daftar Absensi</span>
-          </a>
-      </li>
-
+        </li>
+        @endif
       @endif
       
       <form id="logout-form" action="{{ route('logout_mahasiswa') }}" method="post">
