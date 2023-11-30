@@ -21,12 +21,14 @@ class AbsensiByMahasiswaController extends Controller
 
         // Bagian ini untuk mengurus tabel absensi dan detail absensi
 
-        $data_absen = Absensi::where('id_mahasiswa', $id_mahasiswa)->get();
-
+        $data_absen = Absensi::where('id_mahasiswa', $id_mahasiswa)
+            ->orderByDesc('created_at')
+            ->get();
+    
         $data_absen_bulanan = $data_absen->filter(function ($absen) {
             return $absen->created_at->isCurrentMonth();
         });
-
+    
         $bulan_tahun_combinations = Absensi::select(DB::raw('YEAR(created_at) AS tahun, MONTH(created_at) AS bulan'))
             ->where('id_mahasiswa', $id_mahasiswa)
             ->groupBy('tahun', 'bulan')
@@ -82,7 +84,7 @@ class AbsensiByMahasiswaController extends Controller
             ->where('kehadiran', 'Hadir')
             ->get();
 
-        $batas_bawah = Carbon::createFromTime(12, 30);
+        $batas_bawah = Carbon::createFromTime(19, 30);
         $batas_atas = Carbon::createFromTime(21, 0);
     
         $absen_time = $now->between($batas_bawah, $batas_atas);
