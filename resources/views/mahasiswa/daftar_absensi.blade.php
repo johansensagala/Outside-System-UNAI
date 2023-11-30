@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="m-5 row">
+                    <div class="m-5 row" id="absensiTable">
                         <div class="table-responsive col-md-8 mt-3">
                             <table class="table table-bordered table-striped">
                                 <thead>
@@ -42,7 +42,6 @@
                                         <td class="align-middle">{{ $index }}</td>
                                         <td class="align-middle">{{ $absen->mahasiswa->nim }}</td>
                                         <td class="align-middle">{{ $absen->mahasiswa->nama }}</td>
-                                        <td class="align-middle"><button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/daftar-absensi-mahasiswa/{{ $absen->id }}'">Detail</button></td>
                                         <td class="align-middle">{{ $absen->created_at }}</td>
                                         <td class="align-middle">
                                             @if ($absen->kehadiran == 'Hadir')
@@ -59,6 +58,7 @@
                                             </span>
                                             @endif
                                         </td>
+                                        <td class="align-middle"><button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/daftar-absensi-mahasiswa/{{ $absen->id }}'">Detail</button></td>
                                     </tr>
                                     @php
                                         $index += 1;
@@ -78,21 +78,27 @@
                                     </select>
                             
                                     <div id="tanggal" class="">
-                                        <label for="tanggalInput" class="mb-1">Pilih Filter Tanggal</label>
-                                        <input type="text" id="tanggalInput" class="form-control mb-2" placeholder="Pilih Tanggal"/>
-                                        <button class="btn btn-primary mb-3" id="simpanButton1">
-                                            Tetapkan
-                                        </button>    
+                                        <form action="/mhs/daftar-absensi-mahasiswa/filter-tanggal" method="POST">
+                                            @csrf
+                                            <label for="tanggalInput" class="mb-1">Pilih Filter Tanggal</label>
+                                            <input type="text" name="tanggalInput" id="tanggalInput" class="form-control mb-2" placeholder="Pilih Tanggal"/>
+                                            <button type="submit" class="btn btn-primary" id="tetapkanTanggal">
+                                                Tetapkan
+                                            </button>    
+                                        </form>
                                     </div>
                                     
                                     <div id="intervalTanggal" class="d-none">
-                                        <label for="tanggalAwal" class="mb-1">Pilih Tanggal Awal</label>
-                                        <input type="text" id="tanggalAwal" class="form-control mb-2" placeholder="Pilih Tanggal"/>
-                                        <label for="tanggalAkhir" class="mb-1">Pilih Tanggal Akhir</label>
-                                        <input type="text" id="tanggalAkhir" class="form-control mb-2" placeholder="Pilih Tanggal"/>
-                                        <button class="btn btn-primary" id="simpanButton2">
-                                            Tetapkan
-                                        </button>    
+                                        <form action="/mhs/daftar-absensi-mahasiswa/filter-interval-tanggal" method="POST">
+                                            @csrf    
+                                            <label for="tanggalAwal" class="mb-1">Pilih Tanggal Awal</label>
+                                            <input type="text" name="tanggalAwal" id="tanggalAwal" class="form-control mb-2" placeholder="Pilih Tanggal"/>
+                                            <label for="tanggalAkhir" class="mb-1">Pilih Tanggal Akhir</label>
+                                            <input type="text" name="tanggalAkhir" id="tanggalAkhir" class="form-control mb-2" placeholder="Pilih Tanggal"/>
+                                            <button type="submit" class="btn btn-primary" id="tetapkanIntervalTanggal">
+                                                Tetapkan
+                                            </button>
+                                        </form>
                                     </div>                                                            
                                 </div>
                             </div>

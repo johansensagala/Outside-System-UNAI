@@ -26,6 +26,21 @@ class DaftarAbsensiController extends Controller
         return view('mahasiswa.daftar_absensi', compact('data_absen'));
     }
 
+    public function filterTanggal (Request $request) {
+        $data_absen = Absensi::whereDate('created_at', $request->tanggalInput)->get();
+    
+        return view('mahasiswa.daftar_absensi', compact('data_absen'));
+    }
+    
+    public function filterIntervalTanggal(Request $request) {
+        $tanggalAwal = $request->tanggalAwal;
+        $tanggalAkhir = $request->tanggalAkhir;
+    
+        $data_absen = Absensi::whereBetween('created_at', [$tanggalAwal, $tanggalAkhir])->get();
+    
+        return view('mahasiswa.daftar_absensi', compact('data_absen'));
+    }
+    
     public function show ($id) {
         $data_absen = Absensi::where('id', $id)->first();
 
