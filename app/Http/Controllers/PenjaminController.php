@@ -75,36 +75,35 @@ class PenjaminController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Penjamin $penjamin)
-{
-    $rules = [
-        'username' => ['required', 'min:3', 'max:255', 'unique:penjamins,username,' . $penjamin->id],
-        'nama' => 'required|max:255',
-        'nomor_telp' => 'required|numeric|digits_between:10,14|unique:penjamins,nomor_telp,' . $penjamin->id,
-    ];
+    {
+        $rules = [
+            'username' => ['required', 'min:3', 'max:255', 'unique:penjamins,username,' . $penjamin->id],
+            'nama' => 'required|max:255',
+            'nomor_telp' => 'required|numeric|digits_between:10,14|unique:penjamins,nomor_telp,' . $penjamin->id,
+        ];
 
-    // Check if password is present in the request
-    if ($request->has('password')) {
-        $rules['password'] = 'required|min:8|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/';
-        $rules['repassword'] = 'required|same:password';
+        // Check if password is present in the request and not empty
+        if ($request->filled('password')) {
+            $rules['password'] = 'required|min:8|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/';
+            $rules['repassword'] = 'required|same:password';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        // Update fields other than the password
+        $penjamin->username = $validatedData['username'];
+        $penjamin->nama = $validatedData['nama'];
+        $penjamin->nomor_telp = $validatedData['nomor_telp'];
+
+        // Check if password is present in the request and not empty, then update it
+        if ($request->filled('password')) {
+            $penjamin->password = bcrypt($validatedData['password']);
+        }
+
+        $penjamin->save();
+
+        return redirect('/biro/penjamin')->with('success', 'Penjamin telah di ubah!');
     }
-
-    $validatedData = $request->validate($rules);
-
-    // Update fields other than the password
-    $penjamin->username = $validatedData['username'];
-    $penjamin->nama = $validatedData['nama'];
-    $penjamin->nomor_telp = $validatedData['nomor_telp'];
-
-    // Check if password is present in the request and update it
-    if ($request->has('password')) {
-        $penjamin->password = bcrypt($validatedData['password']);
-    }
-
-    $penjamin->save();
-
-    return redirect('/biro/penjamin')->with('success', 'Penjamin telah dibuat!');
-}
-
 
     /**
      * Remove the specified resource from storage.
