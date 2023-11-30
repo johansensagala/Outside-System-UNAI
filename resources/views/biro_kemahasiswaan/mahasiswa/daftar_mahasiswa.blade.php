@@ -90,7 +90,17 @@
                             </div>
                         </div>
                         @include('biro_kemahasiswaan.mahasiswa._daftar_mahasiswa')
-                    </div>   
+                    </div>
+                    @if ($daftar_data_mahasiswa->total() > $daftar_data_mahasiswa->perPage())
+                        <div class="pagination">
+                            {{ $daftar_data_mahasiswa->links() }}
+                        </div>
+                    @endif
+                    @if ($daftar_data_mahasiswa->count() === 0)
+                        <h4 class="my-4 text-center fw-bold">
+                            Belum ada mahasiswa
+                        </h4>
+                    @endif   
                 </div>
             </div>
         </div>
@@ -98,46 +108,33 @@
 </div>
 
 <script>
-    // $(document).ready(function () {
-    //     $('#search').on('keyup', function () {
-    //         let search = $(this).val();
-
-    //         if (search.length >= 3 || search.length === 0) { 
-    //             $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search }, function (data) {
-    //                 $('#search-results').html(data);
-    //             });
-    //         }
-    //     });
-    // });
-
     $(document).ready(function () {
         
-    $('#search').on('keyup', function () {
-        let search = $(this).val();
-        updateSearchResults(search);
-    });
+        $('#search').on('keyup', function () {
+            let search = $(this).val();
+            updateSearchResults(search);
+        });
 
-    $('body').on('click', '.pagination a', function (e) {
-        e.preventDefault();
-        let page = $(this).attr('href').split('page=')[1];
-        let search = $('#search').val();
-        updateSearchResults(search, page);
-    });
+        $('body').on('click', '.pagination a', function (e) {
+            e.preventDefault();
+            let page = $(this).attr('href').split('page=')[1];
+            let search = $('#search').val();
+            updateSearchResults(search, page);
+        });
 
-    $('form').submit(function (event) {
-        event.preventDefault();
-        let search = $('#search').val();
-        updateSearchResults(search);
-    });
+        $('form').submit(function (event) {
+            event.preventDefault();
+            let search = $('#search').val();
+            updateSearchResults(search);
+        });
 
-    function updateSearchResults(search, page = 1) {
-        if (search.length >= 3 || search.length == 0) {
-            $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search, page: page }, function (data) {
-                $('#search-results').html(data);
-            });
+        function updateSearchResults(search, page = 1) {
+            if (search.length >= 3 || search.length == 0) {
+                $.get("{{ route('biro_kemahasiswaan.search_mahasiswa') }}", { search: search, page: page }, function (data) {
+                    $('#search-results').html(data);
+                });
+            }
         }
-    }
-});
-
+    });
 </script>
 @endsection

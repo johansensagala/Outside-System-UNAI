@@ -1,48 +1,140 @@
 @extends('layouts.main')
 <title>UNAI Outside System</title>
 
+@push('plugin-styles')
+    <link href="{{ asset('assets/plugins/flatpickr/flatpickr.min.css') }}" rel="stylesheet"/>
+    <style>
+    @media (max-width: 767px) {
+        .table-responsive.card-list-table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .table-responsive.card-list-table table {
+            display: block;
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            white-space: nowrap;
+        }
+
+        .table-responsive.card-list-table thead {
+            display: none;
+        }
+
+        .table-responsive.card-list-table tbody tr .number {
+            display: none;
+        }
+
+        .table-responsive.card-list-table tbody tr .name {
+            font-size: 16px;
+        }
+
+        .table-responsive.card-list-table tbody {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .table-responsive.card-list-table tbody tr {
+            display: block;
+            margin-bottom: 10px;
+            border: 8px solid #ddd;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .table-responsive.card-list-table tbody td {
+            display: flex;
+            align-items: baseline;
+            justify-content:center;
+            text-align: left;
+            font-size: 14px;
+            padding: 8px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+    }
+</style>
+@endpush
+
 @section('content')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Penjamin</h1>
-    </div>
-    @if (session()->has('success'))
-        <div class="alert alert-success col-lg-6" role="alert">
-            {{ session('success') }}
+
+<div class="row common-font-color">
+    <div class="col-12 col-xl-12 stretch-card">
+        <div class="row flex-grow-1">
+            @if (session()->has('success'))
+                <div class="alert alert-success col-lg-12" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <div class="grid-margin">
+                <div class="card bs-gray-200 fw-bold">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            DATA MAHASISWA
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="m-5">
+                        <div class="row">
+                            <div class="col-12">
+                                <form action="/biro/penjamin">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search" value="{{ request('search') }}">
+                                    </div>
+                                </form>                                
+                            </div>
+                        </div>
+                        @include('biro_kemahasiswaan.penjamin._daftar_penjamin')
+                    </div>
+                    @if ($penjamins->total() > $penjamins->perPage())
+                        <div class="pagination">
+                            {{ $penjamins->links() }}
+                        </div>
+                    @endif
+                    @if ($penjamins->count() === 0)
+                        <h4 class="my-4 text-center fw-bold">
+                            Belum ada penjamin
+                        </h4>
+                    @endif   
+                </div>
+            </div>
         </div>
-    @endif
-    <div class="table-responsive">
-        <a href="/biro/penjamin/create" class="btn btn-primary mb-3">Tambah Penjamin</a>
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Nomor Telfon</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($penjamins as $penjamin)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $penjamin->username }}</td>
-                        <td>{{ $penjamin->nama }}</td>
-                        <td>{{ $penjamin->nomor_telp }}</td>
-                        <td>{{ $penjamin->role }}</td>
-                        <td>
-                            <a href="/biro/penjamin/{{ $penjamin->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
-                            <form action="/biro/penjamin/{{ $penjamin->id }}" method="POST" class="d-inline">
-                                @method('delete')
-                                @csrf
-                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span data-feather="x-circle"></button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-                
-            </tbody>
-        </table>
     </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        
+        $('#search').on('keyup', function () {
+            let search = $(this).val();
+            updateSearchResults(search);
+        });
+
+        $('body').on('click', '.pagination a', function (e) {
+            e.preventDefault();
+            let page = $(this).attr('href').split('page=')[1];
+            let search = $('#search').val();
+            updateSearchResults(search, page);
+        });
+
+        $('form').submit(function (event) {
+            event.preventDefault();
+            let search = $('#search').val();
+            updateSearchResults(search);
+        });
+
+        function updateSearchResults(search, page = 1) {
+            if (search.length >= 3 || search.length == 0) {
+                $.get("{{ route('biro_kemahasiswaan.search_penjamin') }}", { search: search, page: page }, function (data) {
+                    $('#search-results').html(data);
+                });
+            }
+        }
+    });
+</script>
 @endsection
