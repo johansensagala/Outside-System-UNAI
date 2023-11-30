@@ -67,13 +67,15 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            @if (isset($tanggal_input))
-                                {{ $data_absen->appends(['tanggalInput' => $tanggal_input])->links() }}
-                            @elseif (isset($tanggal_awal) && isset($tanggal_akhir))
-                                {{ $data_absen->appends(['tanggalAwal' => $tanggal_awal, 'tanggalAkhir' => $tanggal_akhir])->links() }}
-                            @else
-                                {{ $data_absen->links() }}
-                            @endif
+                            <div class="mt-5 d-flex justify-content-center align-items-center">
+                                @if (isset($tanggal_input))
+                                    {{ $data_absen->appends(['tanggalInput' => $tanggal_input])->links() }}
+                                @elseif (isset($tanggal_awal) && isset($tanggal_akhir))
+                                    {{ $data_absen->appends(['tanggalAwal' => $tanggal_awal, 'tanggalAkhir' => $tanggal_akhir])->links() }}
+                                @else
+                                    {{ $data_absen->links() }}
+                                @endif
+                            </div>
                         </div>
                         <div class="col-md-4 mt-3">
                             <div class="card mb-3">
@@ -82,7 +84,7 @@
                                     <label for="jenisFilter" class="mb-1">Pilih Filter Tanggal</label>
                                     <select id="jenisFilter" class="form-select mb-4" aria-label="Default select example">
                                         <option>Berdasarkan tanggal</option>
-                                        <option>Berdasarkan interval tanggal</option>
+                                        <option {{ isset($tanggal_awal) || isset($tanggal_akhir) ? 'selected' : '' }}>Berdasarkan interval tanggal</option>
                                     </select>
                             
                                     <div id="tanggal" class="{{ isset($tanggal_awal) || isset($tanggal_akhir) ? 'd-none' : '' }}">
@@ -201,9 +203,28 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 updateTable(data);
+                updatePagination(data.links);
             })
             .catch(error => console.error('Error:', error));
     });
+
+    function updatePagination(links) {
+        const pagination = document.querySelector('.pagination');
+        pagination.innerHTML = '';
+
+        for (const [key, value] of Object.entries(links)) {
+            if (value) {
+                const link = document.createElement('a');
+                link.href = value;
+                link.textContent = key;
+                link.classList.add('page-link');
+                const listItem = document.createElement('li');
+                listItem.classList.add('page-item');
+                listItem.appendChild(link);
+                pagination.appendChild(listItem);
+            }
+        }
+    }
 
     function updateTable(data) {
         const tableBody = document.querySelector('.table tbody');
