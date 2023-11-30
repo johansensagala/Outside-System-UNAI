@@ -66,7 +66,13 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{-- {{ $data_absen->links() }} --}}
+                            @if (isset($tanggal_input))
+                                {{ $data_absen->appends(['tanggalInput' => $tanggal_input])->links() }}
+                            @elseif (isset($tanggal_awal) && isset($tanggal_akhir))
+                                {{ $data_absen->appends(['tanggalAwal' => $tanggal_awal, 'tanggalAkhir' => $tanggal_akhir])->links() }}
+                            @else
+                                {{ $data_absen->links() }}
+                            @endif
                         </div>
                         <div class="col-md-4 mt-3">
                             <div class="card mb-3">
@@ -91,7 +97,7 @@
                                     
                                     <div id="intervalTanggal" class="{{ isset($tanggal_awal) || isset($tanggal_akhir) ? '' : 'd-none' }}">
                                         <form action="/mhs/daftar-absensi-mahasiswa" method="POST">
-                                            @csrf    
+                                            @csrf
                                             <label for="tanggalAwal" class="mb-1">Pilih Tanggal Awal</label>
                                             <input type="text" name="tanggalAwal" id="tanggalAwal" class="form-control mb-2" value="{{ isset($tanggal_awal) ? $tanggal_awal : '' }}" placeholder="Pilih Tanggal"/>
                                             <label for="tanggalAkhir" class="mb-1">Pilih Tanggal Akhir</label>
