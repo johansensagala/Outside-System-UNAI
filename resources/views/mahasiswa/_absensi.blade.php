@@ -54,16 +54,27 @@
                         });
                     @endphp
             
-                    @foreach($sortedBulanTahun as $bulan)
-                        @php
-                            $formattedDate = \Carbon\Carbon::createFromDate($bulan->tahun, $bulan->bulan, 1)->format('F Y');
-                            $isSelected = ($bulan->tahun == $selectedDate->year && $bulan->bulan == $selectedDate->month);
-                        @endphp
-                        <option value="{{ $formattedDate }}" {{ $isSelected ? 'selected' : '' }}>{{ $formattedDate }}</option>
-                    @endforeach
+                    @if (!is_null($selectedDate))
+                        <option value="semua">Tampilkan semua</option>
+                        @foreach($sortedBulanTahun as $bulan)
+                            @php
+                                $formattedDate = \Carbon\Carbon::createFromDate($bulan->tahun, $bulan->bulan, 1)->format('F Y');
+                                $isSelected = ($bulan->tahun == $selectedDate->year && $bulan->bulan == $selectedDate->month);
+                            @endphp
+                            <option value="{{ $formattedDate }}" {{ $isSelected ? 'selected' : '' }}>{{ $formattedDate }}</option>
+                        @endforeach
+                    @else
+                        <option value="semua" selected>Tampilkan semua</option>
+                        @foreach($sortedBulanTahun as $bulan)
+                            @php
+                                $formattedDate = \Carbon\Carbon::createFromDate($bulan->tahun, $bulan->bulan, 1)->format('F Y');
+                            @endphp
+                            <option value="{{ $formattedDate }}">{{ $formattedDate }}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
-            
+                        
         </div>
     </div>
 </div>

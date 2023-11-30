@@ -113,6 +113,8 @@ class AbsensiByMahasiswaController extends Controller
     }
 
     public function filter (Request $request) {
+        $selectedDate = null;
+
         $mahasiswa = Auth::guard('mahasiswa')->user();
         $id_mahasiswa = $mahasiswa->id;
 
@@ -120,10 +122,23 @@ class AbsensiByMahasiswaController extends Controller
 
         $selectedMonth = $request->input('month');
 
-        $selectedDate = Carbon::createFromFormat('F Y', $selectedMonth);
+        if ($selectedMonth == 'semua') {
+            $data_absen_bulanan = DB::table('absensis')
+                ->where('id_mahasiswa', $id_mahasiswa)
+                ->get();
+        } else {
+            $selectedDate = Carbon::createFromFormat('F Y', $selectedMonth);
+    
+            $selectedYear = $selectedDate->year;
+            $selectedMonth = $selectedDate->month;
 
-        $selectedYear = $selectedDate->year;
-        $selectedMonth = $selectedDate->month;
+            $data_absen_bulanan = DB::table('absensis')
+                ->where('id_mahasiswa', $id_mahasiswa)
+                ->whereYear('created_at', $selectedYear)
+                ->whereMonth('created_at', $selectedMonth)
+                ->get();
+        }
+
 
         // dd(Absensi::where('id_mahasiswa', $id_mahasiswa)->first()->created_at);
 
@@ -132,11 +147,6 @@ class AbsensiByMahasiswaController extends Controller
             ->first()
             ->created_at;
 
-        $data_absen_bulanan = DB::table('absensis')
-            ->where('id_mahasiswa', $id_mahasiswa)
-            ->whereYear('created_at', $selectedYear)
-            ->whereMonth('created_at', $selectedMonth)
-            ->get();
 
         $bulan_tahun_combinations = Absensi::select(DB::raw('YEAR(created_at) AS tahun, MONTH(created_at) AS bulan'))
             ->where('id_mahasiswa', $id_mahasiswa)
