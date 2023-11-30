@@ -81,7 +81,7 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::get('/mhs/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'index']);
     Route::post('/mhs/daftar-absensi-mahasiswa/filter-tanggal', [DaftarAbsensiController::class, 'filterTanggal']);
     Route::post('/mhs/daftar-absensi-mahasiswa/filter-interval-tanggal', [DaftarAbsensiController::class, 'filterIntervalTanggal']);
-    Route::get('/mhs/daftar-absensi-mahasiswa/{id}', [DaftarAbsensiController::class, 'show']);
+    // Route::get('/mhs/daftar-absensi-mahasiswa/{id}', [DaftarAbsensiController::class, 'show']);
     Route::post('/mhs/update-kehadiran', [DaftarAbsensiByMahasiswaController::class, 'update_kehadiran']);
 });
 

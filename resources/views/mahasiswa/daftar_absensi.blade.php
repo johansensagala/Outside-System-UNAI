@@ -66,6 +66,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $data_absen->links() }}
                         </div>
                         <div class="col-md-4 mt-3">
                             <div class="card mb-3">
@@ -77,24 +78,24 @@
                                         <option>Berdasarkan interval tanggal</option>
                                     </select>
                             
-                                    <div id="tanggal" class="">
+                                    <div id="tanggal" class="{{ isset($tanggal_awal) || isset($tanggal_akhir) ? 'd-none' : '' }}">
                                         <form action="/mhs/daftar-absensi-mahasiswa/filter-tanggal" method="POST">
                                             @csrf
                                             <label for="tanggalInput" class="mb-1">Pilih Filter Tanggal</label>
-                                            <input type="text" name="tanggalInput" id="tanggalInput" class="form-control mb-2" placeholder="Pilih Tanggal"/>
+                                            <input type="text" name="tanggalInput" id="tanggalInput" class="form-control mb-2" value="{{ isset($tanggal_input) ? $tanggal_input : '' }}" placeholder="Pilih Tanggal"/>
                                             <button type="submit" class="btn btn-primary" id="tetapkanTanggal">
                                                 Tetapkan
                                             </button>    
                                         </form>
                                     </div>
                                     
-                                    <div id="intervalTanggal" class="d-none">
+                                    <div id="intervalTanggal" class="{{ isset($tanggal_awal) || isset($tanggal_akhir) ? '' : 'd-none' }}">
                                         <form action="/mhs/daftar-absensi-mahasiswa/filter-interval-tanggal" method="POST">
                                             @csrf    
                                             <label for="tanggalAwal" class="mb-1">Pilih Tanggal Awal</label>
-                                            <input type="text" name="tanggalAwal" id="tanggalAwal" class="form-control mb-2" placeholder="Pilih Tanggal"/>
+                                            <input type="text" name="tanggalAwal" id="tanggalAwal" class="form-control mb-2" value="{{ isset($tanggal_awal) ? $tanggal_awal : '' }}" placeholder="Pilih Tanggal"/>
                                             <label for="tanggalAkhir" class="mb-1">Pilih Tanggal Akhir</label>
-                                            <input type="text" name="tanggalAkhir" id="tanggalAkhir" class="form-control mb-2" placeholder="Pilih Tanggal"/>
+                                            <input type="text" name="tanggalAkhir" id="tanggalAkhir" class="form-control mb-2" value="{{ isset($tanggal_akhir) ? $tanggal_akhir : '' }}" placeholder="Pilih Tanggal"/>
                                             <button type="submit" class="btn btn-primary" id="tetapkanIntervalTanggal">
                                                 Tetapkan
                                             </button>
@@ -103,6 +104,24 @@
                                 </div>
                             </div>
                             <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Detail Absensi Semester</h5>
+                        
+                                    <div id="grafik_absensi" class="row my-3 me-5 d-flex justify-content-center align-items-center">
+                                    </div>
+                                    
+                                    <div>
+                                        <p>
+                                            Jumlah hadir: {{ $summary['hadir'] }}
+                                        </p>
+                                        <p>
+                                            Jumlah izin: {{ $summary['izin'] }}
+                                        </p>
+                                        <p>
+                                            Jumlah absen: {{ $summary['absen'] }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
@@ -151,10 +170,34 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (selectedOption === 'Berdasarkan interval tanggal') {
             document.getElementById('intervalTanggal').classList.remove('d-none');
         }
-    });
-    
-
+    });    
 });
+
+// Untuk grafik absensi
+
+let grafik_absensi = {
+    series: [{{ $summary['hadir'] }}, {{ $summary['izin'] }}, {{ $summary['absen'] }}],
+    chart: {
+        width: 300,
+        type: 'pie',
+    },
+    labels: ['Hadir', 'Izin', 'Absen'],
+    colors:['#0f0', '#ff0', '#f00'],
+    responsive: [{
+        breakpoint: 480,
+        options: {
+            chart: {
+                width: 300
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }]
+};
+
+chart = new ApexCharts(document.querySelector("#grafik_absensi"), grafik_absensi);
+chart.render();
 </script>
 
 @endsection

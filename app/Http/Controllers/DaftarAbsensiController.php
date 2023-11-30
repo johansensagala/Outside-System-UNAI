@@ -7,8 +7,10 @@ use App\Models\PengajuanLuarAsrama;
 use App\Models\PengajuanDataPenjamin;
 
 use Carbon\Carbon;
+use DateTime;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class DaftarAbsensiController extends Controller
 {
@@ -17,34 +19,74 @@ class DaftarAbsensiController extends Controller
         $tutup_absen = Carbon::now()->setTime(21, 0, 0);
     
         if ($now->greaterThan($tutup_absen)) {
-            $data_absen = Absensi::whereDate('created_at', $now->toDateString())->get();
+            $data_absen = Absensi::whereDate('created_at', $now->toDateString())->paginate(10);
         } else {
             $kemarin = $now->subDay();
-            $data_absen = Absensi::whereDate('created_at', $kemarin->toDateString())->get();
+            $data_absen = Absensi::whereDate('created_at', $kemarin->toDateString())->paginate(10);
         }
     
-        return view('mahasiswa.daftar_absensi', compact('data_absen'));
-    }
-
-    public function filterTanggal (Request $request) {
-        $data_absen = Absensi::whereDate('created_at', $request->tanggalInput)->get();
+        $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
     
-        return view('mahasiswa.daftar_absensi', compact('data_absen'));
+        $jumlah_hadir = $data_absen->where('kehadiran', 'Hadir')->count();
+        $jumlah_izin = $data_absen->where('kehadiran', 'Izin')->count();
+        $jumlah_absen = $jumlah_mahasiswa - $jumlah_hadir - $jumlah_izin;
+    
+        $summary = [
+            'hadir' => $jumlah_hadir,
+            'izin' => $jumlah_izin,
+            'absen' => $jumlah_absen,
+        ];
+    
+        return view('mahasiswa.daftar_absensi', compact('data_absen', 'summary'));
+    }
+    
+    public function filterTanggal (Request $request) {
+        $tanggal_input = $request->tanggalInput;
+
+        $data_absen = Absensi::whereDate('created_at', $tanggal_input)->paginate(10);
+
+        $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')
+            ->count();
+
+        $jumlah_hadir = $data_absen->where('kehadiran', 'Hadir')->count();
+        $jumlah_izin = $data_absen->where('kehadiran', 'Izin')->count();
+        $jumlah_absen = $jumlah_mahasiswa - $jumlah_hadir - $jumlah_izin;
+        
+        $summary = [
+            'hadir' => $jumlah_hadir,
+            'izin' => $jumlah_izin,
+            'absen' => $jumlah_absen,
+        ];
+    
+        return view('mahasiswa.daftar_absensi', compact('data_absen', 'tanggal_input', 'summary'));
     }
     
     public function filterIntervalTanggal(Request $request) {
-        $tanggalAwal = $request->tanggalAwal;
-        $tanggalAkhir = $request->tanggalAkhir;
+        $tanggal_awal = $request->tanggalAwal;
+        $tanggal_akhir = $request->tanggalAkhir;
+
+        $selisih = (new DateTime($request->tanggalAwal))->diff(new DateTime($request->tanggalAkhir))->days + 1;
+        
+        $data_absen = Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->paginate(10);
+                        
+        $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')
+            ->count();
+
+        $jumlah_hadir = $data_absen->where('kehadiran', 'Hadir')->count();
+        $jumlah_izin = $data_absen->where('kehadiran', 'Izin')->count();
+        $jumlah_absen = $jumlah_mahasiswa * $selisih - $jumlah_hadir - $jumlah_izin;
+
+        $summary = [
+            'hadir' => $jumlah_hadir,
+            'izin' => $jumlah_izin,
+            'absen' => $jumlah_absen,
+        ];
     
-        $data_absen = Absensi::whereBetween('created_at', [$tanggalAwal, $tanggalAkhir])->get();
-    
-        return view('mahasiswa.daftar_absensi', compact('data_absen'));
+        return view('mahasiswa.daftar_absensi', compact('data_absen', 'tanggal_awal', 'tanggal_akhir', 'summary'));
     }
     
     public function show ($id) {
         $data_absen = Absensi::where('id', $id)->first();
-
-        // dd($data_absen);
 
         $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id_mahasiswa', $data_absen->mahasiswa->id)->where('status', 'disetujui')->first();
         $status_tinggal = $pengajuan_luar_asrama->status_tinggal;
