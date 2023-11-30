@@ -81,14 +81,16 @@
                 <div class="card">
                     <div class="m-5">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-10">
                                 <form action="/biro/penjamin">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder="Masukkan nama penjamin..." name="search" id="search" value="{{ request('search') }}">
                                     </div>
                                 </form>                                
                             </div>
-                        </div>
+                            <div class="col-2">
+                                <a href="/biro/penjamin/create" class="btn btn-primary btn-block">Tambah Penjamin</a>
+                            </div>
                         @include('biro_kemahasiswaan.penjamin._daftar_penjamin')
                     </div>
                     @if ($penjamins->total() > $penjamins->perPage())
