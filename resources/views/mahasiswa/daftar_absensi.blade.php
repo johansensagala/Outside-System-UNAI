@@ -29,9 +29,9 @@
                                         <th>No</th>
                                         <th>NIM</th>
                                         <th>Nama</th>
-                                        <th>Detail</th>
                                         <th>Tanggal</th>
                                         <th>Status</th>
+                                        <th>Detail</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -197,18 +197,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const tableBody = document.querySelector('.table tbody');
         tableBody.innerHTML = '';
 
-        const absenData = data.data; // Extract the 'data' property from the response
+        const absenData = data.data;
 
-        console.log(absenData)
-        absenData.forEach(absen => {
+        absenData.forEach((absen, index) => {
             const row = `
                 <tr>
-                    <td class="align-middle">${absen.index}</td>
+                    <td class="align-middle">${index + 1}</td> <!-- Use 'index' here instead of $index -->
                     <td class="align-middle">${absen.nim}</td>
                     <td class="align-middle">${absen.nama}</td>
-                    <td class="align-middle">${absen.created_at}</td>
+                    <td class="align-middle">${flatpickr.formatDate(new Date(absen.tanggal), "Y-m-d H:i:s")}</td>
                     <td class="align-middle">
-                        ${absen.kehadiran === 'Hadir' ? '<span class="bg-success p-2 rounded-3 text-white text-center">Hadir</span>' : (absen.kehadiran === 'Izin' ? '<span class="bg-warning p-2 rounded-3 text-white text-center">Izin</span>' : '<span class="bg-danger p-2 rounded-3 text-white text-center">Absen</span>')}
+                        ${absen.status === 'Hadir' ? '<span class="bg-success p-2 rounded-3 text-white text-center">Hadir</span>' : (absen.kehadiran === 'Izin' ? '<span class="bg-warning p-2 rounded-3 text-white text-center">Izin</span>' : '<span class="bg-danger p-2 rounded-3 text-white text-center">Absen</span>')}
                     </td>
                     <td class="align-middle">
                         <button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/daftar-absensi-mahasiswa/${absen.id}'">Detail</button>

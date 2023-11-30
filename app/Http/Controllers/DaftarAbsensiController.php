@@ -95,9 +95,30 @@ class DaftarAbsensiController extends Controller
             $query->where('nama', 'like', "%{$searchQuery}%");
         })->paginate(20);
     
-        return response()->json($filteredData);
-    }    
-        
+        // Extracting relevant information from the paginated data
+        $result = $filteredData->map(function ($item) {
+            return [
+                'nim' => $item->mahasiswa->nim,
+                'nama' => $item->mahasiswa->nama,
+                'tanggal' => $item->created_at,
+                'status' => $item->kehadiran,
+            ];
+        });
+    
+        // Constructing the final JSON response
+        $response = [
+            'data' => $result,
+            'links' => [
+                'first' => $filteredData->url(1),
+                'last' => $filteredData->url($filteredData->lastPage()),
+                'prev' => $filteredData->previousPageUrl(),
+                'next' => $filteredData->nextPageUrl(),
+            ],
+        ];
+    
+        return response()->json($response);
+    }
+            
     public function show ($id) {
         $data_absen = Absensi::where('id', $id)->first();
 
