@@ -20,7 +20,7 @@
                         <td class="align-middle name">{{ $data_penjamin->penjamin->nama }}</td>
                         <td class="align-middle">{{ $data_penjamin->created_at->format('d/m/Y') }}</td>
                         <td class="align-middle">
-                            <a href="/biro/formulir-penjamin/{{ $data_penjamin->id }}" class="btn btn-primary">Detail</a>
+                            <a href="/biro/formulir-penjamin/{{ $data_penjamin->id }}" class="btn btn-primary"><i class="link-icon" data-feather="list"></i>&nbsp; Detail </a>
                         </td>
                         @if ($data_penjamin->status == 'disetujui')
                             <td class="align-middle">
