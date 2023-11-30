@@ -79,7 +79,7 @@
                             
                                     <div id="tanggal" class="">
                                         <label for="tanggalInput" class="mb-1">Pilih Filter Tanggal</label>
-                                        <input type="text" id="tanggalInput" class="form-control mb-2" placeholder="Pilih Tanggal" value="2023-08-17"/>
+                                        <input type="text" id="tanggalInput" class="form-control mb-2" placeholder="Pilih Tanggal"/>
                                         <button class="btn btn-primary mb-3" id="simpanButton1">
                                             Tetapkan
                                         </button>    
@@ -120,6 +120,11 @@ document.addEventListener('DOMContentLoaded', function () {
     flatpickr("#tanggalAwal", {
         enableTime: false,
         dateFormat: "Y-m-d",
+        onChange: function (selectedDates, dateStr, instance) {
+            if (selectedDates.length > 0) {
+                flatpickr("#tanggalAkhir").set("minDate", selectedDates[0]);
+            }
+        }
     });
 
     flatpickr("#tanggalAkhir", {
@@ -141,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('intervalTanggal').classList.remove('d-none');
         }
     });
+    
 
 });
 </script>
