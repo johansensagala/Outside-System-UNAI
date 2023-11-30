@@ -61,17 +61,25 @@
 @endpush
 
 @section('content')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Penjamin</h1>
-    </div>
+<div class="row common-font-color">
+    <div class="col-12 col-xl-12 stretch-card">
+        <div class="row flex-grow-1">
+    <div class="grid-margin">
+    <div class="card bs-gray-200 fw-bold">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h4>Daftar Penjamin</h4> 
+                        </div>
+                    </div>
+                </div>
     @if (session()->has('success'))
         <div class="alert alert-success col-lg-6" role="alert">
             {{ session('success') }}
         </div>
     @endif
-    <div class="table-responsive">
-        <a href="/biro/penjamin/create" class="btn btn-primary mb-3">Tambah Penjamin</a>
-        <table class="table table-striped table-sm">
+    <div class="table-wrapper card bs-gray-100 fw-bold">
+        <a href="/biro/penjamin/create" class="btn btn-primary m-3 align-left col-2 fw-bold"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>&nbsp;&nbsp;Tambah Penjamin</a>
+        <table class="table table-responsive card-list-table table-bordered table-striped">
             <thead>
                 <tr class="text-center">
                     <th scope="col">No.</th>
@@ -102,6 +110,9 @@
                 @endforeach         
             </tbody>
         </table>
+    </div>
+    </div>
+</div>
     </div>
 </div>
 
