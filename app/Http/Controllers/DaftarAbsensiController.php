@@ -19,8 +19,10 @@ class DaftarAbsensiController extends Controller
         if ($request->tanggalInput) {
             $tanggal_input = $request->tanggalInput;
 
-            $data_absen = Absensi::whereDate('created_at', $tanggal_input)->paginate(20);
-    
+            $data_absen = Absensi::whereDate('created_at', $tanggal_input)
+                ->orderBy('created_at', 'desc')
+                ->paginate(20);
+            
             $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
         
             $jumlah_hadir = Absensi::whereDate('created_at', $tanggal_input)->where('kehadiran', 'Hadir')->count();
@@ -45,7 +47,9 @@ class DaftarAbsensiController extends Controller
 
             $selisih = (new DateTime($request->tanggalAwal))->diff(new DateTime($request->tanggalAkhir))->days + 1;
     
-            $data_absen = Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->paginate(20);
+            $data_absen = Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])
+                ->orderBy('created_at', 'desc')
+                ->paginate(20);
         
             $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
         
@@ -66,10 +70,14 @@ class DaftarAbsensiController extends Controller
             $tutup_absen = Carbon::now()->setTime(21, 0, 0);
     
             if ($now->greaterThan($tutup_absen)) {
-                $data_absen = Absensi::whereDate('created_at', $now->toDateString())->paginate(20);
+                $data_absen = Absensi::whereDate('created_at', $now->toDateString())
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(20);
             } else {
                 $kemarin = $now->subDay();
-                $data_absen = Absensi::whereDate('created_at', $kemarin->toDateString())->paginate(20);
+                $data_absen = Absensi::whereDate('created_at', $kemarin->toDateString())
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(20);
             }
 
             $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
