@@ -7,6 +7,7 @@
                 <th class="text-center">NIM</th>
                 <th class="text-center">Nama</th>
                 <th class="text-center">Jurusan</th>
+                <th class="text-center">Tahun Ajaran</th>
                 <th class="text-center">Tanggal Pengajuan</th>
                 <th class="text-center">Status Tinggal</th>
                 <th class="text-center">Status Penjaminan</th>
@@ -24,6 +25,7 @@
                 <td class="align-middle">{{ $pengajuan_luar_asrama->mahasiswa->nim }}</td>
                 <td class="align-middle">{{ $pengajuan_luar_asrama->mahasiswa->nama }}</td>
                 <td class="align-middle text-center">{{ $pengajuan_luar_asrama->mahasiswa->jurusan }}</td>
+                <td class="align-middle text-center">{{ $pengajuan_luar_asrama->tahun_ajaran}}</td>
                 <td class="align-middle">{{ $pengajuan_luar_asrama->created_at }}</td>
                 <td class="align-middle text-center">{{ $pengajuan_luar_asrama->status_tinggal }}</td>
                 
