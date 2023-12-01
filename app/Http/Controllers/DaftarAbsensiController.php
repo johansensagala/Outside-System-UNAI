@@ -23,8 +23,8 @@ class DaftarAbsensiController extends Controller
     
             $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
         
-            $jumlah_hadir = $data_absen->where('kehadiran', 'Hadir')->count();
-            $jumlah_izin = $data_absen->where('kehadiran', 'Izin')->count();
+            $jumlah_hadir = Absensi::whereDate('created_at', $tanggal_input)->where('kehadiran', 'Hadir')->count();
+            $jumlah_izin = Absensi::whereDate('created_at', $tanggal_input)->where('kehadiran', 'Izin')->count();
             $jumlah_absen = $jumlah_mahasiswa - $jumlah_hadir - $jumlah_izin;
         
             $summary = [
@@ -49,8 +49,8 @@ class DaftarAbsensiController extends Controller
         
             $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
         
-            $jumlah_hadir = $data_absen->where('kehadiran', 'Hadir')->count();
-            $jumlah_izin = $data_absen->where('kehadiran', 'Izin')->count();
+            $jumlah_hadir =  Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->where('kehadiran', 'Hadir')->count();
+            $jumlah_izin =  Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->where('kehadiran', 'Izin')->count();
             $jumlah_absen = $jumlah_mahasiswa * $selisih - $jumlah_hadir - $jumlah_izin;
         
             $summary = [
@@ -74,15 +74,15 @@ class DaftarAbsensiController extends Controller
 
             $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
         
-            $jumlah_hadir = $data_absen->where('kehadiran', 'Hadir')->count();
-            $jumlah_izin = $data_absen->where('kehadiran', 'Izin')->count();
+            $jumlah_hadir = Absensi::whereDate('created_at', $now->toDateString())->where('kehadiran', 'Hadir')->count();
+            $jumlah_izin = Absensi::whereDate('created_at', $kemarin->toDateString())->where('kehadiran', 'Izin')->count();
             $jumlah_absen = $jumlah_mahasiswa - $jumlah_hadir - $jumlah_izin;
-        
+
             $summary = [
                 'hadir' => $jumlah_hadir,
                 'izin' => $jumlah_izin,
                 'absen' => $jumlah_absen,
-            ];
+            ];        
 
             return view('mahasiswa.daftar_absensi', compact('data_absen', 'summary'));
         }
