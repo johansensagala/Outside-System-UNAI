@@ -223,16 +223,15 @@ class DaftarAbsensiByMahasiswaController extends Controller
 
     public function update_kehadiran(Request $request)
     {
-        $id_absen = $request->input('id_absen');
+        $id_absensi = $request->input('id_absensi');
         $kehadiran = $request->input('kehadiran');
 
-        $absen = Absensi::find($id_absen);
-        if ($absen) {
-            $absen->kehadiran = $kehadiran;
-            $absen->save();
-        }
+        $absen = Absensi::find($id_absensi);
 
-        return response()->json(['kehadiran' => $kehadiran]);
+        $absen->kehadiran = $kehadiran;
+        $absen->save();
+
+        return redirect()->back();
     }
 
 }

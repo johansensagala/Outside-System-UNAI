@@ -169,12 +169,19 @@
                                 Status Kehadiran
                             </div>
                             <div class="col-md-8 fw-bold">
-                                <div class="form-check form-switch">
-                                    <span id="kehadiranStatus" class="bg-success p-2 rounded-3 text-white text-center">
-                                        {{ $data_absen->kehadiran }}
-                                    </span>
-                                    <input class="form-check-input" type="checkbox" role="switch" id="toggleKehadiran" {{ $data_absen->kehadiran === 'Hadir' ? 'checked' : '' }}>
-                                </div>
+                                <span id="statusDisplay">{{ $data_absen->kehadiran }}</span>
+                                <a href="#" onclick="toggleStatusForm(event)">Ubah</a>
+                                <form id="statusForm" action="/mhs/update-kehadiran" method="POST" style="display: none;">
+                                    @csrf
+                                        <br>
+                                        <input type="hidden" name="id_absensi" value="{{ $data_absen->id }}">                    
+                                        <select name="kehadiran" id="statusSelect" class="form-control form-select my-2" style="width: 100px">
+                                            <option value="Hadir" {{ $data_absen->kehadiran == 'Hadir' ? 'selected' : '' }}>Hadir</option>
+                                            <option value="Izin" {{ $data_absen->kehadiran == 'Izin' ? 'selected' : '' }}>Izin</option>
+                                            <option value="Absen" {{ $data_absen->kehadiran == 'Absen' ? 'selected' : '' }}>Absen</option>
+                                        </select>
+                                    <button class="btn btn-primary" type="submit">Simpan</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -185,54 +192,82 @@
             
         </div>   
     </div>
-</div> <!-- row -->
+</div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const btnTolak = document.getElementById("btnTolak");
-        const tolakForm = document.getElementById("tolakForm");
+function toggleStatusForm(event) {
+    event.preventDefault();
 
-        btnTolak.addEventListener("click", function () {
-            tolakForm.style.display = "block";
-        });
-    });
+    var statusDisplay = document.getElementById('statusDisplay');
+    var statusForm = document.getElementById('statusForm');
 
-    // Toggle kehadiran
+    if (statusDisplay.style.display === 'none') {
+        statusDisplay.style.display = 'inline';
+        statusForm.style.display = 'none';
+    } else {
+        statusDisplay.style.display = 'none';
+        statusForm.style.display = 'inline';
+    }
+}
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const toggleKehadiran = document.getElementById("toggleKehadiran");
-        const kehadiranStatus = document.getElementById("kehadiranStatus");
+function updateStatus() {
+    var statusDisplay = document.getElementById('statusDisplay');
+    var statusForm = document.getElementById('statusForm');
+    var statusSelect = document.getElementById('statusSelect');
 
-        function setKehadiranBackground(status) {
-            kehadiranStatus.classList.remove('bg-success', 'bg-danger');
-            kehadiranStatus.classList.add(status === 'Hadir' ? 'bg-success' : 'bg-danger');
-        }
+    // Update the display with the selected value
+    statusDisplay.innerText = statusSelect.value;
 
-        setKehadiranBackground("{{ $data_absen->kehadiran }}");
+    // Hide the form and show the display
+    statusDisplay.style.display = 'inline';
+    statusForm.style.display = 'none';
+}
 
-        toggleKehadiran.addEventListener("change", function () {
-            const isChecked = toggleKehadiran.checked;
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     const btnTolak = document.getElementById("btnTolak");
+    //     const tolakForm = document.getElementById("tolakForm");
 
-            fetch('/mhs/update-kehadiran', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                },
-                body: JSON.stringify({
-                    id_absen: {{ $data_absen->id }},
-                    kehadiran: isChecked ? 'Hadir' : 'Tidak Hadir',
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                kehadiranStatus.textContent = data.kehadiran;
+    //     btnTolak.addEventListener("click", function () {
+    //         tolakForm.style.display = "block";
+    //     });
+    // });
 
-                setKehadiranBackground(data.kehadiran);
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    });
+    // // Toggle kehadiran
+
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     const toggleKehadiran = document.getElementById("toggleKehadiran");
+    //     const kehadiranStatus = document.getElementById("kehadiranStatus");
+
+    //     function setKehadiranBackground(status) {
+    //         kehadiranStatus.classList.remove('bg-success', 'bg-danger');
+    //         kehadiranStatus.classList.add(status === 'Hadir' ? 'bg-success' : 'bg-danger');
+    //     }
+
+    //     setKehadiranBackground("{{ $data_absen->kehadiran }}");
+
+    //     toggleKehadiran.addEventListener("change", function () {
+    //         const isChecked = toggleKehadiran.checked;
+
+    //         fetch('/mhs/update-kehadiran', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
+    //             },
+    //             body: JSON.stringify({
+    //                 id_absen: {{ $data_absen->id }},
+    //                 kehadiran: isChecked ? 'Hadir' : 'Tidak Hadir',
+    //             }),
+    //         })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             kehadiranStatus.textContent = data.kehadiran;
+
+    //             setKehadiranBackground(data.kehadiran);
+    //         })
+    //         .catch(error => console.error('Error:', error));
+    //     });
+    // });
 </script>
 
 @endsection
