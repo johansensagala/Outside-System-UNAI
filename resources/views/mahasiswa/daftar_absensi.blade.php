@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="m-5 row" id="absensiTable">
                         <div class="table-responsive col-md-8 mt-3">
-                            <input type="text" id="liveSearch" class="form-control mb-2" placeholder="Live Search"/>
+                            <input type="text" id="liveSearch" class="form-control mb-2" placeholder="Masukkan nama mahasiswa..."/>
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -90,8 +90,8 @@
                                     <div id="tanggal" class="{{ isset($tanggal_awal) || isset($tanggal_akhir) ? 'd-none' : '' }}">
                                         <form action="/mhs/daftar-absensi-mahasiswa" method="POST">
                                             @csrf
-                                            <label for="tanggalInput" class="mb-1">Pilih Filter Tanggal</label>
-                                            <input type="text" name="tanggalInput" id="tanggalInput" class="form-control mb-2" value="{{ isset($tanggal_input) ? $tanggal_input : '' }}" placeholder="Pilih Tanggal"/>
+                                            <label for="tanggalInput" class="mb-1">Pilih Tanggal Absensi</label>
+                                            <input type="text" name="tanggalInput" id="tanggalInput" class="form-control form-select mb-2" value="{{ isset($tanggal_input) ? $tanggal_input : '' }}" placeholder="Pilih Tanggal"/>
                                             <button type="submit" class="btn btn-primary" id="tetapkanTanggal">
                                                 Tetapkan
                                             </button>    
@@ -101,9 +101,9 @@
                                     <div id="intervalTanggal" class="{{ isset($tanggal_awal) || isset($tanggal_akhir) ? '' : 'd-none' }}">
                                         <form action="/mhs/daftar-absensi-mahasiswa" method="POST">
                                             @csrf
-                                            <label for="tanggalAwal" class="mb-1">Pilih Tanggal Awal</label>
+                                            <label for="tanggalAwal" class="mb-1">Pilih Tanggal Awal Absensi</label>
                                             <input type="text" name="tanggalAwal" id="tanggalAwal" class="form-control mb-2" value="{{ isset($tanggal_awal) ? $tanggal_awal : '' }}" placeholder="Pilih Tanggal"/>
-                                            <label for="tanggalAkhir" class="mb-1">Pilih Tanggal Akhir</label>
+                                            <label for="tanggalAkhir" class="mb-1">Pilih Tanggal Akhir Absensi</label>
                                             <input type="text" name="tanggalAkhir" id="tanggalAkhir" class="form-control mb-2" value="{{ isset($tanggal_akhir) ? $tanggal_akhir : '' }}" placeholder="Pilih Tanggal"/>
                                             <button type="submit" class="btn btn-primary" id="tetapkanIntervalTanggal">
                                                 Tetapkan

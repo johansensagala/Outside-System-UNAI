@@ -169,8 +169,8 @@
                                 Status Kehadiran
                             </div>
                             <div class="col-md-8 fw-bold">
-                                <span id="statusDisplay">{{ $data_absen->kehadiran }}</span>
-                                <a href="#" onclick="toggleStatusForm(event)">Ubah</a>
+                                <span id="statusDisplay" class="mt-5">{{ $data_absen->kehadiran }}</span><br>
+                                <a class="btn btn-warning text-white" href="#" onclick="toggleStatusForm(event)">Ubah</a>
                                 <form id="statusForm" action="/mhs/update-kehadiran" method="POST" style="display: none;">
                                     @csrf
                                         <br>
@@ -201,11 +201,17 @@ function toggleStatusForm(event) {
     var statusDisplay = document.getElementById('statusDisplay');
     var statusForm = document.getElementById('statusForm');
 
-    if (statusDisplay.style.display === 'none') {
-        statusDisplay.style.display = 'inline';
+    // if (statusDisplay.style.display === 'none') {
+    //     statusDisplay.style.display = 'inline';
+    //     statusForm.style.display = 'none';
+    // } else {
+    //     statusDisplay.style.display = 'none';
+    //     statusForm.style.display = 'inline';
+    // }
+
+    if (statusForm.style.display === 'inline') {
         statusForm.style.display = 'none';
     } else {
-        statusDisplay.style.display = 'none';
         statusForm.style.display = 'inline';
     }
 }

@@ -134,4 +134,11 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
 
     Route::get('/biro/absensi-tempat-tinggal', [AbsensiController::class, 'index']);
     Route::get('/biro/absensi-tempat-tinggal/{id}', [AbsensiController::class, 'show']);
+
+    Route::get('/biro/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'index']);
+    Route::post('/biro/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'index']);
+    Route::get('/biro/daftar-absensi-mahasiswa/live-search', [DaftarAbsensiController::class, 'liveSearch']);
+
+    Route::get('/biro/daftar-absensi-mahasiswa/{id}', [DaftarAbsensiController::class, 'show']);
+    Route::post('/biro/update-kehadiran', [DaftarAbsensiByMahasiswaController::class, 'update_kehadiran']);
 });

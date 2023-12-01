@@ -203,6 +203,12 @@
           <span class="link-title">Absensi Tempat Tinggal</span>
         </a>
       </li> --}}
+      <li class="nav-item py-3 {{ request()->is('biro/daftar-absensi-mahasiswa') ? 'active' : '' }}">
+        <a href="{{ url('/biro/daftar-absensi-mahasiswa') }}" class="nav-link">
+          <i class="link-icon" data-feather="clock"></i>
+          <span class="link-title">Daftar Absensi Mahasiswa</span>
+        </a>
+      </li>
       
       <form id="logout-form" action="{{ route('logout_biro_kemahasiswaan') }}" method="post">
         @csrf
@@ -213,6 +219,7 @@
           </a>
         </li>
       </form>
+
 
       @endif
     </ul>
