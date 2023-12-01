@@ -90,11 +90,11 @@
                             </div>
                         </div>
                         @include('biro_kemahasiswaan.mahasiswa._daftar_mahasiswa')
-                    </div>
-                    @if ($daftar_data_mahasiswa->total() > $daftar_data_mahasiswa->perPage())
-                        <div class="pagination">
+                        @if ($daftar_data_mahasiswa->total() > $daftar_data_mahasiswa->perPage())
+                        <div class="pagination mt-4">
                             {{ $daftar_data_mahasiswa->links() }}
                         </div>
+                    </div>
                     @endif
                     @if ($daftar_data_mahasiswa->count() === 0)
                         <h4 class="my-4 text-center fw-bold">

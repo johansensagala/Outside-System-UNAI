@@ -78,7 +78,7 @@
         </div>
     @endif
     <div class="table-wrapper card bs-gray-100 fw-bold">
-        <a href="/biro/penjamin/create" class="btn btn-primary m-3 align-left col-2 fw-bold"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>&nbsp;&nbsp;Tambah Penjamin</a>
+        <a href="/biro/penjamin/create" class="btn btn-primary m-3 align-left fw-bold"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>&nbsp;&nbsp;Tambah Penjamin</a>
         <table class="table table-responsive card-list-table table-bordered table-striped">
             <thead>
                 <tr class="text-center">
@@ -99,11 +99,11 @@
                         <td class="text-center">{{ $penjamin->nomor_telp }}</td>
                         <td class="text-center">{{ $penjamin->role }}</td>
                         <td class="text-center">
-                            <a href="/biro/penjamin/{{ $penjamin->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
+                            <a href="/biro/penjamin/{{ $penjamin->id }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>&nbsp;&nbsp;
                             <form action="/biro/penjamin/{{ $penjamin->id }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span data-feather="x-circle"></button>
+                                <button class="badge bg-danger border-0" onclick="return confirm('Apakah anda yakin ingin menghapus penjamin?')"><span data-feather="trash"></button>
                             </form>
                         </td>
                     </tr>
