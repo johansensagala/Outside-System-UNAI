@@ -15,85 +15,63 @@ use Illuminate\Support\Facades\Input;
 
 class DaftarAbsensiController extends Controller
 {
-    public function index (Request $request) {
-        // if ($request->tanggalInput) {
-        //     $tanggal_input = $request->tanggalInput;
+    public function index () {
+        $now = Carbon::now();
+        $tutup_absen = Carbon::now()->setTime(21, 0, 0);
 
-        //     $data_absen = Absensi::whereDate('created_at', $tanggal_input)
-        //         ->orderBy('created_at', 'desc')
-        //         ->paginate(20);
-            
-        //     $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
-        
-        //     $jumlah_hadir = Absensi::whereDate('created_at', $tanggal_input)->where('kehadiran', 'Hadir')->count();
-        //     $jumlah_izin = Absensi::whereDate('created_at', $tanggal_input)->where('kehadiran', 'Izin')->count();
-        //     $jumlah_absen = $jumlah_mahasiswa - $jumlah_hadir - $jumlah_izin;
-        
-        //     $summary = [
-        //         'hadir' => $jumlah_hadir,
-        //         'izin' => $jumlah_izin,
-        //         'absen' => $jumlah_absen,
-        //     ];
-            
-        //     return view('mahasiswa.daftar_absensi', compact('data_absen', 'tanggal_input', 'summary'));   
-        // }
-        // else if ($request->tanggalAwal || $request->tanggalAkhir) {
-        //     if ($request->tanggalAwal) {
-        //         $tanggal_awal = $request->tanggalAwal;
-        //     }
-        //     if ($request->tanggalAkhir) {
-        //         $tanggal_akhir = $request->tanggalAkhir;
-        //     }
+        if ($now->greaterThan($tutup_absen)) {
+            $data_absen = Absensi::whereDate('created_at', $now->toDateString())
+                ->orderBy('created_at', 'desc')
+                ->paginate(20);
+        } else {
+            $kemarin = $now->subDay();
+            $data_absen = Absensi::whereDate('created_at', $kemarin->toDateString())
+                ->orderBy('created_at', 'desc')
+                ->paginate(20);
+        }
 
-        //     $selisih = (new DateTime($request->tanggalAwal))->diff(new DateTime($request->tanggalAkhir))->days + 1;
+        $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
     
-        //     $data_absen = Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])
-        //         ->orderBy('created_at', 'desc')
-        //         ->paginate(20);
-        
-        //     $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
-        
-        //     $jumlah_hadir =  Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->where('kehadiran', 'Hadir')->count();
-        //     $jumlah_izin =  Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->where('kehadiran', 'Izin')->count();
-        //     $jumlah_absen = $jumlah_mahasiswa * $selisih - $jumlah_hadir - $jumlah_izin;
-        
-        //     $summary = [
-        //         'hadir' => $jumlah_hadir,
-        //         'izin' => $jumlah_izin,
-        //         'absen' => $jumlah_absen,
-        //     ];
-            
-        //     return view('mahasiswa.daftar_absensi', compact('data_absen', 'tanggal_awal', 'tanggal_akhir', 'summary'));    
-        // }
-        // else {
-            $now = Carbon::now();
-            $tutup_absen = Carbon::now()->setTime(21, 0, 0);
+        $jumlah_hadir = Absensi::whereDate('created_at', $now->toDateString())->where('kehadiran', 'Hadir')->count();
+        $jumlah_izin = Absensi::whereDate('created_at', $kemarin->toDateString())->where('kehadiran', 'Izin')->count();
+        $jumlah_absen = $jumlah_mahasiswa - $jumlah_hadir - $jumlah_izin;
+
+        $summary = [
+            'hadir' => $jumlah_hadir,
+            'izin' => $jumlah_izin,
+            'absen' => $jumlah_absen,
+        ];
+
+        return view('mahasiswa.daftar_absensi', compact('data_absen', 'summary'));
+    }
+
+    public function filter (Request $request) {
+        if ($request->tanggalAwal) {
+            $tanggal_awal = $request->tanggalAwal;
+        }
+        if ($request->tanggalAkhir) {
+            $tanggal_akhir = $request->tanggalAkhir;
+        }
+
+        $selisih = (new DateTime($request->tanggalAwal))->diff(new DateTime($request->tanggalAkhir))->days + 1;
+
+        $data_absen = Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
     
-            if ($now->greaterThan($tutup_absen)) {
-                $data_absen = Absensi::whereDate('created_at', $now->toDateString())
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(20);
-            } else {
-                $kemarin = $now->subDay();
-                $data_absen = Absensi::whereDate('created_at', $kemarin->toDateString())
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(20);
-            }
-
-            $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
+        $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
+    
+        $jumlah_hadir =  Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->where('kehadiran', 'Hadir')->count();
+        $jumlah_izin =  Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->where('kehadiran', 'Izin')->count();
+        $jumlah_absen = $jumlah_mahasiswa * $selisih - $jumlah_hadir - $jumlah_izin;
+    
+        $summary = [
+            'hadir' => $jumlah_hadir,
+            'izin' => $jumlah_izin,
+            'absen' => $jumlah_absen,
+        ];
         
-            $jumlah_hadir = Absensi::whereDate('created_at', $now->toDateString())->where('kehadiran', 'Hadir')->count();
-            $jumlah_izin = Absensi::whereDate('created_at', $kemarin->toDateString())->where('kehadiran', 'Izin')->count();
-            $jumlah_absen = $jumlah_mahasiswa - $jumlah_hadir - $jumlah_izin;
-
-            $summary = [
-                'hadir' => $jumlah_hadir,
-                'izin' => $jumlah_izin,
-                'absen' => $jumlah_absen,
-            ];
-
-            return view('mahasiswa.daftar_absensi', compact('data_absen', 'summary'));
-        // }
+        return view('mahasiswa.daftar_absensi', compact('data_absen', 'tanggal_awal', 'tanggal_akhir', 'summary'));    
     }
 
     public function liveSearch(Request $request)
