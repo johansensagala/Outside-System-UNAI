@@ -72,9 +72,7 @@
                                 </tbody>
                             </table>
                             <div class="mt-5 d-flex justify-content-center align-items-center">
-                                @if (isset($tanggal_input))
-                                    {{ $data_absen->appends(['tanggalInput' => $tanggal_input])->links() }}
-                                @elseif (isset($tanggal_awal) && isset($tanggal_akhir))
+                                @if (isset($tanggal_awal) && isset($tanggal_akhir))
                                     {{ $data_absen->appends(['tanggalAwal' => $tanggal_awal, 'tanggalAkhir' => $tanggal_akhir])->links() }}
                                 @else
                                     {{ $data_absen->links() }}
@@ -88,9 +86,9 @@
                                     
                                     <div id="intervalTanggal">
                                         @if(Auth::guard('mahasiswa')->check())
-                                        <form action="/mhs/daftar-absensi-mahasiswa" method="POST">
+                                        <form action="/mhs/daftar-absensi-mahasiswa" method="GET">
                                         @elseif(Auth::guard('biro_kemahasiswaan')->check())
-                                        <form action="/biro/daftar-absensi-mahasiswa" method="POST">
+                                        <form action="/biro/daftar-absensi-mahasiswa" method="GET">
                                         @endif
                                             @csrf
                                             <label for="tanggalAwal" class="mb-1">Pilih Tanggal Awal Absensi</label>

@@ -18,22 +18,27 @@ class DaftarAbsensiController extends Controller
     public function index () {
         $now = Carbon::now();
         $tutup_absen = Carbon::now()->setTime(21, 0, 0);
-
+        $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
+        
         if ($now->greaterThan($tutup_absen)) {
             $data_absen = Absensi::whereDate('created_at', $now->toDateString())
                 ->orderBy('created_at', 'desc')
                 ->paginate(20);
         } else {
-            $kemarin = $now->subDay();
+            $kemarin = $now->copy()->subDay();
             $data_absen = Absensi::whereDate('created_at', $kemarin->toDateString())
                 ->orderBy('created_at', 'desc')
                 ->paginate(20);
         }
-
-        $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
-    
-        $jumlah_hadir = Absensi::whereDate('created_at', $now->toDateString())->where('kehadiran', 'Hadir')->count();
-        $jumlah_izin = Absensi::whereDate('created_at', $kemarin->toDateString())->where('kehadiran', 'Izin')->count();
+        
+        if ($kemarin) {
+            $jumlah_hadir = Absensi::whereDate('created_at', $kemarin->toDateString())->where('kehadiran', 'Hadir')->count();
+            $jumlah_izin = Absensi::whereDate('created_at', $kemarin->toDateString())->where('kehadiran', 'Izin')->count();
+        }
+        else {
+            $jumlah_hadir = Absensi::whereDate('created_at', $now->toDateString())->where('kehadiran', 'Hadir')->count();
+            $jumlah_izin = Absensi::whereDate('created_at', $now->toDateString())->where('kehadiran', 'Izin')->count();
+        }
         $jumlah_absen = $jumlah_mahasiswa - $jumlah_hadir - $jumlah_izin;
 
         $summary = [
@@ -46,13 +51,9 @@ class DaftarAbsensiController extends Controller
     }
 
     public function filter (Request $request) {
-        if ($request->tanggalAwal) {
-            $tanggal_awal = $request->tanggalAwal;
-        }
-        if ($request->tanggalAkhir) {
-            $tanggal_akhir = $request->tanggalAkhir;
-        }
-
+        $tanggal_awal = $request->input('tanggalAwal', now()->format('Y-m-d'));
+        $tanggal_akhir = $request->input('tanggalAkhir', now()->format('Y-m-d'));
+    
         $selisih = (new DateTime($request->tanggalAwal))->diff(new DateTime($request->tanggalAkhir))->days + 1;
 
         $data_absen = Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])
