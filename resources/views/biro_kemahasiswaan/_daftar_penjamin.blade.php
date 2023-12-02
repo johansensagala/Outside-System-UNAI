@@ -6,8 +6,8 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Tanggal</th>
-                    <th>Detail</th>
                     <th>Status</th>
+                    <th>Detail</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,22 +19,22 @@
                         <td class="align-middle text-center number">{{ $index }}</td>
                         <td class="align-middle name">{{ $data_penjamin->penjamin->nama }}</td>
                         <td class="align-middle text-center">{{ $data_penjamin->created_at->format('d/m/Y') }}</td>
+                        @if ($data_penjamin->status == 'disetujui')
+                        <td class="align-middle fw-bolder text-center" style="color: green;">
+                            Disetujui
+                        </td>
+                        @elseif ($data_penjamin->status == 'ditolak')
+                        <td class="align-middle fw-bolder text-center" style="color: red;">
+                            Ditolak
+                        </td>
+                        @else
+                        <td class="align-middle fw-bolder text-center" style="color: #f3c022;">
+                            <i>Pending</i>
+                        </td>
+                        @endif
                         <td class="align-middle text-center">
                             <a href="/biro/formulir-penjamin/{{ $data_penjamin->id }}" class="btn btn-primary"><i class="link-icon" data-feather="list"></i>&nbsp; Detail </a>
                         </td>
-                        @if ($data_penjamin->status == 'disetujui')
-                            <td class="align-middle fw-bolder text-center" style="color: green;">
-                                 Disetujui
-                            </td>
-                        @elseif ($data_penjamin->status == 'ditolak')
-                            <td class="align-middle fw-bolder text-center" style="color: red;">
-                                 Ditolak
-                            </td>
-                        @else
-                            <td class="align-middle fw-bolder text-center" style="color: #f3c022;">
-                                <i>Pending</i>
-                            </td>
-                        @endif
                     </tr>
                     @php
                         $index++;

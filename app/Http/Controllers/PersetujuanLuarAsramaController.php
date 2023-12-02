@@ -13,7 +13,7 @@ class PersetujuanLuarAsramaController extends Controller
 {
     public function index()
     {
-        $daftar_pengajuan_luar_asrama = PengajuanLuarAsrama::whereNotIn('status_penjamin', ['pending', 'ditolak'])->paginate(100);
+        $daftar_pengajuan_luar_asrama = PengajuanLuarAsrama::whereNotIn('status_penjamin', ['pending', 'ditolak'])->paginate(20);
 
         return view('biro_kemahasiswaan.daftar_pengajuan_luar_asrama', compact('daftar_pengajuan_luar_asrama'));
     }

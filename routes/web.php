@@ -122,6 +122,7 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     Route::get('/biro/formulir-penjamin/{id}', [FormulirPenjaminController::class, 'show'])->name('biro_kemahasiswaan.formulir_penjamin');
     Route::post('/biro/formulir-penjamin/{id}/setujui', [FormulirPenjaminController::class, 'approve']);
     Route::post('/biro/formulir-penjamin/{id}/tolak', [FormulirPenjaminController::class, 'reject']);
+    Route::post('/biro/formulir-penjamin/{id}/batalkan', [FormulirPenjaminController::class, 'cancel']);
     
     Route::get('/biro/persetujuan-luar-asrama', [PersetujuanLuarAsramaController::class, 'index']);
     Route::get('/biro/data-persetujuan-luar-asrama', [PersetujuanLuarAsramaController::class, 'data'])->name('biro_kemahasiswaan.data_persetujuan_luar_asrama');

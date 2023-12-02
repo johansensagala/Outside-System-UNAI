@@ -12,7 +12,7 @@ class RoleMahasiswaController extends Controller
      */
     public function index(Request $request)
     {
-        $daftar_data_mahasiswa = Mahasiswa::paginate(10);
+        $daftar_data_mahasiswa = Mahasiswa::paginate(20);
                 
         return view('biro_kemahasiswaan.mahasiswa.daftar_mahasiswa', compact('daftar_data_mahasiswa'));
     }

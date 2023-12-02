@@ -13,7 +13,7 @@ class PenjaminController extends Controller
      */
     public function index()
     {
-        $penjamins = Penjamin::paginate(100);
+        $penjamins = Penjamin::paginate(20);
 
         return view('biro_kemahasiswaan.penjamin.index', compact('penjamins'));
     }

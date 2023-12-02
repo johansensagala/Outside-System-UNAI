@@ -15,7 +15,7 @@ class FormulirPenjaminController extends Controller
 {
     public function index(Request $request)
     {
-        $daftar_data_penjamin = PengajuanDataPenjamin::paginate(100);
+        $daftar_data_penjamin = PengajuanDataPenjamin::paginate(20);
             
         return view('biro_kemahasiswaan.daftar_penjamin', compact('daftar_data_penjamin'));
     }
@@ -136,6 +136,18 @@ class FormulirPenjaminController extends Controller
         $data_tempat_tinggal->comment = $request->input('comment');
         
         $data_tempat_tinggal->status = 'ditolak';
+
+        $data_tempat_tinggal->save();
+
+        return redirect()->back();
+    }
+
+    public function cancel($id) {
+        $data_tempat_tinggal = PengajuanDataPenjamin::where('id', $id)->first();
+
+        $data_tempat_tinggal->status = 'pending';
+
+        $data_tempat_tinggal->kode_penjamin = $this->generate_random_code();
 
         $data_tempat_tinggal->save();
 

@@ -115,7 +115,7 @@
                             </div>
                         </div>
                     </div>
-                    @if ($data_tempat_tinggal->status != 'disetujui' && $disetujui == 'salah')
+                    {{-- @if ($data_tempat_tinggal->status != 'disetujui' && $disetujui == 'salah') --}}
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4"></div>
@@ -127,12 +127,19 @@
                                     </form>
                                 @endif
                                 @if ($data_tempat_tinggal->status === 'pending' || $data_tempat_tinggal->status === 'disetujui')
-                                    <button class="btn btn-danger" id="btnTampilkanTolak">Tolak</button>
+                                    @if ($data_tempat_tinggal->status === 'disetujui')
+                                    <form method="post" id="formBatalkan" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/batalkan" style="display: inline;">
+                                        @csrf
+                                        <button type="submit" id="btnBatalkan" class="btn btn-danger">Batalkan</button>
+                                    </form>
+                                    @else
+                                        <button class="btn btn-danger" id="btnTampilkanTolak">Tolak</button>
+                                    @endif
                                 @endif
                             </div>
                         </div><hr>
                     </div>
-                    @endif
+                    {{-- @endif --}}
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 fw-bold mb-4">
@@ -178,7 +185,25 @@
                         </li>
                     </ul>
                 </div>
+                <div class="card">
+                    @if($data_tempat_tinggal->status == 'ditolak')
+                    <div class="card-header text-center">
+                        Komentar
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            
+                            <small>
+                                {{ $data_tempat_tinggal->comment }}
+                            </small>
+
+                        </li>
+                    </ul>
+                    @endif
+                </div>
+
             </div>
+            
             
         </div>   
     </div>
@@ -224,6 +249,9 @@
         const formSetujui = document.getElementById("formSetujui");
         const btnTolak = document.getElementById("btnTolak");
         const formTolak = document.getElementById("formTolak");
+        const btnBatalkan = document.getElementById("btnBatalkan");
+        const formBatalkan = document.getElementById("formBatalkan");
+        const tolakForm = document.getElementById("tolakForm"); // Add this line
 
         btnSetujui.addEventListener("click", function (event) {
             event.preventDefault();
@@ -258,6 +286,33 @@
                     formTolak.submit();
                 }
             });
+        });
+
+        btnBatalkan.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Yakin Ingin Membatalkan?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formBatalkan.submit();
+                }
+            });
+        });
+
+        // Tampilkan form Tolak
+
+        const btnTampilkanTolak = document.getElementById("btnTampilkanTolak");
+
+        btnTampilkanTolak.addEventListener("click", function () {
+            tolakForm.style.display = "block";
+            btnTampilkanTolak.style.display = "none";
         });
     });
 
