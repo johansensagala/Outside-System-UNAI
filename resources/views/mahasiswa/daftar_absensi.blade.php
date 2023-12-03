@@ -72,7 +72,9 @@
                                 </tbody>
                             </table>
                             <div class="mt-5 d-flex justify-content-center align-items-center">
-                                @if (isset($tanggal_awal) && isset($tanggal_akhir))
+                                @if (isset($tanggal_awal) && isset($tanggal_akhir) && isset($search))
+                                    {{ $data_absen->appends(['tanggalAwal' => $tanggal_awal, 'tanggalAkhir' => $tanggal_akhir, 'search' => $search])->links() }}
+                                @elseif (isset($tanggal_awal) && isset($tanggal_akhir))
                                     {{ $data_absen->appends(['tanggalAwal' => $tanggal_awal, 'tanggalAkhir' => $tanggal_akhir])->links() }}
                                 @else
                                     {{ $data_absen->links() }}

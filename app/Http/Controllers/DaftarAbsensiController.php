@@ -53,13 +53,22 @@ class DaftarAbsensiController extends Controller
     public function filter (Request $request) {
         $tanggal_awal = $request->input('tanggalAwal', now()->format('Y-m-d'));
         $tanggal_akhir = $request->input('tanggalAkhir', now()->format('Y-m-d'));
-    
+        $search = $request->input('search');
+        
         $selisih = (new DateTime($request->tanggalAwal))->diff(new DateTime($request->tanggalAkhir))->days + 1;
-
-        $data_absen = Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])
-            ->orderBy('created_at', 'desc')
+        
+        $data_absen = Absensi::join('mahasiswas', 'absensis.id_mahasiswa', '=', 'mahasiswas.id')
+            ->where(function ($query) use ($tanggal_awal, $tanggal_akhir) {
+                $query->whereBetween('absensis.created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59']);
+            })
+            ->where(function ($query) use ($search) {
+                $query->where('mahasiswas.nama', 'like', '%' . $search . '%')
+                    ->orWhere('mahasiswas.nim', 'like', '%' . $search . '%');
+            })
+            ->orderBy('absensis.created_at', 'desc')
+            ->select('absensis.*')
             ->paginate(20);
-    
+            
         $jumlah_mahasiswa = PengajuanLuarAsrama::where('status', 'disetujui')->count();
     
         $jumlah_hadir =  Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->where('kehadiran', 'Hadir')->count();
@@ -72,11 +81,14 @@ class DaftarAbsensiController extends Controller
             'absen' => $jumlah_absen,
         ];
         
+        if ($search) {
+            return view('mahasiswa.daftar_absensi', compact('data_absen', 'tanggal_awal', 'tanggal_akhir', 'search', 'summary'));    
+        }
         return view('mahasiswa.daftar_absensi', compact('data_absen', 'tanggal_awal', 'tanggal_akhir', 'summary'));    
     }
 
-    public function liveSearch(Request $request)
-    {
+    public function live_search (Request $request) {
+
 
     }
                         
