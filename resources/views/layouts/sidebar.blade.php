@@ -1,7 +1,7 @@
 <nav class="sidebar">
   <div class="sidebar-header" style="background-color: #38bbeb!important;">
     <a href="#" class="sidebar-brand">
-      <img src="{{ asset('assets/images/LogoUNAI.webp') }}" alt="">
+      <img src="{{ asset('assets/images/LogoUNAI.webp') }}" alt="" height="30" width="172">
     </a>
     
     <div class="sidebar-toggler not-active" style="margin-left: 2px; padding: 1px;">
