@@ -18,7 +18,7 @@ class PengajuanDataPenjaminSeeder extends Seeder
 
         $jumlah_data = 400; 
 
-        for ($i = 351; $i <= $jumlah_data; $i++) {
+        for ($i = 1; $i <= $jumlah_data; $i++) {
             $latitude = -6.80 + ($i * 0.0001);
             $longitude = 107.57 + ($i * 0.0001);
 

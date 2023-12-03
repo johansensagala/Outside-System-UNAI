@@ -74,8 +74,6 @@ class DaftarAbsensiByMahasiswaController extends Controller
 
         $absensi_content = view('mahasiswa.__absensi', compact('data_absen_bulanan'))->render();
         $absensi_bulanan = view('mahasiswa.__absensi_bulanan', compact('summary_bulanan'))->render();
-
-        // dd($summary_bulanan);
     
         // Bagian ini untuk mengurus aksi absensi
     
