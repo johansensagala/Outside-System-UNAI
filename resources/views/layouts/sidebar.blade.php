@@ -25,7 +25,7 @@
 
       <li class="nav-item py-3 {{ request()->is('mhs/profile') ? 'active' : '' }}">
         <a href="{{ url('/mhs/profile') }}" class="nav-link">
-          <i class="link-icon" data-feather="table"></i>
+          <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Profile</span>
         </a>
       </li>
@@ -40,7 +40,7 @@
       @if (!$data_pengajuan->isEmpty())
       <li class="nav-item py-3 {{ request()->is('data-pengajuan*') ? 'active' : '' }}">
         <a href="{{ url('/mhs/data-pengajuan') }}" class="nav-link">
-          <i class="link-icon" data-feather="user"></i>
+          <i class="link-icon" data-feather="file-text"></i>
           <span class="link-title">Data Pengajuan</span>
         </a>
       </li> 
@@ -51,7 +51,7 @@
           $data_pengajuan_terakhir->status == 'ditolak')
           <li class="nav-item py-3 {{ request()->routeIs('pengajuan-luar-asrama*') ? 'active' : '' }}">
               <a href="{{ route('pengajuan-luar-asrama') }}" class="nav-link">
-                  <i class="link-icon" data-feather="user"></i>
+                  <i class="link-icon" data-feather="home"></i>
                   <span class="link-title">Pengajuan Luar Asrama</span>
               </a>
           </li>

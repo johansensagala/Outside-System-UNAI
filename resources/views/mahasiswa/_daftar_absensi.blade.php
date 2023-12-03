@@ -7,15 +7,15 @@
         @endif
             @csrf
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-10">
                     <input type="text" id="search" name="search" class="form-control mb-2" placeholder="Masukkan nama mahasiswa..."/>
                     @if (isset($tanggal_awal) && isset($tanggal_akhir))
                         <input type="hidden" name="tanggalAwal" value="{{ $tanggal_awal }}"/>
                         <input type="hidden" name="tanggalAkhir" value="{{ $tanggal_akhir }}"/>
                     @endif
                 </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary">
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                         Cari
                     </button>
                 </div>
@@ -60,7 +60,7 @@
                     @if(Auth::guard('mahasiswa')->check())
                     <td class="align-middle"><button type="button" class="btn btn-primary" onclick="window.location.href='/mhs/daftar-absensi-mahasiswa/{{ $absen->id }}'">Detail</button></td>
                     @elseif(Auth::guard('biro_kemahasiswaan')->check())
-                    <td class="align-middle"><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/daftar-absensi-mahasiswa/{{ $absen->id }}'">Detail</button></td>
+                    <td class="align-middle"><button type="button" class="btn btn-primary" onclick="window.location.href='/biro/daftar-absensi-mahasiswa/{{ $absen->id }}'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>&nbsp;&nbsp;Detail</button></td>
                     @endif
                 </tr>
                 @php
@@ -98,7 +98,7 @@
                         <label for="tanggalAkhir" class="mb-1">Pilih Tanggal Akhir Absensi</label>
                         <input type="text" name="tanggalAkhir" id="tanggalAkhir" class="form-control mb-2" value="{{ $tanggal_akhir ?? now()->format('Y-m-d') }}" placeholder="Pilih Tanggal"/>
                         <button type="submit" class="btn btn-primary" id="tetapkanIntervalTanggal">
-                            Tetapkan
+                            Terapkan
                         </button>
                     </form>
                 </div>                                                            
