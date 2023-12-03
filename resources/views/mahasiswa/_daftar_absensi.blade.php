@@ -3,7 +3,7 @@
         @if(Auth::guard('mahasiswa')->check())
         <form action="{{ route('mhs.filter') }}" method="GET">
         @elseif(Auth::guard('biro_kemahasiswaan')->check())
-        <form action="{{ route('mhs.filter') }}" method="GET">
+        <form action="{{ route('biro.filter') }}" method="GET">
         @endif
             @csrf
             <div class="row">
@@ -90,7 +90,7 @@
                     @if(Auth::guard('mahasiswa')->check())
                     <form action="{{ route('mhs.filter') }}" method="GET">
                     @elseif(Auth::guard('biro_kemahasiswaan')->check())
-                    <form action="{{ route('mhs.filter') }}" method="GET">
+                    <form action="{{ route('biro.filter') }}" method="GET">
                     @endif
                         @csrf
                         <label for="tanggalAwal" class="mb-1">Pilih Tanggal Awal Absensi</label>
