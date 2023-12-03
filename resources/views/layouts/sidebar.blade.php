@@ -59,17 +59,17 @@
       
       @if (!$data_pengajuan->isEmpty() && $data_pengajuan_terakhir->status == 'disetujui')
         <li class="nav-item py-3 {{ request()->is('mhs/daftar-absensi') ? 'active' : '' }}">
-            <a href="{{ url('/mhs/daftar-absensi') }}" class="nav-link">
-                <i class="link-icon" data-feather="clock"></i>
-                <span class="link-title">Laporan Absensi</span>
-            </a>
+          <a href="{{ url('/mhs/daftar-absensi') }}" class="nav-link">
+            <i class="link-icon" data-feather="clock"></i>
+            <span class="link-title">Laporan Absensi</span>
+          </a>
         </li>
 
         <li class="nav-item py-3 {{ request()->is('mhs/absensi') ? 'active' : '' }}">
-            <a href="{{ url('/mhs/absensi') }}" class="nav-link">
-                <i class="link-icon" data-feather="clock"></i>
-                <span class="link-title">Absensi</span>
-            </a>
+          <a href="{{ url('/mhs/absensi') }}" class="nav-link">
+            <i class="link-icon" data-feather="clock"></i>
+            <span class="link-title">Absensi</span>
+          </a>
         </li>
         
         @if(Auth::guard('mahasiswa')->user()->role == 1)

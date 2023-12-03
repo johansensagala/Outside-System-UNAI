@@ -26,7 +26,7 @@ class PenjaminFactory extends Factory
         $namaBelakang = explode(' ', $nama)[1];
 
         return [
-            'nama' => $namaDepan . $namaBelakang,
+            'nama' => $namaDepan . ' ' . $namaBelakang,
             'username' => Str::lower(str_replace(' ', '-', $namaDepan . $namaBelakang)),
             'password' => bcrypt(Str::lower($namaDepan) . '123'),
             'nomor_telp' => $this->generateNomorTelepon(),
