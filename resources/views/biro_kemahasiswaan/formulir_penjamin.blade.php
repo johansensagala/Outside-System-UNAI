@@ -262,7 +262,7 @@
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes"
+                confirmButtonText: "Ya"
             }).then((result) => {
                 if (result.isConfirmed) {
                     formSetujui.submit();
@@ -280,7 +280,7 @@
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes"
+                confirmButtonText: "Ya"
             }).then((result) => {
                 if (result.isConfirmed) {
                     formTolak.submit();
@@ -298,7 +298,7 @@
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes"
+                confirmButtonText: "Ya"
             }).then((result) => {
                 if (result.isConfirmed) {
                     formBatalkan.submit();
