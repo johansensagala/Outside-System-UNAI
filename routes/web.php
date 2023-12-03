@@ -8,6 +8,7 @@ use App\Http\Controllers\BiroKemahasiswaanController;
 use App\Http\Controllers\BiroKemahasiswaanProfileController;
 use App\Http\Controllers\DaftarAbsensiByMahasiswaController;
 use App\Http\Controllers\DaftarAbsensiController;
+use App\Http\Controllers\DaftarMahasiswaOutsideController;
 use App\Http\Controllers\DataPengajuanMahasiswaController;
 use App\Http\Controllers\DataPermohonanPenjaminController;
 use App\Http\Controllers\FormulirPenjaminController;
@@ -79,8 +80,9 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::post('/mhs/absensi', [AbsensiByMahasiswaController::class, 'store']);
 
     Route::get('/mhs/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'index']);
-    // Route::get('/mhs/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'filter'])->name('mhs.filter');
-    Route::get('/mhs/daftar-absensi-mahasiswa/live-search', [DaftarAbsensiController::class, 'liveSearch']);
+    Route::get('/mhs/daftar-mahasiswa-outside', [DaftarMahasiswaOutsideController::class, 'index']);
+    Route::get('/mhs/daftar-mahasiswa-outside/{id}', [DaftarMahasiswaOutsideController::class, 'show']);
+    Route::post('/mhs/daftar-mahasiswa-outside/{id}/filter', [DaftarMahasiswaOutsideController::class, 'filter']);
 
     Route::get('/mhs/daftar-absensi-mahasiswa/{id}', [DaftarAbsensiController::class, 'show']);
     Route::post('/mhs/update-kehadiran', [DaftarAbsensiByMahasiswaController::class, 'update_kehadiran']);
@@ -137,8 +139,9 @@ Route::middleware(['biro_kemahasiswaan_middleware'])->group(function () {
     Route::get('/biro/absensi-tempat-tinggal/{id}', [AbsensiController::class, 'show']);
 
     Route::get('/biro/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'index']);
-    // Route::get('/biro/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'filter'])->name('biro.filter');
-    Route::get('/biro/daftar-absensi-mahasiswa/live-search', [DaftarAbsensiController::class, 'liveSearch']);
+    Route::get('/biro/daftar-mahasiswa-outside', [DaftarMahasiswaOutsideController::class, 'index']);
+    Route::get('/biro/daftar-mahasiswa-outside/{id}', [DaftarMahasiswaOutsideController::class, 'show']);
+    Route::post('/biro/daftar-mahasiswa-outside/{id}/filter', [DaftarMahasiswaOutsideController::class, 'filter']);
 
     Route::get('/biro/daftar-absensi-mahasiswa/{id}', [DaftarAbsensiController::class, 'show']);
     Route::post('/biro/update-kehadiran', [DaftarAbsensiByMahasiswaController::class, 'update_kehadiran']);

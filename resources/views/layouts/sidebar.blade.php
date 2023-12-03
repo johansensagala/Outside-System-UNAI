@@ -61,22 +61,29 @@
         <li class="nav-item py-3 {{ request()->is('mhs/daftar-absensi') ? 'active' : '' }}">
           <a href="{{ url('/mhs/daftar-absensi') }}" class="nav-link">
             <i class="link-icon" data-feather="clock"></i>
-            <span class="link-title">Laporan Absensi</span>
+            <span class="link-title">Laporan Kehadiran</span>
           </a>
         </li>
 
         <li class="nav-item py-3 {{ request()->is('mhs/absensi') ? 'active' : '' }}">
           <a href="{{ url('/mhs/absensi') }}" class="nav-link">
             <i class="link-icon" data-feather="clock"></i>
-            <span class="link-title">Absensi</span>
+            <span class="link-title">Kehadiran</span>
           </a>
         </li>
         
         @if(Auth::guard('mahasiswa')->user()->role == 1)
+        <li class="nav-item py-3 {{ request()->is('mhs/daftar-mahasiswa-outside') ? 'active' : '' }}">
+          <a href="{{ url('/mhs/daftar-mahasiswa-outside') }}" class="nav-link">
+            <i class="link-icon" data-feather="clock"></i>
+            <span class="link-title">Daftar Mahasiswa Outside</span>
+          </a>
+        </li>
+
         <li class="nav-item py-3 {{ request()->is('mhs/daftar-absensi-mahasiswa') ? 'active' : '' }}">
           <a href="{{ url('/mhs/daftar-absensi-mahasiswa') }}" class="nav-link">
             <i class="link-icon" data-feather="clock"></i>
-            <span class="link-title">Daftar Absensi Mahasiswa</span>
+            <span class="link-title">Daftar Kehadiran Mahasiswa</span>
           </a>
         </li>
         @endif
