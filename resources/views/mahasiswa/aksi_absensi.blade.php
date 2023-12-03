@@ -86,7 +86,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="absentModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="absentModalLabel">Check-in</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="/mhs/absensi" method="post" enctype="multipart/form-data">
@@ -128,7 +128,7 @@
                 <input class="form-control" type="file" id="foto" name="foto" id="formFile">
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" style="width: 50%">Absen</button>
+                <button type="submit" class="btn btn-primary" style="width: 50%">Check-in</button>
             </div>
 
         </form>

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('absensis', function (Blueprint $table) {
             $table->id();
-            $table->decimal('latitude', 9, 6);
-            $table->decimal('longitude', 9, 6);
+            $table->decimal('latitude', 9, 6)->nullable();
+            $table->decimal('longitude', 9, 6)->nullable();
             $table->string('foto')->nullable();
             $table->string('alasan')->nullable();
             $table->string('kehadiran');
