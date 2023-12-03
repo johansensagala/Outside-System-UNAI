@@ -1,9 +1,9 @@
 <div class="m-5 row" id="absensiTable">
     <div class="table-responsive col-md-8 mt-3">
         @if(Auth::guard('mahasiswa')->check())
-        <form action="{{ route('mhs.filter') }}" method="GET">
+        <form action="/mhs/daftar-absensi-mahasiswa" method="GET">
         @elseif(Auth::guard('biro_kemahasiswaan')->check())
-        <form action="{{ route('biro.filter') }}" method="GET">
+        <form action="/biro/daftar-absensi-mahasiswa" method="GET">
         @endif
             @csrf
             <div class="row">
@@ -88,15 +88,15 @@
                 
                 <div id="intervalTanggal">
                     @if(Auth::guard('mahasiswa')->check())
-                    <form action="{{ route('mhs.filter') }}" method="GET">
+                    <form action="/mhs/daftar-absensi-mahasiswa" method="GET">
                     @elseif(Auth::guard('biro_kemahasiswaan')->check())
-                    <form action="{{ route('biro.filter') }}" method="GET">
+                    <form action="/biro/daftar-absensi-mahasiswa" method="GET">
                     @endif
                         @csrf
                         <label for="tanggalAwal" class="mb-1">Pilih Tanggal Awal Absensi</label>
-                        <input type="text" name="tanggalAwal" id="tanggalAwal" class="form-control mb-2" value="{{ $tanggal_awal ?? now()->format('Y-m-d') }}" placeholder="Pilih Tanggal"/>
+                        <input type="text" name="tanggalAwal" id="tanggalAwal" class="form-control mb-2" value="{{ $tanggal_awal }}" placeholder="Pilih Tanggal"/>
                         <label for="tanggalAkhir" class="mb-1">Pilih Tanggal Akhir Absensi</label>
-                        <input type="text" name="tanggalAkhir" id="tanggalAkhir" class="form-control mb-2" value="{{ $tanggal_akhir ?? now()->format('Y-m-d') }}" placeholder="Pilih Tanggal"/>
+                        <input type="text" name="tanggalAkhir" id="tanggalAkhir" class="form-control mb-2" value="{{ $tanggal_akhir }}" placeholder="Pilih Tanggal"/>
                         <button type="submit" class="btn btn-primary" id="tetapkanIntervalTanggal">
                             Tetapkan
                         </button>
