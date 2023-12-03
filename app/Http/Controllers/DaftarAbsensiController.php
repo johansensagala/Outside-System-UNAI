@@ -54,6 +54,24 @@ class DaftarAbsensiController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(20);
 
+        // Jika ada search
+
+        $search = $request->input('search');
+
+        if ($search) {
+            $data_absen = Absensi::join('mahasiswas', 'absensis.id_mahasiswa', '=', 'mahasiswas.id')
+                ->where(function ($query) use ($tanggal_awal, $tanggal_akhir) {
+                    $query->whereBetween('absensis.created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59']);
+                })
+                ->where(function ($query) use ($search) {
+                    $query->where('mahasiswas.nama', 'like', '%' . $search . '%')
+                        ->orWhere('mahasiswas.nim', 'like', '%' . $search . '%');
+                })
+                ->orderBy('absensis.created_at', 'desc')
+                ->select('absensis.*')
+                ->paginate(20);
+        }
+
         $selisih = (new DateTime($tanggal_awal))->diff(new DateTime($tanggal_akhir))->days + 1;
 
         $jumlah_hadir = Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->where('kehadiran', 'Hadir')->count();
@@ -66,55 +84,11 @@ class DaftarAbsensiController extends Controller
             'absen' => $jumlah_absen,
         ];
         
+        if ($search) {
+            return view('mahasiswa.daftar_absensi', compact('data_absen', 'summary', 'tanggal_awal', 'tanggal_akhir', 'search'));    
+        }
         return view('mahasiswa.daftar_absensi', compact('data_absen', 'summary', 'tanggal_awal', 'tanggal_akhir'));
     }
-
-    // public function filter (Request $request) {
-        
-    //         if ($now->greaterThan($buka_absen)) {
-    //             // $data_absen = Absensi::whereDate('created_at', $now->toDateString())
-    //             //     ->orderBy('created_at', 'desc')
-    //             //     ->paginate(20);
-    //         } else {
-    //             $tanggal_akhir = now()->format('Y-m-d');
-    //             // $kemarin = $now->copy()->subDay();
-    //             // $data_absen = Absensi::whereDate('created_at', $kemarin->toDateString())
-    //             //     ->orderBy('created_at', 'desc')
-    //             //     ->paginate(20);
-    //         }
-
-    
-    //     $search = $request->input('search');
-        
-    //     $selisih = (new DateTime($request->tanggalAwal))->diff(new DateTime($request->tanggalAkhir))->days + 1;
-        
-    //     $data_absen = Absensi::join('mahasiswas', 'absensis.id_mahasiswa', '=', 'mahasiswas.id')
-    //         ->where(function ($query) use ($tanggal_awal, $tanggal_akhir) {
-    //             $query->whereBetween('absensis.created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59']);
-    //         })
-    //         ->where(function ($query) use ($search) {
-    //             $query->where('mahasiswas.nama', 'like', '%' . $search . '%')
-    //                 ->orWhere('mahasiswas.nim', 'like', '%' . $search . '%');
-    //         })
-    //         ->orderBy('absensis.created_at', 'desc')
-    //         ->select('absensis.*')
-    //         ->paginate(20);
-                
-    //     $jumlah_hadir =  Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->where('kehadiran', 'Hadir')->count();
-    //     $jumlah_izin =  Absensi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir . ' 23:59:59'])->where('kehadiran', 'Izin')->count();
-    //     $jumlah_absen = $jumlah_mahasiswa * $selisih - $jumlah_hadir - $jumlah_izin;
-    
-    //     $summary = [
-    //         'hadir' => $jumlah_hadir,
-    //         'izin' => $jumlah_izin,
-    //         'absen' => $jumlah_absen,
-    //     ];
-        
-    //     if ($search) {
-    //         return view('mahasiswa.daftar_absensi', compact('data_absen', 'tanggal_awal', 'tanggal_akhir', 'search', 'summary'));    
-    //     }
-    //     return view('mahasiswa.daftar_absensi', compact('data_absen', 'tanggal_awal', 'tanggal_akhir', 'summary'));    
-    // }
                         
     public function show ($id) {
         $data_absen = Absensi::where('id', $id)->first();
