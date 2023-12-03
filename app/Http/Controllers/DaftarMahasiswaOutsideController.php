@@ -81,8 +81,8 @@ class DaftarMahasiswaOutsideController extends Controller
             'absen' => $jumlah_absen_bulanan,
         ];
 
-        $absensi_content = view('mahasiswa.__absensi', compact('data_absen_bulanan'))->render();
-        $absensi_bulanan = view('mahasiswa.__absensi_bulanan', compact('summary_bulanan'))->render();
+        $absensi_content = view('mahasiswa.monitor.__absensi', compact('data_absen_bulanan'))->render();
+        $absensi_bulanan = view('mahasiswa.monitor.__absensi_bulanan', compact('summary_bulanan'))->render();
     
         // Bagian ini untuk mengurus aksi absensi
     
@@ -92,7 +92,7 @@ class DaftarMahasiswaOutsideController extends Controller
             return view('mahasiswa.no_absensi');
         }
         
-        return view('mahasiswa.absensi', compact('data_absen_bulanan', 'mahasiswa', 'bulan_tahun_combinations', 'summary', 'summary_bulanan', 'absensi_content', 'absensi_bulanan', 'selectedDate'));
+        return view('mahasiswa.monitor.absensi', compact('data_absen_bulanan', 'mahasiswa', 'bulan_tahun_combinations', 'summary', 'summary_bulanan', 'absensi_content', 'absensi_bulanan', 'selectedDate'));
     }
 
     public function filter (Request $request) {
@@ -183,9 +183,9 @@ class DaftarMahasiswaOutsideController extends Controller
 
         // dd($summary_bulanan);
 
-        $absensi_content = view('mahasiswa.__absensi', compact('data_absen_bulanan'))->render();
-        $absensi_bulanan = view('mahasiswa.__absensi_bulanan', compact('summary_bulanan'))->render();
+        $absensi_content = view('mahasiswa.monitor.__absensi', compact('data_absen_bulanan'))->render();
+        $absensi_bulanan = view('mahasiswa.monitor.__absensi_bulanan', compact('summary_bulanan'))->render();
             
-        return view('mahasiswa._absensi', compact('data_absen_bulanan', 'summary', 'summary_bulanan', 'bulan_tahun_combinations', 'absensi_content', 'absensi_bulanan', 'selectedDate'))->render();
+        return view('mahasiswa.monitor._absensi', compact('data_absen_bulanan', 'summary', 'summary_bulanan', 'bulan_tahun_combinations', 'absensi_content', 'absensi_bulanan', 'selectedDate'))->render();
     }
 }

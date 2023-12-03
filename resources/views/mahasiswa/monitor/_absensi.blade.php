@@ -46,7 +46,7 @@
                 </div>
             </div>
             @endif
-            
+
             <div class="my-3">
                 <label for="bulanFilter" class="form-label">Pilih bulan:</label>
                 <select id="bulanFilter" class="form-select">
@@ -54,50 +54,27 @@
                         $sortedBulanTahun = $bulan_tahun_combinations->sortByDesc(function($item) {
                             return \Carbon\Carbon::createFromDate($item->tahun, $item->bulan, 1)->timestamp;
                         });
-                        @endphp
+                    @endphp
             
-            @if (!is_null($selectedDate))
-            <option value="semua">Tampilkan semua</option>
-            @foreach($sortedBulanTahun as $bulan)
-            @php
-                                $formattedDate = \Carbon\Carbon::createFromDate($bulan->tahun, $bulan->bulan, 1)->format('F Y');
-                                $isSelected = ($bulan->tahun == $selectedDate->year && $bulan->bulan == $selectedDate->month);
-                                @endphp
-                            <option value="{{ $formattedDate }}" {{ $isSelected ? 'selected' : '' }}>{{ $formattedDate }}</option>
-                            @endforeach
-                    @else
-                    <option value="semua" selected>Tampilkan semua</option>
+                    @if (!is_null($selectedDate))
+                        <option value="semua">Tampilkan semua</option>
                         @foreach($sortedBulanTahun as $bulan)
                             @php
                                 $formattedDate = \Carbon\Carbon::createFromDate($bulan->tahun, $bulan->bulan, 1)->format('F Y');
-                                @endphp
+                                $isSelected = ($bulan->tahun == $selectedDate->year && $bulan->bulan == $selectedDate->month);
+                            @endphp
+                            <option value="{{ $formattedDate }}" {{ $isSelected ? 'selected' : '' }}>{{ $formattedDate }}</option>
+                        @endforeach
+                    @else
+                        <option value="semua" selected>Tampilkan semua</option>
+                        @foreach($sortedBulanTahun as $bulan)
+                            @php
+                                $formattedDate = \Carbon\Carbon::createFromDate($bulan->tahun, $bulan->bulan, 1)->format('F Y');
+                            @endphp
                             <option value="{{ $formattedDate }}">{{ $formattedDate }}</option>
                         @endforeach
                     @endif
                 </select>
-            </div>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Detail Absensi Semester</h5>
-            
-                    <div id="grafik_absensi_semester" class="row my-3 me-5 d-flex justify-content-center align-items-center">
-                    </div>
-                    
-                    <div>
-                        <p>
-                            Jumlah hadir: {{ $summary['hadir'] }}
-                        </p>
-                        <p>
-                            Jumlah izin: {{ $summary['izin'] }}
-                        </p>
-                        <p>
-                            Jumlah absen: {{ $summary['absen'] }}
-                        </p>
-                        <p class="text-danger">
-                            Selalu ingat untuk melakukan absensi, tidak melakukan absensi akan terhitung sebagai absen
-                        </p>
-                    </div>
-                </div>
             </div>
                         
         </div>
