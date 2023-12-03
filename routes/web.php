@@ -79,7 +79,7 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::post('/mhs/absensi', [AbsensiByMahasiswaController::class, 'store']);
 
     Route::get('/mhs/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'index']);
-    Route::get('/mhs/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'filter']);
+    Route::get('/mhs/daftar-absensi-mahasiswa', [DaftarAbsensiController::class, 'filter'])->name('mhs.filter');
     Route::get('/mhs/daftar-absensi-mahasiswa/live-search', [DaftarAbsensiController::class, 'liveSearch']);
 
     Route::get('/mhs/daftar-absensi-mahasiswa/{id}', [DaftarAbsensiController::class, 'show']);
