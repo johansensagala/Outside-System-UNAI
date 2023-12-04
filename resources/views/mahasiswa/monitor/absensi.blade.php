@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="m-5">
                         <div id="mainAbsensi" class="row">
-                            @include('mahasiswa._absensi')
+                            @include('mahasiswa.monitor._absensi')
                         </div>
                     </div>
                 </div>

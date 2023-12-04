@@ -26,8 +26,8 @@ class AbsensiByMahasiswaController extends Controller
             ->where('kehadiran', 'Hadir')
             ->get();
 
-        $batas_bawah = Carbon::createFromTime(10, 30);
-        $batas_atas = Carbon::createFromTime(21, 0);
+        $batas_bawah = Carbon::createFromTime(19, 30);
+        $batas_atas = Carbon::createFromTime(21, 00);
     
         $absen_time = $now->between($batas_bawah, $batas_atas);
         

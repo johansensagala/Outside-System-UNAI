@@ -55,10 +55,12 @@ class DaftarMahasiswaOutsideController extends Controller
         if ($now->hour >= 21 && $now->minute >= 00) {
             $selisih_hari = $tanggal_awal_absensi->diffInDays($now) + 1;
             $jumlah_hari_bulan_ini = $now->day;
+            $akhir_absensi = $now->copy();
         } else {
             $kemarin = Carbon::yesterday()->setTime(21, 0, 0);
             $selisih_hari = $tanggal_awal_absensi->diffInDays($kemarin) + 1;
             $jumlah_hari_bulan_ini = $now->day - 1;
+            $akhir_absensi = $now->copy()->subDay();
         }
         
         $jumlah_hadir = $data_absen->where('kehadiran', 'Hadir')->count();
@@ -83,7 +85,22 @@ class DaftarMahasiswaOutsideController extends Controller
 
         $absensi_content = view('mahasiswa.monitor.__absensi', compact('data_absen_bulanan'))->render();
         $absensi_bulanan = view('mahasiswa.monitor.__absensi_bulanan', compact('summary_bulanan'))->render();
-    
+
+        // Mengumpulkan tanggal-tanggal tanpa absensi
+
+        $semua_tanggal = [];
+        
+        while ($awal_absensi->lte($akhir_absensi)) {
+            $semua_tanggal[] = $awal_absensi->toDateString();
+            $awal_absensi->addDay();
+        }
+        
+        $tanggal_dengan_kehadiran = $data_absen->pluck('created_at')->map(function ($tanggal) {
+            return $tanggal->toDateString();
+        })->toArray();
+        
+        $tanggal_tanpa_kehadiran = array_diff($semua_tanggal, $tanggal_dengan_kehadiran);
+                    
         // Bagian ini untuk mengurus aksi absensi
     
         $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id_mahasiswa', $id_mahasiswa)->where('status', 'disetujui')->first();
@@ -92,7 +109,7 @@ class DaftarMahasiswaOutsideController extends Controller
             return view('mahasiswa.no_absensi');
         }
         
-        return view('mahasiswa.monitor.absensi', compact('data_absen_bulanan', 'mahasiswa', 'bulan_tahun_combinations', 'summary', 'summary_bulanan', 'absensi_content', 'absensi_bulanan', 'selectedDate'));
+        return view('mahasiswa.monitor.absensi', compact('data_absen_bulanan', 'mahasiswa', 'bulan_tahun_combinations', 'summary', 'summary_bulanan', 'absensi_content', 'absensi_bulanan', 'selectedDate', 'tanggal_tanpa_kehadiran'));
     }
 
     public function filter (Request $request) {
@@ -124,20 +141,15 @@ class DaftarMahasiswaOutsideController extends Controller
                 ->get();
         }
 
-        $awal_absensi = Semester::where('aksi', 'mulai absensi')
-            ->latest('created_at')
-            ->first()
-            ->created_at;
-
-        $akhir_absensi = Absensi::where('id_mahasiswa', $mahasiswa->id)
-            ->latest('created_at')
-            ->first()
-            ->created_at;
-
         $bulan_tahun_combinations = Absensi::select(DB::raw('YEAR(created_at) AS tahun, MONTH(created_at) AS bulan'))
             ->where('id_mahasiswa', $id_mahasiswa)
             ->groupBy('tahun', 'bulan')
             ->get();
+        
+        $awal_absensi = Semester::where('aksi', 'mulai absensi')
+            ->latest('created_at')
+            ->first()
+            ->created_at;
 
         $tanggal_awal_absensi = Carbon::parse($awal_absensi)->setTime(21, 0, 0);
         $now = Carbon::now();
@@ -145,10 +157,12 @@ class DaftarMahasiswaOutsideController extends Controller
         if ($now->hour >= 21 && $now->minute >= 0) {
             $selisih_hari = $tanggal_awal_absensi->diffInDays($now) + 1;
             $jumlah_hari_bulan_ini = $now->day;
+            $akhir_absensi = $now->copy();
         } else {
             $kemarin = Carbon::yesterday()->setTime(21, 0, 0);
             $selisih_hari = $tanggal_awal_absensi->diffInDays($kemarin) + 1;
             $jumlah_hari_bulan_ini = $now->day - 1;
+            $akhir_absensi = $now->copy()->subDay();
         }
 
         if (!is_null($selectedDate)) {
@@ -185,7 +199,39 @@ class DaftarMahasiswaOutsideController extends Controller
 
         $absensi_content = view('mahasiswa.monitor.__absensi', compact('data_absen_bulanan'))->render();
         $absensi_bulanan = view('mahasiswa.monitor.__absensi_bulanan', compact('summary_bulanan'))->render();
+
+        // Mengumpulkan tanggal-tanggal tanpa absensi
+
+        $semua_tanggal = [];
+
+        while ($awal_absensi->lte($akhir_absensi)) {
+            $semua_tanggal[] = $awal_absensi->toDateString();
+            $awal_absensi->addDay();
+        }
+        
+        $tanggal_dengan_kehadiran = $data_absen->pluck('created_at')->map(function ($tanggal) {
+            return $tanggal->toDateString();
+        })->toArray();
+        
+        $tanggal_tanpa_kehadiran = array_diff($semua_tanggal, $tanggal_dengan_kehadiran);        
             
-        return view('mahasiswa.monitor._absensi', compact('data_absen_bulanan', 'summary', 'summary_bulanan', 'bulan_tahun_combinations', 'absensi_content', 'absensi_bulanan', 'selectedDate'))->render();
+        return view('mahasiswa.monitor._absensi', compact('data_absen_bulanan', 'summary', 'summary_bulanan', 'bulan_tahun_combinations', 'absensi_content', 'absensi_bulanan', 'selectedDate', 'tanggal_tanpa_kehadiran', 'mahasiswa'))->render();
+    }
+
+    public function store (Request $request, $id) {
+        $tanggal = $request->input('tanggal') . ' 21:00:00';
+
+        // dd($tanggal);
+
+        $data_absen = new Absensi();
+        $data_absen->id_mahasiswa = $id;
+        $data_absen->id_monitor = Auth::guard('mahasiswa')->user()->id;
+        $data_absen->kehadiran = $request->input('status_kehadiran');
+        $data_absen->created_at = $tanggal;
+        $data_absen->updated_at = $tanggal;
+
+        $data_absen->save();
+
+        return redirect()->back();
     }
 }

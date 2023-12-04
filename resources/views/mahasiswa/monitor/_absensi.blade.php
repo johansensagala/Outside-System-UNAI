@@ -76,10 +76,52 @@
                     @endif
                 </select>
             </div>
-                        
+            
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title text-center">Kehadiran yang Tidak Diisi</h5>
+    
+            <ol>
+                @foreach ($tanggal_tanpa_kehadiran as $tanggalLoop)
+                    <li>
+                        {{ $tanggalLoop }} 
+                        <a href="#" class="open-modal" data-bs-toggle="modal" data-bs-target="#absentModal" data-tanggal="{{ $tanggalLoop }}">Masukkan absensi</a>
+                    </li>
+                @endforeach
+            </ol>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="absentModal" tabindex="-1" aria-labelledby="absentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="absentModalLabel">Check-in</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/mhs/daftar-mahasiswa-outside/{{ $mahasiswa->id }}" method="post" enctype="multipart/form-data" id="absentForm">
+                @csrf
+                <div class="modal-body">
+                    <label for="foto" class="mt-3">Masukkan status kehadiran</label>
+                    <select name="status_kehadiran" id="status_kehadiran" class="form-control form-select my-2">
+                        <option value="Hadir">Hadir</option>
+                        <option value="Absen">Absen</option>
+                        <option value="Izin">Izin</option>
+                    </select>
+                    
+                    <input type="hidden" name="tanggal" id="tanggalHidden" value="" readonly>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" style="width: 50%">Masukkan absen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <script>
 grafik_absensi_semester = {
@@ -134,7 +176,7 @@ $(document).ready(function () {
         let selectedMonth = $(this).val();
 
         $.ajax({
-            url: '/mhs/daftar-absensi/filter',
+            url: '/mhs/daftar-mahasiswa-outside/{{ $mahasiswa->id }}/filter',
             method: 'GET',
             data: { month: selectedMonth },
             success: function (data) {
@@ -143,6 +185,19 @@ $(document).ready(function () {
             error: function (error) {
                 console.log(error);
             }
+        });
+    });
+});
+
+// Memperbarui data absen kosong
+
+document.addEventListener('DOMContentLoaded', function () {
+    var modalLinks = document.querySelectorAll('.open-modal');
+
+    modalLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+            var tanggal = this.getAttribute('data-tanggal');
+            document.getElementById('tanggalHidden').value = tanggal;
         });
     });
 });

@@ -171,7 +171,11 @@
                             <div class="col-md-8 fw-bold">
                                 <span id="statusDisplay" class="mt-5">{{ $data_absen->kehadiran }}</span><br>
                                 <a class="btn btn-warning text-white" href="#" onclick="toggleStatusForm(event)">Ubah</a>
+                                @if(Auth::guard('mahasiswa')->check())
                                 <form id="statusForm" action="/mhs/update-kehadiran" method="POST" style="display: none;">
+                                @elseif(Auth::guard('biro_kemahasiswaan')->check())
+                                <form id="statusForm" action="/biro/update-kehadiran" method="POST" style="display: none;">
+                                @endif
                                     @csrf
                                         <br>
                                         <input type="hidden" name="id_absensi" value="{{ $data_absen->id }}">                    

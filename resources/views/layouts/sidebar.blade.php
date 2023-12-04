@@ -73,14 +73,14 @@
         </li>
         
         @if(Auth::guard('mahasiswa')->user()->role == 1)
-        <li class="nav-item py-3 {{ request()->is('mhs/daftar-mahasiswa-outside') ? 'active' : '' }}">
+        <li class="nav-item py-3 {{ request()->is('mhs/daftar-mahasiswa-outside*') ? 'active' : '' }}">
           <a href="{{ url('/mhs/daftar-mahasiswa-outside') }}" class="nav-link">
             <i class="link-icon" data-feather="clock"></i>
             <span class="link-title">Daftar Mahasiswa Outside</span>
           </a>
         </li>
 
-        <li class="nav-item py-3 {{ request()->is('mhs/daftar-absensi-mahasiswa') ? 'active' : '' }}">
+        <li class="nav-item py-3 {{ request()->is('mhs/daftar-absensi-mahasiswa*') ? 'active' : '' }}">
           <a href="{{ url('/mhs/daftar-absensi-mahasiswa') }}" class="nav-link">
             <i class="link-icon" data-feather="clock"></i>
             <span class="link-title">Daftar Kehadiran Mahasiswa</span>
@@ -183,7 +183,7 @@
         </a>
       </li>
 
-      <li class="nav-item py-3 {{ request()->is('biro/daftar-mahasiswa*') ? 'active' : '' }}">
+      <li class="nav-item py-3 {{ request()->is('biro/daftar-mahasiswa') ? 'active' : '' }}">
         <a href="{{ url('biro/daftar-mahasiswa') }}" class="nav-link">
           <i class="link-icon" data-feather="user"></i>
           <span class="link-title">Mahasiswa</span>
@@ -210,10 +210,17 @@
           <span class="link-title">Absensi Tempat Tinggal</span>
         </a>
       </li> --}}
-      <li class="nav-item py-3 {{ request()->is('biro/daftar-absensi-mahasiswa') ? 'active' : '' }}">
+      <li class="nav-item py-3 {{ request()->is('biro/daftar-mahasiswa-outside*') ? 'active' : '' }}">
+        <a href="{{ url('/biro/daftar-mahasiswa-outside') }}" class="nav-link">
+          <i class="link-icon" data-feather="clock"></i>
+          <span class="link-title">Daftar Mahasiswa Outside</span>
+        </a>
+      </li>
+
+      <li class="nav-item py-3 {{ request()->is('biro/daftar-absensi-mahasiswa*') ? 'active' : '' }}">
         <a href="{{ url('/biro/daftar-absensi-mahasiswa') }}" class="nav-link">
           <i class="link-icon" data-feather="clock"></i>
-          <span class="link-title">Daftar Absensi Mahasiswa</span>
+          <span class="link-title">Daftar Kehadiran Mahasiswa</span>
         </a>
       </li>
       
