@@ -1,6 +1,4 @@
 @extends('layouts.main')
-@section('title', 'UNAI Outside System')
-
 @push('plugin-styles')
     <link href="{{ asset('assets/plugins/flatpickr/flatpickr.min.css') }}" rel="stylesheet"/>
     <title>UNAI Outside System | Persetujuan Penjamin</title>
@@ -64,117 +62,6 @@
 @endpush
 
 @section('content')
-    <!-- <body class="large-screen">
-        <div class="row common-font-color wrap common-font-color">
-            <div class="table-wrapper card bs-gray-200 fw-bold ">
-                <table class="table-responsive card-list-table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Tanggal</th>
-                            <th>Detail</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Column #1">Value #1</td>
-                            <td data-title="Column #2">Value #2</td>
-                            <td data-title="Column #3">Value #3</td>
-                            <td data-title="Column #4">Value #4</td>
-                            <td data-title="Column #5">Value #5</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </body> -->
-
     <div class="row common-font-color">
     <div class="col-12 col-xl-12 stretch-card">
         <div class="row flex-grow-1">
@@ -223,12 +110,7 @@
         </div>
     </div>
     </div>
-
-    </script>
-@endsection
-
-
-<script>
+    <script>
     $(document).ready(function () {
         $('#search').on('keyup', function () {
             let search = $(this).val();
@@ -255,3 +137,4 @@
         });
     });
 </script>
+@endsection
