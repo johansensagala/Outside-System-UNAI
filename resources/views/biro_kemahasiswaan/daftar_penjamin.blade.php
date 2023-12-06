@@ -62,10 +62,9 @@
 @endpush
 
 @section('content')
-    <div class="row common-font-color">
+<div class="row common-font-color">
     <div class="col-12 col-xl-12 stretch-card">
         <div class="row flex-grow-1">
-
             <div class="grid-margin">
                 <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
@@ -109,8 +108,8 @@
             </div>
         </div>
     </div>
-    </div>
-    <script>
+</div>
+<script>
     $(document).ready(function () {
         $('#search').on('keyup', function () {
             let search = $(this).val();

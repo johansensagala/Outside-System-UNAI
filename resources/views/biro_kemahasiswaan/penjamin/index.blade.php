@@ -64,36 +64,43 @@
 <div class="row common-font-color">
     <div class="col-12 col-xl-12 stretch-card">
         <div class="row flex-grow-1">
-    <div class="grid-margin">
-    <div class="card bs-gray-200 fw-bold">
+            <div class="grid-margin">
+                <div class="card bs-gray-200 fw-bold">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            <h4>Daftar Penjamin</h4> 
+                            DAFTAR PENJAMIN
                         </div>
                     </div>
                 </div>
-    @if (session()->has('success'))
-        <div class="alert alert-success col-lg-6" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
-    <div class="table-wrapper card bs-gray-100 fw-bold">
-        <div class="row">
-            <div class="col-10">
-                <form action="/biro/daftar-mahasiswa">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Masukkan nama mahasiswa..." name="search" id="search" value="{{ request('search') }}">
+                <div class="card">
+                    <div class="m-5">
+                        <div class="row">
+                            <div class="col-9">
+                                <form action="/biro/daftar-mahasiswa">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Masukkan nama mahasiswa..." name="search" id="search" value="{{ request('search') }}">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-3">
+                                <a href="/biro/penjamin/create" class="btn btn-primary mb-3 align-left fw-bold"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>&nbsp;&nbsp;Tambah Penjamin</a>
+                            </div>
+                        </div>
+                        @include('biro_kemahasiswaan.penjamin._daftar_penjamin')
                     </div>
-                </form>                                
-            </div>
-            <div class="col-2">
-                <a href="/biro/penjamin/create" class="btn btn-primary m-3 align-left fw-bold"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>&nbsp;&nbsp;Tambah Penjamin</a>
+                    @if ($penjamins->total() > $penjamins->perPage())
+                        <div class="pagination">
+                            {{ $penjamins->links() }}
+                        </div>
+                    @endif
+                    @if ($penjamins->count() === 0)
+                        <h4 class="my-4 text-center fw-bold">
+                            Belum ada Penjamin
+                        </h4>
+                    @endif
+                </div>
             </div>
         </div>
-        @include('biro_kemahasiswaan.penjamin._daftar_penjamin')
-    </div>
-    </div>
-</div>
     </div>
 </div>
 
