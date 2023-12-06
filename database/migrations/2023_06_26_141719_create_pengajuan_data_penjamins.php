@@ -17,8 +17,7 @@ return new class extends Migration
             $table->decimal('latitude', 9, 6);
             $table->decimal('longitude', 9, 6);
             $table->string('foto_tempat_tinggal');
-            $table->string('foto_ktp');
-            $table->string('surat_domisili');
+            $table->string('foto_kartu_keluarga');
             $table->integer('kapasitas')->nullable();
             $table->string('status')->default('pending');
             $table->string('comment')->nullable();

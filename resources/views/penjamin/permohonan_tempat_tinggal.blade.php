@@ -41,9 +41,23 @@
                                     <label for="">Foto Tempat Tinggal</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <img id="preview" class="img-fluid my-3" src="#" alt="Preview" style="display: none; max-width: 200px; max-height: 200px;">
-                                    <input type="file" class="form-control @error('foto_tempat_tinggal') is-invalid @enderror" id="foto_tempat_tinggal" name="foto_tempat_tinggal" onchange="previewImage(event)">
+                                    <img id="previewFotoTempatTinggal" class="img-fluid my-3" src="#" alt="Preview" style="display: none; max-width: 200px; max-height: 200px;">
+                                    <input type="file" class="form-control @error('foto_tempat_tinggal') is-invalid @enderror" id="foto_tempat_tinggal" name="foto_tempat_tinggal" onchange="previewImage(event, 'previewFotoTempatTinggal')">
                                     @error('foto_tempat_tinggal')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="">Foto Kartu Keluarga</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <img id="previewFotoKartuKeluarga" class="img-fluid my-3" src="#" alt="Preview" style="display: none; max-width: 200px; max-height: 200px;">
+                                    <input type="file" class="form-control @error('foto_kartu_keluarga') is-invalid @enderror" id="foto_kartu_keluarga" name="foto_kartu_keluarga" onchange="previewImage(event, 'previewFotoKartuKeluarga')">
+                                    @error('foto_kartu_keluarga')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -112,7 +126,7 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script>
 <script src="{{ asset('js/locationDetector.js') }}"></script>
-<script src="{{ asset('js/imgPreview.js') }}"></script>
+<script src="{{ asset('js/common.js') }}"></script>
 <script>
     document.getElementById('autoclose').addEventListener('change', function() {
         var simpanButton = document.getElementById('simpanButton');
