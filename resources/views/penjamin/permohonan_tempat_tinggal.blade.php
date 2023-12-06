@@ -38,30 +38,6 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="">Kapasitas</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input @error('kapasitas') is-invalid @enderror" type="radio" name="kapasitas" id="kapasitas1" value="1">
-                                        <label class="form-check-label" for="kapasitas1">
-                                            Satu
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input @error('kapasitas') is-invalid @enderror" type="radio" name="kapasitas" id="kapasitas2" value="2">
-                                        <label class="form-check-label" for="kapasitas2">
-                                            Dua
-                                        </label>
-                                    </div>
-                                    @error('kapasitas')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
                                     <label for="">Foto Tempat Tinggal</label>
                                 </div>
                                 <div class="col-md-8">
