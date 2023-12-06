@@ -159,11 +159,11 @@
                                         @csrf
                                         <button type="submit" id="btnSetujui" class="btn btn-success"><i class="link-icon" data-feather="check"></i>&nbsp;Setujui</button>
                                     </form>
-                                    <button class="btn btn-danger" id="btnTampilkanTolak">Tolak</button>
+                                    <button class="btn btn-danger" id="btnTampilkanTolak"><i class="link-icon" data-feather="x"></i>&nbsp;Tolak</button>
                                 @else
                                     <form method="post" id="formBatalkan" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/batalkan" style="display: inline;">
                                         @csrf
-                                        <button type="submit" id="btnBatalkan" class="btn btn-danger">Batalkan</button>
+                                        <button type="submit" id="btnBatalkan" class="btn btn-danger"><i class="link-icon" data-feather="slash"></i>&nbsp;Batalkan</button>
                                     </form>
                                 @endif
                             </div>
@@ -301,7 +301,6 @@
             
             Swal.fire({
                 title: "Yakin Ingin Membatalkan?",
-                text: "You won't be able to revert this!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -337,7 +336,6 @@
             
             Swal.fire({
                 title: "Yakin Ingin Menolak?",
-                text: "You won't be able to revert this!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
