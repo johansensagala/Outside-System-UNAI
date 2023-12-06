@@ -25,7 +25,7 @@ class DataPermohonanPenjaminController extends Controller
             $data_tempat_tinggal = PengajuanDataPenjamin::where('id_penjamin', $id_penjamin)
                 ->where('status', 'disetujui')
                 ->first();
-        }        
+        }
         
         $jumlah_pengajuan_penjamin_disetujui = PengajuanLuarAsrama::where('id_penjamin', $id_penjamin)
             ->where('status_penjamin', 'disetujui')

@@ -148,7 +148,7 @@ class FormulirPenjaminController extends Controller
 
         $data_tempat_tinggal->status = 'pending';
 
-        $data_tempat_tinggal->kode_penjamin = $this->generate_random_code();
+        $data_tempat_tinggal->kode_penjamin = null;
 
         $data_tempat_tinggal->save();
 

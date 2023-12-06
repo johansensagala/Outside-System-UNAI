@@ -66,12 +66,12 @@
                                 Foto Tempat Tinggal
                             </div>
                             <div class="col-md-8 fw-bold">
-                                <button type="button" class="btn btn-warning fw-bold text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button type="button" class="btn btn-warning fw-bold text-white" data-bs-toggle="modal" data-bs-target="#modalFotoTempatTinggal">
                                     <i class="link-icon" data-feather="eye"></i>
                                     &nbsp;Lihat Foto
                                 </button>
                                  
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="modalFotoTempatTinggal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -84,6 +84,41 @@
                                                 @else
                                                     {{-- HANYA INI YANG DIPAKAI DI PRODUCTION --}}
                                                     <img id="myImg" src="{{ $data_tempat_tinggal->foto_tempat_tinggal }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                                @endif
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Foto Kartu Keluarga
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                <button type="button" class="btn btn-warning fw-bold text-white" data-bs-toggle="modal" data-bs-target="#modalFotoKartuKeluarga">
+                                    <i class="link-icon" data-feather="eye"></i>
+                                    &nbsp;Lihat Foto
+                                </button>
+                                 
+                                <div class="modal fade" id="modalFotoKartuKeluarga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Foto Tempat Tinggal Penjamin</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @if(file_exists(public_path('storage/' . $data_tempat_tinggal->foto_kartu_keluarga)))
+                                                    <img id="myImg" src="{{ asset('storage/' . $data_tempat_tinggal->foto_kartu_keluarga) }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                                @else
+                                                    {{-- HANYA INI YANG DIPAKAI DI PRODUCTION --}}
+                                                    <img id="myImg" src="{{ $data_tempat_tinggal->foto_kartu_keluarga }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
                                                 @endif
                                             </div>
                                             <div class="modal-footer">
@@ -115,31 +150,25 @@
                             </div>
                         </div>
                     </div>
-                    {{-- @if ($data_tempat_tinggal->status != 'disetujui' && $disetujui == 'salah') --}}
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-8 fw-bold">
-                                @if ($data_tempat_tinggal->status === 'pending' || $data_tempat_tinggal->status === 'ditolak')
+                                @if ($data_tempat_tinggal->status === 'pending')
                                     <form method="post" id="formSetujui" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/setujui" style="display: inline;">
                                         @csrf
                                         <button type="submit" id="btnSetujui" class="btn btn-success"><i class="link-icon" data-feather="check"></i>&nbsp;Setujui</button>
                                     </form>
-                                @endif
-                                @if ($data_tempat_tinggal->status === 'pending' || $data_tempat_tinggal->status === 'disetujui')
-                                    @if ($data_tempat_tinggal->status === 'disetujui')
+                                    <button class="btn btn-danger" id="btnTampilkanTolak">Tolak</button>
+                                @else
                                     <form method="post" id="formBatalkan" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/batalkan" style="display: inline;">
                                         @csrf
                                         <button type="submit" id="btnBatalkan" class="btn btn-danger">Batalkan</button>
                                     </form>
-                                    @else
-                                        <button class="btn btn-danger" id="btnTampilkanTolak">Tolak</button>
-                                    @endif
                                 @endif
                             </div>
                         </div><hr>
                     </div>
-                    {{-- @endif --}}
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 fw-bold mb-4">
@@ -185,18 +214,31 @@
                         </li>
                     </ul>
                 </div>
-                <div class="card">
-                    @if($data_tempat_tinggal->status == 'ditolak')
+                <div class="card mt-2">
+                    @if($data_tempat_tinggal->status != 'pending')
                     <div class="card-header text-center">
                         Komentar
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
+                            @if ($data_tempat_tinggal->status === 'disetujui')
+                            
+                            <div class="row">
+                                <small>
+                                    Data penjamin telah disetujui.
+                                </small>
+                                <small>
+                                    Kode penjamin: <strong>{{ $data_tempat_tinggal->kode_penjamin }}</strong>
+                                </small>
+                            </div>
+
+                            @elseif ($data_tempat_tinggal->status === 'ditolak')
                             
                             <small>
                                 {{ $data_tempat_tinggal->comment }}
                             </small>
 
+                            @endif
                         </li>
                     </ul>
                     @endif
@@ -207,7 +249,7 @@
             
         </div>   
     </div>
-</div> <!-- row -->
+</div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBub2pKear-jyRCDPs60bPSWIUANAi3UCo"></script>
 <script>
@@ -251,8 +293,28 @@
         const formTolak = document.getElementById("formTolak");
         const btnBatalkan = document.getElementById("btnBatalkan");
         const formBatalkan = document.getElementById("formBatalkan");
-        const tolakForm = document.getElementById("tolakForm"); // Add this line
+        const tolakForm = document.getElementById("tolakForm");
+        
+        @if ($data_tempat_tinggal->status != 'pending')
+        btnBatalkan.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Yakin Ingin Membatalkan?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formBatalkan.submit();
+                }
+            });
+        });
 
+        @else
         btnSetujui.addEventListener("click", function (event) {
             event.preventDefault();
             
@@ -287,24 +349,7 @@
                 }
             });
         });
-
-        btnBatalkan.addEventListener("click", function (event) {
-            event.preventDefault();
-            
-            Swal.fire({
-                title: "Yakin Ingin Membatalkan?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ya"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    formBatalkan.submit();
-                }
-            });
-        });
+        @endif
 
         // Tampilkan form Tolak
 
