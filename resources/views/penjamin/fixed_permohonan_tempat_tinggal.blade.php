@@ -29,6 +29,7 @@
                             </div>
                         </div>
                     </div>
+                    @if ($data_tempat_tinggal->status == 'disetujui')
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -39,7 +40,6 @@
                             </div>
                         </div>
                     </div>
-                    @if ($data_tempat_tinggal->status == 'disetujui')
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -57,11 +57,11 @@
                                 Foto Tempat Tinggal
                             </div>
                             <div class="col-md-8 fw-bold">
-                                <button type="button" class="btn btn-warning fw-bold text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button type="button" class="btn btn-warning fw-bold text-white" data-bs-toggle="modal" data-bs-target="#modalFotoTempatTinggal">
                                     <i class="link-icon" data-feather="eye"></i>
                                     &nbsp;Lihat Foto
                                 </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="modalFotoTempatTinggal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -74,6 +74,40 @@
                                                 @else
                                                     {{-- HANYA INI YANG DIPAKAI DI PRODUCTION --}}
                                                     <img id="myImg" src="{{ $data_tempat_tinggal->foto_tempat_tinggal }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                                @endif
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Foto Kartu Keluarga
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                <button type="button" class="btn btn-warning fw-bold text-white" data-bs-toggle="modal" data-bs-target="#modalFotoKartuKeluarga">
+                                    <i class="link-icon" data-feather="eye"></i>
+                                    &nbsp;Lihat Foto
+                                </button>
+                                <div class="modal fade" id="modalFotoKartuKeluarga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Foto Tempat Tinggal Penjamin</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @if(file_exists(public_path('storage/' . $data_tempat_tinggal->foto_kartu_keluarga)))
+                                                    <img id="myImg" src="{{ asset('storage/' . $data_tempat_tinggal->foto_kartu_keluarga) }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
+                                                @else
+                                                    {{-- HANYA INI YANG DIPAKAI DI PRODUCTION --}}
+                                                    <img id="myImg" src="{{ $data_tempat_tinggal->foto_kartu_keluarga }}" alt="Foto Tempat penjamin" style="width: 100%; height: auto;">
                                                 @endif
                                             </div>
                                             <div class="modal-footer">
