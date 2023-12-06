@@ -155,10 +155,7 @@
                             <div class="col-md-4"></div>
                             <div class="col-md-8 fw-bold">
                                 @if ($data_tempat_tinggal->status === 'pending')
-                                    <form method="post" id="formSetujui" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/setujui" style="display: inline;">
-                                        @csrf
-                                        <button type="submit" id="btnSetujui" class="btn btn-success"><i class="link-icon" data-feather="check"></i>&nbsp;Setujui</button>
-                                    </form>
+                                    <button class="btn btn-success" id="btnTampilkanSetujui"><i class="link-icon" data-feather="check"></i>&nbsp;Setujui</button>
                                     <button class="btn btn-danger" id="btnTampilkanTolak"><i class="link-icon" data-feather="x"></i>&nbsp;Tolak</button>
                                 @else
                                     <form method="post" id="formBatalkan" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/batalkan" style="display: inline;">
@@ -177,6 +174,23 @@
                                     @csrf
                                     <textarea class="form-control" name="comment" rows="3"></textarea>
                                     <button type="submit" id="btnTolak" class="btn btn-danger mt-3">Tolak</button>
+                                </form>
+                            </div>
+                            <div class="col-9" id="setujuiForm" style="display: none;">
+                                <form method="post" id="formSetujui" action="/biro/formulir-penjamin/{{ $data_tempat_tinggal->id }}/setujui" style="display: inline;">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label class="form-label">Pilih Jenis Penjamin:</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="role" id="radioDosen" value="dosen">
+                                            <label class="form-check-label" for="radioDosen">Dosen</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="role" id="radioNonDosen" value="nondosen">
+                                            <label class="form-check-label" for="radioNonDosen">Non-Dosen</label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" id="btnSetujui" class="btn btn-success mt-3">Setujui</button>
                                 </form>
                             </div>
                         </div>
@@ -278,14 +292,14 @@
     document.addEventListener("DOMContentLoaded", function () {
         const btnTolak = document.getElementById("btnTampilkanTolak");
         const tolakForm = document.getElementById("tolakForm");
-
+        
         btnTolak.addEventListener("click", function () {
             tolakForm.style.display = "block";
         });
     });
-
+    
     // Sweet Alert
-
+    
     window.addEventListener("load", function () {
         const btnSetujui = document.getElementById("btnSetujui");
         const formSetujui = document.getElementById("formSetujui");
@@ -294,6 +308,9 @@
         const btnBatalkan = document.getElementById("btnBatalkan");
         const formBatalkan = document.getElementById("formBatalkan");
         const tolakForm = document.getElementById("tolakForm");
+        const setujuiForm = document.getElementById("setujuiForm");
+        const btnTampilkanTolak = document.getElementById("btnTampilkanTolak");
+        const btnTampilkanSetujui = document.getElementById("btnTampilkanSetujui");
         
         @if ($data_tempat_tinggal->status != 'pending')
         btnBatalkan.addEventListener("click", function (event) {
@@ -351,11 +368,18 @@
 
         // Tampilkan form Tolak
 
-        const btnTampilkanTolak = document.getElementById("btnTampilkanTolak");
-
         btnTampilkanTolak.addEventListener("click", function () {
             tolakForm.style.display = "block";
+            setujuiForm.style.display = "none";
             btnTampilkanTolak.style.display = "none";
+            btnTampilkanSetujui.style.display = "block";
+        });
+        
+        btnTampilkanSetujui.addEventListener("click", function () {
+            setujuiForm.style.display = "block";
+            tolakForm.style.display = "none";
+            btnTampilkanSetujui.style.display = "none";
+            btnTampilkanTolak.style.display = "block";
         });
     });
 

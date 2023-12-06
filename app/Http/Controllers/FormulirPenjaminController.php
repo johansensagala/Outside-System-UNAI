@@ -115,10 +115,21 @@ class FormulirPenjaminController extends Controller
         return "P{$currentYear}{$code}";
     }
 
-    public function approve($id) {
+    public function approve(Request $request, $id) {
         $data_tempat_tinggal = PengajuanDataPenjamin::where('id', $id)->first();
 
+        Validator::make($request->all(), [
+            'role' => 'nullable|string|max:255',
+        ]);
+
         $data_tempat_tinggal->status = 'disetujui';
+        $data_tempat_tinggal->role = $request->input('role');
+
+        if ($request->input('role') === 'dosen') {
+            $data_tempat_tinggal->kapasitas = 2;
+        } else {
+            $data_tempat_tinggal->kapasitas = 1;
+        }
 
         $data_tempat_tinggal->kode_penjamin = $this->generate_random_code();
 
@@ -135,7 +146,6 @@ class FormulirPenjaminController extends Controller
         ]);
 
         $data_tempat_tinggal->comment = $request->input('comment');
-        
         $data_tempat_tinggal->status = 'ditolak';
 
         $data_tempat_tinggal->save();
@@ -147,8 +157,9 @@ class FormulirPenjaminController extends Controller
         $data_tempat_tinggal = PengajuanDataPenjamin::where('id', $id)->first();
 
         $data_tempat_tinggal->status = 'pending';
-
+        $data_tempat_tinggal->role = null;
         $data_tempat_tinggal->kode_penjamin = null;
+        $data_tempat_tinggal->comment = null;
 
         $data_tempat_tinggal->save();
 

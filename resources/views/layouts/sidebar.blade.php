@@ -171,7 +171,7 @@
 
       <li class="nav-item py-3 {{ request()->is('biro/profile') ? 'active' : '' }}">
         <a href="{{ url('/biro/profile') }}" class="nav-link">
-          <i class="link-icon" data-feather="table"></i>
+          <i class="link-icon" data-feather="user">></i>
           <span class="link-title">Profile</span>
         </a>
       </li>
@@ -185,14 +185,14 @@
 
       <li class="nav-item py-3 {{ request()->is('biro/daftar-mahasiswa') ? 'active' : '' }}">
         <a href="{{ url('biro/daftar-mahasiswa') }}" class="nav-link">
-          <i class="link-icon" data-feather="user"></i>
+          <i class="link-icon" data-feather="users"></i>
           <span class="link-title">Mahasiswa</span>
         </a>
       </li>
       
       <li class="nav-item py-3 {{ request()->is('biro/penjamin*') ? 'active' : '' }}">
         <a href="{{ url('biro/penjamin') }}" class="nav-link">
-          <i class="link-icon" data-feather="user"></i>
+          <i class="link-icon" data-feather="users"></i>
           <span class="link-title">Penjamin</span>
         </a>
       </li>
@@ -206,7 +206,7 @@
       
       <li class="nav-item py-3 {{ request()->is('biro/daftar-mahasiswa-outside*') ? 'active' : '' }}">
         <a href="{{ url('/biro/daftar-mahasiswa-outside') }}" class="nav-link">
-          <i class="link-icon" data-feather="clock"></i>
+          <i class="link-icon" data-feather="users"></i>
           <span class="link-title">Daftar Mahasiswa Outside</span>
         </a>
       </li>
