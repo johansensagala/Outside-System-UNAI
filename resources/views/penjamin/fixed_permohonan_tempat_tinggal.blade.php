@@ -136,6 +136,9 @@
                                 <div>
                                     <a class="btn btn-primary mt-3" href="https://www.google.com/maps?q={{ $data_tempat_tinggal->latitude }},{{ $data_tempat_tinggal->longitude }}" target="_blank">Buka di Google Maps</a>
                                 </div>
+                                <div>
+                                    <a class="btn btn-danger mt-3" href="/penjamin/ubah-tempat-tinggal/{{ $data_tempat_tinggal->id }}">Ubah Data</a>
+                                </div>
                             </div>
                         </div>
                     </div><hr>
