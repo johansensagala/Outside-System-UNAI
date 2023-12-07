@@ -45,11 +45,6 @@
                             {{ $daftar_pengajuan_luar_asrama->links() }}
                         </div>
                     @endif
-                    @if ($daftar_pengajuan_luar_asrama->count() === 0)
-                        <h4 class="my-4 text-center fw-bold">
-                            Belum ada Mahasiswa
-                        </h4>
-                    @endif
                 </div>
             </div>
         </div>

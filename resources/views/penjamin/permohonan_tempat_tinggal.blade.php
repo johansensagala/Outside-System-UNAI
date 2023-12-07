@@ -84,7 +84,7 @@
                                     <input type="hidden" id="longitude" name="longitude" value="">
 
                                     @error('latitude')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                     @error('longitude')
                                         <div class="alert alert-danger">{{ $message }}</div>

@@ -93,4 +93,15 @@ class PersetujuanLuarAsramaController extends Controller
 
         return redirect()->back();
     }
+
+    public function cancel($id) {
+        $pengajuan_luar_asrama = PengajuanLuarAsrama::where('id', $id)->first();
+        
+        $pengajuan_luar_asrama->status = 'pending';
+        $pengajuan_luar_asrama->comment = null;
+
+        $pengajuan_luar_asrama->save();
+
+        return redirect()->back();
+    }
 }

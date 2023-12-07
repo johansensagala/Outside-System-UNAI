@@ -216,14 +216,17 @@
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-8 fw-bold">
-                                @if ($pengajuan_luar_asrama->status === 'pending' || $pengajuan_luar_asrama->status === 'ditolak')
+                                @if ($pengajuan_luar_asrama->status === 'pending')
                                     <form method="post" id="formSetujui" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/setujui" style="display: inline;">
                                         @csrf
                                         <button type="submit" id="btnSetujui" class="btn btn-success">Setujui</button>
                                     </form>
-                                @endif
-                                @if ($pengajuan_luar_asrama->status === 'pending')
-                                    <button class="btn btn-danger" id="btnTampilkanTolak">Tolak</button>
+                                    <button class="btn btn-danger" id="btnTampilkanTolak"><i class="link-icon" data-feather="x"></i>&nbsp;Tolak</button>
+                                @else
+                                    <form method="post" id="formBatalkan" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/batalkan" style="display: inline;">
+                                        @csrf
+                                        <button type="submit" id="btnBatalkan" class="btn btn-danger"><i class="link-icon" data-feather="slash"></i>&nbsp;Batalkan</button>
+                                    </form>
                                 @endif
                             </div>
                         </div><hr>

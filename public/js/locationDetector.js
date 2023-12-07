@@ -35,9 +35,6 @@ const hideLoading = () => {
 showLoading();
 
 navigator.geolocation.getCurrentPosition((position) => {
-  // const googleMap = document.getElementById('notAllowed');
-  // googleMap.classList.remove('d-none');
-
   success(position);
   hideLoading();
 }, error);
