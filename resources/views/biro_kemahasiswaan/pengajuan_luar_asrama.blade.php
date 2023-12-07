@@ -219,7 +219,7 @@
                                 @if ($pengajuan_luar_asrama->status === 'pending')
                                     <form method="post" id="formSetujui" action="/biro/persetujuan-luar-asrama/{{ $pengajuan_luar_asrama->id }}/setujui" style="display: inline;">
                                         @csrf
-                                        <button type="submit" id="btnSetujui" class="btn btn-success">Setujui</button>
+                                        <button type="submit" id="btnSetujui" class="btn btn-success"><i class="link-icon" data-feather="check"></i>&nbsp;Setujui</button>
                                     </form>
                                     <button class="btn btn-danger" id="btnTampilkanTolak"><i class="link-icon" data-feather="x"></i>&nbsp;Tolak</button>
                                 @else
@@ -378,6 +378,28 @@
         const formSetujui = document.getElementById("formSetujui");
         const btnTolak = document.getElementById("btnTolak");
         const formTolak = document.getElementById("formTolak");
+        const btnBatalkan = document.getElementById("btnBatalkan");
+        const formBatalkan = document.getElementById("formBatalkan");
+
+        @if ($pengajuan_luar_asrama->status != 'pending')
+        btnBatalkan.addEventListener("click", function (event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Yakin Ingin Membatalkan?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    formBatalkan.submit();
+                }
+            });
+        });
+
+        @else
 
         btnSetujui.addEventListener("click", function (event) {
             event.preventDefault();
@@ -412,6 +434,7 @@
                 }
             });
         });
+        @endif
     });
 
 </script>
