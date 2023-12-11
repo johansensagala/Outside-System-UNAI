@@ -23,6 +23,8 @@ class PermohonanTempatTinggalController extends Controller
             'foto_kartu_keluarga' => 'required|file|max:2048|image|mimes:jpeg,png,jpg,gif',
             'longitude' => 'required',
             'latitude' => 'required',
+            'nim_mahasiswa_1' => 'required',
+            'nim_mahasiswa_2' => 'required',
         ]);
 
         $data_tempat_tinggal = new PengajuanDataPenjamin();
@@ -32,6 +34,8 @@ class PermohonanTempatTinggalController extends Controller
         $data_tempat_tinggal->longitude = $request->input('longitude');
         $data_tempat_tinggal->foto_tempat_tinggal = $request->foto_tempat_tinggal->store('foto_tempat_tinggal');
         $data_tempat_tinggal->foto_kartu_keluarga = $request->foto_kartu_keluarga->store('foto_kartu_keluarga');
+        $data_tempat_tinggal->nim_mahasiswa_1 = $request->input('nim_mahasiswa_1');
+        $data_tempat_tinggal->nim_mahasiswa_2 = $request->input('nim_mahasiswa_2');
         $data_tempat_tinggal->id_penjamin = Auth::guard('penjamin')->user()->id;
 
         $data_tempat_tinggal->save();

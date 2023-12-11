@@ -63,6 +63,32 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="">NIM Mahasiswa 1</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control @error('nim_mahasiswa_1') is-invalid @enderror" id="nim_mahasiswa_1" name="nim_mahasiswa_1">
+                                    @error('nim_mahasiswa_1')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="">NIM Mahasiswa 2</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control @error('nim_mahasiswa_2') is-invalid @enderror" id="nim_mahasiswa_2" name="nim_mahasiswa_2">
+                                    @error('nim_mahasiswa_2')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body" id="gpsPenjamin">
                             <div class="row">
                                 <div class="col-md-4">

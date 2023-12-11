@@ -110,7 +110,7 @@
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Foto Tempat Tinggal Penjamin</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Foto Kartu Keluarga</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
@@ -130,6 +130,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                NIM Mahasiswa 1
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                {{ $data_tempat_tinggal->nim_mahasiswa_1 }}
+                            </div>
+                        </div>
+                    </div>
+                    @if ($data_tempat_tinggal->nim_mahasiswa_2)
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                NIM Mahasiswa 2
+                            </div>
+                            <div class="col-md-8 fw-bold">
+                                {{ $data_tempat_tinggal->nim_mahasiswa_2 }}
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
