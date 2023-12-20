@@ -33,6 +33,7 @@ class PengajuanDataPenjaminSeeder extends Seeder
                 'latitude' => $latitude,
                 'longitude' => $longitude,
                 'foto_tempat_tinggal' => $faker->imageUrl(),
+                'foto_kartu_keluarga' => $faker->imageUrl(),
                 'kapasitas' => $kapasitas,
                 'status' => $status,
                 'comment' => $comment,
