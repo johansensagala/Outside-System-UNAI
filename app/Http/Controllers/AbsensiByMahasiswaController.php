@@ -15,13 +15,24 @@ use Carbon\Carbon;
 
 class AbsensiByMahasiswaController extends Controller
 {
+    private $mahasiswa;
+    private $id_mahasiswa;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->mahasiswa = Auth::guard('mahasiswa')->user();
+            $this->id_mahasiswa = $this->mahasiswa->id;
+
+            return $next($request);
+        });
+    }
+
     public function index()
     {
-        $mahasiswa = Auth::guard('mahasiswa')->user();
-        $id_mahasiswa = $mahasiswa->id;
         $now = Carbon::now();
     
-        $data_absen_today = Absensi::where('id_mahasiswa', $id_mahasiswa)
+        $data_absen_today = Absensi::where('id_mahasiswa', $this->id_mahasiswa)
             ->whereDate('created_at', Carbon::today())
             ->where('kehadiran', 'Hadir')
             ->get();
@@ -31,7 +42,7 @@ class AbsensiByMahasiswaController extends Controller
         $absen_time = $now->between($batas_bawah, $batas_atas);
         $belum_absen = $data_absen_today->isEmpty();
 
-        $pengajuan_luar_asrama = $this->getPengajuanLuarAsrama($id_mahasiswa);
+        $pengajuan_luar_asrama = $this->getPengajuanLuarAsrama($this->id_mahasiswa);
 
         if (!$pengajuan_luar_asrama) {
             return view('mahasiswa.no_absensi');
@@ -39,7 +50,7 @@ class AbsensiByMahasiswaController extends Controller
 
         list($latitude, $longitude) = $this->getLocation($pengajuan_luar_asrama);
 
-        return view('mahasiswa.aksi_absensi', compact('mahasiswa', 'belum_absen', 'absen_time', 'latitude', 'longitude'));
+        return view('mahasiswa.aksi_absensi', compact('belum_absen', 'absen_time', 'latitude', 'longitude'));
     }
 
     public function store(Request $request)
@@ -49,10 +60,7 @@ class AbsensiByMahasiswaController extends Controller
             'latitude' => 'required',
         ]);
 
-        $mahasiswa = Auth::guard('mahasiswa')->user();
-        $id_mahasiswa = $mahasiswa->id;
-
-        $data_absen_today = Absensi::where('id_mahasiswa', $id_mahasiswa)
+        $data_absen_today = Absensi::where('id_mahasiswa', $this->id_mahasiswa)
             ->whereDate('created_at', Carbon::today())
             ->get();
 
@@ -68,15 +76,15 @@ class AbsensiByMahasiswaController extends Controller
 
         $absensi->alasan = $request->input('alasan');
         $absensi->kehadiran = $request->input('kehadiran');
-        $absensi->id_mahasiswa = $id_mahasiswa;
+        $absensi->id_mahasiswa = $this->id_mahasiswa;
         $absensi->save();
 
         return redirect()->back();
     }
 
-    private function getPengajuanLuarAsrama($id_mahasiswa)
+    private function getPengajuanLuarAsrama()
     {
-        return PengajuanLuarAsrama::where('id_mahasiswa', $id_mahasiswa)
+        return PengajuanLuarAsrama::where('id_mahasiswa', $this->id_mahasiswa)
             ->where('status', 'disetujui')
             ->first();
     }
