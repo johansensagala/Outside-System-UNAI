@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Penjamin;
-use App\Models\BiroKemahasiswaan;
 use App\Models\PengajuanDataPenjamin;
-use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 class FormulirPenjaminController extends Controller
 {
@@ -57,20 +54,20 @@ class FormulirPenjaminController extends Controller
 
     public function show($id)
     {
-        $data_tempat_tinggal = PengajuanDataPenjamin::where('id', $id)->first();
-        $penjamin = Penjamin::where('id', $data_tempat_tinggal->id_penjamin)->first();
+        $data_tempat_tinggal = PengajuanDataPenjamin::findOrFail($id);
+        $penjamin = Penjamin::findOrFail($data_tempat_tinggal->id_penjamin);
+    
+        $daftar_permohonan_disetujui = PengajuanDataPenjamin::where('id_penjamin', $penjamin->id)
+            ->where('status', 'disetujui')
+            ->first();
 
-        $daftar_permohonan = PengajuanDataPenjamin::where('id_penjamin', $penjamin->id)->where('status', 'disetujui')->get();
-
-        if ($daftar_permohonan->isEmpty()) {
-            $disetujui = "salah";
-        } else {
-            $disetujui = "benar";
+        if (!$daftar_permohonan_disetujui) {
+            $daftar_permohonan_disetujui = null;
         }
-
-        return view('biro_kemahasiswaan.formulir_penjamin', compact('data_tempat_tinggal', 'penjamin', 'disetujui'));
+    
+        return view('biro_kemahasiswaan.formulir_penjamin', compact('data_tempat_tinggal', 'penjamin', 'daftar_permohonan_disetujui'));
     }
-
+    
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

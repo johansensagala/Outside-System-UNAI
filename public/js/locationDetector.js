@@ -11,49 +11,51 @@ const success = (position) => {
 }
 
 const error = () => {
-    const alamatDomisili = document.getElementById('alamatDomisili');
-    const fotoTempatTinggal = document.getElementById('fotoTempatTinggal');
-    const simpanPermohonan = document.getElementById('simpanPermohonan');
-    const gpsPenjamin = document.getElementById('gpsPenjamin');
+    const alamat = document.getElementById('alamat');
+    const foto_tempat_tinggal = document.getElementById('foto_tempat_tinggal');
+    const foto_kartu_keluarga = document.getElementById('foto_kartu_keluarga');
+    const autoclose = document.getElementById('autoclose');
+    const position_check = document.getElementById('position_check');
     const notAllowed = document.getElementById('notAllowed');
 
-    alamatDomisili.disabled = true;
-    fotoTempatTinggal.disabled = true;
-    simpanPermohonan.disabled = true;
-    gpsPenjamin.hidden = true;
+    alamat.disabled = true;
+    foto_tempat_tinggal.disabled = true;
+    foto_kartu_keluarga.disabled = true;
+    autoclose.hidden = true;
+    position_check.classList.add('d-none');
     notAllowed.classList.remove('d-none');
 }
 
 const showLoading = () => {
-  document.querySelector('.loading').style.display = 'block';
+    document.querySelector('.loading').style.display = 'block';
 }
 
 const hideLoading = () => {
-  document.querySelector('.loading').style.display = 'none';
+    document.querySelector('.loading').style.display = 'none';
 }
 
 showLoading();
 
 navigator.geolocation.getCurrentPosition((position) => {
-  success(position);
-  hideLoading();
+    success(position);
+    hideLoading();
 }, error);
 
 async function initMap() {
-  if (latitude === null || longitude === null) {
-      return;
-  }
-  
-  let myLatLng = { lat: latitude, lng: longitude };
+    if (latitude === null || longitude === null) {
+        return;
+    }
+    
+    let myLatLng = { lat: latitude, lng: longitude };
 
-  let map = new google.maps.Map(document.getElementById('googleMap'), {
-    zoom: 14,
-    center: myLatLng
-  });
+    let map = new google.maps.Map(document.getElementById('googleMap'), {
+        zoom: 14,
+        center: myLatLng
+    });
 
-  let marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: 'Lokasi saya'
-  });
+    let marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Lokasi saya'
+    });
 }

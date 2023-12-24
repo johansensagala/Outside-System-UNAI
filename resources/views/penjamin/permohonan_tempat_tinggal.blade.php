@@ -63,32 +63,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="">NIM Mahasiswa 1</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control @error('nim_mahasiswa_1') is-invalid @enderror" id="nim_mahasiswa_1" name="nim_mahasiswa_1">
-                                    @error('nim_mahasiswa_1')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="">NIM Mahasiswa 2</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control @error('nim_mahasiswa_2') is-invalid @enderror" id="nim_mahasiswa_2" name="nim_mahasiswa_2">
-                                    @error('nim_mahasiswa_2')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
                         <div class="card-body" id="gpsPenjamin">
                             <div class="row">
                                 <div class="col-md-4">
@@ -103,7 +77,7 @@
                                     </div>
                                     <div class="container">
                                         <h1 class="status"></h1>
-                                    </div>                                                                                        
+                                    </div>
                                     <div id="googleMap" class="" style="width: 100%; height: 400px;"></div>
 
                                     <input type="hidden" id="latitude" name="latitude" value="">
@@ -122,7 +96,7 @@
                             <div class="row">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-8">
-                                    <div class="form-check">
+                                    <div class="form-check" id="position_check">
                                         <input type="hidden" name="autoclose" value="0">
                                         <input type="checkbox" class="form-check-input" id="autoclose" name="autoclose" value="1" {{ old('autoclose') ? 'checked' : '' }}>
                                         <label class="form-check-label form-label" for="autoclose">

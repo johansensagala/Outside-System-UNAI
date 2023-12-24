@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('status')->default('pending');
             $table->string('comment')->nullable();
             $table->string('kode_penjamin')->nullable();
-            $table->string('nim_mahasiswa_1');
-            $table->string('nim_mahasiswa_2')->nullable();
             $table->unsignedBigInteger('id_penjamin')->nullable();
             $table->unsignedBigInteger('id_biro_kemahasiswaan')->nullable();
             $table->timestamps();

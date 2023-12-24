@@ -4,63 +4,6 @@
 @section('content')
 @push('plugin-styles')
     <link href="{{ asset('assets/plugins/flatpickr/flatpickr.min.css') }}" rel="stylesheet"/>
-
-    <style>
-    @media (max-width: 767px) {
-        .table-responsive.card-list-table {
-            display: block;
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .table-responsive.card-list-table table {
-            display: block;
-            width: 100%;
-            border-collapse: collapse;
-            border-spacing: 0;
-            white-space: nowrap;
-        }
-
-        .table-responsive.card-list-table tbody tr .number {
-            display: none;
-        }
-
-        .table-responsive.card-list-table tbody tr .name {
-            font-size: 16px;
-        }
-
-        .table-responsive.card-list-table thead {
-            display: none;
-        }
-
-        .table-responsive.card-list-table tbody {
-            display: block;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .table-responsive.card-list-table tbody tr {
-            display: block;
-            margin-bottom: 10px;
-            border: 8px solid #ddd;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .table-responsive.card-list-table tbody td {
-            display: flex;
-            align-items: baseline;
-            justify-content:center;
-            text-align: left;
-            font-size: 14px;
-            padding: 8px;
-            box-sizing: border-box;
-            width: 100%;
-        }
-    }
-</style>
-
 @endpush
 
 <div class="row common-font-color">
@@ -80,7 +23,7 @@
                         <div class="table-wrapper card bs-gray-100 fw-bold">
                             <table class="table table-responsive card-list-table table-bordered table-striped">
                                 <thead>
-                                    <tr class="text-center">
+                                <tr class="text-center">
                                         <th>No</th>
                                         <th>Nama Mahasiswa</th>
                                         <th>Tanggal Pengajuan</th>
@@ -99,34 +42,34 @@
                                         <td class="align-middle">{{ $pengajuan_mahasiswa->mahasiswa->nama }}</td>
                                         <td class="align-middle text-center">{{ $pengajuan_mahasiswa->created_at->format('d/m/Y H:i:s') }}</td>
                                         @if ($pengajuan_mahasiswa->status_penjamin == 'disetujui')
-                                            <td class="align-middle fw-bolder text-center" style="color: Green;">
-                                                Disetujui
-                                            </td>
+                                        <td class="align-middle fw-bolder text-center" style="color: Green;">
+                                            Disetujui
+                                        </td>
                                         @elseif ($pengajuan_mahasiswa->status_penjamin == 'ditolak')
-                                            <td class="align-middle fw-bolder text-center" style="color: red;">
-                                                Ditolak
-                                            </td>
+                                        <td class="align-middle fw-bolder text-center" style="color: red;">
+                                            Ditolak
+                                        </td>
                                         @else
-                                            <td class="align-middle fw-bolder text-center" style="color: #fbbc00">
-                                               <i>Pending</i>
-                                            </td>
+                                        <td class="align-middle fw-bolder text-center" style="color: #fbbc00">
+                                            <i>Pending</i>
+                                        </td>
                                         @endif
                                         @if ($pengajuan_mahasiswa->status == 'disetujui')
-                                            <td class="align-middle fw-bolder text-center" style="color: Green;">
-                                                Disetujui
-                                            </td>
+                                        <td class="align-middle fw-bolder text-center" style="color: Green;">
+                                            Disetujui
+                                        </td>
                                         @elseif ($pengajuan_mahasiswa->status == 'ditolak')
-                                            <td class="align-middle fw-bolder text-center" style="color: red;">
-                                                Ditolak
-                                            </td>
+                                        <td class="align-middle fw-bolder text-center" style="color: red;">
+                                            Ditolak
+                                        </td>
                                         @else
-                                            <td class="align-middle fw-bolder text-center" style="color: #fbbc00">
-                                               <i>Pending</i>
-                                            </td>
+                                        <td class="align-middle fw-bolder text-center" style="color: #fbbc00">
+                                            <i>Pending</i>
+                                        </td>
                                         @endif
-                                            <td class="align-middle text-center">
-                                                <a href="/penjamin/persetujuan-mahasiswa/{{ $pengajuan_mahasiswa->id }}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>&nbsp;&nbsp;Detail</a>
-                                            </td>
+                                        <td class="align-middle text-center">
+                                            <a href="/penjamin/persetujuan-mahasiswa/{{ $pengajuan_mahasiswa->id }}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>&nbsp;&nbsp;Detail</a>
+                                        </td>
                                     </tr>
                                     @php
                                         $index++;

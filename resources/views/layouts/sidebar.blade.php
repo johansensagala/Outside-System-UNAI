@@ -119,6 +119,9 @@
 
       @php
         $data_permohonan = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())->get();
+        $data_permohonan_disetujui = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())
+          ->where('status', 'disetujui')
+          ->get();
         $data_permohonan_terakhir = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())
           ->latest('created_at')
           ->first();
@@ -141,12 +144,14 @@
       </li>
       @endif
       
+      @if ($data_permohonan_disetujui->isNotEmpty())
       <li class="nav-item py-3 {{ request()->is('penjamin/persetujuan-mahasiswa*') ? 'active' : '' }}">
         <a href="/penjamin/persetujuan-mahasiswa" class="nav-link">
           <i class="link-icon" data-feather="users"></i>
           <span class="link-title">Persetujuan Mahasiswa</span>
         </a>
       </li>
+      @endif
       
       <form id="logout-form" action="{{ route('logout_penjamin') }}" method="post">
         @csrf

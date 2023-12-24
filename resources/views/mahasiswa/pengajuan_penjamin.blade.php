@@ -31,33 +31,34 @@
                                 <div class="col-md-8">
                                     <div>
                                         @if (!is_null($mahasiswa->waktu_setuju) && strtotime($mahasiswa->waktu_setuju) - (time() - 3600) > 0)
-                                            <small class="text-danger">
-                                                Anda telah melakukan melewati batas kesalahan. Anda harus menunggu selama 
-                                                {{ ceil((strtotime($mahasiswa->waktu_setuju) - (time() - 3600)) / 60) }} menit 
-                                                tersisa untuk dapat memasukkan kode penjamin
-                                            </small>                                       
+                                        <small class="text-danger">
+                                            Anda telah melakukan melewati batas kesalahan. Anda harus menunggu selama 
+                                            {{ ceil((strtotime($mahasiswa->waktu_setuju) - (time() - 3600)) / 60) }} menit 
+                                            tersisa untuk dapat memasukkan kode penjamin
+                                        </small>                                       
                                         @endif
                                         <input type="text" id="kode_penjamin" name="kode_penjamin" class="form-control"
                                         @if (!is_null($mahasiswa->waktu_setuju) && strtotime($mahasiswa->waktu_setuju) - (time() - 3600) > 0)
-                                            disabled
+                                        disabled
                                         @endif>
                                     </div>
                                     <div class="row">
                                         <small>Masukkan kode penjamin dengan benar! Kesalahan sebanyak 5 kali akan mengakibatkan pengajuan outside anda tidak dapat dilanjutkan.</small>
                                         {{-- @if(isset($pesan)) --}}
                                         @if(isset($pesan) && $mahasiswa->percobaan != 5)
-                                            <small class="text-danger">{{ $pesan }}</small>
+                                        <small class="text-danger">{{ $pesan }}</small>
                                         @elseif(isset($pesan))
-                                            <small class="text-danger">{{ $pesan }}</small>
+                                        <small class="text-danger">{{ $pesan }}</small>
                                         @endif
                                         @if (isset($error))
-                                            <small class="text-danger">{{ $error }}</small>
+                                        <small class="text-danger">{{ $error }}</small>
                                         @endif
                                         <small class="fw-bolder">Tersisa {{ $mahasiswa->percobaan }} kali percobaan</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @if (is_null($mahasiswa->waktu_setuju) || strtotime($mahasiswa->waktu_setuju) - (time() - 3600) <= 0)
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4"></div>
@@ -67,7 +68,8 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>    
+                        </div>
+                        @endif
                     </form>
                 </div>
             </div>

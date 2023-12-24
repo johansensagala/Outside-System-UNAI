@@ -133,28 +133,6 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                NIM Mahasiswa 1
-                            </div>
-                            <div class="col-md-8 fw-bold">
-                                {{ $data_tempat_tinggal->nim_mahasiswa_1 }}
-                            </div>
-                        </div>
-                    </div>
-                    @if ($data_tempat_tinggal->nim_mahasiswa_2)
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                NIM Mahasiswa 2
-                            </div>
-                            <div class="col-md-8 fw-bold">
-                                {{ $data_tempat_tinggal->nim_mahasiswa_2 }}
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
                                 Lokasi  
                             </div>
                             <div class="col-md-8 fw-bold">
@@ -172,6 +150,7 @@
                             </div>
                         </div>
                     </div>
+                    @if (!$daftar_permohonan_disetujui || $data_tempat_tinggal->status == 'disetujui')
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4"></div>
@@ -188,6 +167,7 @@
                             </div>
                         </div><hr>
                     </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8 fw-bold mb-4">

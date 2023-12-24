@@ -13,6 +13,13 @@ class PersetujuanMahasiswaController extends Controller
     {
         $id_penjamin = Auth::guard('penjamin')->user()->id;
         $daftar_pengajuan_mahasiswa = PengajuanLuarAsrama::where('id_penjamin', $id_penjamin)->get();
+        $data_permohonan_disetujui = \App\Models\PengajuanDataPenjamin::where('id_penjamin', Auth::guard('penjamin')->id())
+            ->where('status', 'disetujui')
+            ->get();
+
+        if ($data_permohonan_disetujui->isEmpty()) {
+            return view('penjamin.not_permitted');
+        }
 
         return view('penjamin.daftar_persetujuan_permohonan_mahasiswa', compact('daftar_pengajuan_mahasiswa'));
     }

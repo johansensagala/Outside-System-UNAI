@@ -3,61 +3,6 @@
 
 @push('plugin-styles')
     <link href="{{ asset('assets/plugins/flatpickr/flatpickr.min.css') }}" rel="stylesheet"/>
-    <style>
-    @media (max-width: 767px) {
-        .table-responsive.card-list-table {
-            display: block;
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .table-responsive.card-list-table table {
-            display: block;
-            width: 100%;
-            border-collapse: collapse;
-            border-spacing: 0;
-            white-space: nowrap;
-        }
-
-        .table-responsive.card-list-table thead {
-            display: none;
-        }
-
-        .table-responsive.card-list-table tbody tr .number {
-            display: none;
-        }
-
-        .table-responsive.card-list-table tbody tr .name {
-            font-size: 16px;
-        }
-
-        .table-responsive.card-list-table tbody {
-            display: block;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .table-responsive.card-list-table tbody tr {
-            display: block;
-            margin-bottom: 10px;
-            border: 8px solid #ddd;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .table-responsive.card-list-table tbody td {
-            display: flex;
-            align-items: baseline;
-            justify-content:center;
-            text-align: left;
-            font-size: 14px;
-            padding: 8px;
-            box-sizing: border-box;
-            width: 100%;
-        }
-    }
-</style>
 @endpush
 
 @section('content')

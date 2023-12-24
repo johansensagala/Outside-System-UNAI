@@ -41,7 +41,7 @@ Route::get('/', function () {
     return redirect('/mhs/login');
 });
 
-Route::get('mhs/login', [LoginMahasiswaController::class, 'index'])->name('login-mahasiswa')->middleware('guest:mahasiswa');
+Route::get('mhs/login', [LoginMahasiswaController::class, 'index'])->name('login-mahasiswa');
 Route::post('mhs/login', [LoginMahasiswaController::class, 'authenticate']);
 Route::post('mhs/logout', [LoginMahasiswaController::class, 'logout'])->name('logout_mahasiswa');
 
@@ -50,11 +50,11 @@ Route::post('/penjamin/register', [RegisterController::class, 'store']);
 Route::get('/penjamin/verify-otp', [RegisterController::class, 'showVerifyOtpForm'])->name('verify_otp');
 Route::post('/penjamin/verify-otp', [RegisterController::class, 'verifyOtp']);
 
-Route::get('penjamin/login', [LoginPenjaminController::class, 'index'])->name('login-penjamin')->middleware('guest:penjamin');
+Route::get('penjamin/login', [LoginPenjaminController::class, 'index'])->name('login-penjamin');
 Route::post('penjamin/login', [LoginPenjaminController::class, 'authenticate']);
 Route::post('penjamin/logout', [LoginPenjaminController::class, 'logout'])->name('logout_penjamin');
 
-Route::get('biro/login', [LoginBiroKemahasiswaanController::class, 'index'])->name('login-biro-kemahasiswaan')->middleware('guest:biro_kemahasiswaan');
+Route::get('biro/login', [LoginBiroKemahasiswaanController::class, 'index'])->name('login-biro-kemahasiswaan');
 Route::post('biro/login', [LoginBiroKemahasiswaanController::class, 'authenticate']);
 Route::post('biro/logout', [LoginBiroKemahasiswaanController::class, 'logout'])->name('logout_biro_kemahasiswaan');
 
@@ -72,7 +72,6 @@ Route::middleware(['mahasiswa_middleware'])->group(function () {
     Route::get('/mhs/data-pengajuan', [DataPengajuanMahasiswaController::class, 'index'])->name('mhs.data-pengajuan');
 
     Route::get('/mhs/daftar-absensi', [DaftarAbsensiByMahasiswaController::class, 'index']);
-    // Route::post('/mhs/daftar-absensi', [DaftarAbsensiByMahasiswaController::class, 'store']);
     Route::get('/mhs/daftar-absensi/filter', [DaftarAbsensiByMahasiswaController::class, 'filter']);
     Route::get('/mhs/daftar-absensi/{year}/{month}/{date}', [DaftarAbsensiByMahasiswaController::class, 'show']);
     
